@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-center my-3">
+  <div class="row banner h-50 my-3 shadow-one">
+    <div class="col-lg-6 d-none d-lg-block"></div>
+    <div class="col-lg-6 bg-white shadow-two">
+      <h4 class="my-lg-4 my-3">CONTACT US</h4>
+      <form action="/message" method="post" class="">
+        <div class="my-4">
+          <label for="sendTo" class="label mb-3">SELECT SUBJECT:</label>
+          <select name="sendTo" id="" class="shadow-one form-control">
+            <option value="enquiry">ENQUIRY</option>
+            <option value="other">OTHER</option>
+            <option value="help">HELP</option>
+          </select>
+        </div>
+
+        <div class="">
+          <label for="message" class="label">MESSAGE</label> <br />
+          <textarea
+            class="shadow-one form-control"
+            name="message"
+            id=""
+            placeholder="Enter notice"
+          ></textarea>
+          <br />
+        </div>
+        <!-- <input type="text" name="news" placeholder="News" /> -->
+        <div class="py-3">
+          <button
+            class="btn btn-success shadow-two"
+            type="submit"
+            name="sendEmail"
+          >
+            SEND MESSAGE
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

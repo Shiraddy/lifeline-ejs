@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Register - Login</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <!-- MY STYLESHEET -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&family=Merriweather:wght@400;900&family=Montserrat:wght@800&family=Noto+Serif:wght@600&family=Open+Sans&family=PT+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FAVICON -->
+    <link rel="icon" href="images/logo.png" />
+
+    <!-- BOOTSTRAP ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+
+    <!-- FONT AWESOME -->
+    <script
+      src="https://kit.fontawesome.com/71529e80f4.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <section id="">
+      <div class="container-fluid text-white bg-danger banner">
+        <nav class="navbar navbar-expand-lg navbar-dark container-sm">
+          <a href="/" class="navbar-brand text-danger py-3"
+            ><img
+              id="#banner"
+              class="logo"
+              src="images/logo.png"
+              alt="LIFELINE"
+            />LIFELINE</a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ms-auto pt-4 ps-2">
+              <li class="nav-item px-3 text-center">
+                <a class="nav-link text-white" href="/">Home</a>
+              </li>
+              <li class="nav-item px-3 text-center">
+                <a class="nav-link text-white" href="/apply">Apply</a>
+              </li>
+              <li class="nav-item px-3 text-center">
+                <a class="nav-link text-white" href="#about">Articles</a>
+              </li>
+              <li class="nav-item px-3 text-center">
+                <a class="nav-link text-white" href="/faq">Faq</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <section class="container-sm">
+          <div id="offer" class="row py-lg-3 form-sign-in">
+            <div class="col-lg-8 text-start d-none d-lg-block">
+              <!-- <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Corrupti incidunt soluta nesciunt porro, illum nobis. Eum sed
+                aperiam sunt eius.
+              </p> -->
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 py-4 shadow-two">
+              <div class="py-2">
+                <h3>WELCOME BACK</h3>
+                <p>Login With Your Credentials</p>
+              </div>
+              <form id="login-form" action="/login" class="" method="post">
+                <input
+                  required
+                  type="text"
+                  class="apply-input mb-2"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  value="<%= typeof email !== 'undefined' ? email : '' %>"
+                />
+                <small class="error-message" id="error-message"></small>
+                <!-- <small id="email-error" class="error-message"></small> -->
+                <br />
+
+                <input
+                  required
+                  class="apply-input"
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                />
+                <br />
+
+                <!-- ERROR MESSAGE -->
+                <!-- <small
+                  id="error-message"
+                  class="bg-danger text-white py-1 mt-1"
+                ></small> -->
+
+                <% if (typeof error !== 'undefined') { %>
+                <p class="danger mt-1"><%= error %></p>
+                <% } %>
+
+                <!-- SWITCH TO KEEP LOGGED IN -->
+                <div class="text-end">
+                  <input class="" type="checkbox" role="switch" />
+                  <small class="" for="flexSwitchCheckDefault"
+                    >Keep Me Logged In</small
+                  >
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <button
+                  id="submitbtn"
+                  class="btn btn-danger apply-input mt-3"
+                  type="submit"
+                >
+                  Sign In
+                  <span id="loading-spinner" class="d-none">
+                    <div
+                      class="spinner-border spinner-border-sm text-white"
+                      role="status"
+                    >
+                      <!-- <span class="sr-only">Loading...</span> -->
+                    </div>
+                  </span>
+                </button>
+                <br />
+
+                <!-- PASSWORD & NEW-USER FIELD -->
+                <div class="d-flex justify-content-around py-3 my-lg-1">
+                  <a class="link" href="#">Forgot Password</a>
+                  <a class="link" href="/apply">New User? Sign-Up</a>
+                </div>
+
+                <!-- OTHER LOG IN OPTIONS -->
+                <!-- <div>
+                  <div class="py-lg-2">
+                    <p>
+                      Or Login Using:
+                      <i class="fa fa-google-plus-circle"></i>
+                      <i class="fa fa-facebook-official"></i>
+                      <i class="fa fa-twitter"></i>
+                    </p>
+                  </div>
+                </div> -->
+              </form>
+
+              <!-- <button class="btn btn-danger" id="test">Test</button>
+              <div id="error-message"></div> -->
+            </div>
+          </div>
+          <!-- NAVBAR -->
+          <div class="d-flex justify-content-between d-none d-lg-flex">
+            <div class="me-auto">
+              <a class="link" href="/">HOME </a>
+              <a class="link" href="/faq"> FAQ </a>
+              <a class="link" href="#"> CONTACT </a>
+              <a class="link" href="#"> TERMS OF USE</a>
+            </div>
+            <p class="pe-lg-5">Lifeline Educational Solutions Limited&copy;</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- MY JAVASCRIPT -->
+    <script src="js/index.js"></script>
+
+    <!-- BOOTSTRAP -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,1452 @@
+* {
+  box-sizing: border-box;
+}
+
+/************BANNER************/
+.banner {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.686), rgba(0, 0, 0, 0.541)),
+    url(/images/hero2.png);
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.navbar-brand {
+  font-size: 1.8rem;
+  padding-left: 5px;
+  font-weight: 800;
+  font-family: "merriweather", Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbar-brand:hover {
+  color: black;
+}
+
+.nav-link {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 3 rem;
+}
+
+.logo {
+  width: 7rem;
+  height: 7rem;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 8;
+}
+
+.dropdown-content a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  background-color: red;
+}
+
+.dropdown-content a:hover {
+  display: block;
+  background-color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/************NAVBAR**************/
+.container-sm {
+  margin: auto auto;
+  width: 95%;
+}
+
+.container-apply {
+  width: 60%;
+  margin: auto auto;
+  /* padding: 0 7%; */
+}
+
+.content {
+  width: 100%;
+  position: absolute;
+  top: 40%;
+  color: white;
+}
+
+/*************HERO-SECTION**********/
+
+.button-hero:hover {
+  background-color: black;
+  outline: 2px solid red;
+}
+
+.hero-header {
+  font-size: 2.6rem;
+  padding: 0 9%;
+  margin-bottom: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+  padding-bottom: 1rem;
+}
+
+.hero-home {
+  border-bottom: 6px solid red;
+}
+
+.hero-text {
+  padding: 0 9%;
+  margin-top: 0;
+  font-size: 1.4rem;
+  /* text-align: left; */
+  background-color: (rgba(0, 0, 0, 0.2));
+  font-family: "Kanit", sans-serif;
+  font-weight: 350;
+}
+
+.button-hero {
+  background-color: red;
+  color: #fff;
+  padding: 2% 1%;
+  margin: auto auto;
+  margin: 10px;
+  font-weight: 300;
+  font-family: "Kanit", sans-serif;
+  border-radius: 5px;
+}
+
+.search-form {
+  padding: 0 10%;
+  border-radius: 10px;
+}
+
+.search-form:focus {
+  background-color: #00000099;
+  color: #fff;
+}
+
+.search-button {
+  /* background-color: red; */
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: "Kanit", sans-serif;
+}
+
+.search-button:hover {
+  background-color: green;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+/* .phone {
+  width: 18%;
+  position: absolute;
+  top: 140px;
+  right: 60px;
+  z-index: 3;
+  transform: rotate(20deg);
+} */
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+}
+
+.nav-link::after {
+  content: "";
+  height: 3px;
+  width: 0;
+  background: red;
+  position: absolute;
+  left: 20px;
+  bottom: -2px;
+  transition: 0.5s;
+}
+
+.nav-link:hover::after {
+  width: 60%;
+  margin: auto auto;
+}
+
+/**************SERVICES*******************/
+
+.services {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  position: relative;
+  z-index: 5;
+  bottom: 45px;
+  background-color: #efefef;
+}
+
+.services-apply {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  position: relative;
+  z-index: 1;
+  bottom: 7rem;
+  background-color: #efefef;
+}
+
+.service-header {
+  color: #efefef;
+  font-family: "Merriweather", sans-serif;
+  font-weight: 900;
+  padding: 5px 3px;
+  margin-top: 10px;
+  background-color: red;
+}
+
+.service-header:hover {
+  background-color: black;
+  color: #fff;
+}
+
+.service-image {
+  width: 90%;
+  padding-top: 15px;
+  margin: auto;
+}
+
+.service-text {
+  font-family: "roboto", sans-serif;
+  padding: 0.3rem;
+  font-size: 1rem;
+}
+
+.btn-service {
+  width: 65%;
+  margin: auto auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 7px 7px;
+  font-family: "merriweather", sans-serif;
+  font-size: 1.1rem;
+}
+
+.btn-more {
+  width: 40%;
+  margin: auto auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 3px 7px;
+  font-family: "merriweather", sans-serif;
+  font-size: 0.9rem;
+}
+
+.btn-service:hover {
+  background-color: black;
+}
+
+.skill-info .counselling-info .tuition-info {
+  width: 30px;
+}
+
+/****************WHO WE ARE***************/
+#about {
+  padding: 3%;
+  background-color: #bb2525;
+}
+
+.about-header {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.8rem;
+  font-weight: 800px;
+  color: #fff;
+}
+
+.about-image {
+  width: 100%;
+}
+
+#about-us {
+  background-color: #bb2525;
+}
+.about-tuition-image {
+  width: 95%;
+  /* height: 80%; */
+  height: auto;
+  padding: 2% 5%;
+}
+
+.about-text {
+  line-height: 1.6;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 2vw;
+  color: #fff;
+}
+
+/***************CHOOSE US*****************/
+
+.choose-title {
+  font-family: "Merriweather", sans-serif;
+  font-weight: 900;
+  color: #a73121;
+  font-size: 2.3vw;
+}
+
+.choose-header {
+  font-family: "Merriweather", sans-serif;
+  font-size: 1.2rem;
+  padding: 0.2rem 0;
+}
+
+.choose-text {
+  font-family: "Kanit", sans-serif;
+  font-size: 1.1rem;
+}
+
+.icon {
+  color: red;
+  font-size: 3rem;
+}
+
+.icon:hover {
+  color: black;
+}
+
+/**************TESTIMONIAL***************/
+
+#testimonial {
+  padding: 4% 15%;
+  background-color: #e64848;
+}
+
+.tes-text {
+  color: white;
+}
+.testimonial-parent {
+  font-size: 0.9rem;
+  font-family: "Pt Sans", sans-serif;
+  font-weight: 400;
+  padding-bottom: 1.2rem;
+}
+
+.testimony {
+  background-color: #fff;
+  color: #000;
+}
+
+.test-text {
+  font-family: "Kanit", sans-serif;
+  font-size: 1.1rem;
+}
+
+.carousel-control-next {
+  padding: 5px;
+  margin: 5px;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 55%;
+  height: 30%;
+  font-size: 1.1rem;
+  font-family: "Kanit" Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 15px;
+  padding: 7px 10px;
+  /* position: absolute;
+  top: 68%; */
+  left: 23.33%;
+}
+
+.carousel-inner {
+  max-width: 100%;
+  height: auto;
+}
+
+.caro-pic {
+  max-width: 100%;
+  height: 80%;
+}
+
+/* .caro-icon {
+  background-color: #fff;
+  border-radius: 50%;
+} */
+
+/***********CLIENT FORMS ************/
+/* #student,
+#option {
+  display: none;
+} */
+#price-display {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0%;
+  z-index: 99;
+}
+
+.client-form-footer {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-family: "Kanit", sans-serif;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0.3rem 5px;
+  border-radius: 5px;
+}
+
+.client-apply {
+  height: 90vh;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  position: relative;
+  z-index: 1;
+  bottom: 3.5rem;
+  background-color: #efefef;
+}
+
+#online {
+  display: none;
+}
+
+.client-banner {
+  width: 100%;
+  height: 40vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.686), rgba(0, 0, 0, 0.541)),
+    url(/images/us.jpg);
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tutor-banner {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.686), rgba(0, 0, 0, 0.541)),
+    url(/images/us.jpg);
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* FAQ PAGE */
+.letter,
+.faqBody {
+  text-align: left;
+  padding: 2% 12%;
+}
+
+.form-check-input {
+  outline: 2px solid red;
+}
+
+.faq-help {
+  background-color: #0d6efd;
+  padding: 2% 12%;
+  color: #fff;
+  margin-bottom: 2%;
+}
+
+#tutorFaq {
+  display: none;
+}
+
+/* .form-apply-section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.686), rgba(0, 0, 0, 0.541)),
+    url(/images/teaching.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px 0 0 10px;
+  padding: 0;
+} */
+
+/* Link Styling */
+/* a {
+  color: #fff;
+  text-decoration: none;
+} */
+
+.tutor-registration {
+  width: 87%;
+  margin: auto auto;
+  height: 55vh;
+}
+
+.apply-wall {
+  margin: auto auto;
+}
+
+.apply-input {
+  width: 100%;
+  margin-bottom: 1%;
+  padding: 0.33rem 0.8rem;
+}
+
+.apply-sm-input {
+  width: 25%;
+  margin-bottom: 2%;
+  padding: 0.33rem 0.8rem;
+}
+
+.apply-md-input {
+  width: 45%;
+  margin: 2%;
+  padding: 0.33rem 0.8rem;
+}
+
+.apply-select {
+  text-align: center;
+  font-size: 1rem;
+  padding: 1rem 8rem;
+}
+
+.form-apply {
+  width: 85%;
+  margin: auto auto;
+}
+
+/* .btn-prev-next {
+  width: 5rem;
+} */
+
+.apply-header {
+  font-size: 1.8rem;
+  color: #fff;
+  background-color: #006837;
+  padding: 0.6rem 0;
+}
+
+.label {
+  display: flex;
+  justify-content: start;
+}
+
+.legend {
+  text-align: left;
+  font-size: 1.2rem;
+  margin-bottom: 5%;
+  margin-top: 3%;
+  font-family: "Pt Sans", sans-serif;
+  font-weight: 900;
+}
+
+.btn-check-o {
+  width: 5rem;
+}
+
+#grad {
+  display: none;
+}
+
+.apply-textarea {
+  margin: 1% 0;
+  width: 90%;
+}
+
+.apply-body {
+  font-family: "Pt Sans", sans-serif;
+  font-size: 1.031rem;
+  padding-right: 5%;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.btn-toggle {
+  padding: 0.3rem 3rem;
+}
+
+.btn-select {
+  width: 2rem;
+}
+
+.clientForm {
+  height: 75vh;
+}
+
+/* Tutor fields */
+.error-message {
+  display: none;
+}
+
+.tutorContact {
+  background-color: #0d6efd;
+  color: #fff;
+  margin-top: 10rem;
+  padding: 0.8rem;
+  width: 70%;
+  font-family: "merriweather", sans-serif;
+  box-shadow: 10px 10px #fff;
+}
+
+#tutorRequest,
+.tutorContact,
+#tutorApplication,
+#submit,
+#personal,
+#education,
+#level,
+#subject,
+#contactLocation,
+#experience {
+  display: none;
+}
+
+.fieldset {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    url(images/teaching.jpg);
+  background-position: cover;
+  background-repeat: no-repeat;
+  padding: 10px 15px;
+  display: none;
+}
+
+.motivate {
+  font-size: 1.8vw;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  line-height: 2;
+}
+
+#challenge {
+  height: 50px;
+}
+
+/*************TAGS***********/
+hr {
+  border-bottom: 5px dashed red;
+  width: 5%;
+  margin: auto auto;
+  display: hidden;
+  padding: 0 1%;
+  /* border-radius: 10%; */
+}
+
+.hr {
+  display: block;
+  border-bottom: 5px double red;
+  width: 30vw;
+  margin: auto auto;
+}
+
+body {
+  background-color: #ece2e1;
+  text-align: center;
+}
+
+/* UTILITY CLASSES */
+
+/* border */
+.bl {
+  border-left: 6px solid red;
+  height: 2rem;
+}
+
+.br {
+  border-right: 6px solid red;
+  height: 2rem;
+}
+
+/***************TUTORS*****************/
+/* 
+#profile {
+  margin: auto auto;
+} */
+
+.profile-pic {
+  margin: 2rem;
+  width: 60%;
+  height: auto;
+  border-radius: 100%;
+}
+
+.profile-side {
+  height: 100%;
+}
+
+.link-user {
+  text-decoration: none;
+  color: #000;
+  padding: 0.5vw;
+}
+
+.link-user:hover {
+  border-left: 6px solid #a73121;
+  color: #a73121;
+}
+
+.tutor-intro {
+  margin: 15px 0;
+}
+
+.tutor-header {
+  margin-top: 3%;
+  font-family: "Merriweather", sans-serif;
+  font-weight: 500;
+}
+
+.card {
+  width: 80%;
+  margin: auto auto;
+  box-shadow: 1px 3px 1px;
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+.hover {
+  transition: 0.3s;
+}
+
+.hover:hover {
+  transform: scale(1.1);
+}
+
+.hoverTutor {
+  transition: 0.3s;
+}
+
+.hoverTutor:hover {
+  transform: scale(1.1);
+  border-bottom: 6px solid green;
+}
+
+.card-offer {
+  width: 90%;
+  margin: auto auto;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  transition: 0.3s;
+}
+
+.card-body {
+  box-shadow: 3px 5px 2px;
+}
+
+.card-footer {
+  padding: 4px 6px;
+  list-style-type: none;
+  line-height: 30px;
+}
+
+.offer-header {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.8vw;
+  color: #fff;
+  padding: 7% 3%;
+  padding-top: 10%;
+  background-color: #ed7676;
+}
+
+.offer-intro {
+  padding: 0 12%;
+  line-height: 1.3;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.6vw;
+}
+
+.slide-head {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.9vw;
+  padding: 1%;
+}
+
+.slide-text {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.8vw;
+  line-height: 1.3;
+  padding: 0 5%;
+}
+
+/* .input {
+  width: 70vw;
+} */
+
+#offers {
+  text-align: center;
+  /* background-color: #ffeadd; */
+}
+
+/***************CONTACT*****************/
+
+#contact {
+  color: #fff;
+  line-height: 2;
+  font-size: 1.5rem;
+  padding: 10px;
+}
+
+.contact {
+  position: relative;
+  bottom: 50px;
+  z-index: 5;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+/**************FOOTER*****************/
+#footer {
+  padding: 10%;
+}
+.footer-icons {
+  color: red;
+  font-size: 1.5rem;
+  margin: 0 7px;
+  padding-bottom: 2%;
+}
+
+.footer-title {
+  font-size: 3vw;
+}
+
+.footer-copyright {
+  font-size: 1.5vw;
+}
+
+.laptop {
+  position: relative;
+}
+
+/* Contact Email and Phone */
+.phone {
+  background-color: rgba(0, 0, 0, 0.9);
+  border: 2px solid white;
+  border-radius: 10px;
+  width: 60%;
+  padding: 5% 3%;
+  position: absolute;
+  bottom: 20%;
+  left: 20%;
+  display: none;
+}
+
+.email {
+  background-color: green;
+  border-radius: 10px;
+  border: 2px solid white;
+  width: 60%;
+  padding: 5% 3%;
+  position: absolute;
+  bottom: 20%;
+  left: 20%;
+  display: none;
+}
+
+.mail,
+.tel {
+  font-size: 1.7vw;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+/* Sign-in */
+.form-sign-in {
+  width: 82vw;
+  padding: 2rem 1rem;
+}
+
+.sign-in-message {
+  padding-top: 3rem;
+}
+
+.sign-in {
+  width: 75%;
+  height: auto;
+  text-align: center;
+  border-radius: 5%;
+  padding: 10%;
+  margin: 10% auto;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.sign-text {
+  color: #dfd7bf;
+  text-align: center;
+  padding: 22% 7% 0;
+}
+
+.sign-logo {
+  position: absolute;
+  top: 5%;
+  left: 6%;
+  font-size: 2vw;
+}
+
+.sign-text p {
+  font-family: sans-serif;
+  font-weight: 200px;
+  font-size: 1.3vw;
+  line-height: 1.6;
+}
+
+/* .login-text {
+  font-family: "Kanit", sans-serif;
+  font-size: 2rem;
+} */
+
+.link {
+  text-decoration: none;
+  color: #dfd7bf;
+  padding: 0 0.4rem;
+}
+
+.link:hover {
+  /* border-bottom: 0.3rem solid red; */
+  background-color: red;
+  padding: 0.2rem 0.5rem;
+  /* border-radius: 30%; */
+}
+
+.fa {
+  font-size: 1.7vw;
+  padding-top: 5%;
+  margin-right: 3%;
+  color: white;
+}
+
+.click {
+  border-bottom: 2px solid green;
+  color: #fff;
+  padding: 2px 3px;
+}
+
+/**************SHADOWS************************/
+.shadow-one {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.blur {
+  backdrop-filter: contrast(10px);
+  z-index: 900;
+  /* -webkit-backdrop-filter: blur(5px); */
+}
+
+.shadow-drop {
+  backdrop-filter: drop-shadow(4px 4px 10px blue);
+}
+
+.shadow-two {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.shadow-three {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+/*************ADMIN CATEGORY*****************/
+#nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  /* overflow: hidden; */
+  /* display: block; */
+}
+
+.panel {
+  background-color: #fff;
+  color: #000;
+}
+
+.admin-link {
+  padding: 8rem 0.8rem;
+}
+
+.admin-ul {
+  text-decoration: none;
+  list-style-type: none;
+  padding: 3rem 0.8rem;
+  height: 100%;
+}
+
+.admin-body {
+  width: 95%;
+  margin: auto auto;
+}
+
+.admin-list {
+  text-decoration: none;
+  padding: 5% 0;
+  display: flex;
+  justify-content: start;
+  color: #000;
+  padding-left: 1rem;
+}
+
+.admin-list:hover {
+  background-color: #a73121;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.admin-icon {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  margin-top: 0.1rem;
+  margin-right: 1rem;
+  width: 1.3rem;
+  /* padding: 0 1rem; */
+}
+
+.tutorIcon {
+  font-size: 90%;
+  width: 14%;
+  /* color: red; */
+  /* border-radius: 100%; */
+}
+
+.admin-icon:hover {
+  color: #fff;
+}
+
+.dash-text {
+  color: #000;
+}
+
+.admin-pic {
+  width: 9vw;
+  border-radius: 100%;
+  padding: 10% 0;
+}
+
+.tutor,
+.revenue,
+.profit,
+.client {
+  height: 8rem;
+  width: 70%;
+  margin: auto auto;
+  padding-top: 2rem;
+}
+
+.motivation {
+  border-left: 6px solid #a73121;
+  color: #000;
+  /* padding: 10%; */
+  width: 90%;
+  margin: auto auto;
+  height: fit-content;
+}
+
+.tutor {
+  border-left: 6px solid green;
+  color: #000;
+}
+
+.profit {
+  border-left: 6px solid #0c356a;
+  color: #000;
+}
+
+.to-do {
+  width: 75%;
+  margin: auto auto;
+  padding: 0 10rem;
+  border-left: 6px solid #0c356a;
+  color: #000;
+  height: auto;
+}
+
+.item {
+  /* min-height: 60px; */
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.todoList:checked + p {
+  text-decoration: 3px line-through;
+  text-decoration-color: red;
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+.section {
+  padding: 3% 0;
+  margin: 2% 0;
+}
+.to-do,
+.motivation {
+  padding: 6% 0;
+}
+
+.client {
+  border-left: 6px solid #bb2525;
+  color: #000;
+}
+
+.revenue {
+  border-left: 6px solid #4e4feb;
+  color: #000;
+}
+
+.date {
+  border-left: 6px solid #4e4feb;
+  color: #000;
+}
+.search-panel {
+  color: #000;
+  padding: 0.8% 1%;
+  margin-left: 5px;
+}
+
+.search-panel:hover {
+  border-bottom: 6px solid #a73121;
+}
+
+.calender {
+  border-left: 6px solid #000;
+  color: #000;
+  padding: 8% 0;
+}
+
+.reader {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-radius: 10px;
+  margin: 2%;
+}
+
+/* .client,
+.tutor,
+.revenue,
+.profit,
+.date {
+  margin: 1%;
+  max-width: 13vw;
+  height: auto;
+} */
+
+/* .dashboard {
+  display: flex;
+  align-items: space-evenly;
+} */
+
+/* TUTOR USER PAGE */
+.profile-input {
+  width: 80%;
+  border: none;
+  height: 2.3rem;
+  padding: 1.3% 0.8rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+.profile-input-textarea {
+  width: 80%;
+  border: none;
+  height: 4rem;
+  padding: 1.3% 0.8rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.nav-text {
+  position: fixed;
+}
+
+.profile-label {
+  display: flex;
+  justify-content: start;
+  margin-left: 1rem;
+}
+
+.danger {
+  color: #fff;
+  background-color: #bb2525;
+}
+
+#imageUpload {
+  display: none;
+}
+
+#profileImage {
+  cursor: pointer;
+}
+
+/* #profile-container {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  padding-left: 5rem;
+} */
+
+#profilePic {
+  width: 150px;
+  height: 150px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+}
+
+#profilePic:hover {
+  background-color: #a73121;
+}
+/* #loading-spinner {
+  display: none;
+} */
+
+/*******************RESPONSIVE**************/
+
+@media (max-width: 1028px) {
+  .logo {
+    display: none;
+  }
+
+  .content {
+    position: absolute;
+    top: 50%;
+    padding: 3%;
+    line-height: 1;
+  }
+
+  .hero-header {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .banner {
+    object-fit: cover;
+    background-size: cover;
+    background-position: center left;
+    background-repeat: no-repeat;
+  }
+
+  .choose-title {
+    font-size: 3.8vw;
+  }
+
+  .hero-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    font-family: "Kanit", sans-serif;
+    padding: 2px;
+    text-align: center;
+  }
+
+  .banner,
+  .footer,
+  .footer {
+    position: static;
+  }
+
+  .card .card-offer {
+    max-width: 48%;
+    height: auto;
+    padding-bottom: 2%;
+  }
+
+  .phone {
+    display: none;
+  }
+
+  .container-sm {
+    max-width: 88%;
+    margin: auto auto;
+  }
+
+  .services {
+    position: relative;
+    bottom: 15px;
+    z-index: 2;
+  }
+
+  .motivate {
+    font-size: 3vw;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    line-height: 1.5;
+  }
+
+  .contact {
+    position: relative;
+    bottom: 15px;
+    z-index: 3;
+  }
+
+  .btn-service,
+  .service-image {
+    width: 75%;
+    margin: auto auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .service-text {
+    font-size: 1rem;
+  }
+
+  .about-header,
+  .about-text {
+    font-size: 1.3rem;
+    line-height: 1.3;
+    padding: 5px;
+  }
+
+  .testimonial-text {
+    color: #fff;
+    font-size: 0.6rem;
+    line-height: 1.75px;
+  }
+
+  dropdown-content {
+    width: 100%;
+    overflow: auto;
+    z-index: 10;
+  }
+
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 65%;
+    height: 45%;
+    font-size: 1.1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 15px;
+    padding: 7px 5px;
+    position: absolute;
+    top: 53%;
+  }
+
+  .offer-header {
+    font-family: "merriweather", Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 3.5vw;
+    padding: 2% 3%;
+  }
+
+  .offer-intro {
+    padding: 0 12%;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    font-size: 3.5vw;
+  }
+
+  .card-offer {
+    width: 70%;
+    margin: auto auto;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  .form-apply {
+    display: inline-block;
+    max-width: 95%;
+    /* height: 83vh; */
+  }
+
+  .apply-area {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.686),
+        rgba(0, 0, 0, 0.541)
+      ),
+      url(/images/teaching.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px 0 0 10px;
+    padding: 0;
+    color: #fff;
+  }
+
+  .form-sign-in {
+    width: 84vw;
+    height: 85vh;
+    padding: 2rem 1rem;
+  }
+  /* select {
+    display: block;
+    width: 100%;
+    margin: 5% 0;
+    padding: 2% 5%;
+    justify-content: center;
+  } */
+
+  /* .sign-up {
+    height: 78vh;
+    max-width: 115vw;
+  } */
+
+  .nav-copyright,
+  #tutorContactBtn,
+  .sign-image,
+  .sign-text,
+  .sign-logo {
+    display: none;
+  }
+
+  .tutorText {
+    margin-top: 60%;
+  }
+
+  .sign-up,
+  .sign-in {
+    margin: 10%;
+    max-width: 100%;
+  }
+
+  /* #sign-in {
+    position: absolute;
+    top: 5%;
+    width: 100%;
+  } */
+
+  .fa {
+    font-size: 5vw;
+  }
+
+  .apply-input {
+    width: 80%;
+  }
+
+  /* .form-apply {
+    width: 90%;
+  } */
+
+  .input {
+    width: 90vw;
+  }
+
+  .mail,
+  .tel {
+    font-size: 3.5vw;
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+
+  .legend {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .label {
+    /* text-align: left; */
+    padding-left: 5%;
+    font-size: 1rem;
+    margin-left: 5%;
+  }
+
+  .apply-sm-input,
+  .apply-md-input {
+    width: 90%;
+    margin: 2%;
+    padding: 0.33rem 0.8rem;
+  }
+
+  .container-apply {
+    width: 90%;
+    margin: auto auto;
+  }
+
+  .client-form-text {
+    margin-top: 9rem;
+    /* padding: 0 1rem; */
+  }
+
+  .client-banner {
+    height: 20vh;
+  }
+}

@@ -1,0 +1,286 @@
+<%- include('partials/header') %>
+
+<body>
+  <section id="form-header">
+    <div class="container-fluid text-white hero-header bg-danger">
+      <nav class="navbar navbar-expand-lg navbar-dark container-sm">
+        <a href="/" class="navbar-brand text-white py-3"
+          ><img
+            id="#banner"
+            class="logo"
+            src="images/logo.png"
+            alt=""
+          />LIFELINE</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapsibleNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav ms-auto py-4 px-2">
+            <li class="nav-item px-3 text-center">
+              <a class="nav-link text-white" href="/">Home</a>
+            </li>
+            <li class="nav-item px-3 text-center">
+              <a class="nav-link text-white" href="#offers">Offers</a>
+            </li>
+            <li class="nav-item px-3 text-center">
+              <a class="nav-link text-white" href="#choose-us">Gallery</a>
+            </li>
+            <li class="nav-item px-3 text-center">
+              <a class="nav-link text-white" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </section>
+  <!-----------Our Offers------------->
+  <div id="lifeline" class="container-sm py-2 mt-lg-5 services-apply">
+    <section class="container-lg py-3 d-block" id="offers">
+      <div class="row">
+        <h2 class="choose-title pt-5">OUR OFFERS</h2>
+        <p class="offer-intro">
+          Choose an offer that suits your ward's need and your budget
+        </p>
+        <div class="col-sm-12 col-md-12 col-lg-3">
+          <div class="card-offer h-70 hover">
+            <h5 class="offer-header">DUO OFFER</h5>
+            <ul class="card-footer list-group list-group-flush">
+              <li class="list-group-item">2 weekly sessions</li>
+              <li class="list-group-item">8 monthly sessions</li>
+              <li class="list-group-item">Preliminary Assessment</li>
+              <li class="list-group-item">Monitoring</li>
+              <li class="list-group-item">Progress Reports</li>
+              <!-- <button class="btn btn-danger btn-md my-2 offer-btn">
+                  SIGN UP
+                </button> -->
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-3">
+          <div class="card-offer h-70 hover">
+            <h5 class="offer-header">TRI OFFER</h5>
+            <ul class="list-group list-group-flush card-footer">
+              <li class="list-group-item">3 weekly sessions</li>
+              <li class="list-group-item">12 monthly sessions</li>
+              <li class="list-group-item">Preliminary Assessment</li>
+              <li class="list-group-item">Monitoring</li>
+              <li class="list-group-item">Progress Reports</li>
+              <!-- <button class="btn btn-danger btn-md my-2 offer-btn">
+                  SIGN UP
+                </button> -->
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-3">
+          <div class="card-offer h-70 hover">
+            <h5 class="offer-header">QUAD OFFER</h5>
+            <ul class="card-footer list-group list-group-flush">
+              <li class="list-group-item">4 weekly sessions</li>
+              <li class="list-group-item">16 monthly sessions</li>
+              <li class="list-group-item">Preliminary Assessment</li>
+              <li class="list-group-item">Monitoring</li>
+              <li class="list-group-item">Progress Reports</li>
+              <!-- <button class="btn btn-danger btn-md my-2 offer-btn">
+                  SIGN UP
+                </button> -->
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-3">
+          <div class="card-offer h-70 hover">
+            <h5 class="offer-header">PENT OFFER</h5>
+            <ul class="card-footer list-group list-group-flush">
+              <li class="list-group-item">5 weekly sessions</li>
+              <li class="list-group-item">20 monthly sessions</li>
+              <li class="list-group-item">Preliminary Assessment</li>
+              <li class="list-group-item">Monitoring</li>
+              <li class="list-group-item">Progress Reports</li>
+              <!-- <button class="btn btn-danger btn-md my-2 offer-btn">
+                  SIGN UP
+                </button> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <a href=""></a>
+      <button class="btn btn-danger px-lg-5 btn-lg my-lg-2 offer-btn">
+        SIGN UP
+      </button>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <%- include('partials/chooseUs') %>
+
+    <!-- About us -->
+    <section id="about-us">
+      <div class="col-sm py-lg-3">
+        <!-- <h2 class="py-3 text-white choose-title">ABOUT US</h2> -->
+        <hr />
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <img
+              class="about-tuition-image"
+              src="images/teaching.jpg"
+              alt="Lifeline"
+            />
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <h4 class="about-header">ABOUT US</h4>
+            <p class="about-text px-4">
+              We provide your ward with the best tuition experience using varied
+              teaching approaches and problem-solving techniques. We help your
+              ward become an excellent student. We are results oriented,
+              client-focused, and solution-centred.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quotations -->
+    <section id="quote">
+      <blockquote
+        class="container-fluid alert-secondary p-2 bg-secondary text-white my-3 h-70"
+      >
+        <div class="card">
+          <H3 class="choose-title pt-4">MOTIVATIONAL QUOTE</H3>
+          <p class="motivate py-3 px-4">
+            Students do not fail, they are failed by the schools they attend,
+            the teachers they meet, the homes they come from and the society
+            they grow up in. Every child has the potential to succeed in a
+            supportive environment.
+          </p>
+        </div>
+      </blockquote>
+    </section>
+
+    <section>
+      <div class="container-fluid">
+        <div
+          id="choose-us"
+          class="carousel slide"
+          data-bs-interval="6000"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              class="caro-icon active"
+              type="button"
+              data-bs-target="#choose-us"
+              data-bs-slide-to="0"
+            ></button>
+            <button
+              class="caro-icon"
+              type="button"
+              data-bs-target="#choose-us"
+              data-bs-slide-to="1"
+            ></button>
+            <button
+              class="caro-icon"
+              type="button"
+              data-bs-target="#choose-us"
+              data-bs-slide-to="2"
+            ></button>
+            <button
+              class="caro-icon"
+              type="button"
+              data-bs-target="#choose-us"
+              data-bs-slide-to="3"
+            ></button>
+            <button
+              class="caro-icon"
+              type="button"
+              data-bs-target="#choose-us"
+              data-bs-slide-to="4"
+            ></button>
+          </div>
+          <div class="carousel-inner card-offer">
+            <h2 class="choose-title">GALLERY</h2>
+            <!-- </hr> This line seems to be an error; it's not a valid HTML tag -->
+            <div class="carousel-item active card-body">
+              <img src="images/Caro-A.jpg" class="w-100 caro-pic" alt="..." />
+              <div class="carousel-caption">
+                <h4 class="slide-head">PROFESSIONALISM</h4>
+                <p class="slide-text">
+                  Our tutors are carefully recruited for their character,
+                  knowledge, and professional skills.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item card-body">
+              <img src="images/Caro-A.jpg" class="caro-pic" alt="..." />
+              <div class="carousel-caption">
+                <h4 class="slide-head">SKILL</h4>
+                <p class="slide-text">
+                  Our educators diagnose your ward's challenges and then apply
+                  methodologies and techniques to deal with it.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item card-body">
+              <img src="images/Caro-A.jpg" class="caro-pic" alt="..." />
+              <div class="carousel-caption">
+                <h4 class="slide-head">PROGRESS</h4>
+                <p class="slide-text">
+                  Lifeline keeps you in on the progress your ward is making. Our
+                  charges are affordable as well.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item card-body">
+              <img src="images/Caro-A.jpg" class="caro-pic" alt="..." />
+              <div class="carousel-caption">
+                <h4 class="slide-head">CHOICE</h4>
+                <p class="slide-text">
+                  We give you a whole range of offers to choose from; we then
+                  help your ward based on your choice.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item card-body">
+              <img src="images/Caro-A.jpg" class="caro-pic" alt="..." />
+              <div class="carousel-caption">
+                <h4 class="slide-head">GUIDANCE</h4>
+                <p class="slide-text">
+                  We provide your ward the right assistance and guidance to
+                  develop at his/her own pace.
+                </p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#choose-us"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#choose-us"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Contact section -->
+  <%- include('partials/contact') %> <br />
+
+  <!-- Footer -->
+  <%- include('partials/footer') %> <br />
+
+  <!-- Scripts and Tags -->
+  <%- include('partials/end') %>
+</body>

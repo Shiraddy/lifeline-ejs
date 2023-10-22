@@ -1,0 +1,792 @@
+<%- include('partials/header') %>
+<!-- BODY -->
+<div class="row">
+  <!-- SIDE BAR -->
+  <div class="col-lg-2 col-md-3 col-sm-12 shadow-two">
+    <nav id="nav">
+      <button
+        class="navbar-toggler d-lg-none d-flex justify-content-end py-2"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasResponsive"
+      >
+        <span class="navbar-toggler-icon navbar-dark bg-tertiary d-flex"></span>
+      </button>
+      <div
+        class="offcanvas-lg offcanvas-start"
+        tabindex="-1"
+        id="offcanvasResponsive"
+        aria-labelledby="offcanvasResponsiveLabel"
+      >
+        <div class="offcanvas-header">
+          <a class="navbar-brand d-lg-none" href="#">LIFELINE</a>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            data-bs-target="#offcanvasResponsive"
+          ></button>
+        </div>
+        <div class="mt-lg-2">
+          <img class="admin-pic" src="images/Pic.png" alt="" />
+          <ul class="nav navbar-nav admin-ul">
+            <a class="admin-list" href="#adminDash"
+              ><i class="fa-solid fa-clipboard admin-icon"></i> DASHBOARD
+            </a>
+
+            <a class="admin-list" href="#adminTutors"
+              ><i class="fa-solid fa-users admin-icon"></i> TUTORS
+              <i class="fa-solid fa-chevron-down ms-5 admin-icon"></i
+            ></a>
+
+            <a class="admin-list" href="#adminClients"
+              ><i class="fa-solid fa-handshake admin-icon"></i> CLIENTS
+              <span class="admin-icon"
+                ><i class="fa-solid fa-chevron-down ms-5"></i></span
+            ></a>
+
+            <a class="admin-list" href="#adminLinks">
+              <i class="fa-solid fa-link admin-icon"></i> LINKS
+              <i class="fa-solid fa-chevron-down ms-5 admin-icon"></i>
+            </a>
+
+            <a class="admin-list" href="#adminLinks">
+              <i class="fa-solid fa-file-invoice-dollar admin-icon"></i> FINANCE
+              <i class="fa-solid fa-chevron-down ms-5 admin-icon"></i
+            ></a>
+          </ul>
+        </div>
+        <form class="" role="search">
+          <input
+            class="form-control my-2 shadow-two"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <div class="d-grid">
+            <button class="btn btn-success" type="submit">Search</button>
+          </div>
+        </form>
+      </div>
+    </nav>
+  </div>
+
+  <!-- MAIN AREA -->
+  <div class="col-lg-10">
+    <section id="adminDash" class="admin-body">
+      <!-- STATISTICS -->
+      <div class="row my-lg-4">
+        <div class="col-lg-3">
+          <div class="revenue shadow-two bg-white">
+            <h4>Revenue</h4>
+            <h5>1000</h5>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="tutor shadow-two bg-white">
+            <h4>Tutors</h4>
+            <h5>1000</h5>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="client shadow-two bg-white">
+            <h4>Clients</h4>
+            <h5>1000</h5>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="profit shadow-two bg-white">
+            <h4>Students</h4>
+            <p>1000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOTIVATION AND TODO -->
+      <div class="row mt-lg-3 h-75">
+        <div class="col-lg-8">
+          <div class="motivation shadow-two py-lg-5 bg-white">
+            <h4><%= dayOfWeek %></h4>
+            <p class="px-lg-5 px-2">
+              WHEN SOMEONE GIVES YOU A SHOVE FROM BEHIND, USE THE MOMENTUM TO
+              PROPEL YOURSELF TO SUCCESS. YOU ARE MORE THAN THE SETBACK.
+            </p>
+          </div>
+        </div>
+
+        <!-- TO DO LIST -->
+        <div class="col-lg-4">
+          <div class="to-do shadow-two bg-white">
+            <h6>To Do List</h6>
+            <form
+              class="my-lg-3 my-2 form-floating"
+              action="/todo"
+              method="post"
+            >
+              <input
+                class="form-control-sm"
+                name="todo"
+                type="text"
+                placeholder="Set Goals for Today"
+                autocomplete="off"
+              />
+              <button class="btn btn-danger ms-2" type="submit">+</button>
+            </form>
+            <div class="box px-lg-2 px-2">
+              <% for (let i = 0; i < todo.length; i++) { %>
+              <div class="todoList form-check">
+                <input class="form-check-input" type="checkbox" />
+                <p class="form-check-label text-start ps-1">
+                  <%= todo[i] %>
+                  <button type="button" class="btn-close ps-lg-3"></button>
+                </p>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTRACT UPLOAD -->
+    <section id="adminNotice" class="form-apply shadow-two my-3 row banner">
+      <div class="col-lg-6 d-none d-lg-block pb-5"></div>
+      <div class="col-lg-6 shadow-two bg-white">
+        <h4 class="my-lg-4 my-2">UPLOAD CONTRACT</h4>
+        <div class="my-lg-3">
+          <!-- <label for="">CONTRACT TYPE:</label> <br /> -->
+          <select name="type" id="" class="profile-input">
+            <option value="">CONTRACT TYPE</option>
+            <option value="DUO">DUO</option>
+            <option value="TRI">TRI</option>
+            <option value="QUAD">QUAD</option>
+            <option value="PENT">PENT</option>
+          </select>
+        </div>
+
+        <div class="">
+          <!-- <label class="" for="">Mode of Tuition:</label> <br /> -->
+          <select name="mode" id="" class="profile-input">
+            <option value="">MODE OF TUITION</option>
+            <option value="online">Online</option>
+            <option value="in-person">In-Person</option>
+          </select>
+        </div>
+
+        <div class="my-3">
+          <!-- <label for="">Level:</label> <br /> -->
+          <select name="level" id="" class="profile-input">
+            <option value="">LEVEL OF STUDENT</option>
+            <option value="KG">KINDERGARTEN</option>
+            <option value="PRIMARY">PRIMARY</option>
+            <option value="JHS">JHS</option>
+            <option value="SHS">SHS</option>
+          </select>
+        </div>
+
+        <div class="div">
+          <!-- <label for="">Class:</label> <br /> -->
+          <input
+            class="profile-input"
+            type="tel"
+            name="class"
+            placeholder="CLASS"
+          />
+        </div>
+
+        <div class="my-3">
+          <!-- <label for="">Subjects:</label> <br /> -->
+          <textarea
+            name="subjects"
+            id=""
+            class="profile-input-textarea"
+            placeholder="TUITION SUBJECT(S)"
+          ></textarea>
+        </div>
+
+        <div class="div">
+          <!-- <label for="">Lesson Duration</label> <br /> -->
+          <select name="duration" id="" class="profile-input">
+            <option value="">LESSON DURATION</option>
+            <option value="1 hour">1 hour</option>
+            <option value="1.5 hours">1.5 hrs</option>
+            <option value="2 hours">2 hrs</option>
+            <option value="2.5 hours">2.5 hrs</option>
+            <option value="3 hours">3 hrs</option>
+          </select>
+        </div>
+
+        <div class="my-3">
+          <!-- <label for="">Location:</label> <br /> -->
+          <input
+            class="profile-input"
+            type="text"
+            name="location"
+            placeholder="LOCATION"
+          />
+        </div>
+
+        <div class="div">
+          <!-- <label for="">Allowance</label> <br /> -->
+          <input
+            class="profile-input"
+            type="text"
+            name="allowance"
+            placeholder="ALLOWANCE"
+          />
+        </div>
+
+        <button
+          class="btn btn-success my-lg-4 my-3 shadow-two"
+          type="submit"
+          name="postContract"
+        >
+          POST CONTRACT
+        </button>
+      </div>
+    </section>
+
+    <!-- NOTICE BOARD -->
+    <section id="adminNotice" class="form-apply shadow-two my-3 row banner">
+      <div class="col-lg-6 d-none d-lg-block pb-5"></div>
+      <div class="col-lg-6 shadow-two bg-white">
+        <h4 class="my-lg-3">NOTICE BOARD</h4>
+        <!-- <h3 class="py-1">NOTICE</h3> -->
+        <form action="/notice" method="post" class="">
+          <div class="my-4">
+            <label class="d-flex justify-content-start" for="News Title"
+              >Title</label
+            >
+            <br />
+            <input
+              class="shadow-one form-control"
+              type="text"
+              name="title"
+              placeholder="Notice Title"
+            />
+          </div>
+
+          <div class="">
+            <label class="label" for="News Title">Date</label> <br />
+            <input
+              class="shadow-one form-control"
+              type="date"
+              name="title"
+              placeholder="Notice Title"
+            />
+          </div>
+
+          <div class="my-4">
+            <label for="sendTo" class="label mb-3">Send To:</label>
+            <select name="sendTo" id="" class="shadow-one form-control">
+              <!-- <option>Notice To:</option> -->
+              <option value="all">All</option>
+              <option value="tutors">Tutors</option>
+              <option value="applicants">Applicants</option>
+            </select>
+          </div>
+
+          <div class="">
+            <label for="message" class="label">Message</label> <br />
+            <textarea
+              class="form-control shadow-one"
+              name="message"
+              id=""
+              placeholder="Enter notice"
+            ></textarea>
+            <br />
+          </div>
+          <!-- <input type="text" name="news" placeholder="News" /> -->
+          <div class="py-3">
+            <button
+              class="btn btn-success shadow-one"
+              type="submit"
+              name="sendNotice"
+            >
+              SEND NOTICE
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- EMAIL -->
+    <section id="adminEmail" class="form-apply shadow-two my-lg-4 row banner">
+      <div class="col-lg-6 d-none d-lg-block pb-5 shadow-two"></div>
+      <div class="col-lg-6 shadow-two bg-white">
+        <h4 class="my-lg-4">SEND EMAIL</h4>
+        <!-- <h3 class="py-1">NOTICE</h3> -->
+        <form action="/email" method="post" class="">
+          <div class="my-4">
+            <label class="d-flex justify-content-start" for="News Title"
+              >SUBJECT</label
+            >
+            <br />
+            <input
+              class="form-control shadow-one"
+              type="text"
+              name="subject"
+              placeholder="Enter email subject"
+            />
+          </div>
+
+          <div class="">
+            <label class="label" for="News Title">DATE</label> <br />
+            <input
+              class="form-control shadow-one"
+              type="date"
+              name="date"
+              placeholder="Notice Title"
+            />
+          </div>
+
+          <div class="my-4">
+            <label for="sendTo" class="label mb-3">SEND TO:</label>
+            <select name="sendTo" id="" class="form-control shadow-one">
+              <option value="all">All</option>
+              <option value="tutors">Tutors</option>
+              <option value="applicants">Applicants</option>
+              <option value="clients">Clients</option>
+              <option value="prospects">Prospects</option>
+            </select>
+          </div>
+
+          <!-- <div class="my-4">
+                <label for="sendTo" class="label mb-3">COPY TO:</label>
+                <select name="sendTo" id="" class="form-control">
+                  <option value="supervisors">Supervisors</option>
+                  <option value="management">Management</option>
+                  <option value="parents">Parents</option>
+                </select>
+              </div> -->
+
+          <div class="">
+            <label for="message" class="label">MESSAGE</label> <br />
+            <textarea
+              class="form-control shadow-one"
+              name="message"
+              id=""
+              placeholder="Enter notice"
+            ></textarea>
+            <br />
+          </div>
+          <!-- <input type="text" name="news" placeholder="News" /> -->
+          <div class="py-3">
+            <button
+              class="btn btn-success shadow-one"
+              type="submit"
+              name="sendEmail"
+            >
+              SEND EMAIL
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- REGISTER CLIENT -->
+    <section id="clientData" class="shadow-two form-apply my-3 bg-white">
+      <h3 class="py-lg-4 py-2">TUTOR REQUEST</h3>
+      <%- include('partials/form') %>
+    </section>
+
+    <!-- TUTOR APPLICATIONS -->
+    <section id="clientData" class="form-apply my-3 py-2 px-lg-3 shadow-two">
+      <h3 class="py-1">TUTOR PANEL</h3>
+      <!-- NavBar -->
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <!-- <a class="navbar-brand text-start" href="#">APPLICATIONS</a> -->
+          <button
+            class="navbar-toggler dropdown-toggle-split"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDarkDropdown"
+            aria-controls="navbarNavDarkDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav shadow-one">
+              <div
+                class="btn-group"
+                role="group"
+                aria-label="Basic radio toggle button group"
+              >
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="btnradio"
+                  id="btnradio1"
+                  autocomplete="off"
+                  checked
+                />
+                <label class="btn btn-outline-success" for="btnradio1">
+                  <span class="badge bg-primary me-2 shadow-two rounded-pill"
+                    >14</span
+                  >Applicants</label
+                >
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="btnradio"
+                  id="btnradio2"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-success" for="btnradio2"
+                  >Tutors</label
+                >
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="btnradio"
+                  id="btnradio3"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-success" for="btnradio3"
+                  >Pending</label
+                >
+              </div>
+            </ul>
+            <form class="d-flex ms-auto" role="search">
+              <input
+                class="form-control me-2 shadow-one"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success shadow-one" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <!-- TUTOR TABLE -->
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Contact</th>
+              <th>Student Status</th>
+              <th>Application Status</th>
+              <!-- <th>Location</th> -->
+              <th>Email</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% applications.forEach(function(application, index) { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td>
+                <%= application.data.lastName %> <%= application.data.firstName
+                %>
+              </td>
+              <td><%= application.data.contact %></td>
+              <td><%= application.data.studentStatus %></td>
+              <td><%= application.data.status %></td>
+              <!-- <td><%#= application.data.location %></td> -->
+              <td><small><%= application.data.email %></small></td>
+              <td>
+                <!-- ACTION BUTTONS -->
+                <div class="d-flex justify-content-center">
+                  <button
+                    type="button"
+                    class="btn tutorIcon me-2 view-details"
+                    data-bs-toggle="modal"
+                    data-bs-target="#detail"
+                  >
+                    <a><i class="fa-solid fa-expand"></i></a>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn tutorIcon me-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#update"
+                  >
+                    <a><i class="fa-solid fa-pen-to-square"></i></a>
+                  </button>
+
+                  <button class="btn tutorIcon me-2">
+                    <a><i class="fa-solid fa-trash"></i></a>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- APPLICANT DETAIL -->
+      <form action="" class="modal" id="detail" tabindex="-1">
+        <fieldset
+          class="modal-content modal-dialog modal-dialog-centered modal-dialog-scrollable"
+          data-section="1"
+        >
+          <div class="row modal-body modal-dialog-scrollable">
+            <h5 class="my-4 d-flex justify-content-start modal-header">
+              APPLICANT DETAILS
+            </h5>
+            <div class="col-lg-6">
+              <label class="label" for="firstName">First Name</label>
+              <input
+                id="firstName"
+                class="apply-input"
+                type="text"
+                name="firstName"
+                placeholder=""
+              />
+              <div class="error-message">This is a required field</div>
+            </div>
+            <div class="col-lg-6">
+              <label class="label" for="firstName">Last Name</label>
+              <input
+                id="lastName<%#= index %>"
+                required
+                class="apply-input"
+                type="text"
+                name="lastName"
+                placeholder="<%#= fullName %>"
+                autocapitalize="words"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="address">Email Address</label>
+              <input
+                class="apply-input"
+                type="email"
+                required
+                name="tutorEmail"
+                id="tutorEmail<%#= index %>"
+                placeholder="<%= applications.id %>"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="relationship">Gender</label>
+              <input
+                class="apply-input"
+                type="text"
+                required
+                name="gender"
+                id="gender<%#= index %>"
+                placeholder=""
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="number">Contact</label>
+              <input
+                id="contact<%#= index %>"
+                required
+                class="apply-input"
+                type="number"
+                name="contact"
+                inputmode="numeric"
+                maxlength="10"
+              />
+              <div class="error-message">Contact</div>
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="number">Other Contact(If any?)</label>
+              <input
+                id="tutorOtherContact<%#= index %>"
+                class="apply-input"
+                type="number"
+                name="altContact"
+                inputmode="numeric"
+                maxlength="10"
+              />
+              <div class="error-message" id="nameError"></div>
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="number">Student Status</label>
+              <input
+                id="status<%#= index %>"
+                required
+                class="apply-input"
+                type="text"
+                name="studentStatus"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="number">School</label>
+              <input
+                id="school<%#= index %>"
+                required
+                class="apply-input"
+                type="text"
+                name="school"
+              />
+            </div>
+
+            <!-- BUTTON -->
+            <div
+              class="py-3 d-lg-flex justify-content-end pe-lg-3 modal-footer"
+            >
+              <!-- <button class="btn btn-danger me-lg-3" type="submit">
+                    Delete Data
+                  </button> -->
+
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+
+      <!-- UPDATE INFO -->
+      <form action="" class="modal" id="update" tabindex="-1">
+        <fieldset
+          class="modal-content modal-dialog modal-dialog-centered modal-dialog-scrollable"
+          data-section="1"
+        >
+          <div class="row modal-body modal-dialog-scrollable">
+            <h5 class="my-4 d-flex justify-content-start modal-header">
+              UPDATE DATA
+            </h5>
+            <div class="col-lg-6">
+              <label class="label" for="firstName">First Name</label>
+              <input
+                id="firstName"
+                required
+                class="apply-input"
+                type="text"
+                name="firstName"
+                placeholder="<%#= fullName %>"
+                autocapitalize="words"
+              />
+              <div class="error-message">This is a required field</div>
+            </div>
+            <div class="col-lg-6">
+              <label class="label" for="firstName">Last Name</label>
+              <input
+                id="lastName"
+                required
+                class="apply-input"
+                type="text"
+                name="lastName"
+                placeholder="<%#= fullName %>"
+                autocapitalize="words"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="address">Email Address</label>
+              <input
+                class="apply-input"
+                type="email"
+                required
+                name="tutorEmail"
+                id="tutorEmail"
+                placeholder="Enter Email Address"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="relationship">Gender</label>
+              <input
+                class="apply-input"
+                type="text"
+                required
+                name="gender"
+                id="gender"
+                placeholder=""
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <select name="Category" id="" class="apply-input">
+                <option value="">Select Category</option>
+                <option value="">A+</option>
+                <option value="">A</option>
+                <option value="">B+</option>
+                <option value="">B</option>
+                <option value="">C</option>
+                <option value="">D</option>
+              </select>
+            </div>
+
+            <div class="col-lg-6">
+              <select name="Status" id="" class="apply-input">
+                <option value="">Select Status</option>
+                <option value="Applicant">Applicant</option>
+                <option value="Pending">Pending</option>
+                <option value="Qualified">Qualified</option>
+                <!-- <option value="">C</option>
+                    <option value="">D</option> -->
+              </select>
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="number">Contact</label>
+              <input
+                id="parentNumber"
+                required
+                class="apply-input"
+                type="number"
+                name="contact"
+                inputmode="numeric"
+                maxlength="10"
+              />
+              <div class="error-message">Contact</div>
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="number">Other Contact(If any?)</label>
+              <input
+                id="tutorOtherContact"
+                class="apply-input"
+                type="number"
+                name="altContact"
+                inputmode="numeric"
+                maxlength="10"
+              />
+              <div class="error-message" id="nameError"></div>
+            </div>
+
+            <!-- BUTTON -->
+            <div
+              class="py-3 d-lg-flex justify-content-end pe-lg-3 modal-footer"
+            >
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+
+              <button class="btn btn-danger me-lg-3" type="submit">
+                Update Data
+              </button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+  </div>
+</div>
+
+<%- include('partials/end') %>

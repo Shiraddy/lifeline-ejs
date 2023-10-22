@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Register - Lifeline</title>
+
+    <!-- BOOTSTRAP -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <!-- MY STYLESHEET -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&family=Merriweather:wght@400;900&family=Montserrat:wght@800&family=Noto+Serif:wght@600&family=Open+Sans&family=PT+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FAVICON -->
+    <link rel="icon" href="images/logo.png" />
+
+    <!-- FONT AWESOME -->
+    <script
+      src="https://kit.fontawesome.com/71529e80f4.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div class="row">
+      <%# include("partials/sideNav") -%>
+      <section id="form-header">
+        <div
+          class="container-fluid text-white hero-header bg-danger client-banner"
+        >
+          <nav class="navbar navbar-expand-lg navbar-dark container-sm">
+            <a href="/" class="navbar-brand text-white py-3"
+              ><img
+                id="#banner"
+                class="logo"
+                src="images/logo.png"
+                alt="LIFELINE"
+              />LIFELINE</a
+            >
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapsibleNavbar"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+              <ul class="navbar-nav ms-auto pt-4 ps-2">
+                <li class="nav-item px-3 text-center">
+                  <a class="nav-link text-white" href="/">Home</a>
+                </li>
+                <li class="nav-item px-3 text-center">
+                  <a class="nav-link text-white" href="/login">Sign-in</a>
+                </li>
+                <li class="nav-item px-3 text-center">
+                  <a class="nav-link text-white" href="#about">Articles</a>
+                </li>
+                <li class="nav-item px-3 text-center">
+                  <a class="nav-link text-white" href="#contact">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </section>
+      <!-----------APPLICATION FORM------------>
+
+      <div id="offer" class="container-sm services-apply py-lg-5">
+        <!-- TOP MENU AND SWITCH BUTTON -->
+        <div>
+          <h4 class="py-lg-3 bg-white">FREQUENTLY ASKED QUESTIONS</h4>
+          <hr />
+          <h4>FAQ FOR:</h4>
+          <div>
+            <div
+              class="btn-group pb-lg-4"
+              role="group"
+              aria-label="Vertical radio toggle button group"
+            >
+              <input
+                id="vbtn-radio1"
+                type="radio"
+                class="btn-check"
+                name="vbtn-radio"
+                autocomplete="off"
+                checked
+              />
+              <label
+                id="parentFaqBtn"
+                class="btn btn-outline-primary btn-lg"
+                for="vbtn-radio1"
+                >PARENT FAQ</label
+              >
+              <input
+                id="vbtn-radio2"
+                type="radio"
+                class="btn-check"
+                name="vbtn-radio"
+                autocomplete="off"
+              />
+              <label
+                id="tutorFaqBtn"
+                class="btn btn-outline-success btn-lg"
+                for="vbtn-radio2"
+                >TUTOR FAQ</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- PARENTS FAQ -->
+        <div id="parentFaq">
+          <h5>A MESSAGE TO OUR PARENT</h5>
+          <div class="letter">
+            <p>
+              Dear Parent/Guardian, <br />
+              Lifeline is pleased to have you read this area and receive
+              satisfying answers to your questions or queries. It is us hope
+              that your trust in us will lead you to making the right decision
+              about who teaches your child and what results you hope to achieve.
+            </p>
+            <p>
+              Yours truly, <br />
+              Lifeline
+            </p>
+          </div>
+
+          <h4>Frequently Asked Questions</h4>
+          <div class="accordion faqBody" id="accordionExample">
+            <!-- ITEM ONE -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button bg-danger text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  <h5 class="faqHead">1. How can I get a tutor for my ward?</h5>
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    You can fill out the
+                    <a href="/form">Tutor-Request-Form</a> , or
+                    <a href="tel:+233246011004">call us</a>
+                    any of our contacts and we will assist you through the
+                    process.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- ITEM TWO -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-danger text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  <h5>
+                    2. How long do I have to wait after placing a request?
+                  </h5>
+                </button>
+              </h2>
+              <div
+                id="collapseTwo"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    It depends on the type of tuition you want, level of your
+                    child and other equally important considerations. This can
+                    take from the date of application to two-weeks after. Within
+                    this time, we will do all we can to get you a suitable
+                    tutor.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- ITEM THREE -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-danger text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  <h5>3. What is the duration for each lesson?</h5>
+                </button>
+              </h2>
+              <div
+                id="collapseThree"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Lesson duration is relative - you get to choose the duration
+                    of your lessons. Remember that the duration of lessons
+                    affect the fees is one of several factors that affects
+                    charges/fees.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- ITEM FOUR -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-danger text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour"
+                  aria-expanded="false"
+                  aria-controls="collapseFour"
+                >
+                  <h5>4. How much do I pay for the service?</h5>
+                </button>
+              </h2>
+              <div
+                id="collapseFour"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Fees depend on the type of tuition (In-Person or Online),
+                    tuition sessions per week, and lesson duration of lessons.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- ITEM FIVE -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-danger text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFive"
+                  aria-expanded="false"
+                  aria-controls="collapseFive"
+                >
+                  <h5>5. How do I make payment?</h5>
+                </button>
+              </h2>
+              <div
+                id="collapseFive"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Payment is to be made to our MTN Mobile Money Number
+                    (0555697623) or our Mobile Money Short Code (710112) with
+                    your reg-code (you will be given one) as reference.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- ITEM SIX -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-danger text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseSix"
+                  aria-expanded="false"
+                  aria-controls="collapseSix"
+                >
+                  <h5>
+                    6. I am in a very remote area, can you still get me a tutor?
+                  </h5>
+                </button>
+              </h2>
+              <div
+                id="collapseSix"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Our in-person option is designed to get you a tutor wherever
+                    you are. However, where we are unable to do so after our
+                    best effort, we can use our online service to still deliver
+                    effective lessons wherever may you may be.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- ITEM SEVEN -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-danger text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseSeven"
+                  aria-expanded="false"
+                  aria-controls="collapseSeven"
+                >
+                  <h5>7. When to make payment?</h5>
+                </button>
+              </h2>
+              <div
+                id="collapseSeven"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Payment is to be made upon receipt of a tutor and before the
+                    start of the tuition process.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- ITEM EIGHT -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-danger text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseEight"
+                  aria-expanded="false"
+                  aria-controls="collapseEight"
+                >
+                  <h5>8. Can I cancel a request?</h5>
+                </button>
+              </h2>
+              <div
+                id="collapseEight"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>Yes, you are free to cancel a request.</p>
+                </div>
+              </div>
+            </div>
+            <!-- ITEM NINE -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-danger text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseNine"
+                  aria-expanded="false"
+                  aria-controls="collapseNine"
+                >
+                  <h5>
+                    9. Will I get a refund if I cancel a contract after payment?
+                  </h5>
+                </button>
+              </h2>
+              <div
+                id="collapseNine"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    Yes, you will get 100% of your money back if you cancel a
+                    contract before tuition starts. However, where a contract is
+                    cancelled after a number of tuition engagements, you will be
+                    charged for the lessons delivered, and the remainder of your
+                    money will be refunded.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- ITEM TEN -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed bg-danger text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTen"
+                  aria-expanded="false"
+                  aria-controls="collapseTen"
+                >
+                  <h5>
+                    10. Will I pay same amount if the I have two or more
+                    students?
+                  </h5>
+                </button>
+              </h2>
+              <div
+                id="collapseTen"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <p>
+                    No! You will have a discount when students are in the same
+                    class and are taught same subjects at the same time. Where
+                    they are taught different subjects, or at different times,
+                    you will be required to pay full amounts for each of them.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ FOR PARENT -->
+          <div>
+            <!-- <div class="faqBody">
+          <h5 class="faqHead">1. How can I get a tutor for my ward?</h5>
+          <p>
+            You can fill out the
+            <a href="/form">Tutor-Request-Form</a> , or
+            <a href="#contact">call</a>
+            any of our contacts and we will assist you through the process.
+          </p>
+        </div> -->
+
+            <!-- <div class="faqBody">
+          <h5>2. How long do I have to wait after placing a request?</h5>
+          <p>
+            It depends on the type of tuition you want, level of your child and
+            other equally important considerations. This can take from the date
+            of application to two-weeks after. Within this time, we will do all
+            we can to get you a suitable tutor.
+          </p>
+        </div> -->
+
+            <!-- <div class="faqBody">
+          <h5>3. What is the duration for each lesson?</h5>
+          <p>
+            Lesson duration is relative - you get to choose the duration of your
+            lessons. Remember that the duration of lessons affect the fees is
+            one of several factors that affects charges/fees.
+          </p>
+        </div> -->
+
+            <!-- <div class="faqBody">
+          <h5>4. How much do I pay for the service?</h5>
+          <p>
+            Fees depend on the type of tuition (In-Person or Online), tuition
+            sessions per week, and lesson duration of lessons.
+          </p>
+        </div> -->
+
+            <!-- <div class="faqBody">
+          <h5>5. How do I make payment?</h5>
+          <p>
+            Payment is to be made to our MTN Mobile Money Number (0555697623) or
+            our Mobile Money Short Code (710112) with your reg-code (you will be
+            given one) as reference.
+          </p>
+        </div> -->
+
+            <!-- <div class="faqBody">
+          <h5>6. I am in a very remote area, can you still get me a tutor?</h5>
+          <p>
+            Our in-person option is designed to get you a tutor wherever you
+            are. However, where we are unable to do so after our best effort, we
+            can use our online service to still deliver effective lessons
+            wherever may be.
+          </p>
+        </div> -->
+
+            <!-- <div class="faqBody">
+          <h5>7. How is the payment done?</h5>
+          <p>
+            Fees/charges are to be upon receipt of a tutor and before the start
+            of the tuition process.
+          </p>
+        </div> -->
+
+            <!-- <div class="faqBody">
+          <h5>8. Can I cancel a request?</h5>
+          <p>Yes, you are free to cancel a request.</p>
+        </div> -->
+
+            <!-- <div class="faqBody">
+          <h5>9. Will I get a refund if I cancel a contract after payment?</h5>
+          <p>
+            Yes, you will get 100% of your money back if you cancel a contract
+            before tuition starts. However, where a contract is cancelled after
+            a number of tuition engagements, you will be charged for the lessons
+            delivered, and the remainder of your money will be refunded.
+          </p>
+        </div> -->
+
+            <!-- <div class="faqBody">
+          <h5>
+            10. Will I pay same amount if the I have two/more students in same
+            class?
+          </h5>
+          <p>
+            No! You will have a discount when students are in the same class and
+            are taught same subjects at the same time. Where they are taught
+            different subjects, or at different times, you will be required to
+            pay full amounts for each of them.
+          </p>
+        </div> -->
+          </div>
+        </div>
+
+        <!-- TUTOR FAQ -->
+        <div id="tutorFaq">
+          <!-- <nav
+          style="
+            --bs-breadcrumb-divider: url(
+              &#34;data:image/svg + xml,
+              %3Csvgxmlns='http://www.w3.org/2000/svg'width='8'height='8'%3E%3Cpathd='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z'fill='%236c757d'/%3E%3C/svg%3E&#34;
+            );
+          "
+          aria-label="breadcrumb"
+          class="d-flex justify-content-center"
+        >
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#collapseOne">GETTING STARTED</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="#collapseTwo">RECEIVING ASSIGNMENTS</a>
+            </li>
+            <li class="breadcrumb-item"><a href="#"></a></li>
+          </ol>
+        </nav> -->
+
+          <!-- GREETING MESSAGE -->
+          <div>
+            <h5>A MESSAGE TO ASPIRING TUTOR</h5>
+            <div class="letter">
+              <p>
+                Dear Aspiring Tutor, <br />
+                Lifeline is pleased to have you read this area and receive
+                satisfying answers to your questions or queries. You will join
+                us in delivering quality tuition to our students far and near.
+                You will become a part of the solution, and help others become
+                their very best.
+              </p>
+              <p>
+                Yours truly, <br />
+                Lifeline
+              </p>
+            </div>
+
+            <!-- ACCORDIAN -->
+            <div class="accordion faqBody" id="accordionExample">
+              <!-- FIRST FAQ TUTOR -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button bg-danger text-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    <h5 class="faqHead">
+                      1. How can I become a Lifeline Tutor?
+                    </h5>
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse show"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <p>
+                      You can fill out the
+                      <a href="/apply">Tutor-Application-Form</a> , or
+                      <a href="tel:+233246011004">call us</a>
+                      any of our contacts and we will assist you through the
+                      process. Please note that applications from only the
+                      following will be considered:
+                    </p>
+                    <ol>
+                      <li>Professional Teachers (Private and Government)</li>
+                      <li>College Undergraduates/Graduates</li>
+                      <li>University Undergraduates/Graduates</li>
+                      <li>Technical Institute Undergraduates/Graduates</li>
+                      <li>Working Professionals</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+              <!-- SECOND FAQ TUTOR -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed bg-danger text-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    <h5 class="faqHead">2. After applying, what is next?</h5>
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <p>
+                      Lifeline takes the application process very seriously, not
+                      all who apply are called for an interview. Where you are
+                      called, you will be required to provide evidence of
+                      qualification and expertise.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- THIRD FAQ TUTOR -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed bg-danger text-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    <h5 class="faqHead">3. How and when is the interview?</h5>
+                  </button>
+                </h2>
+                <div
+                  id="collapseThree"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <p>
+                      The interview will be conducted in not more than two weeks
+                      after the date of closure of applications. Successful
+                      applicants will be invited for an interview -- this will
+                      be in-person or online.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- FOURTH FAQ TUTOR -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed bg-danger text-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour"
+                    aria-expanded="false"
+                    aria-controls="collapseFour"
+                  >
+                    <h5 class="faqHead">4. How do I get paid?</h5>
+                  </button>
+                </h2>
+                <div
+                  id="collapseFour"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <p>
+                      Payment is sent to you through Mobile Money after
+                      successful completion of a tutorial assignment.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- FIFTH FAQ TUTOR -->
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed bg-danger text-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive"
+                    aria-expanded="false"
+                    aria-controls="collapseFive"
+                  >
+                    <h5 class="faqHead">
+                      5. When does Lifeline Pay its Tutors?
+                    </h5>
+                  </button>
+                </h2>
+                <div
+                  id="collapseFive"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <p>
+                      Payment is made not later than the 5th of the preceding
+                      month. This is after the tutor has submitted his/her Log
+                      Sheet and has been cleared for such.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-help">
+          <h4>We hope we have provided satisfying answers.</h4>
+          <p>if you need further assistance?</p>
+          <h5>Call us on:</h5>
+          <h6>0246-601-1004 or 0243934353</h6>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT-SECTION -->
+    <section id="contact" class="contact container-fluid bg-danger py-5">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6 pt-3">
+          <h2 class="footer-title pt-lg-5 hero-header">GET IN TOUCH</h2>
+          <p class="px-3 motivate">
+            YOU ARE JUST A PHONE CALL AWAY FROM GETTING THE SOLUTION YOU NEED
+          </p>
+          <div class="contact-button pb-lg-4">
+            <button class="btn btn-lg btn-secondary phone-btn">
+              <i class="fa-solid fa-address-card px-2"></i>CALL US
+            </button>
+            <button class="btn btn-lg btn-success email-btn">
+              <i class="fa-solid fa-envelope px-2"></i>EMAIL US
+            </button>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 laptop">
+          <img class="about-tuition-image" src="images/mobile.png" alt="" />
+          <div class="phone">
+            <p class="tel">
+              <i class="fa-solid fa-phone px-2"></i>Helpline: 0246011004
+            </p>
+            <p class="tel">
+              <i class="fa-solid fa-phone px-2"></i>Manager: 0243934353
+            </p>
+          </div>
+          <div class="email">
+            <p class="mail">Lifelineedusolutions@gmail.com</p>
+            <p class="mail">Shirazadnan53@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="footer">
+      <container-fluid class="text-center text-dark-emphasis">
+        <p class="footer-title">Lifeline Educational Solutions</p>
+        <small class="footer-copyright text-dark-50 d-block pt-0"
+          >&copy; Copyright: All rights reserved</small
+        >
+        <div class="footer-icons pb-sm-5">
+          <i class="fa-brands fa-facebook footer-icons"></i>
+          <i class="fa-brands fa-square-twitter footer-icons"></i>
+          <i class="fa-solid fa-envelope footer-icons"></i>
+        </div>
+      </container-fluid>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

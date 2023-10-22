@@ -1,0 +1,651 @@
+<form action="/form" class="form-apply" method="post">
+  <!-- CLIENT INFORMATION -->
+  <fieldset id="client" class="form-field" data-section="1">
+    <h4 class="my-4 d-flex justify-content-start">Parent/Guardian Details</h4>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="label" for="clientName">Name</label>
+        <input
+          id="parentName"
+          required
+          class="apply-input"
+          type="text"
+          name="parent"
+          placeholder="Enter your Full Name"
+          autocapitalize="words"
+        />
+        <div class="error-message">This is a required field</div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="label" for="address">Address</label>
+        <input
+          class="apply-input"
+          type="text"
+          required
+          name="address"
+          id="address"
+          placeholder="Enter address"
+        />
+        <div class="error-message">Provide Home Address</div>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-lg-6">
+        <label class="label" for="relationship">Relationship to Student</label>
+        <input
+          class="apply-input"
+          type="text"
+          required
+          name="relationship"
+          id="relationship"
+          placeholder="Example: Father, Mother, Uncle"
+        />
+        <div class="error-message">Please provide this field</div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="label" for="email">Email Address</label>
+        <input
+          class="apply-input"
+          type="email"
+          name="email"
+          id="parentEmail"
+          placeholder="Enter email address"
+        />
+        <div class="error-message">This is a required field</div>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-lg-6">
+        <label class="label" for="number">Contact</label>
+        <input
+          id="parentNumber"
+          required
+          class="apply-input"
+          type="number"
+          name="contact"
+          inputmode="numeric"
+          maxlength="10"
+        />
+        <div class="error-message">Please enter a contact</div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="label" for="number">Other Contact(If any?)</label>
+        <input
+          id="parentOtherNumber"
+          class="apply-input"
+          type="number"
+          name="altContact"
+          inputmode="numeric"
+          maxlength="10"
+        />
+        <div class="error-message" id="nameError"></div>
+      </div>
+    </div>
+
+    <!-- BUTTON -->
+    <div class="py-3 d-lg-flex justify-content-end">
+      <button class="btn btn-success nextBtn" type="button">
+        <i class="fa fa-arrow-circle-right"></i>
+      </button>
+    </div>
+  </fieldset>
+
+  <!-- STUDENT'S INFORMATION -->
+  <fieldset id="student" class="form-field" data-section="2">
+    <h4 class="my-4 d-flex justify-content-start">Learner's Details</h4>
+
+    <div class="row my-2">
+      <div class="col-lg-6">
+        <label class="label" for="Student">Name of Student</label>
+        <input
+          required
+          id="studentName"
+          name="student"
+          class="apply-input"
+          type="text"
+          autocapitalize="words"
+          placeholder="Enter Full Name"
+        />
+        <div class="error-message">This is a required field</div>
+      </div>
+      <div class="col-lg-6">
+        <label class="label" for="sex">Sex</label>
+        <select name="sex" id="studentGender" class="apply-input">
+          <option value="Nan">Gender</option>
+          <option value="Male">MALE</option>
+          <option value="Female">FEMALE</option>
+        </select>
+        <div class="error-message">Select student's gender</div>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-lg-6 col-sm-12">
+        <label class="label" for="age">Date of Birth</label>
+        <input
+          name="DoB"
+          class="apply-input"
+          type="date"
+          id="studentDOB"
+          required
+        />
+        <div class="error-message">This is a required field</div>
+      </div>
+      <div class="col-lg-6">
+        <label class="label" for="schoolName"
+          >Current School Name(if in school)</label
+        >
+        <input
+          class="apply-input"
+          type="text"
+          name="schoolName"
+          id="schoolName"
+          placeholder="Enter school name"
+        />
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-lg-6 col-sm-12">
+        <label class="label" for="level">Level of Student</label>
+        <select class="apply-input" name="level" id="studentLevel" required>
+          <option value="nursery">Level</option>
+          <option value="nursery">NURSERY</option>
+          <option value="Kindergarten">KINDERGARTEN</option>
+          <option value="primary">PRIMARY</option>
+          <option value="jhs">JHS</option>
+          <option value="shs">SHS</option>
+        </select>
+        <div class="error-message">This is a required field</div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label class="label" for="level">Class</label>
+        <input
+          name="class"
+          id="studentClass"
+          class="apply-input"
+          type="text"
+          placeholder="Student's class"
+          required
+        />
+        <div class="error-message">This is a required field</div>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-lg-6">
+        <label class="label" for="emergencyContact"
+          >Emergency Contact Person</label
+        >
+        <input
+          class="apply-input"
+          type="text"
+          required
+          name="emergencyContactName"
+          id="emergencyContactName"
+          placeholder="Enter name"
+        />
+        <div class="error-message">This is a required field</div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <label class="label" for="emergencyContact"
+          >Emergency Contact's Number</label
+        >
+        <input
+          class="apply-input"
+          type="number"
+          required
+          name="emergencyContactNumber"
+          id="emergencyContactNumber"
+          inputmode="numeric"
+          maxlength="10"
+          placeholder="Enter phone number"
+        />
+        <div class="error-message">This is a required field</div>
+      </div>
+    </div>
+
+    <!-- ACADEMIC CHALLENGES -->
+    <fieldset id="option" class="form-field shadow-two">
+      <!-- SUBJECT SELECT -->
+      <label class="label ps-lg-3 py-lg-2" for="my-lg-4"
+        >Select Learner's Known Academic Challenge(s)</label
+      >
+      <div class="border my-lg-3">
+        <div class="row d-lg-flex justify-content-evenly py-lg-3">
+          <div class="form-check form-check-inline col-lg-3">
+            <input
+              name="challenge"
+              class="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox1"
+              value="Reading"
+            />
+            <label class="form-check-label" for="inlineCheckbox1"
+              >Reading</label
+            >
+          </div>
+          <div class="form-check form-check-inline col-lg-3">
+            <input
+              name="challenge"
+              class="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox2"
+              value="Writing"
+            />
+            <label class="form-check-label" for="inlineCheckbox2"
+              >Writing</label
+            >
+          </div>
+          <div class="form-check form-check-inline col-lg-3">
+            <input
+              name="challenge"
+              class="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox3"
+              value="Mathematics"
+            />
+            <label class="form-check-label" for="inlineCheckbox3"
+              >Mathematics</label
+            >
+          </div>
+        </div>
+
+        <div class="row d-lg-flex justify-content-evenly py-lg-3">
+          <div class="form-check form-check-inline col-lg-3">
+            <input
+              name="challenge"
+              class="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox4"
+              value="Phonics"
+            />
+            <label class="form-check-label" for="inlineCheckbox4"
+              >Phonics</label
+            >
+          </div>
+          <div class="form-check form-check-inline col-lg-3">
+            <input
+              name="challenge"
+              class="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox5"
+              value="Spelling"
+            />
+            <label class="form-check-label" for="inlineCheckbox5"
+              >Spelling</label
+            >
+          </div>
+          <div class="form-check form-check-inline col-lg-3">
+            <input
+              name="challenge"
+              class="form-check-input"
+              type="checkbox"
+              id="inlineCheckbox6"
+              value="Speaking"
+            />
+            <label class="form-check-label" for="inlineCheckbox6"
+              >Speaking</label
+            >
+          </div>
+        </div>
+        <textarea
+          class="apply-input mt-lg-3"
+          name="other-challenges"
+          placeholder="You can tell us more about the challenge"
+          id="otherSubjects"
+        ></textarea>
+      </div>
+    </fieldset>
+
+    <!-- BUTTONS -->
+    <div class="py-3 d-lg-flex justify-content-end">
+      <button class="btn btn-danger me-2 prevBtn" type="button">
+        <i class="fa fa-arrow-circle-left"></i>
+      </button>
+      <button class="btn btn-success nextBtn" type="button" alt="Next">
+        <i class="fa fa-arrow-circle-right"></i>
+      </button>
+    </div>
+  </fieldset>
+
+  <!-- TUITION PREFERENCES -->
+  <fieldset id="option" class="form-field" data-section="3">
+    <h4 class="my-4 d-flex justify-content-start">Tuition Preferences</h4>
+    <label class="my-lg-2" for="btn-group"
+      >Select Preferred Mode of Tuition</label
+    >
+    <div>
+      <div
+        class="btn-group"
+        role="group"
+        aria-label="Vertical radio toggle button group"
+      >
+        <input
+          type="radio"
+          class="btn-check"
+          name="modeOfTeaching"
+          id="vbtn-radio1"
+          autocomplete="off"
+          value="person"
+          checked
+        />
+        <label
+          id="inPersonClick"
+          class="btn btn-outline-primary"
+          for="vbtn-radio1"
+          >In-Person Tuition</label
+        >
+        <input
+          type="radio"
+          class="btn-check"
+          name="modeOfTeaching"
+          id="vbtn-radio2"
+          autocomplete="off"
+          value="online"
+        />
+        <label
+          id="onlineClick"
+          class="btn btn-outline-primary"
+          for="vbtn-radio2"
+          >Online Tuition</label
+        >
+      </div>
+    </div>
+    <br />
+    <div id="price-display" class="bg-white form-apply">
+      <div class="mt-2">
+        <strong>TUITION FEES:</strong> $<span id="calculatedPrice">0.00</span>
+      </div>
+      <p class="text-danger">
+        NB: Mode of Tuition, Frequency and Duration affect pricing
+      </p>
+    </div>
+
+    <div id="online" class="row my-lg-4 container-sm">
+      <div class="col d-lg-flex justify-content-evenly shadow-two py-lg-2">
+        <div class="col">
+          <label class="" for="online">Preferred Tuition Platform(s)</label>
+        </div>
+        <div
+          class="btn-group"
+          role="group"
+          aria-label="Basic checkbox toggle button group"
+        >
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck1"
+            autocomplete="off"
+            name="onlinePlatform"
+            value="ZOOM"
+          />
+          <label class="btn btn-outline-success" for="btncheck1">ZOOM</label>
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck2"
+            autocomplete="off"
+            name="onlinePlatform"
+            value="GOOGLE MEET"
+          />
+          <label class="btn btn-outline-success" for="btncheck2"
+            >GOOGLE MEET</label
+          >
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck3"
+            autocomplete="off"
+            name="onlinePlatform"
+            value="TELEGRAM"
+          />
+          <label class="btn btn-outline-success" for="btncheck3"
+            >TELEGRAM</label
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Sessions per week -->
+    <div class="container-fluid form-check" id="weeklySession">
+      <!-- TUITION SESSION -->
+      <div class="border py-3 shadow-two">
+        <label class="label ps-lg-4 pb-lg-3" for="">Frequency of Lessons</label>
+        <div class="row d-flex justify-content-evenly">
+          <div class="col-lg-5 col-md-3 col-sm-12 mb-3">
+            <input
+              type="radio"
+              class="btn-check"
+              name="weeklySession"
+              id="option5"
+              autocomplete="off"
+              value="2"
+            />
+            <label class="btn btn-outline-success px-5" for="option5"
+              >2 Lessons Per Week</label
+            >
+          </div>
+          <div class="col-lg-5 col-md-3 col-sm-12 mb-3">
+            <input
+              type="radio"
+              class="btn-check"
+              name="weeklySession"
+              id="option6"
+              autocomplete="off"
+              checked
+              value="3"
+            />
+            <label class="btn btn-outline-success px-5" for="option6"
+              >3 Lessons Per Week</label
+            >
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-evenly my-lg-3 mb-3">
+          <div class="col-lg-5 col-md-3 col-sm-12">
+            <input
+              type="radio"
+              class="btn-check"
+              name="weeklySession"
+              id="option7"
+              autocomplete="off"
+              value="4"
+            />
+            <label class="btn btn-outline-success px-5" for="option7"
+              >4 Lessons Per Week</label
+            >
+          </div>
+          <div class="col-lg-5 col-md-3 col-sm-12">
+            <input
+              type="radio"
+              class="btn-check"
+              name="weeklySession"
+              id="option8"
+              autocomplete="off"
+              value="5"
+            />
+            <label class="btn btn-outline-success px-5" for="option8"
+              >5 Lessons Per Week</label
+            >
+          </div>
+        </div>
+      </div>
+      <!-- <div id="price-display" class="mt-3">
+          <strong>Calculated Price:</strong> $<span id="calculated-price"
+            >0.00</span
+          >
+        </div> -->
+    </div>
+
+    <!-- DURATION OF LESSONS -->
+    <div id="duration" class="row border container-sm mt-5 shadow-two">
+      <div class="label col-lg-3 col-sm-12">
+        <label for="">Select Duration of Lessons</label>
+      </div>
+      <div class="btn-group col d-lg-flex justify-content-center">
+        <div
+          class="btn-group"
+          role="group"
+          aria-label="Basic radio toggle button group"
+        >
+          <input
+            type="radio"
+            class="btn-check"
+            name="periodLength"
+            id="btnradio4"
+            autocomplete="off"
+            checked
+            value="1"
+          />
+          <label class="btn btn-outline-success" for="btnradio4">1 hour</label>
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="periodLength"
+            id="btnradio5"
+            autocomplete="off"
+            value="1.5"
+          />
+          <label class="btn btn-outline-success" for="btnradio5"
+            >1.5 hours</label
+          >
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="periodLength"
+            id="btnradio6"
+            autocomplete="off"
+            value="2"
+          />
+          <label class="btn btn-outline-success" for="btnradio6">2 hours</label>
+          <input
+            type="radio"
+            class="btn-check"
+            name="periodLength"
+            id="btnradio7"
+            autocomplete="off"
+            value="2.5"
+          />
+          <label class="btn btn-outline-success" for="btnradio7"
+            >2.5 hours</label
+          >
+          <input
+            type="radio"
+            class="btn-check"
+            name="periodLength"
+            id="btnradio8"
+            autocomplete="off"
+            value="3"
+          />
+          <label class="btn btn-outline-success" for="btnradio8">3 hours</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBJECTS -->
+    <div class="row shadow-two container-sm my-5">
+      <div class="col d-lg-flex justify-content-evenly border py-lg-2">
+        <div class="col-lg-5">
+          <label class="label" for="online"
+            >Select Preferred Tuition Subject(s)</label
+          >
+        </div>
+        <div
+          class=""
+          role="group"
+          aria-label="Basic checkbox toggle button group"
+        >
+          <input
+            type="checkbox"
+            class="btn-check"
+            name="preferredSubjects"
+            id="btncheck5"
+            autocomplete="off"
+            value="English"
+          />
+          <label class="btn btn-outline-success" for="btncheck5">English</label>
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck6"
+            name="preferredSubjects"
+            autocomplete="off"
+            value="Mathematics"
+          />
+          <label class="btn btn-outline-success" for="btncheck6"
+            >Mathematics</label
+          >
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck7"
+            name="preferredSubjects"
+            autocomplete="off"
+            value="Science"
+          />
+          <label class="btn btn-outline-success" for="btncheck7">Science</label>
+        </div>
+      </div>
+      <textarea
+        name="otherTuitionSubjects"
+        value="Other Subjects"
+        class="apply-input mt-4"
+        placeholder="State other subjects or special needs here.  Example: I need someone to help with Homework"
+      ></textarea>
+    </div>
+
+    <div class="container-sm">
+      <div class="row shadow-two py-3">
+        <div class="col-lg-6">
+          <label class="label" for="locationOfStudent"
+            >Student's Location</label
+          >
+          <input
+            id="studentLocation"
+            required
+            class="apply-input"
+            type="text"
+            placeholder="Enter name of student's location"
+          />
+          <div class="error-message">This is a required field</div>
+        </div>
+        <div class="col-lg-6">
+          <label class="label" for="locationName">Ghana Post GPS Address</label>
+          <input
+            id="studentLocationGPS"
+            required
+            class="apply-input"
+            type="text"
+            placeholder="GPS Location of student"
+          />
+          <div class="error-message">This is a required field</div>
+        </div>
+      </div>
+    </div>
+    <!-- EDIT AND SUBMIT BUTTONS -->
+    <div class="py-5 py-sm-5 d-lg-flex justify-content-end" id="sendBtn">
+      <button type="button" class="btn btn-danger prevBtn me-3">
+        Edit Form
+      </button>
+
+      <button class="btn btn-success me-lg-4" type="submit">
+        Send Request
+      </button>
+    </div>
+  </fieldset>
+</form>
