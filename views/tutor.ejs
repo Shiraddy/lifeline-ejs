@@ -45,7 +45,7 @@
   <body>
     <div class="container-fluid row">
       <!-- SIDE BAR -->
-      <div class="col-lg-2" id="">
+      <div class="col-lg-2 shadow-two" id="">
         <div class="profile-side" id="">
           <button
             class="navbar-toggler d-lg-none d-flex justify-content-start py-2"
@@ -84,9 +84,14 @@
                   <a class="link-user" href="#">SUBMIT FORMS</a>
                 </ul>
                 <div class="">
-                  <button class="btn btn-success shadow-two my-3" type="button">
-                    Logout
-                  </button>
+                  <form action="/logout" method="GET">
+                    <button
+                      class="btn btn-success shadow-two my-3"
+                      type="submit"
+                    >
+                      Logout
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -311,14 +316,14 @@
               <h5>Lifeline Resources</h5>
               <div class="logSheet py-5 shadow-one">
                 <h5>Log Sheet</h5>
-                <p class="px-5 text-start">
+                <!-- <p class="px-5 text-start">
                   "The Log Sheet serves as a comprehensive record of your
                   attendance, containing essential information such as the date,
                   subject, time of arrival, and departure, among others. It is
                   imperative for every tutor to consistently utilize this
                   crucial document. To obtain a copy, please click on the
                   download button below."
-                </p>
+                </p> -->
                 <button class="btn btn-success" type="button">Download</button>
               </div>
 
@@ -420,7 +425,103 @@
           </div>
         </section>
 
-        <section></section>
+        <!-- PROGRESS REPORT -->
+        <section id="adminNotice" class="form-apply shadow-two my-3 row banner">
+          <div class="col-lg-6 d-none d-lg-block pb-5"></div>
+          <div class="col-lg-6 shadow-two bg-white">
+            <h4 class="my-lg-4 my-2">PROGRESS REPORT</h4>
+            <div class="my-lg-3">
+              <!-- <label for="">CONTRACT TYPE:</label> <br /> -->
+              <select name="type" id="" class="profile-input">
+                <option value="">CONTRACT TYPE</option>
+                <option value="DUO">DUO</option>
+                <option value="TRI">TRI</option>
+                <option value="QUAD">QUAD</option>
+                <option value="PENT">PENT</option>
+              </select>
+            </div>
+
+            <div class="">
+              <!-- <label class="" for="">Mode of Tuition:</label> <br /> -->
+              <select name="mode" id="" class="profile-input">
+                <option value="">MODE OF TUITION</option>
+                <option value="online">Online</option>
+                <option value="in-person">In-Person</option>
+              </select>
+            </div>
+
+            <div class="my-3">
+              <!-- <label for="">Level:</label> <br /> -->
+              <select name="level" id="" class="profile-input">
+                <option value="">LEVEL OF STUDENT</option>
+                <option value="KG">KINDERGARTEN</option>
+                <option value="PRIMARY">PRIMARY</option>
+                <option value="JHS">JHS</option>
+                <option value="SHS">SHS</option>
+              </select>
+            </div>
+
+            <div class="div">
+              <!-- <label for="">Class:</label> <br /> -->
+              <input
+                class="profile-input"
+                type="tel"
+                name="class"
+                placeholder="CLASS"
+              />
+            </div>
+
+            <div class="my-3">
+              <!-- <label for="">Subjects:</label> <br /> -->
+              <textarea
+                name="subjects"
+                id=""
+                class="profile-input-textarea"
+                placeholder="TUITION SUBJECT(S)"
+              ></textarea>
+            </div>
+
+            <div class="div">
+              <!-- <label for="">Lesson Duration</label> <br /> -->
+              <select name="duration" id="" class="profile-input">
+                <option value="">LESSON DURATION</option>
+                <option value="1 hour">1 hour</option>
+                <option value="1.5 hours">1.5 hrs</option>
+                <option value="2 hours">2 hrs</option>
+                <option value="2.5 hours">2.5 hrs</option>
+                <option value="3 hours">3 hrs</option>
+              </select>
+            </div>
+
+            <div class="my-3">
+              <!-- <label for="">Location:</label> <br /> -->
+              <input
+                class="profile-input"
+                type="text"
+                name="location"
+                placeholder="LOCATION"
+              />
+            </div>
+
+            <div class="div">
+              <!-- <label for="">Allowance</label> <br /> -->
+              <input
+                class="profile-input"
+                type="text"
+                name="allowance"
+                placeholder="ALLOWANCE"
+              />
+            </div>
+
+            <button
+              class="btn btn-success my-lg-4 my-3 shadow-two"
+              type="submit"
+              name="postContract"
+            >
+              POST CONTRACT
+            </button>
+          </div>
+        </section>
 
         <!-- OFFERS -->
         <section id="jobs" class="form-apply shadow-two">
@@ -514,10 +615,10 @@
                     <div class="py-2">
                       <form action="/more" class="d-flex justify-content-end">
                         <button class="btn tutorIcon me-2" type="submit">
-                          <a href=""><i class="fa-solid fa-expand"></i></a>
+                          <i class="fa-solid fa-expand"></i>
                         </button>
                         <button type="submit" class="btn tutorIcon">
-                          <i class="fa-solid fa-file-circle-plus"></i>
+                          <i class="fa-regular fa-circle-check"></i>
                         </button>
                       </form>
                     </div>

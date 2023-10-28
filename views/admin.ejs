@@ -426,8 +426,8 @@
                   checked
                 />
                 <label class="btn btn-outline-success" for="btnradio1">
-                  <span class="badge bg-primary me-2 shadow-two rounded-pill"
-                    >14</span
+                  <span class="badge bg-danger me-2 shadow-two rounded-pill"
+                    ><%= applicants %></span
                   >Applicants</label
                 >
 
@@ -469,6 +469,8 @@
         </div>
       </nav>
 
+      <%# console.log(applications) %>
+
       <!-- TUTOR TABLE -->
       <div class="table-responsive">
         <table class="table table-bordered">
@@ -486,7 +488,7 @@
           </thead>
           <tbody>
             <% applications.forEach(function(application, index) { %>
-            <tr>
+            <tr data-application-id="<%= application.id %>">
               <td><%= index + 1 %></td>
               <td>
                 <%= application.data.lastName %> <%= application.data.firstName
@@ -500,25 +502,25 @@
               <td>
                 <!-- ACTION BUTTONS -->
                 <div class="d-flex justify-content-center">
-                  <button
+                  <!-- <button
                     type="button"
                     class="btn tutorIcon me-2 view-details"
                     data-bs-toggle="modal"
                     data-bs-target="#detail"
                   >
                     <a><i class="fa-solid fa-expand"></i></a>
-                  </button>
+                  </button> -->
 
                   <button
                     type="button"
-                    class="btn tutorIcon me-2"
+                    class="btn tutorIcon me-2 update-data"
                     data-bs-toggle="modal"
                     data-bs-target="#update"
                   >
                     <a><i class="fa-solid fa-pen-to-square"></i></a>
                   </button>
 
-                  <button class="btn tutorIcon me-2">
+                  <button class="btn tutorIcon me-2 delete-row">
                     <a><i class="fa-solid fa-trash"></i></a>
                   </button>
                 </div>
@@ -543,6 +545,7 @@
               <label class="label" for="firstName">First Name</label>
               <input
                 id="firstName"
+                disabled
                 class="apply-input"
                 type="text"
                 name="firstName"
@@ -553,12 +556,12 @@
             <div class="col-lg-6">
               <label class="label" for="firstName">Last Name</label>
               <input
-                id="lastName<%#= index %>"
-                required
+                id="lastName"
+                disabled
                 class="apply-input"
                 type="text"
                 name="lastName"
-                placeholder="<%#= fullName %>"
+                placeholder=""
                 autocapitalize="words"
               />
             </div>
@@ -568,82 +571,40 @@
               <input
                 class="apply-input"
                 type="email"
-                required
+                disabled
                 name="tutorEmail"
-                id="tutorEmail<%#= index %>"
-                placeholder="<%= applications.id %>"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="relationship">Gender</label>
-              <input
-                class="apply-input"
-                type="text"
-                required
-                name="gender"
-                id="gender<%#= index %>"
-                placeholder=""
+                id="tutorEmail"
               />
             </div>
 
             <div class="col-lg-6">
               <label class="label" for="number">Contact</label>
               <input
-                id="contact<%#= index %>"
-                required
+                id="contact"
+                disabled
                 class="apply-input"
-                type="number"
+                type="text"
                 name="contact"
-                inputmode="numeric"
-                maxlength="10"
               />
               <div class="error-message">Contact</div>
             </div>
 
             <div class="col-lg-6">
-              <label class="label" for="number">Other Contact(If any?)</label>
+              <label class="label" for="number">Other Contact</label>
               <input
-                id="tutorOtherContact<%#= index %>"
+                id="tutorOtherContact"
                 class="apply-input"
                 type="number"
                 name="altContact"
-                inputmode="numeric"
-                maxlength="10"
+                disabled
               />
               <div class="error-message" id="nameError"></div>
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="number">Student Status</label>
-              <input
-                id="status<%#= index %>"
-                required
-                class="apply-input"
-                type="text"
-                name="studentStatus"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="number">School</label>
-              <input
-                id="school<%#= index %>"
-                required
-                class="apply-input"
-                type="text"
-                name="school"
-              />
             </div>
 
             <!-- BUTTON -->
             <div
               class="py-3 d-lg-flex justify-content-end pe-lg-3 modal-footer"
             >
-              <!-- <button class="btn btn-danger me-lg-3" type="submit">
-                    Delete Data
-                  </button> -->
-
               <button
                 type="button"
                 class="btn btn-secondary"
@@ -666,29 +627,42 @@
             <h5 class="my-4 d-flex justify-content-start modal-header">
               UPDATE DATA
             </h5>
+
             <div class="col-lg-6">
               <label class="label" for="firstName">First Name</label>
               <input
                 id="firstName"
-                required
+                disabled
                 class="apply-input"
                 type="text"
                 name="firstName"
-                placeholder="<%#= fullName %>"
+                placeholder=""
                 autocapitalize="words"
               />
               <div class="error-message">This is a required field</div>
             </div>
+
             <div class="col-lg-6">
               <label class="label" for="firstName">Last Name</label>
               <input
                 id="lastName"
-                required
+                disabled
                 class="apply-input"
                 type="text"
                 name="lastName"
-                placeholder="<%#= fullName %>"
-                autocapitalize="words"
+                placeholder=""
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="DoB">Date of Birth</label>
+              <input
+                class="apply-input"
+                type="text"
+                disabled
+                name="DoB"
+                id="DoB"
+                placeholder=""
               />
             </div>
 
@@ -697,7 +671,6 @@
               <input
                 class="apply-input"
                 type="email"
-                required
                 name="tutorEmail"
                 id="tutorEmail"
                 placeholder="Enter Email Address"
@@ -705,20 +678,84 @@
             </div>
 
             <div class="col-lg-6">
-              <label class="label" for="relationship">Gender</label>
+              <label class="label" for="number">Student Status</label>
               <input
+                id="status"
+                disabled
                 class="apply-input"
                 type="text"
-                required
-                name="gender"
-                id="gender"
-                placeholder=""
+                name="studentStatus"
               />
             </div>
 
             <div class="col-lg-6">
-              <select name="Category" id="" class="apply-input">
-                <option value="">Select Category</option>
+              <label class="label" for="number">School</label>
+              <input
+                id="schoolCompleted"
+                required
+                class="apply-input"
+                type="text"
+                name="school"
+              />
+            </div>
+            <!-- 
+            <div class="col-lg-6">
+              <label class="label" for="number">Contact</label>
+              <input
+                id="contact"
+                class="apply-input"
+                type="text"
+                name="contact"
+              />
+              <div class="error-message">Contact</div>
+            </div> -->
+
+            <!-- <div class="col-lg-6">
+              <label class="label" for="number">Other Contact</label>
+              <input
+                id="tutorOtherContact"
+                class="apply-input"
+                type="number"
+                name="altContact"
+                disabled
+              />
+              <div class="error-message" id="nameError"></div>
+            </div> -->
+
+            <div class="col-lg-6">
+              <label class="label" for="number">Student Status</label>
+              <input
+                id="studentStatus"
+                disabled
+                class="apply-input"
+                type="text"
+                name="studentStatus"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="coursed">Course</label>
+              <input
+                id="coursed"
+                required
+                class="apply-input"
+                type="text"
+                name="course"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="status">Status</label>
+              <select name="status" id="status" class="apply-input">
+                <option value="Applicant">Applicant</option>
+                <option value="Pending">Pending</option>
+                <option value="Qualified">Qualified</option>
+              </select>
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="category">Tutor Category</label>
+              <select name="category" id="category" class="apply-input">
                 <option value="">A+</option>
                 <option value="">A</option>
                 <option value="">B+</option>
@@ -726,44 +763,6 @@
                 <option value="">C</option>
                 <option value="">D</option>
               </select>
-            </div>
-
-            <div class="col-lg-6">
-              <select name="Status" id="" class="apply-input">
-                <option value="">Select Status</option>
-                <option value="Applicant">Applicant</option>
-                <option value="Pending">Pending</option>
-                <option value="Qualified">Qualified</option>
-                <!-- <option value="">C</option>
-                    <option value="">D</option> -->
-              </select>
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="number">Contact</label>
-              <input
-                id="parentNumber"
-                required
-                class="apply-input"
-                type="number"
-                name="contact"
-                inputmode="numeric"
-                maxlength="10"
-              />
-              <div class="error-message">Contact</div>
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="number">Other Contact(If any?)</label>
-              <input
-                id="tutorOtherContact"
-                class="apply-input"
-                type="number"
-                name="altContact"
-                inputmode="numeric"
-                maxlength="10"
-              />
-              <div class="error-message" id="nameError"></div>
             </div>
 
             <!-- BUTTON -->
@@ -778,7 +777,7 @@
                 Close
               </button>
 
-              <button class="btn btn-danger me-lg-3" type="submit">
+              <button class="btn btn-danger me-lg-3" id="" type="submit">
                 Update Data
               </button>
             </div>

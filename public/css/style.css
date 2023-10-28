@@ -262,7 +262,7 @@
 
 .about-header {
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 800px;
   color: #fff;
 }
@@ -283,9 +283,10 @@
 
 .about-text {
   line-height: 1.6;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 2vw;
+  font-family: "Kanit" Georgia, "Times New Roman", Times, serif;
+  font-size: 1.4vw;
   color: #fff;
+  /* font-weight: 200; */
 }
 
 /***************CHOOSE US*****************/
@@ -660,7 +661,7 @@ body {
 
 .profile-pic {
   margin: 2rem;
-  width: 60%;
+  width: 50%;
   height: auto;
   border-radius: 100%;
 }

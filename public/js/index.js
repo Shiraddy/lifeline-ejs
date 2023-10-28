@@ -367,24 +367,25 @@ $(document).ready(function () {
 
   // Function to calculate and update the price
   function calculatePrice() {
-    var mode = $("input[name=modeOfTeaching]:checked").val();
+    let mode = $("input[name=modeOfTeaching]:checked").val();
     // console.log(mode);
-    var weeklySession = $('input[name="weeklySession"]:checked').val();
-    var periodLength = $('input[name="periodLength"]:checked').val();
-    var monthlySession = weeklySession * 4;
+    let weeklySession = $('input[name="weeklySession"]:checked').val();
+    let periodLength = $('input[name="periodLength"]:checked').val();
+    let monthlySession = weeklySession * 4;
+    let pricePerLesson;
 
     // Calculate the total price
     // var totalPrice = monthlySession * periodLength * pricePerLesson;
-    if (mode == "person" && periodLength === 3) {
-      var pricePerLesson = 15;
-    } else if (mode == "person" && periodLength === 2.5) {
-      var pricePerLesson = 16;
-    } else if (mode == "person" && periodLength === 2) {
-      var pricePerLesson = 18;
-    } else if (mode == "person" && periodLength === 1.5) {
-      var pricePerLesson = 20;
+    if (mode == "person" && periodLength == 3) {
+      pricePerLesson = 15;
+    } else if (mode == "person" && periodLength == 2.5) {
+      pricePerLesson = 16;
+    } else if (mode == "person" && periodLength == 2) {
+      pricePerLesson = 18;
+    } else if (mode == "person" && periodLength == 1.5) {
+      pricePerLesson = 20;
     } else {
-      var pricePerLesson = 25;
+      pricePerLesson = 25;
     }
     var totalPrice = monthlySession * periodLength * pricePerLesson;
 
@@ -431,7 +432,7 @@ $(document).ready(function () {
 //   });
 // });
 
-//Second working code with spinner
+// Second working code with spinner
 // $(document).ready(function () {
 //   $("#login-form").on("submit", function (e) {
 //     e.preventDefault();
@@ -517,3 +518,139 @@ $("#imageUpload").change(function () {
 //     modal.modal("show");
 //   });
 // });
+
+// $(document).ready(function () {
+//   $(".delete-row").click(function () {
+//     var row = $(this).closest("tr");
+//     var applicationId = row.data("application-id");
+//     row.remove();
+//   });
+// });
+
+$(document).ready(function () {
+  // Add a click event handler to all delete buttons
+  $(".delete-row").click(function () {
+    const row = $(this).closest("tr");
+    const applicationId = row.data("application-id");
+
+    // Make an AJAX request to delete the application
+    $.ajax({
+      type: "DELETE",
+      url: `/admin/delete/${applicationId}`,
+      success: function (data, textStatus, jqXHR) {
+        if (jqXHR.status === 204) {
+          // Successful deletion, remove the row from the DOM
+          row.remove();
+        } else {
+          // Handle other responses, e.g., display an error message
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        // Handle any network or request errors
+      },
+    });
+  });
+});
+
+$(document).ready(function () {
+  // Add a click event handler to all "view-details" buttons
+  $(".view-details").click(function () {
+    const row = $(this).closest("tr"); // Get the parent row of the clicked button
+    const applicationId = row.data("application-id"); // Assuming you have a data attribute for the application ID
+
+    // Make an AJAX request to fetch data for the specific application
+    $.ajax({
+      type: "GET",
+      url: `/admin/details/${applicationId}`, // Adjust the URL to your server endpoint
+      dataType: "json", // Assuming the response is in JSON format
+      success: function (data) {
+        // Update the form fields with the fetched data
+        $("#firstName").val(data.firstName);
+        $("#lastName").val(data.lastName);
+        $("#tutorEmail").val(data.email);
+        $("#gender").val(data.gender);
+        $("#contact").val(data.contact);
+        $("#tutorOtherContact").val(data.altContact);
+        $("#status").val(data.studentStatus);
+        $("#school").val(data.school);
+
+        // Show the modal
+        // Replace this with your modal display code (e.g., using Bootstrap modal functions)
+        $("#detail").modal("show");
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        // Handle any errors, e.g., display an error message
+        console.log("Error:", errorThrown);
+      },
+    });
+  });
+});
+
+$(document).ready(function () {
+  // Add a click event handler to all "update-data" buttons
+  $(".update-data").click(function () {
+    const row = $(this).closest("tr"); // Get the parent row of the clicked button
+    const applicationId = row.data("application-id"); // Assuming you have a data attribute for the application ID
+    const form = $("#update"); // Get the form element
+
+    // Make an AJAX request to fetch data for the specific application
+    $.ajax({
+      type: "GET",
+      url: `/admin/details/${applicationId}`, // Adjust the URL to your server endpoint
+      dataType: "json", // Assuming the response is in JSON format
+      success: function (data) {
+        // Populate the form fields with the fetched data
+        form.find("#firstName").val(data.firstName);
+        form.find("#lastName").val(data.lastName);
+        form.find("#tutorEmail").val(data.email);
+        form.find("#DoB").val(data.DoB);
+        form.find("#contact").val(data.contact);
+        form.find("#YoC").val(data.YoC);
+        form.find("#coursed").val(data.coursed);
+        form.find("#gps").val(data.gps);
+        form.find("#level").val(data.level);
+        form.find("#aboutMedia").val(data.aboutMedia);
+        form.find("#rating").val(data.rating);
+        form.find("#studentStatus").val(data.studentStatus);
+        form.find("#category").val(data.category);
+        form.find("select[name='status']").val(data.status);
+        form.find("#emergency").val(data.emergency);
+        form.find("#status").val(data.status);
+        form.find("#location").val(data.location);
+        form.find("#schoolCompleted").val(data.schoolCompleted);
+
+        // Show the modal
+        // Replace this with your modal display code (e.g., using Bootstrap modal functions)
+        // For example: $('#update').modal('show');
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        // Handle any errors, e.g., display an error message
+        console.log("Error:", errorThrown);
+      },
+    });
+  });
+
+  // Add a submit event handler to the update form
+  $("#update").submit(function (event) {
+    event.preventDefault();
+
+    const form = $(this);
+    const formData = form.serialize(); // Serialize the form data
+
+    // Make an AJAX request to submit the updated data
+    $.ajax({
+      type: "POST", // You can use POST or PUT depending on your server implementation
+      url: "/admin/update", // Adjust the URL to your server endpoint for updates
+      data: formData,
+      success: function () {
+        // Handle a successful update, e.g., display a success message
+        console.log("Data updated successfully");
+        // Close the modal if needed
+        $("#update").modal("hide");
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log("Error:", errorThrown);
+      },
+    });
+  });
+});

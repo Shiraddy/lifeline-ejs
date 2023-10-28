@@ -80,13 +80,7 @@
 
         <section class="container-sm">
           <div id="offer" class="row py-lg-3 form-sign-in">
-            <div class="col-lg-8 text-start d-none d-lg-block">
-              <!-- <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Corrupti incidunt soluta nesciunt porro, illum nobis. Eum sed
-                aperiam sunt eius.
-              </p> -->
-            </div>
+            <div class="col-lg-8 text-start d-none d-lg-block"></div>
             <div class="col-lg-4 col-md-6 col-sm-12 py-4 shadow-two">
               <div class="py-2">
                 <h3>WELCOME BACK</h3>
@@ -117,13 +111,8 @@
                 <br />
 
                 <!-- ERROR MESSAGE -->
-                <!-- <small
-                  id="error-message"
-                  class="bg-danger text-white py-1 mt-1"
-                ></small> -->
-
                 <% if (typeof error !== 'undefined') { %>
-                <p class="danger mt-1"><%= error %></p>
+                <small class="danger mt-1"><%= error %></small>
                 <% } %>
 
                 <!-- SWITCH TO KEEP LOGGED IN -->
@@ -145,9 +134,7 @@
                     <div
                       class="spinner-border spinner-border-sm text-white"
                       role="status"
-                    >
-                      <!-- <span class="sr-only">Loading...</span> -->
-                    </div>
+                    ></div>
                   </span>
                 </button>
                 <br />

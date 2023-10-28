@@ -13,6 +13,18 @@ const cors = require("cors");
 app.use(cors());
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
+const session = require("express-session");
+const http = require("https");
+
+app.use(cookieParser());
+app.use(
+  session({
+    secret: "dgjlgjl524523",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // Adjust options as needed
+  })
+);
 
 //Lodash
 var _ = require("lodash");
@@ -69,8 +81,16 @@ var date = today.toLocaleDateString("en-US", options);
 
 //Constants
 // const contracts = [];
-
 const todoLists = ["Prepare for Work"];
+
+//Middleware to check login state
+// app.use((req, res, next) => {
+//   if (req.path !== "/login" && !req.session.isLoggedIn) {
+//     return res.redirect("/login"); // Redirect to the login page if not logged in
+//   } else {
+//     next();
+//   }
+// });
 
 //Serving Up WebPages
 app.get("/", (req, res) => {
@@ -116,36 +136,97 @@ app.get("/signup", function (req, res) {
 });
 
 // Admin Page
-let applications;
 let tutors;
+let applications;
 app.get("/admin", async function (req, res) {
-  // Database Query
-  const application = await db.collection("Tutor Applications").get();
+  try {
+    // Database Query
+    const application = await db.collection("Tutor Applications").get();
 
-  // Store the applications data in the variable
-  applications = [];
-  tutors = [];
-  application.forEach((doc) => {
-    applications.push({
-      id: doc.id,
-      data: doc.data(),
+    // Store the applications data in the variable
+    const applications = [];
+    application.forEach((doc) => {
+      applications.push({
+        id: doc.id,
+        data: doc.data(),
+      });
     });
-  });
 
-  res.render("admin", {
-    dayOfWeek: date,
-    todo: todoLists, // You need to define todoLists
-    applications: applications,
-  });
+    const noOfApplicants = applications.length;
+
+    res.render("admin", {
+      dayOfWeek: date, // Define 'date' elsewhere in your code
+      todo: todoLists, // You need to define todoLists
+      applicants: noOfApplicants,
+      applications: applications,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Handle DELETE requests to delete an application by ID
+app.delete("/admin/delete/:id", async function (req, res) {
+  const applicationId = req.params.id;
+
+  try {
+    // Use the applicationId to delete the application from the database
+    await db.collection("Tutor Applications").doc(applicationId).delete();
+
+    res.status(204).send(); // 204 No Content response, indicating successful deletion
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Handle GET requests to fetch details of an application by ID
+app.get("/admin/details/:id", async function (req, res) {
+  const applicationId = req.params.id;
+
+  try {
+    // Retrieve the application details from the database based on the provided ID
+    const applicationDoc = await db
+      .collection("Tutor Applications")
+      .doc(applicationId)
+      .get();
+
+    if (!applicationDoc.exists) {
+      // If the document does not exist, return a 404 status code
+      res.status(404).json({ error: "Application not found" });
+    } else {
+      const applicationData = applicationDoc.data();
+      // Send the application details as a JSON response
+      res.json(applicationData);
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Handle POST requests to update an application by ID
+app.post("/admin/update/:id", async function (req, res) {
+  const applicationId = req.params.id;
+  const updatedData = req.body;
+
+  try {
+    await db
+      .collection("Tutor Applications")
+      .doc(applicationId)
+      .update(updatedData);
+
+    res.status(200).json({ message: "Application updated successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 // console.log(applications);
 
-app.get("/admin/:update", function (req, res) {
-  let typed = _.lowerCase(req.params.update);
-  console.log(typed);
-  res.send("Admin params seen");
-});
+// app.get("/admin/:update", function (req, res) {
+//   let typed = _.lowerCase(req.params.update);
+//   console.log(typed);
+//   res.send("Admin params seen");
+// });
 
 app.post("/message", function (req, res) {
   res.send("I can hear you");
@@ -243,6 +324,7 @@ app.post("/login", async (req, res) => {
       .signInWithEmailAndPassword(email, sanitizedPassword);
     const user = userCredential.user;
 
+    req.session.isLoggedIn = true;
     const profile = db.collection("Tutor Applications").doc(email);
 
     const doc = await profile.get();
@@ -306,6 +388,11 @@ function sanitizePassword(password) {
   // Implement your password sanitization logic here
   return password.trim();
 }
+
+app.get("/logout", (req, res) => {
+  res.clearCookie("sessionID");
+  res.redirect("/login");
+});
 
 //POST CONTRACT
 app.post("/contract", async function (req, res) {
@@ -372,23 +459,22 @@ app.post("/signup", (req, res) => {
 
 //CLIENT FORM
 app.post("/form", function (req, res) {
-  // res.send("Hello There, I can hear you");
   let contract = req.body;
-  // console.log(contract);
   let mode = contract.modeOfTeaching;
   let monthlySession = Number(contract.weeklySession) * 4;
   let periodLength = Number(contract.periodLength);
+  var pricePerLesson;
 
-  if (mode == "person" && periodLength === 3) {
-    var pricePerLesson = 15;
-  } else if (mode == "person" && periodLength === 2.5) {
-    var pricePerLesson = 16;
-  } else if (mode == "person" && periodLength === 2) {
-    var pricePerLesson = 18;
-  } else if (mode == "person" && periodLength === 1.5) {
-    var pricePerLesson = 20;
+  if (mode == "person" && periodLength == 3) {
+    pricePerLesson = 15;
+  } else if (mode == "person" && periodLength == 2.5) {
+    pricePerLesson = 16;
+  } else if (mode == "person" && periodLength == 2) {
+    pricePerLesson = 18;
+  } else if (mode == "person" && periodLength == 1.5) {
+    pricePerLesson = 20;
   } else {
-    var pricePerLesson = 25;
+    pricePerLesson = 25;
   }
 
   var totalPrice = monthlySession * periodLength * pricePerLesson;
@@ -422,6 +508,33 @@ app.post("/form", function (req, res) {
 // snapshot.forEach(doc => {
 //   console.log(doc.id, '=>', doc.data());
 // });
+
+//Random word with definition Api
+// const quotes = {
+//   method: "GET",
+//   hostname: "random-words-with-pronunciation.p.rapidapi.com",
+//   port: null,
+//   path: "/word",
+//   headers: {
+//     "X-RapidAPI-Key": "6aa49fe548mshb15e91fba5dcfe0p1c875bjsnc34566ffe4f8",
+//     "X-RapidAPI-Host": "random-words-with-pronunciation.p.rapidapi.com",
+//   },
+// };
+
+// const request = http.request(quotes, function (res) {
+//   const chunks = [];
+
+//   res.on("data", function (chunk) {
+//     chunks.push(chunk);
+//   });
+
+//   res.on("end", function () {
+//     const body = Buffer.concat(chunks);
+//     console.log(body.toString());
+//   });
+// });
+
+// request.end();
 
 //Online and Local Server
 app.listen(process.env.PORT || 3000, function () {
