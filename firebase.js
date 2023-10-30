@@ -1,15 +1,4 @@
-const firebase = require("firebase/app");
-require("firebase/auth");
 
-// Initialize Firebase (replace placeholders with your actual Firebase project configuration)
-const firebaseConfig = {
-  apiKey: "AIzaSyCBifZJX3PdlX-rplxV8NC6NItIG_dCTEM",
-  authDomain: "lifeline-edu-site.firebaseapp.com",
-  projectId: "lifeline-edu-site",
-  storageBucket: "lifeline-edu-site.appspot.com",
-  messagingSenderId: "1059969595497",
-  appId: "1:1059969595497:web:5e6ee511c2174333ec8af8",
-};
 
 firebase.initializeApp(firebaseConfig);
 
