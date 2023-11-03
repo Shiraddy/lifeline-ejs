@@ -251,11 +251,19 @@ app.post("/admin/update/:id", async function (req, res) {
 //   res.send("Admin params seen");
 // });
 
-app.post("/message", function (req, res) {
-  res.render("post-message");
+app.post("/message", async function (req, res) {
+  const messageData = req.body;
+  try {
+    const messageRef = await db.collection("Messages").add(messageData); // Use add() to add a new document with the message data
+    console.log("Message added with ID: ", messageRef.id);
+    res.render("post-message"); // Render a success page or response
+  } catch (error) {
+    console.error("Error Sending Message:", error);
+    res.status(500).json({ error: "Error Sending Message" }); // Respond with an error status and message
+  }
 });
 
-app.get("/error", function (req, res) {
+app.get("/refactor", function (req, res) {
   res.render("refactor");
 });
 
