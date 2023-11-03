@@ -267,9 +267,9 @@ app.get("/consultancy", function (req, res) {
   res.render("consultancy");
 });
 
-app.get("/tt", function (req, res) {
-  res.render("received");
-});
+// app.get("/tt", function (req, res) {
+//   res.render("received");
+// });
 
 //Tutor Application
 app.post("/apply", async (req, res) => {
@@ -324,9 +324,8 @@ app.post("/apply", async (req, res) => {
         email: email,
         emailVerification: userRecord.emailVerified,
         ...filteredData, // Include the filtered data fields
-        category: "D",
-        rating: 0,
-        status: "applicant",
+        category: "applicant",
+        status: "Active",
         comment: " ",
       };
 
@@ -334,10 +333,12 @@ app.post("/apply", async (req, res) => {
       await Application.set(updatedApplicant);
     }
 
-    res.send("File Sent");
+    res.render("received");
   } catch (error) {
     console.error("Error creating/updating user data:", error);
-    res.status(500).json({ error: "Failed to create/update user data" });
+    res
+      .status(500)
+      .json({ error: "Application Failed, Check Your Internet and Try Again" });
   }
 });
 
