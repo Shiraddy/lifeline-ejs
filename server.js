@@ -110,10 +110,6 @@ app.get("/apply", function (req, res) {
 
 //Tutor Login
 app.get("/login", async function (req, res) {
-  // const snapshot = await db.collection("users").get();
-  // snapshot.forEach((doc) => {
-  //   console.log(doc.id, "=>", doc.data());
-  // });
   res.render("login");
 });
 
@@ -126,11 +122,6 @@ app.get("/form", function (req, res) {
 app.get("/faq", function (req, res) {
   res.render("faq");
 });
-
-//Tutor Profile under Production
-// app.get("/tutor", function (req, res) {
-//   res.render("tutor");
-// });
 
 //SIGN UP
 app.get("/signup", function (req, res) {
@@ -261,11 +252,23 @@ app.post("/admin/update/:id", async function (req, res) {
 // });
 
 app.post("/message", function (req, res) {
-  res.send("I can hear you");
+  res.render("post-message");
 });
 
 app.get("/error", function (req, res) {
   res.render("refactor");
+});
+
+app.get("/counselling", function (req, res) {
+  res.render("counselling");
+});
+
+app.get("/consultancy", function (req, res) {
+  res.render("consultancy");
+});
+
+app.get("/tt", function (req, res) {
+  res.render("received");
 });
 
 //Tutor Application
