@@ -439,6 +439,8 @@
                   autocomplete="off"
                 />
                 <label class="btn btn-outline-success" for="btnradio2"
+                  ><span class="badge bg-danger me-2 shadow-two rounded-pill"
+                    ><%= noOfTutors %></span
                   >Tutors</label
                 >
 
@@ -784,6 +786,63 @@
           </div>
         </fieldset>
       </form>
+
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <!-- <h4>Tutors</h4> -->
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Contact</th>
+              <th>Student Status</th>
+              <th>Application Status</th>
+              <!-- <th>Location</th> -->
+              <th>Email</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% tutors.forEach(function(tutor, index) { %>
+            <tr data-application-id="<%= tutor.id %>">
+              <td><%= index + 1 %></td>
+              <td><%= tutor.data.lastName %> <%= tutor.data.firstName %></td>
+              <td><%= tutor.data.contact %></td>
+              <td><%= tutor.data.studentStatus %></td>
+              <td><%= tutor.data.status %></td>
+              <!-- <td><%#= tutor.data.location %></td> -->
+              <td><small><%= tutor.data.email %></small></td>
+              <td>
+                <!-- ACTION BUTTONS -->
+                <div class="d-flex justify-content-center">
+                  <!-- <button
+                    type="button"
+                    class="btn tutorIcon me-2 view-details"
+                    data-bs-toggle="modal"
+                    data-bs-target="#detail"
+                  >
+                    <a><i class="fa-solid fa-expand"></i></a>
+                  </button> -->
+
+                  <button
+                    type="button"
+                    class="btn tutorIcon me-2 update-data"
+                    data-bs-toggle="modal"
+                    data-bs-target="#update"
+                  >
+                    <a><i class="fa-solid fa-pen-to-square"></i></a>
+                  </button>
+
+                  <button class="btn tutorIcon me-2 delete-row">
+                    <a><i class="fa-solid fa-trash"></i></a>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
     </section>
   </div>
 </div>

@@ -82,6 +82,8 @@ var date = today.toLocaleDateString("en-US", options);
 //Constants
 // const contracts = [];
 const todoLists = ["Prepare for Work"];
+const tutorRef = db.collection("Tutor Application").get();
+// console.log(tutorRef);
 
 //Middleware to check login state
 // app.use((req, res, next) => {
@@ -141,10 +143,20 @@ let applications;
 app.get("/admin", async function (req, res) {
   try {
     // Database Query
-    const application = await db.collection("Tutor Applications").get();
+    const application = await db
+      .collection("Tutor Applications")
+      .where("status", "==", "applicant")
+      .get();
+
+    const tutor = await db
+      .collection("Tutor Applications")
+      .where("status", "==", "tutor")
+      .get();
+
+    const applications = [];
+    const tutors = [];
 
     // Store the applications data in the variable
-    const applications = [];
     application.forEach((doc) => {
       applications.push({
         id: doc.id,
@@ -152,15 +164,35 @@ app.get("/admin", async function (req, res) {
       });
     });
 
+    // Store the tutor data in the variable
+
+    if (tutor.empty) {
+      console.log("No matching tutor documents.");
+      return;
+    }
+
+    tutor.forEach((doc) => {
+      tutors.push({
+        id: doc.id,
+        data: doc.data(),
+      });
+    });
+
+    // console.log(tutors);
+
     const noOfApplicants = applications.length;
+    const noOfTutors = tutors.length;
 
     res.render("admin", {
       dayOfWeek: date, // Define 'date' elsewhere in your code
       todo: todoLists, // You need to define todoLists
       applicants: noOfApplicants,
       applications: applications,
+      noOfTutors: noOfTutors,
+      tutors: tutors, // Add the tutors data to the template
     });
   } catch (error) {
+    console.error("Error:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });

@@ -25,99 +25,6 @@ $("#tutorContactBtn").on("click", function () {
   $(".tutorContact").slideToggle();
 });
 
-//working code
-// $(document).ready(function () {
-//   const sections = $(".form-section");
-//   let currentSection = 0;
-
-//   // Function to show the current section and hide the others
-//   function showSection(sectionIndex) {
-//     sections.hide();
-//     $(sections[sectionIndex]).show();
-//     currentSection = sectionIndex;
-//   }
-
-//   // Initialize the form with the first section
-//   showSection(currentSection);
-
-//   // Handle next section button click
-//   $(".next-section").click(function (e) {
-//     e.preventDefault();
-
-//     // Check if the required inputs in the current section are populated
-//     const currentInputs = $(sections[currentSection]).find("input[required]");
-//     let isCurrentSectionValid = true;
-
-//     currentInputs.each(function () {
-//       const input = $(this);
-//       if (input.val().trim() === "") {
-//         isCurrentSectionValid = false;
-//         input.next(".error-message").show().text("This field is required");
-//       } else {
-//         input.next(".error-message").hide(); // Hide the error message
-//       }
-//     });
-
-//     // Check email format and password confirmation only in the first section
-//     if (currentSection === 0) {
-//       const emailInput = $(sections[currentSection]).find(
-//         "input[type='email']"
-//       );
-//       const email = emailInput.val().trim();
-//       const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-//       if (!emailPattern.test(email)) {
-//         isCurrentSectionValid = false;
-//         emailInput
-//           .next(".error-message")
-//           .show()
-//           .text("Please enter a valid email address");
-//       } else {
-//         emailInput.next(".error-message").hide();
-//       }
-
-//       const passwordInput = $(sections[currentSection]).find(
-//         "input[name='password']"
-//       );
-//       const confirmPasswordInput = $(sections[currentSection]).find(
-//         "input[name='password-confirm']"
-//       );
-//       const password = passwordInput.val().trim();
-//       const confirmPassword = confirmPasswordInput.val().trim();
-
-//       if (password !== confirmPassword) {
-//         isCurrentSectionValid = false;
-//         confirmPasswordInput
-//           .next(".error-message")
-//           .show()
-//           .text("Passwords do not match");
-//       } else {
-//         confirmPasswordInput.next(".error-message").hide();
-//       }
-//     }
-
-//     if (isCurrentSectionValid) {
-//       // Move to the next section if it's not the last section
-//       if (currentSection < sections.length - 1) {
-//         showSection(currentSection + 1);
-//       }
-//     }
-//   });
-
-//   // Handle previous section button click
-//   $(".prev-section").click(function (e) {
-//     e.preventDefault();
-
-//     // Move to the previous section
-//     showSection(currentSection - 1);
-//   });
-
-//   // Handle form submission (you can add your submission logic here)
-//   $("#multi-section-form").submit(function (e) {
-//     e.preventDefault();
-//     alert("Form submitted successfully!");
-//   });
-// });
-
 // Tutor Application Form Validation
 $(document).ready(function () {
   const sections = $(".form-section");
@@ -216,10 +123,10 @@ $(document).ready(function () {
   });
 
   // Handle form submission (you can add your submission logic here)
-  // $("#multi-section-form").submit(function (e) {
-  //   e.preventDefault();
-  //   alert("Form submitted successfully!");
-  // });
+  $("#multi-section-form").submit(function (e) {
+    e.preventDefault();
+    alert("Form submitted successfully!");
+  });
 });
 
 // Tutor Request Form Validation
@@ -323,15 +230,6 @@ $("#tutorFaqBtn").on("click", function () {
   $("#parentFaq").hide();
   $("#tutorFaq").show();
 });
-
-//YES & NO CLICK
-// $("#radiobtn1").on("click", function () {
-//   $("#challenge").hide();
-// });
-
-// $("#radiobtn2").on("click", function () {
-//   $("#challenge").show();
-// });
 
 //Graduate & Undergraduate Toggle
 $("#gradbtn").on("click", function () {
