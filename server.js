@@ -128,6 +128,21 @@ app.get("/signup", function (req, res) {
   res.render("signup");
 });
 
+//REFACTOR
+app.get("/refactor", function (req, res) {
+  res.render("refactor");
+});
+
+//COUNSELLING
+app.get("/counselling", function (req, res) {
+  res.render("counselling.ejs");
+});
+
+//CONSULTANCY
+app.get("/consultancy", function (req, res) {
+  res.render("consultancy.ejs");
+});
+
 // Admin Page
 let tutors;
 let applications;
@@ -261,18 +276,6 @@ app.post("/message", async function (req, res) {
     console.error("Error Sending Message:", error);
     res.status(500).json({ error: "Error Sending Message" }); // Respond with an error status and message
   }
-});
-
-app.get("/refactor", function (req, res) {
-  res.render("refactor");
-});
-
-app.get("/counselling", function (req, res) {
-  res.render("counselling");
-});
-
-app.get("/consultancy", function (req, res) {
-  res.render("consultancy");
 });
 
 // app.get("/tt", function (req, res) {
