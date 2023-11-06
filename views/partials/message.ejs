@@ -6,8 +6,13 @@
       <form action="/message" method="post" class="">
         <div class="my-4">
           <label for="type" class="label">SELECT SUBJECT:</label>
-          <select name="type" id="" class="shadow-one form-control">
+          <select name="type" id="" class="shadow-one apply-input">
+            <option value="">
+              SELECT TYPE<span><i class="fa fa-arrow-down"></i></span>
+            </option>
             <option value="enquiry">ENQUIRY</option>
+            <option value="counselling">COUNSELLING</option>
+            <option value="consultancy">CONSULTANCY</option>
             <option value="other">OTHER</option>
             <option value="help">HELP</option>
           </select>
@@ -19,7 +24,7 @@
             type="text"
             name="name"
             placeholder="Enter Your Name"
-            class="shadow-one form-control"
+            class="shadow-one apply-input"
           />
         </div>
 
@@ -28,14 +33,14 @@
           <input
             type="tel"
             placeholder="Enter your phone number"
-            class="shadow-one form-control"
+            class="shadow-one apply-input"
           />
         </div>
 
         <div class="">
           <label for="message" class="label">MESSAGE</label>
           <textarea
-            class="shadow-one form-control"
+            class="shadow-one apply-input"
             name="message"
             id=""
             placeholder="Enter Message"

@@ -123,9 +123,8 @@ $(document).ready(function () {
   });
 
   // Handle form submission (you can add your submission logic here)
-  $("#multi-section-form").submit(function (e) {
-    e.preventDefault();
-    alert("Form submitted successfully!");
+  $("#applySubmit").on(click, function () {
+    $("#loading-spinner").removeClass("d-none");
   });
 });
 
@@ -370,6 +369,7 @@ $(document).ready(function () {
 //   });
 // });
 
+//Login Spinner
 $("#submitbtn").on("click", function () {
   $("#loading-spinner").removeClass("d-none");
 });
@@ -440,7 +440,7 @@ $(document).ready(function () {
           // Successful deletion, remove the row from the DOM
           row.remove();
         } else {
-          // Handle other responses, e.g., display an error message
+          console.log("Unable to delete");
         }
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -537,8 +537,8 @@ $(document).ready(function () {
 
     // Make an AJAX request to submit the updated data
     $.ajax({
-      type: "POST", // You can use POST or PUT depending on your server implementation
-      url: "/admin/update", // Adjust the URL to your server endpoint for updates
+      type: "PUT", // You can use POST or PUT depending on your server implementation
+      url: "/admin/update/:id", // Adjust the URL to your server endpoint for updates
       data: formData,
       success: function () {
         // Handle a successful update, e.g., display a success message

@@ -15,6 +15,7 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 const session = require("express-session");
 const http = require("https");
+const nodemailer = require("nodemailer");
 
 app.use(cookieParser());
 app.use(
@@ -151,12 +152,12 @@ app.get("/admin", async function (req, res) {
     // Database Query
     const application = await db
       .collection("Tutor Applications")
-      .where("status", "==", "applicant")
+      .where("category", "==", "applicant")
       .get();
 
     const tutor = await db
       .collection("Tutor Applications")
-      .where("status", "==", "tutor")
+      .where("category", "==", "tutor")
       .get();
 
     const applications = [];
@@ -278,13 +279,62 @@ app.post("/message", async function (req, res) {
   }
 });
 
-// app.get("/tt", function (req, res) {
-//   res.render("received");
-// });
+//EMAIL POST REQUEST
+var tutorEmail;
+var applicantEmail;
+var all;
+// console.log(tutorEmail);
+app.post("/email", async function (req, res) {
+  let email = req.body;
+  let date = email.date;
+  let subject = email.subject;
+  let message = email.message;
+  let who = email.sendTo;
+
+  try {
+    // Database Query
+    // let applicantEmailAddresses = await db
+    //   .collection("Tutor Applications")
+    //   .where("category", "==", "applicant")
+    //   .get();
+    // // Store the applications data in the variable
+    // applicantEmailAddresses.forEach((doc) => {
+    //   applicantEmail.push({
+    //     id: doc.id,
+    //   });
+    // });
+    // let allEmails = await db.collection("Tutor Applications").get();
+    // allEmails.forEach((doc) => {
+    //   all.push({
+    //     id: doc.id,
+    //   });
+    // });
+    // let tutorEmailAddresses = await db
+    //   .collection("Tutor Applications")
+    //   .where("category", "==", "tutor")
+    //   .get();
+    // tutorEmailAddresses.forEach((doc) => {
+    //   tutorEmail.push({
+    //     id: doc.id,
+    //   });
+    // });
+    // let tutorEmail = [];
+    // let applicantEmail = [];
+    // let all = [];
+    // console.log(tutorEmail);
+    // const email = await db.collection("Email").add(email);
+    // console.log(tutors);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 //Tutor Application
 app.post("/apply", async (req, res) => {
   const { email, password } = req.body;
+  const firstName = req.body.firstName;
+  const subject = "Lifeline Tutor Application";
 
   try {
     let userRecord;
@@ -306,51 +356,110 @@ app.post("/apply", async (req, res) => {
       }
     }
 
-    console.log("Successfully retrieved or created user:", userRecord);
-
-    const collection = db.collection("Tutor Applications"); // Create Collection
-    const Application = collection.doc(email); // Create Document
-
     // Check if the user's data already exists in Firestore
-    const existingData = (await Application.get()).data();
+    const firestoreDoc = admin
+      .firestore()
+      .collection("applicants")
+      .doc(userRecord.uid);
+    const firestoreDocSnapshot = await firestoreDoc.get();
 
-    if (!existingData || isNewUser) {
-      // Only update Firestore data if the user doesn't have data in Firestore or is a new user
-      // Filter and prepare data to be stored in Firestore
-      const filteredData = {};
-      for (const key in req.body) {
-        if (
-          req.body[key] !== null &&
-          req.body[key] !== undefined &&
-          req.body[key] !== ""
-        ) {
-          filteredData[key] = req.body[key];
-        }
-      }
-
-      // Data to be stored in Firestore
-      const updatedApplicant = {
-        uid: userRecord.uid,
-        applicationDate: new Date(),
-        email: email,
-        emailVerification: userRecord.emailVerified,
-        ...filteredData, // Include the filtered data fields
-        category: "applicant",
-        status: "Active",
-        comment: " ",
-      };
-
-      // Set the data in Firestore
-      await Application.set(updatedApplicant);
+    if (!firestoreDocSnapshot.exists) {
+      // If the data doesn't exist in Firestore, set it
+      await firestoreDoc.set({
+        email,
+        firstName,
+        // Add more applicant data here
+      });
     }
 
-    res.render("received");
+    // Define the email template with a placeholder for the applicant's name
+    const emailTemplate = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LIFELINE EMAIL</title>
+        <style>
+          /* Custom email styles */
+          .email {
+            max-width: 600px; /* Set a maximum width for the email content */
+            margin: 0 auto;   /* Center the email content */
+            padding: 20px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="email">
+          <p class="mb-4">Dear ${firstName},</p>
+
+          <p>
+            We want to express our gratitude for your application to join our tuition service as a tutor. Your dedication and the effort you've put into your application have not gone unnoticed.
+          </p>
+
+          <p>
+            We have received your application and are in the process of reviewing it. We understand the importance of your qualifications and experience, and we are excited about the possibility of having you join our team.
+          </p>
+
+          <p>
+            Our selection process is thorough, and it includes reviewing applications and conducting interviews. If you are selected for an interview, we will reach out to you in the coming weeks to coordinate a suitable date and time.
+          </p>
+
+          <p>
+            We kindly ask for your patience during this process, as we have received a high number of applications. If you have any questions or concerns, please don't hesitate to reach out to us at
+            <a href="tel:0246011004">0246011004</a> or
+            <a href="tel:0243934353">0243934353</a>.
+          </p>
+
+          <p class="mt-4">
+            Regards,<br />Lifeline Educational Solution Limited.
+          </p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    const applicantName = firstName;
+    const personalizedEmail = emailTemplate.replace(
+      /{applicantName}/g,
+      applicantName
+    );
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "lifelineedusolutions@gmail.com",
+        pass: "hazw czvg ijak uigj",
+      },
+    });
+
+    const mailOptions = {
+      from: "lifelineedusolutions@gmail.com",
+      to: email,
+      subject: subject,
+      html: personalizedEmail,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
+
+    res.render("received", { applicant: firstName });
   } catch (error) {
     console.error("Error creating/updating user data:", error);
     res
       .status(500)
       .json({ error: "Application Failed, Check Your Internet and Try Again" });
   }
+});
+
+//test email
+app.get("/email", function (req, res) {
+  res.render("email");
 });
 
 //Login Page Credentials

@@ -455,8 +455,8 @@
                     </div>
 
                     <div class="col-lg-6">
-                      <label class="label" for="DoC">Year of Completion</label>
-                      <input class="apply-input" type="number" name="YoC" />
+                      <label class="label" for="DoC">Date of Completion</label>
+                      <input class="apply-input" type="month" name="YoC" />
                     </div>
                   </div>
 
@@ -612,9 +612,9 @@
                 </div> -->
                 <!-- SUBJECTS SELECTS -->
                 <div class="accordion my-lg-2" id="accordionExample">
-                  <h6 class="d-flex justify-content-start mt-5" for="">
+                  <h5 class="d-flex justify-content-start mt-5" for="">
                     Select the Levels and Subjects You can Teach
-                  </h6>
+                  </h5>
                   <!-- FIRST LEVEL SUBJECTS -->
                   <div class="accordion-item">
                     <h2 class="accordion-header">
@@ -1049,7 +1049,7 @@
                     class="form-control my-3 border shadow-two"
                     name="otherSubjects"
                     id=""
-                    placeholder="What other SHS subjects can you teach?"
+                    placeholder="What other subjects can you teach?"
                   ></textarea>
                 </div>
                 <!-- NEXT-PREV-BTN -->
@@ -1235,8 +1235,14 @@
                 >
                   Edit Fields
                 </button>
-                <button class="btn btn-success" type="submit">
+                <button class="btn btn-success" type="submit" id="applySubmit">
                   Submit Form
+                  <span id="loading-spinner" class="d-none">
+                    <div
+                      class="spinner-border spinner-border-sm text-white"
+                      role="status"
+                    ></div>
+                  </span>
                 </button>
               </section>
             </fieldset>
