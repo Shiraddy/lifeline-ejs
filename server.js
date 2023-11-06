@@ -356,20 +356,42 @@ app.post("/apply", async (req, res) => {
       }
     }
 
-    // Check if the user's data already exists in Firestore
-    const firestoreDoc = admin
-      .firestore()
-      .collection("applicants")
-      .doc(userRecord.uid);
-    const firestoreDocSnapshot = await firestoreDoc.get();
+    // console.log("Successfully retrieved or created user:", userRecord);
 
-    if (!firestoreDocSnapshot.exists) {
-      // If the data doesn't exist in Firestore, set it
-      await firestoreDoc.set({
-        email,
-        firstName,
-        // Add more applicant data here
-      });
+    const collection = db.collection("Tutor Applications"); // Create Collection
+    const Application = collection.doc(email); // Create Document
+
+    // Check if the user's data already exists in Firestore
+    const existingData = (await Application.get()).data();
+
+    if (!existingData || isNewUser) {
+      // Only update Firestore data if the user doesn't have data in Firestore or is a new user
+      // Filter and prepare data to be stored in Firestore
+      const filteredData = {};
+      for (const key in req.body) {
+        if (
+          req.body[key] !== null &&
+          req.body[key] !== undefined &&
+          req.body[key] !== ""
+        ) {
+          filteredData[key] = req.body[key];
+        }
+      }
+
+      // Data to be stored in Firestore
+      const updatedApplicant = {
+        uid: userRecord.uid,
+        applicationDate: new Date(),
+        email: email,
+        emailVerification: userRecord.emailVerified,
+        ...filteredData, // Include the filtered data fields
+        category: "applicant",
+        status: "active",
+        comment: " ",
+      };
+
+      // Set the data in Firestore
+      await Application.set(updatedApplicant);
     }
 
     // Define the email template with a placeholder for the applicant's name
