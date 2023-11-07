@@ -657,28 +657,62 @@ app.post("/signup", (req, res) => {
 });
 
 //CLIENT FORM
-app.post("/form", function (req, res) {
-  let contract = req.body;
-  let mode = contract.modeOfTeaching;
-  let monthlySession = Number(contract.weeklySession) * 4;
-  let periodLength = Number(contract.periodLength);
-  var pricePerLesson;
+app.post("/form", async function (req, res) {
+  try {
+    let contract = req.body;
+    let mode = contract.modeOfTeaching;
+    let monthlySession = Number(contract.weeklySession) * 4;
+    let periodLength = Number(contract.periodLength);
+    var pricePerLesson;
 
-  if (mode == "person" && periodLength == 3) {
-    pricePerLesson = 15;
-  } else if (mode == "person" && periodLength == 2.5) {
-    pricePerLesson = 16;
-  } else if (mode == "person" && periodLength == 2) {
-    pricePerLesson = 18;
-  } else if (mode == "person" && periodLength == 1.5) {
-    pricePerLesson = 20;
-  } else {
-    pricePerLesson = 25;
+    if (mode == "person" && periodLength == 3) {
+      pricePerLesson = 15;
+    } else if (mode == "person" && periodLength == 2.5) {
+      pricePerLesson = 16;
+    } else if (mode == "person" && periodLength == 2) {
+      pricePerLesson = 18;
+    } else if (mode == "person" && periodLength == 1.5) {
+      pricePerLesson = 20;
+    } else {
+      pricePerLesson = 25;
+    }
+
+    var totalPrice = monthlySession * periodLength * pricePerLesson;
+
+    const request = db.collection("Request For Tutor").doc();
+
+    const filteredData = {};
+    for (const key in req.body) {
+      if (
+        req.body[key] !== null &&
+        req.body[key] !== undefined &&
+        req.body[key] !== ""
+      ) {
+        filteredData[key] = req.body[key];
+      }
+    }
+
+    const requestData = {
+      category: "request",
+      status: "",
+      fees: totalPrice,
+      ...filteredData, // Include the filtered data fields
+    };
+
+    // Use a try-catch block for Firestore operations
+    try {
+      await request.set(requestData);
+      res.render("post-request");
+    } catch (error) {
+      console.error("Error writing to Firestore:", error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal Server Error" });
+    }
+  } catch (error) {
+    console.error("Error processing the request:", error);
+    res.status(400).json({ success: false, message: "Bad Request" });
   }
-
-  var totalPrice = monthlySession * periodLength * pricePerLesson;
-
-  res.send("You have agreed to pay " + totalPrice);
 });
 
 // READING ENTIRE DOCUMENT

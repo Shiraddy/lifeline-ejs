@@ -1,0 +1,29 @@
+<%- include('partials/header') %>
+
+<div class="client-banner"><%- include('partials/navbar') %></div>
+<div class="container-sm py-2 services bg-white">
+  <div class="fs-5 px-lg-5 px-2 text-start mb-lg-2 mb-3">
+    <p class="mt-lg-5 mt-3">Dear <%= client %>,</p>
+    <p class="py-lg-3 lh-lg pb-lg-3 pb-2">
+      Thank you for considering our tuition service for your ward's educational
+      needs. We have received your request and have set to work on giving you an
+      excellent tutor to help <%= student %>, become an excellent student.
+    </p>
+
+    <!-- <p>Per the information we have received, you are requesting for:</p>
+    <p>
+      <%#= frequency %> days per week of tuition with a lesson duration of <%#=
+      duration %> which per our calculation amounts to <%#= fee %> per month.
+    </p> -->
+
+    <p class="py-lg-3 lh-lg pb-lg-3 pb-2">
+      If you have any questions or additional information to share, please feel
+      free to get in touch..
+    </p>
+    <p class="">
+      Regards, <br />
+      Lifeline.
+    </p>
+  </div>
+</div>
+<%- include('partials/end') %>
