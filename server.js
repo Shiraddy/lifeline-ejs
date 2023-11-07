@@ -16,6 +16,9 @@ app.use(cookieParser());
 const session = require("express-session");
 const http = require("https");
 const nodemailer = require("nodemailer");
+const multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 app.use(cookieParser());
 app.use(
@@ -40,29 +43,26 @@ const { getStorage } = require("firebase-admin/storage");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  storageBucket: "lifeline-edu-site.appspot.com",
+  storageBucket: "gs://lifeline-edu-site.appspot.com",
 });
 
 const db = admin.firestore();
 const auth = admin.auth();
-const bucket = getStorage().bucket("profilePics");
-// const bucket = getStorage().bucket();
+// const bucket = admin.storage().bucket();
+const bucket = getStorage().bucket();
 
 // Initialize Firebase (if you haven't already done this)
 const firebaseConfig = {
   apiKey: "AIzaSyCBifZJX3PdlX-rplxV8NC6NItIG_dCTEM",
   authDomain: "lifeline-edu-site.firebaseapp.com",
   projectId: "lifeline-edu-site",
-  storageBucket: "lifeline-edu-site.appspot.com",
+  storageBucket: "gs://lifeline-edu-site.appspot.com/",
+  // storageBucket: "lifeline-edu-site.appspot.com",
   messagingSenderId: "1059969595497",
   appId: "1:1059969595497:web:5e6ee511c2174333ec8af8",
 };
 
 firebase.initializeApp(firebaseConfig);
-
-// firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-// or firebase.auth.Auth.Persistence.SESSION
-// or firebase.auth.Auth.Persistence.NONE
 
 //Body-Parser
 const bodyParser = require("body-parser");
@@ -281,9 +281,6 @@ app.post("/message", async function (req, res) {
 
 //EMAIL POST REQUEST
 var tutorEmail;
-var applicantEmail;
-var all;
-// console.log(tutorEmail);
 app.post("/email", async function (req, res) {
   let email = req.body;
   let date = email.date;
@@ -331,7 +328,7 @@ app.post("/email", async function (req, res) {
 });
 
 //Tutor Application
-app.post("/apply", async (req, res) => {
+app.post("/apply", upload.single("profilePicture"), async (req, res) => {
   const { email, password } = req.body;
   const firstName = req.body.firstName;
   const subject = "Lifeline Tutor Application";
@@ -390,9 +387,38 @@ app.post("/apply", async (req, res) => {
         comment: " ",
       };
 
-      // Set the data in Firestore
-      await Application.set(updatedApplicant);
+      if (req.file) {
+        const profilePicture = req.file;
+
+        // Upload the profile picture to Firebase Storage
+        const profilePictureFilename = `profile-pictures/${email}/${profilePicture.originalname}`;
+        const profilePictureFile = bucket.file(profilePictureFilename);
+        const profilePictureStream = profilePictureFile.createWriteStream({
+          metadata: {
+            contentType: profilePicture.mimetype,
+          },
+        });
+
+        profilePictureStream.on("error", (err) => {
+          console.error(err);
+          res.status(500).send("Error uploading profile picture");
+        });
+
+        profilePictureStream.on("finish", () => {
+          console.log("Profile picture uploaded");
+
+          // Add the profile picture URL to the Firestore data
+          updatedApplicant.profilePictureURL = profilePictureFilename;
+          Application.set(updatedApplicant);
+        });
+
+        profilePictureStream.end(profilePicture.buffer);
+      } else {
+        Application.set(updatedApplicant);
+      }
     }
+
+    // Check if a profile picture file was uploaded
 
     // Define the email template with a placeholder for the applicant's name
     const emailTemplate = `
@@ -477,11 +503,6 @@ app.post("/apply", async (req, res) => {
       .status(500)
       .json({ error: "Application Failed, Check Your Internet and Try Again" });
   }
-});
-
-//test email
-app.get("/email", function (req, res) {
-  res.render("email");
 });
 
 //Login Page Credentials

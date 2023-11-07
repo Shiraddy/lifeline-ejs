@@ -135,7 +135,12 @@
       <section class="">
         <h3 class="apply-header">APPLICATION FORM</h3>
         <div class="form-apply">
-          <form action="/apply" method="post" id="multi-section-form">
+          <form
+            action="/apply"
+            method="post"
+            id="multi-section-form"
+            enctype="multipart/form-data"
+          >
             <!-- LOGIN DETAILS -->
             <fieldset id="login" class="form-section" data-section="1">
               <section class="login pt-sm-5">
@@ -150,9 +155,9 @@
                       name="email"
                       required
                     />
-                    <small class="error-message text-danger lh-1">
+                    <p class="error-message text-danger lh-1">
                       Please enter a valid email address
-                    </small>
+                    </p>
                   </div>
                 </div>
 
@@ -165,9 +170,9 @@
                       type="password"
                       name="password"
                     />
-                    <small class="error-message text-danger lh-1">
+                    <p class="error-message text-danger lh-1">
                       This field is required
-                    </small>
+                    </p>
                   </div>
 
                   <div class="col-lg-6 my-sm-3">
@@ -180,9 +185,9 @@
                       type="password"
                       name="password-confirm"
                     />
-                    <small class="error-message text-danger lh-1">
+                    <p class="error-message text-danger lh-1">
                       The Two (2) Passwords do not match
-                    </small>
+                    </p>
                   </div>
                 </div>
 
@@ -298,7 +303,8 @@
                       <input
                         id="imageUpload"
                         type="file"
-                        name="profilePic"
+                        name="profilePicture"
+                        accept="image/png, image/jpeg"
                         placeholder="Photo"
                         required=""
                         capture
@@ -318,10 +324,10 @@
                               Click open to see a preview
                             </li>
                           </ol>
-                          <small class="text-dark-50"
-                            >NB: Picture Size should not be more than 400
-                            kb</small
-                          >
+                          <p class="text-dark-50">
+                            NB: Picture should be in png or jpeg format and
+                            should not be more than 400 kb
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -1165,7 +1171,7 @@
             <!-- SUBMITTING FORM -->
             <fieldset id="submit" class="form-section" data-section="6">
               <section class="submit py-5">
-                <h3>Thank You For Applying</h3>
+                <!-- <h3>Thank You For Applying</h3> -->
                 <textarea
                   required
                   class="apply-textarea"
@@ -1223,27 +1229,37 @@
                     value="yes"
                   />
                   <label class="form-check-label" for="agreement"
-                    >I verify that all the information provided is
-                    accurate</label
+                    >I confirm the accuracy of the information provided; my
+                    application may be rejected if the information provided is
+                    found untrue or deceptive.</label
                   >
                 </div>
                 <br />
-                <button
-                  id="prevFive"
-                  class="btn btn-danger px-2 prev-section"
-                  type="button"
-                >
-                  Edit Fields
-                </button>
-                <button class="btn btn-success" type="submit" id="applySubmit">
-                  Submit Form
-                  <span id="loading-spinner" class="d-none">
+
+                <div class="my-3">
+                  <button
+                    id="prevFive"
+                    class="btn btn-danger px-2 prev-section"
+                    type="button"
+                  >
+                    Edit Form Fields
+                  </button>
+
+                  <button
+                    class="btn btn-success"
+                    type="submit"
+                    id="applySubmit"
+                  >
+                    Submit Application
                     <div
-                      class="spinner-border spinner-border-sm text-white"
+                      id="applyLoad"
+                      class="spinner-border spinner-border-sm d-none"
                       role="status"
-                    ></div>
-                  </span>
-                </button>
+                    >
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </button>
+                </div>
               </section>
             </fieldset>
           </form>

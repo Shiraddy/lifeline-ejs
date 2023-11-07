@@ -173,3 +173,173 @@ app.post("/apply", async (req, res) => {
       .json({ error: "Application Failed, Check Your Internet and Try Again" });
   }
 });
+
+const express = require("express");
+const multer = require("multer");
+const admin = require("firebase-admin");
+const serviceAccount = require("./path/to/your-service-account-key.json"); // Replace with the path to your Firebase Admin SDK key
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Initialize Firebase
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: "your-storage-bucket-url",
+});
+const bucket = admin.storage().bucket();
+
+// Set up multer for file upload
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+// Serve your HTML form
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+
+// Handle form submission, including file upload
+app.post("/apply", upload.single("profilePicture"), async (req, res) => {
+  // Your existing application code, including user creation and Firestore update
+  // ...
+
+  // Check if a profile picture file was uploaded
+  if (req.file) {
+    const profilePicture = req.file;
+    const profilePictureFilename = `profile-pictures/${email}/${profilePicture.originalname}`;
+    const profilePictureFile = bucket.file(profilePictureFilename);
+    const profilePictureStream = profilePictureFile.createWriteStream({
+      metadata: {
+        contentType: profilePicture.mimetype,
+      },
+    });
+
+    profilePictureStream.on("error", (err) => {
+      console.error(err);
+      res.status(500).send("Error uploading profile picture");
+    });
+
+    profilePictureStream.on("finish", () => {
+      console.log("Profile picture uploaded");
+    });
+
+    profilePictureStream.end(profilePicture.buffer);
+    updatedApplicant.profilePictureURL = profilePictureFilename;
+  }
+  // ...
+
+  res.render("received", { applicant: firstName });
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+//NEW CODE
+app.post("/apply", upload.single("profilePicture"), async (req, res) => {
+  const { email, password } = req.body;
+  const firstName = req.body.firstName;
+  const subject = "Lifeline Tutor Application";
+
+  try {
+    let userRecord;
+    let isNewUser = false;
+
+    try {
+      // Check if the user already exists in Firebase Authentication
+      userRecord = await admin.auth().getUserByEmail(email);
+    } catch (error) {
+      if (error.code === "auth/user-not-found") {
+        // If the user doesn't exist in Authentication, create a new user
+        userRecord = await admin.auth().createUser({
+          email,
+          password,
+        });
+        isNewUser = true;
+      } else {
+        throw error; // Re-throw the error for other cases
+      }
+    }
+
+    // Create a Firestore collection and document
+    const db = admin.firestore();
+    const collection = db.collection("Tutor Applications");
+    const Application = collection.doc(email);
+
+    // Check if the user's data already exists in Firestore
+    const existingData = (await Application.get()).data();
+
+    if (!existingData || isNewUser) {
+      // Only update Firestore data if the user doesn't have data in Firestore or is a new user
+      const filteredData = {};
+
+      for (const key in req.body) {
+        if (
+          req.body[key] !== null &&
+          req.body[key] !== undefined &&
+          req.body[key] !== ""
+        ) {
+          filteredData[key] = req.body[key];
+        }
+      }
+
+      // Data to be stored in Firestore
+      const updatedApplicant = {
+        uid: userRecord.uid,
+        applicationDate: new Date(),
+        email: email,
+        emailVerification: userRecord.emailVerified,
+        ...filteredData, // Include the filtered data fields
+        category: "applicant",
+        status: "",
+        comment: "",
+      };
+
+      // Set the data in Firestore
+      await Application.set(updatedApplicant);
+
+      // Check if a profile picture file was uploaded
+      if (req.file) {
+        const profilePicture = req.file;
+
+        // Upload the profile picture to Firebase Storage
+        const profilePictureFilename = `profile-pictures/${email}/${profilePicture.originalname}`;
+        const profilePictureFile = bucket.file(profilePictureFilename);
+        const profilePictureStream = profilePictureFile.createWriteStream({
+          metadata: {
+            contentType: profilePicture.mimetype,
+          },
+        });
+
+        profilePictureStream.on("error", (err) => {
+          console.error(err);
+          return res.status(500).send("Error uploading profile picture");
+        });
+
+        profilePictureStream.on("finish", () => {
+          // Profile picture uploaded successfully
+          console.log("Profile picture uploaded");
+
+          // Add the profile picture URL to the Firestore data
+          updatedApplicant.profilePictureURL = profilePictureFilename;
+
+          // Continue with the rest of your code
+          // Define the email template and send the email
+          // ...
+          return res.redirect("/received");
+        });
+
+        profilePictureStream.end(profilePicture.buffer);
+      } else {
+        // Continue with the rest of your code
+        // Define the email template and send the email
+        // ...
+        return res.redirect("/received");
+      }
+    }
+  } catch (error) {
+    console.error("Error creating/updating user data:", error);
+    return res
+      .status(500)
+      .json({ error: "Application Failed, Check Your Internet and Try Again" });
+  }
+});

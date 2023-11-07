@@ -25,7 +25,7 @@ $("#tutorContactBtn").on("click", function () {
   $(".tutorContact").slideToggle();
 });
 
-// Tutor Application Form Validation
+// TUTOR APPLICATION FORM
 $(document).ready(function () {
   const sections = $(".form-section");
   let currentSection = 0;
@@ -123,8 +123,10 @@ $(document).ready(function () {
   });
 
   // Handle form submission (you can add your submission logic here)
-  $("#applySubmit").on(click, function () {
-    $("#loading-spinner").removeClass("d-none");
+  // $("#multi-section-form").submit(function () {});
+
+  $("#applySubmit").on("click", function () {
+    $("#applyLoad").removeClass("d-none");
   });
 });
 
@@ -259,9 +261,6 @@ $("#tutorRequestBtn").on("click", function () {
 
 // PRICE CALCULATION
 $(document).ready(function () {
-  // Price per lesson (you can set your own price here)
-  // var pricePerLesson = 0;
-
   // Function to calculate and update the price
   function calculatePrice() {
     let mode = $("input[name=modeOfTeaching]:checked").val();
@@ -388,42 +387,6 @@ function fasterPreview(uploader) {
 $("#imageUpload").change(function () {
   fasterPreview(this);
 });
-
-// ADMIN MODAL
-// $(document).ready(function () {
-//   // Get the modal and its content
-//   const modal = $("#detail");
-//   const modalContent = modal.find(".modal-body");
-
-//   // Add a click event handler to the "expand" buttons
-//   $('.btn[data-bs-target="#detail"]').click(function () {
-//     // Get the applicant data from the data-application attribute
-//     const applicationData = JSON.parse($(this).data("application"));
-
-//     // Populate modal fields with applicant data
-//     modalContent.find("#firstName").val(applicationData.data.firstName);
-//     modalContent.find("#lastName").val(applicationData.data.lastName);
-//     modalContent.find("#tutorEmail").val(applicationData.data.tutorEmail);
-//     modalContent.find("#gender").val(applicationData.data.gender);
-//     modalContent.find("#contact").val(applicationData.data.contact);
-//     modalContent
-//       .find("#tutorOtherContact")
-//       .val(applicationData.data.altContact);
-//     modalContent.find("#status").val(applicationData.data.studentStatus);
-//     modalContent.find("#school").val(applicationData.data.school);
-
-//     // Show the modal
-//     modal.modal("show");
-//   });
-// });
-
-// $(document).ready(function () {
-//   $(".delete-row").click(function () {
-//     var row = $(this).closest("tr");
-//     var applicationId = row.data("application-id");
-//     row.remove();
-//   });
-// });
 
 $(document).ready(function () {
   // Add a click event handler to all delete buttons
