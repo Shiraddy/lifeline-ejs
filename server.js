@@ -136,12 +136,16 @@ app.get("/refactor", function (req, res) {
 
 //COUNSELLING
 app.get("/counselling", function (req, res) {
-  res.render("counselling.ejs");
+  res.render("counselling");
 });
 
 //CONSULTANCY
 app.get("/consultancy", function (req, res) {
-  res.render("consultancy.ejs");
+  res.render("consultancy");
+});
+
+app.get("/post", function (req, res) {
+  res.render("post-request");
 });
 
 // Admin Page
@@ -660,6 +664,9 @@ app.post("/signup", (req, res) => {
 app.post("/form", async function (req, res) {
   try {
     let contract = req.body;
+    // console.log(contract);
+    let client = contract.parent;
+    let student = contract.student;
     let mode = contract.modeOfTeaching;
     let monthlySession = Number(contract.weeklySession) * 4;
     let periodLength = Number(contract.periodLength);
@@ -702,13 +709,73 @@ app.post("/form", async function (req, res) {
     // Use a try-catch block for Firestore operations
     try {
       await request.set(requestData);
-      res.render("post-request");
+      res.render("post-request", {
+        client: client,
+        student: student,
+      });
     } catch (error) {
       console.error("Error writing to Firestore:", error);
       res
         .status(500)
         .json({ success: false, message: "Internal Server Error" });
     }
+
+    // Define the email template with a placeholder for the applicant's name
+    const emailTemplate = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LIFELINE EMAIL</title>
+  <style>
+    /* Custom email styles */
+    .email {
+      max-width: 600px; /* Set a maximum width for the email content */
+      margin: 0 auto;   /* Center the email content */
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email">
+    <p class="mb-4">Dear Lifeline,</p>
+
+    <p>
+      You have a New Tutor Request, Kindly attend to it.
+    </p>    
+
+    <p class="mt-4">
+      Regards.
+    </p>
+  </div>
+</body>
+</html>
+`;
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "lifelineedusolutions@gmail.com",
+        pass: "hazw czvg ijak uigj",
+      },
+    });
+
+    const mailOptions = {
+      from: "lifelineedusolutions@gmail.com",
+      to: "lifelineedusolutions@gmail.com",
+      cc: "shirazadnan53@gmail.com",
+      subject: "Request For Tutor",
+      html: emailTemplate,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        // console.log("Email sent: " + info.response);
+      }
+    });
   } catch (error) {
     console.error("Error processing the request:", error);
     res.status(400).json({ success: false, message: "Bad Request" });

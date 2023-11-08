@@ -130,7 +130,7 @@ $(document).ready(function () {
   });
 });
 
-// Tutor Request Form Validation
+// TUTOR REQUEST FORM
 $(document).ready(function () {
   // Hide all fieldsets except the first one
   $(".form-field").not(":first").hide();
@@ -214,6 +214,94 @@ $(document).ready(function () {
       });
     }
   );
+
+  // Function to calculate and update the price
+  function calculatePrice() {
+    let mode = $("input[name=modeOfTeaching]:checked").val();
+    // console.log(mode);
+    let weeklySession = $('input[name="weeklySession"]:checked').val();
+    let periodLength = $('input[name="periodLength"]:checked').val();
+    let monthlySession = weeklySession * 4;
+    let pricePerLesson;
+
+    // Calculate the total price
+    // var totalPrice = monthlySession * periodLength * pricePerLesson;
+    if (mode == "person" && periodLength == 3) {
+      pricePerLesson = 15;
+    } else if (mode == "person" && periodLength == 2.5) {
+      pricePerLesson = 16;
+    } else if (mode == "person" && periodLength == 2) {
+      pricePerLesson = 18;
+    } else if (mode == "person" && periodLength == 1.5) {
+      pricePerLesson = 20;
+    } else {
+      pricePerLesson = 25;
+    }
+    var totalPrice = monthlySession * periodLength * pricePerLesson;
+    // Update the price display
+    $("#calculatedPrice").text(totalPrice.toFixed(2)); // Display with two decimal places
+    return totalPrice; // Return the calculated price
+  }
+
+  // Calculate the initial price
+  calculatePrice();
+
+  // Listen for changes in radio buttons
+  $('input[name="weeklySession"]').change(calculatePrice);
+  $('input[name="periodLength"]').change(calculatePrice);
+
+  //Form Preview
+  $("#preview").click(function () {
+    // Capture radio and checkbox values
+    // var selectedRadioValues = [];
+    // var selectedCheckboxValues = [];
+
+    // $('input[type="radio"][required]').each(function () {
+    //   var radioName = $(this).attr("name");
+    //   var selectedValue = $(`input[name="${radioName}"]:checked`).val();
+    //   selectedRadioValues.push(selectedValue);
+    // });
+
+    // $('input[type="checkbox"][required]').each(function () {
+    //   if ($(this).is(":checked")) {
+    //     selectedCheckboxValues.push($(this).val());
+    //   }
+    // });
+
+    // var selectedDuration = $(
+    //   'input[name="periodLength"]:checked + label'
+    // ).text();
+    // $("#lessonDurationDisplay").text("Lesson Duration: " + selectedDuration);
+
+    // var selectedCheckboxes = $('input[type="checkbox"][required]:checked');
+    // var selectedCheckboxValues = selectedCheckboxes
+    //   .map(function () {
+    //     return $(this).next("label").text();
+    //   })
+    //   .get()
+    //   .join(", ");
+    // $("#studentChallengesDisplay").text(selectedCheckboxValues);
+
+    $("#parentContactDisplay").val($("#parentNumber").val());
+    $("#parentEmailDisplay").val($("#parentEmail").val());
+    $("#parentNameDisplay").text($("#parentName").val());
+    $("#lessonDurationDisplay").val($(".duration").val());
+    $("#lessonFrequencyDisplay").val($(".frequency").val());
+
+    //Student Info
+    $("#studentLevelDisplay").val($("#studentLevel").val());
+    $("#studentNameDisplay").val($("#studentName").val());
+    $("#studentAgeDisplay").val($("#studentDOB").val());
+    $("#studentClassDisplay").val($("#studentClass").val());
+    // $("#studentChallengesDisplay").val($(".challenge").val());
+
+    // Calculate and display the price
+    var lessonFee = calculatePrice();
+    $("#lessonFeeDisplay").text("GHC" + lessonFee.toFixed(2));
+
+    // $("#student").hide();
+    // $("#preview").show();
+  });
 });
 
 //Subject Select Multiple
@@ -257,45 +345,6 @@ $("#tutorRequestBtn").on("click", function () {
   $("#tutorRequest").slideToggle(),
     $("#requestText").hide(),
     $("#banner").removeClass("banner").addClass("client-banner");
-});
-
-// PRICE CALCULATION
-$(document).ready(function () {
-  // Function to calculate and update the price
-  function calculatePrice() {
-    let mode = $("input[name=modeOfTeaching]:checked").val();
-    // console.log(mode);
-    let weeklySession = $('input[name="weeklySession"]:checked').val();
-    let periodLength = $('input[name="periodLength"]:checked').val();
-    let monthlySession = weeklySession * 4;
-    let pricePerLesson;
-
-    // Calculate the total price
-    // var totalPrice = monthlySession * periodLength * pricePerLesson;
-    if (mode == "person" && periodLength == 3) {
-      pricePerLesson = 15;
-    } else if (mode == "person" && periodLength == 2.5) {
-      pricePerLesson = 16;
-    } else if (mode == "person" && periodLength == 2) {
-      pricePerLesson = 18;
-    } else if (mode == "person" && periodLength == 1.5) {
-      pricePerLesson = 20;
-    } else {
-      pricePerLesson = 25;
-    }
-    var totalPrice = monthlySession * periodLength * pricePerLesson;
-
-    // Update the price display
-    $("#calculatedPrice").text(totalPrice.toFixed(2)); // Display with two decimal places
-    // $("#calculatedPrice").text("Hello"); // Display with two decimal places
-  }
-
-  // Calculate the initial price
-  calculatePrice();
-
-  // Listen for changes in radio buttons
-  $('input[name="weeklySession"]').change(calculatePrice);
-  $('input[name="periodLength"]').change(calculatePrice);
 });
 
 //Login Validation (Working code)

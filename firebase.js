@@ -343,3 +343,66 @@ app.post("/apply", upload.single("profilePicture"), async (req, res) => {
       .json({ error: "Application Failed, Check Your Internet and Try Again" });
   }
 });
+
+// Define the email template with a placeholder for the applicant's name
+const emailTemplate = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LIFELINE EMAIL</title>
+  <style>
+    /* Custom email styles */
+    .email {
+      max-width: 600px; /* Set a maximum width for the email content */
+      margin: 0 auto;   /* Center the email content */
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email">
+    <p class="mb-4">Dear ${firstName},</p>
+
+    <p>
+      You have a New Tutor Request, Kindly attend to it.
+    </p>    
+
+    <p class="mt-4">
+      Regards.
+    </p>
+  </div>
+</body>
+</html>
+`;
+
+const applicantName = "Lifeline";
+const personalizedEmail = emailTemplate.replace(
+  /{applicantName}/g,
+  applicantName
+);
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "lifelineedusolutions@gmail.com",
+    pass: "hazw czvg ijak uigj",
+  },
+});
+
+const mailOptions = {
+  from: "lifelineedusolutions@gmail.com",
+  to: "lifelineedusolutions@gmail.com",
+  cc: "shirazadnan53@gmail.com",
+  subject: "Request For Tutor",
+  html: personalizedEmail,
+};
+
+transporter.sendMail(mailOptions, function (error, info) {
+  if (error) {
+    console.log(error);
+  } else {
+    // console.log("Email sent: " + info.response);
+  }
+});

@@ -97,7 +97,7 @@
   </fieldset>
 
   <!-- STUDENT'S INFORMATION -->
-  <fieldset id="student" class="form-field" data-section="2">
+  <fieldset class="form-field" data-section="2">
     <h4 class="my-4 d-flex justify-content-start">Learner's Details</h4>
 
     <div class="row my-2">
@@ -214,12 +214,10 @@
     </div>
 
     <!-- ACADEMIC CHALLENGES -->
-    <fieldset id="option" class="form-field shadow-two">
+    <div id="option" class="shadow-one mt-4">
       <!-- SUBJECT SELECT -->
-      <label class="label ps-lg-3 py-lg-2" for="my-lg-4"
-        >Select Learner's Known Academic Challenge(s)</label
-      >
-      <div class="border my-lg-3">
+      <p class="label ps-lg-3 pt-lg-2">Learner's Academic Challenge(s)</p>
+      <div class="mb-lg-3 border">
         <div class="row d-lg-flex justify-content-evenly py-lg-3">
           <div class="form-check form-check-inline col-lg-3">
             <input
@@ -304,7 +302,7 @@
           id="otherSubjects"
         ></textarea>
       </div>
-    </fieldset>
+    </div>
 
     <!-- BUTTONS -->
     <div class="py-3 d-lg-flex justify-content-end">
@@ -318,7 +316,7 @@
   </fieldset>
 
   <!-- TUITION PREFERENCES -->
-  <fieldset id="option" class="form-field" data-section="3">
+  <fieldset id="Preferences" class="form-field" data-section="3">
     <h4 class="my-4 d-flex justify-content-start">Tuition Preferences</h4>
     <label class="my-lg-2" for="btn-group"
       >Select Preferred Mode of Tuition</label
@@ -426,7 +424,7 @@
           <div class="col-lg-5 col-md-3 col-sm-12 mb-3">
             <input
               type="radio"
-              class="btn-check"
+              class="btn-check frequency"
               name="weeklySession"
               id="option5"
               autocomplete="off"
@@ -439,7 +437,7 @@
           <div class="col-lg-5 col-md-3 col-sm-12 mb-3">
             <input
               type="radio"
-              class="btn-check"
+              class="btn-check frequency"
               name="weeklySession"
               id="option6"
               autocomplete="off"
@@ -456,7 +454,7 @@
           <div class="col-lg-5 col-md-3 col-sm-12">
             <input
               type="radio"
-              class="btn-check"
+              class="btn-check frequency"
               name="weeklySession"
               id="option7"
               autocomplete="off"
@@ -469,7 +467,7 @@
           <div class="col-lg-5 col-md-3 col-sm-12">
             <input
               type="radio"
-              class="btn-check"
+              class="btn-check frequency"
               name="weeklySession"
               id="option8"
               autocomplete="off"
@@ -481,11 +479,6 @@
           </div>
         </div>
       </div>
-      <!-- <div id="price-display" class="mt-3">
-          <strong>Calculated Price:</strong> $<span id="calculated-price"
-            >0.00</span
-          >
-        </div> -->
     </div>
 
     <!-- DURATION OF LESSONS -->
@@ -495,7 +488,7 @@
       </div>
       <div class="btn-group col d-lg-flex justify-content-center">
         <div
-          class="btn-group"
+          class="btn-group duration"
           role="group"
           aria-label="Basic radio toggle button group"
         >
@@ -637,6 +630,148 @@
         </div>
       </div>
     </div>
+    <!-- BUTTONS -->
+    <div class="py-3 d-lg-flex justify-content-end">
+      <button class="btn btn-danger me-2 prevBtn" type="button">
+        Edit Form
+      </button>
+      <button
+        class="btn btn-success nextBtn"
+        type="button"
+        alt="Next"
+        id="preview"
+      >
+        Preview Form
+      </button>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-field" data-section="4">
+    <div class="container-sm">
+      <div class="text-start my-4">
+        <p>Dear <span id="parentNameDisplay"></span>,</p>
+        <p>
+          We're grateful that you're considering our tuition service for your
+          child. Prior to sending in your request, please ensure that the
+          details are accurate.
+        </p>
+
+        <p>
+          Regards, <br />
+          Lifeline.
+        </p>
+      </div>
+
+      <div class="border px-2">
+        <h5 class="my-2 d-flex justify-content-center">Confirm Form Details</h5>
+        <!-- Student Information -->
+        <div class="row">
+          <h6 class="label my-4">Student Information</h6>
+
+          <div class="col-lg-6">
+            <div class="label">Name of Student</div>
+            <input
+              class="apply-input"
+              type="text"
+              id="studentNameDisplay"
+              disabled
+            />
+          </div>
+
+          <div class="col-lg-6">
+            <div class="label">Age of Student</div>
+            <input
+              class="apply-input"
+              type="text"
+              id="studentAgeDisplay"
+              disabled
+            />
+          </div>
+
+          <div class="col-lg-6">
+            <div class="label">Level</div>
+            <input
+              class="apply-input"
+              type="text"
+              id="studentLevelDisplay"
+              disabled
+            />
+          </div>
+
+          <div class="col-lg-6">
+            <div class="label">Class of Student</div>
+            <input
+              class="apply-input"
+              type="text"
+              id="studentClassDisplay"
+              disabled
+            />
+          </div>
+
+          <div class="col-lg-6">
+            <div class="label">Contact</div>
+            <input
+              class="apply-input"
+              type="text"
+              id="parentContactDisplay"
+              disabled
+            />
+          </div>
+
+          <div class="col-lg-6">
+            <div class="label">Email</div>
+            <input
+              class="apply-input"
+              type="email"
+              id="parentEmailDisplay"
+              disabled
+            />
+          </div>
+
+          <div class="col-lg-12 mt-3">
+            <div class="label">TUITION FEE PER MONTH:</div>
+            <textarea
+              class="apply-input"
+              id="lessonFeeDisplay"
+              disabled
+            ></textarea>
+          </div>
+
+          <!-- <div class="col-lg-12">
+            <div class="label">Known Academic Challenges</div>
+            <textarea
+              class="apply-input"
+              id="studentChallengesDisplay"
+              disabled
+            ></textarea>
+          </div> -->
+        </div>
+
+        <!-- Your information -->
+        <!-- <h6 class="label my-4">Other Details</h6> -->
+
+        <!-- <div class="col-lg-6">
+          <div class="label">Lesson Duration</div>
+          <input
+            class="apply-input"
+            type="text"
+            id="lessonDurationDisplay"
+            disabled
+          />
+        </div> -->
+
+        <!-- <div class="col-lg-6">
+          <div class="label">Frequency of Lessons</div>
+          <input
+            class="apply-input"
+            type="text"
+            id="lessonFrequencyDisplay"
+            disabled
+          />
+        </div> -->
+      </div>
+    </div>
+
     <!-- EDIT AND SUBMIT BUTTONS -->
     <div class="py-5 py-sm-5 d-lg-flex justify-content-end" id="sendBtn">
       <button type="button" class="btn btn-danger prevBtn me-3">
