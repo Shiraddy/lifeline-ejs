@@ -366,9 +366,21 @@ const emailTemplate = `
     <p class="mb-4">Dear ${firstName},</p>
 
     <p>
-      You have a New Tutor Request, Kindly attend to it.
-    </p>    
+      You have a New Tutor Request with the following details:    
+    </p>   
 
+    ${client} <br/>
+    ${otherContact} <br/>
+    ${student} <br/>
+    ${level} <br/>
+    ${weeklySession} <br/>     
+    ${duration} <br/>     
+    ${fee} <br/>
+    ${contact} <br/>
+    ${typeOfContract} <br/>
+    ${email} <br/>     
+
+    <pclass="my-2">Kindly attend to it.</pclass=>
     <p class="mt-4">
       Regards.
     </p>
@@ -377,11 +389,31 @@ const emailTemplate = `
 </html>
 `;
 
+const client = parent;
+const otherContact = "Other Contact Info";
+const student = "Student Name";
+const level = "Student Level";
+const weeklySession = "Weekly Session Info";
+const duration = "Tutoring Duration";
+const fee = "Ghc" + totalPrice;
+const contact = "Contact Info";
+const typeOfContract = "Contract Type";
+const email = "Email Address";
 const applicantName = "Lifeline";
-const personalizedEmail = emailTemplate.replace(
-  /{applicantName}/g,
-  applicantName
-);
+
+const personalizedEmail = emailTemplate
+  .replace(/{applicantName}/g, applicantName)
+  .replace(/\${firstName}/g, firstName)
+  .replace(/\${client}/g, client)
+  .replace(/\${otherContact}/g, otherContact)
+  .replace(/\${student}/g, student)
+  .replace(/\${level}/g, level)
+  .replace(/\${weeklySession}/g, weeklySession)
+  .replace(/\${duration}/g, duration)
+  .replace(/\${fee}/g, fee)
+  .replace(/\${contact}/g, contact)
+  .replace(/\${typeOfContract}/g, typeOfContract)
+  .replace(/\${email}/g, email);
 
 const transporter = nodemailer.createTransport({
   service: "gmail",

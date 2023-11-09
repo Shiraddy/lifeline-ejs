@@ -664,8 +664,13 @@ app.post("/signup", (req, res) => {
 app.post("/form", async function (req, res) {
   try {
     let contract = req.body;
-    // console.log(contract);
-    let client = contract.parent;
+    let contact = contract.contact;
+    let otherContact = contract.emergencyContactNumber;
+    let weeklySession = contract.weeklySession;
+    let level = contract.level;
+    let email = contract.email;
+    let stage = contract.class;
+    let parent = contract.parent;
     let student = contract.student;
     let mode = contract.modeOfTeaching;
     let monthlySession = Number(contract.weeklySession) * 4;
@@ -702,6 +707,8 @@ app.post("/form", async function (req, res) {
     const requestData = {
       category: "request",
       status: "",
+      tutor: "",
+      pastTutors: [],
       fees: totalPrice,
       ...filteredData, // Include the filtered data fields
     };
@@ -710,9 +717,11 @@ app.post("/form", async function (req, res) {
     try {
       await request.set(requestData);
       res.render("post-request", {
-        client: client,
+        parent: parent,
         student: student,
       });
+
+      // ... (rest of the code for sending the email)
     } catch (error) {
       console.error("Error writing to Firestore:", error);
       res
@@ -722,12 +731,16 @@ app.post("/form", async function (req, res) {
 
     // Define the email template with a placeholder for the applicant's name
     const emailTemplate = `
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LIFELINE EMAIL</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutelWpjoudMwe3N6bZ/xq5t8UEBpIboFMI7xjBOhFp6M9xj"
+    crossorigin="anonymous">
   <style>
     /* Custom email styles */
     .email {
@@ -737,21 +750,55 @@ app.post("/form", async function (req, res) {
     }
   </style>
 </head>
+
 <body>
-  <div class="email">
-    <p class="mb-4">Dear Lifeline,</p>
+  <div class="container">
+    <div class="email text-center">
+      <p class="mb-4">Dear ${parent},</p>
 
-    <p>
-      You have a New Tutor Request, Kindly attend to it.
-    </p>    
+      <p>
+        We have received a formal request for a tutor, and the pertinent details
+         are as follows:
+      </p>
 
-    <p class="mt-4">
-      Regards.
-    </p>
+      <div class="my-2">
+        <p>Name of Client: ${parent}</p>
+        <p>Client Contact: <a href="tel:${contact}">${contact}</a></p>
+        <p>Emergency Contact: <a href="tel:${otherContact}">${otherContact}</a></p>
+        <p>Email: <a href="mailto:${email}">${email}</a></p>
+        <p>Charges: ${totalPrice}</p>
+      </div>
+
+      <div class="mb-2">
+        <p>Name of Ward: ${student}</p>
+        <p>Level of Ward: ${level}</p>
+        <p>Class of Ward: ${stage}</p>
+        <p>Lesson Duration: ${periodLength}</p>
+        <p>Sessions Per Week: ${weeklySession}</p>
+      </div>
+
+      <p class="my-2">Kindly attend to it.</p>
+      <p class="mt-4">
+        Regards.
+      </p>
+    </div>
   </div>
 </body>
+
 </html>
-`;
+
+    `;
+    const personalizedEmail = emailTemplate
+      .replace(/\${client}/g, parent)
+      .replace(/\${otherContact}/g, otherContact)
+      .replace(/\${student}/g, student)
+      .replace(/\${level}/g, level)
+      .replace(/\${stage}/g, stage)
+      .replace(/\${weeklySession}/g, weeklySession)
+      .replace(/\${duration}/g, periodLength)
+      .replace(/\${fee}/g, totalPrice)
+      .replace(/\${contact}/g, contact)
+      .replace(/\${email}/g, email);
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -766,7 +813,7 @@ app.post("/form", async function (req, res) {
       to: "lifelineedusolutions@gmail.com",
       cc: "shirazadnan53@gmail.com",
       subject: "Request For Tutor",
-      html: emailTemplate,
+      html: personalizedEmail,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
