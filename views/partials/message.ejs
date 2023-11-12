@@ -6,7 +6,7 @@
       <form action="/message" method="post" class="">
         <div class="my-4">
           <label for="type" class="label">SELECT SUBJECT:</label>
-          <select name="type" id="" class="shadow-one apply-input">
+          <select name="subject" id="" class="shadow-one apply-input">
             <option value="">
               SELECT TYPE<span><i class="fa fa-arrow-down"></i></span>
             </option>
@@ -23,7 +23,8 @@
           <input
             type="text"
             name="name"
-            placeholder="Enter Your Name"
+            required
+            placeholder="Please Enter Your Full Name"
             class="shadow-one apply-input"
           />
         </div>
@@ -32,6 +33,8 @@
           <label for="contact" class="label">CONTACT</label>
           <input
             type="tel"
+            required
+            name="contact"
             placeholder="Enter your phone number"
             class="shadow-one apply-input"
           />

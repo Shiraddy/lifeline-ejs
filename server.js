@@ -273,13 +273,104 @@ app.post("/admin/update/:id", async function (req, res) {
 
 app.post("/message", async function (req, res) {
   const messageData = req.body;
+  let subject = messageData.subject,
+    parent = messageData.name,
+    message = messageData.message,
+    contact = messageData.contact;
+
   try {
     const messageRef = await db.collection("Messages").add(messageData); // Use add() to add a new document with the message data
-    console.log("Message added with ID: ", messageRef.id);
+    // console.log("Message added with ID: ", messageRef.id);
     res.render("post-message"); // Render a success page or response
   } catch (error) {
     console.error("Error Sending Message:", error);
     res.status(500).json({ error: "Error Sending Message" }); // Respond with an error status and message
+  }
+
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "lifelineedusolutions@gmail.com",
+        pass: "hazw czvg ijak uigj",
+      },
+    });
+
+    const emailTemplate = `
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LIFELINE EMAIL</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutelWpjoudMwe3N6bZ/xq5t8UEBpIboFMI7xjBOhFp6M9xj"
+    crossorigin="anonymous">
+  <style>
+    /* Custom email styles */
+    .email {
+      max-width: 600px; /* Set a maximum width for the email content */
+      margin: 0 auto;   /* Center the email content */
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="email text-center">
+      <p class="mb-4">Dear Lifeline,</p>
+
+      <p>
+        You have a message from ${parent}. 
+        The pertinent details are as follows:
+      </p>
+
+      <div class="my-2">
+        <p>Subject: ${subject}</p>
+        <p>Message: ${message}</p>
+        
+        <p>Client Contact: <a href="tel:${contact}">${contact}</a></p>
+      </div>
+
+      <p class="my-2">Kindly attend to it.</p>
+
+      <p class="mt-4">
+        Regards. <br/>
+        Lifeline.
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>
+
+    `;
+    const personalizedEmail = emailTemplate
+      .replace(/\${parent}/g, parent)
+      .replace(/\${subject}/g, subject)
+      .replace(/\${message}/g, message)
+      .replace(/\${contact}/g, contact);
+
+    const mailOptions = {
+      from: "lifelineedusolutions@gmail.com",
+      to: "lifelineedusolutions@gmail.com",
+      cc: "shirazadnan53@gmail.com",
+      subject: "Message",
+      html: emailTemplate,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        // console.log("Email sent: " + info.response);
+      }
+    });
+  } catch (error) {
+    console.error("Error processing the request:", error);
+    res.status(400).json({ success: false, message: "Bad Request" });
   }
 });
 
