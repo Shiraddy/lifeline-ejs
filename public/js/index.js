@@ -462,6 +462,12 @@ $(document).ready(function () {
   });
 });
 
+// $(document).ready(function () {
+//   "#bookBtn".click(function () {
+//     "#message".slideToggle();
+//   });
+// });
+
 $(document).ready(function () {
   // Add a click event handler to all "view-details" buttons
   $(".view-details").click(function () {

@@ -1359,6 +1359,10 @@ body {
     height: 85vh;
     padding: 2rem 1rem;
   }
+
+  .service-hero-text {
+    margin-top: 20rem;
+  }
   /* select {
     display: block;
     width: 100%;
@@ -1440,6 +1444,7 @@ body {
   .container-apply {
     width: 90%;
     margin: auto auto;
+    margin-top: 17%;
   }
 
   .client-form-text {
