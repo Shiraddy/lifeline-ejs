@@ -78,20 +78,20 @@
       <div class="row my-lg-4">
         <div class="col-lg-3">
           <div class="revenue shadow-two bg-white">
-            <h4>Revenue</h4>
-            <h5>1000</h5>
+            <h4>Applicants</h4>
+            <h5><%= applicants %></h5>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="tutor shadow-two bg-white">
             <h4>Tutors</h4>
-            <h5>1000</h5>
+            <h5><%= noOfTutors %></h5>
           </div>
         </div>
 
         <div class="col-lg-3">
           <div class="client shadow-two bg-white">
-            <h4>Clients</h4>
+            <h4>Contracts</h4>
             <h5>1000</h5>
           </div>
         </div>
@@ -504,15 +504,6 @@
               <td>
                 <!-- ACTION BUTTONS -->
                 <div class="d-flex justify-content-center">
-                  <!-- <button
-                    type="button"
-                    class="btn tutorIcon me-2 view-details"
-                    data-bs-toggle="modal"
-                    data-bs-target="#detail"
-                  >
-                    <a><i class="fa-solid fa-expand"></i></a>
-                  </button> -->
-
                   <button
                     type="button"
                     class="btn tutorIcon me-2 update-data"
@@ -532,92 +523,6 @@
           </tbody>
         </table>
       </div>
-
-      <!-- APPLICANT DETAIL -->
-      <form action="" class="modal" id="detail" tabindex="-1">
-        <fieldset
-          class="modal-content modal-dialog modal-dialog-centered modal-dialog-scrollable"
-          data-section="1"
-        >
-          <div class="row modal-body modal-dialog-scrollable">
-            <h5 class="my-4 d-flex justify-content-start modal-header">
-              APPLICANT DETAILS
-            </h5>
-            <div class="col-lg-6">
-              <label class="label" for="firstName">First Name</label>
-              <input
-                id="firstName"
-                disabled
-                class="apply-input"
-                type="text"
-                name="firstName"
-                placeholder=""
-              />
-              <div class="error-message">This is a required field</div>
-            </div>
-            <div class="col-lg-6">
-              <label class="label" for="firstName">Last Name</label>
-              <input
-                id="lastName"
-                disabled
-                class="apply-input"
-                type="text"
-                name="lastName"
-                placeholder=""
-                autocapitalize="words"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="address">Email Address</label>
-              <input
-                class="apply-input"
-                type="email"
-                disabled
-                name="tutorEmail"
-                id="tutorEmail"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="number">Contact</label>
-              <input
-                id="contact"
-                disabled
-                class="apply-input"
-                type="text"
-                name="contact"
-              />
-              <div class="error-message">Contact</div>
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="number">Other Contact</label>
-              <input
-                id="tutorOtherContact"
-                class="apply-input"
-                type="number"
-                name="altContact"
-                disabled
-              />
-              <div class="error-message" id="nameError"></div>
-            </div>
-
-            <!-- BUTTON -->
-            <div
-              class="py-3 d-lg-flex justify-content-end pe-lg-3 modal-footer"
-            >
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </fieldset>
-      </form>
 
       <!-- UPDATE INFO -->
       <form action="" class="modal" id="update" tabindex="-1">
@@ -645,7 +550,7 @@
             </div>
 
             <div class="col-lg-6">
-              <label class="label" for="firstName">Last Name</label>
+              <label class="label" for="lastName">Last Name</label>
               <input
                 id="lastName"
                 disabled
@@ -668,21 +573,22 @@
               />
             </div>
 
-            <div class="col-lg-6">
-              <label class="label" for="address">Email Address</label>
+            <!-- <div class="col-lg-6">
+              <label class="label" for="tutorEmail">Email Address</label>
               <input
                 class="apply-input"
                 type="email"
                 name="tutorEmail"
                 id="tutorEmail"
+                disabled
                 placeholder="Enter Email Address"
               />
-            </div>
+            </div> -->
 
             <div class="col-lg-6">
-              <label class="label" for="number">Student Status</label>
+              <label class="label" for="studentStatus">Student Status</label>
               <input
-                id="status"
+                id="studentStatusOfApplicant"
                 disabled
                 class="apply-input"
                 type="text"
@@ -690,56 +596,64 @@
               />
             </div>
 
+            <!-- Graduate -->
             <div class="col-lg-6">
-              <label class="label" for="number">School</label>
+              <label class="label" for="schoolAttended">School Attended</label>
               <input
-                id="schoolCompleted"
+                id="schoolAttended"
+                disabled
                 required
                 class="apply-input"
+                type="text"
+                name="schoolAttended"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="yearCompleted"
+                >Year of Completion</label
+              >
+              <input
+                id="yearCompleted"
+                required
+                class="apply-input"
+                disabled
+                type="text"
+                name="yearCompleted"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="courseStudied">Course Studied</label>
+              <input
+                id="courseStudied"
+                required
+                class="apply-input"
+                disabled
+                type="text"
+                name="courseStudied"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="school">Certificate Attained</label>
+              <input
+                id="certificateAttained"
+                required
+                class="apply-input"
+                disabled
                 type="text"
                 name="school"
               />
             </div>
-            <!-- 
-            <div class="col-lg-6">
-              <label class="label" for="number">Contact</label>
-              <input
-                id="contact"
-                class="apply-input"
-                type="text"
-                name="contact"
-              />
-              <div class="error-message">Contact</div>
-            </div> -->
 
-            <!-- <div class="col-lg-6">
-              <label class="label" for="number">Other Contact</label>
-              <input
-                id="tutorOtherContact"
-                class="apply-input"
-                type="number"
-                name="altContact"
-                disabled
-              />
-              <div class="error-message" id="nameError"></div>
-            </div> -->
-
+            <!-- Undergraduate -->
             <div class="col-lg-6">
-              <label class="label" for="number">Student Status</label>
+              <label class="label" for="course">School Attending</label>
               <input
-                id="studentStatus"
-                disabled
-                class="apply-input"
-                type="text"
-                name="studentStatus"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="coursed">Course</label>
-              <input
-                id="coursed"
+                id="schoolAttending"
                 required
+                disabled
                 class="apply-input"
                 type="text"
                 name="course"
@@ -747,23 +661,67 @@
             </div>
 
             <div class="col-lg-6">
-              <label class="label" for="status">Status</label>
-              <select name="status" id="status" class="apply-input">
-                <option value="Applicant">Applicant</option>
+              <label class="label" for="course">Level</label>
+              <input
+                id="levelOfApplicant"
+                required
+                disabled
+                class="apply-input"
+                type="text"
+                name="course"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="course">Course Studying</label>
+              <input
+                id="course"
+                required
+                disabled
+                class="apply-input"
+                type="text"
+                name="course"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="course">Certificate Pursuing</label>
+              <input
+                id="certificatePursuing"
+                required
+                disabled
+                class="apply-input"
+                type="text"
+                name="course"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="statusofApplication"
+                >Application Status</label
+              >
+              <select
+                name="statusofApplication"
+                id="applicationCategory"
+                class="apply-input"
+              >
+                <option value="Applicant">Success</option>
+                <option value="tutor">Failed</option>
                 <option value="Pending">Pending</option>
-                <option value="Qualified">Qualified</option>
               </select>
             </div>
 
             <div class="col-lg-6">
-              <label class="label" for="category">Tutor Category</label>
-              <select name="category" id="category" class="apply-input">
-                <option value="">A+</option>
-                <option value="">A</option>
-                <option value="">B+</option>
-                <option value="">B</option>
-                <option value="">C</option>
-                <option value="">D</option>
+              <label class="label" for="statusofApplication"
+                >Application Status</label
+              >
+              <select
+                name="applicationStatus"
+                id="applicationCategory"
+                class="apply-input"
+              >
+                <option value="tutor">Tutor</option>
+                <option value="applicant">Applicant</option>
               </select>
             </div>
 

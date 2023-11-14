@@ -483,12 +483,22 @@ $(document).ready(function () {
         // Update the form fields with the fetched data
         $("#firstName").val(data.firstName);
         $("#lastName").val(data.lastName);
+        $("#location").val(data.location);
         $("#tutorEmail").val(data.email);
         $("#gender").val(data.gender);
         $("#contact").val(data.contact);
         $("#tutorOtherContact").val(data.altContact);
-        $("#status").val(data.studentStatus);
-        $("#school").val(data.school);
+        $("#studentStatusOfApplicant").val(data.studentStatus);
+
+        $("#schoolAttending").val(data.school_attending);
+        $("#levelOfApplicant").val(data.level);
+        $("#course").val(data.coursing);
+        $("#certicatePursuing").val(data.certPurs);
+        
+        $("#schoolCompleted").val(data.schoolCompleted);
+        $("#yearCompleted").val(data.YoC);
+        $("#courseStudied").val(data.coursed);
+        $("#certificateAttained").val(data.cAt);
 
         // Show the modal
         // Replace this with your modal display code (e.g., using Bootstrap modal functions)
@@ -507,37 +517,56 @@ $(document).ready(function () {
   $(".update-data").click(function () {
     const row = $(this).closest("tr"); // Get the parent row of the clicked button
     const applicationId = row.data("application-id"); // Assuming you have a data attribute for the application ID
-    const form = $("#update"); // Get the form element
+    const form = $("#update"); 
 
     // Make an AJAX request to fetch data for the specific application
     $.ajax({
       type: "GET",
-      url: `/admin/details/${applicationId}`, // Adjust the URL to your server endpoint
-      dataType: "json", // Assuming the response is in JSON format
+      url: `/admin/details/${applicationId}`, 
+      dataType: "json", 
       success: function (data) {
         // Populate the form fields with the fetched data
-        form.find("#firstName").val(data.firstName);
-        form.find("#lastName").val(data.lastName);
-        form.find("#tutorEmail").val(data.email);
-        form.find("#DoB").val(data.DoB);
-        form.find("#contact").val(data.contact);
-        form.find("#YoC").val(data.YoC);
-        form.find("#coursed").val(data.coursed);
-        form.find("#gps").val(data.gps);
-        form.find("#level").val(data.level);
-        form.find("#aboutMedia").val(data.aboutMedia);
-        form.find("#rating").val(data.rating);
-        form.find("#studentStatus").val(data.studentStatus);
-        form.find("#category").val(data.category);
-        form.find("select[name='status']").val(data.status);
-        form.find("#emergency").val(data.emergency);
-        form.find("#status").val(data.status);
-        form.find("#location").val(data.location);
-        form.find("#schoolCompleted").val(data.schoolCompleted);
+        // form.find("#firstName").val(data.firstName);
+        // form.find("#lastName").val(data.lastName);
+        // form.find("#tutorEmail").val(data.email);
+        // form.find("#contact").val(data.contact);
+        // form.find("#YoC").val(data.YoC);
+        // form.find("#coursed").val(data.coursed);
+        // form.find("#gps").val(data.gps);
+        // form.find("#level").val(data.level);
+        // form.find("#aboutMedia").val(data.aboutMedia);
+        // form.find("#rating").val(data.rating);
+        // form.find("#studentStatus").val(data.studentStatus);
+        // form.find("#category").val(data.category);
+        // form.find("select[name='status']").val(data.status);
+        // form.find("#emergency").val(data.emergency);
+        // form.find("#status").val(data.status);
+        // form.find("#location").val(data.location);
+        // form.find("#schoolCompleted").val(data.schoolCompleted);
+        
+        $("#firstName").val(data.firstName);
+        $("#lastName").val(data.lastName);
+        $("#location").val(data.location);
+        $("#tutorEmail").val(data.email);
+        $("#gender").val(data.gender);
+        $("#DoB").val(data.DoB);
+        $("#contact").val(data.contact);
+        $("#tutorOtherContact").val(data.altContact);
+        $("#studentStatusOfApplicant").val(data.studentStatus);
+
+        $("#schoolAttending").val(data.school_attending);
+        $("#levelOfApplicant").val(data.level);
+        $("#course").val(data.coursing);
+        $("#certicatePursuing").val(data.certPurs);
+        
+        $("#schoolAttended").val(data.schoolCompleted);
+        $("#yearCompleted").val(data.YoC);
+        $("#courseStudied").val(data.coursed);
+        $("#certificateAttained").val(data.cAt);
 
         // Show the modal
         // Replace this with your modal display code (e.g., using Bootstrap modal functions)
-        // For example: $('#update').modal('show');
+        $('#update').modal('show');
       },
       error: function (jqXHR, textStatus, errorThrown) {
         // Handle any errors, e.g., display an error message
