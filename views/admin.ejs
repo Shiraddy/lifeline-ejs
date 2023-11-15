@@ -525,14 +525,14 @@
       </div>
 
       <!-- UPDATE INFO -->
-      <form action="" class="modal" id="update" tabindex="-1">
+      <form action="/post" class="modal" id="update" tabindex="-1">
         <fieldset
           class="modal-content modal-dialog modal-dialog-centered modal-dialog-scrollable"
           data-section="1"
         >
           <div class="row modal-body modal-dialog-scrollable">
             <h5 class="my-4 d-flex justify-content-start modal-header">
-              UPDATE DATA
+              APPLICANT DATA
             </h5>
 
             <div class="col-lg-6">
@@ -701,22 +701,20 @@
                 >Application Status</label
               >
               <select
-                name="statusofApplication"
-                id="applicationCategory"
+                name="qualification"
+                id="qualification"
                 class="apply-input"
               >
-                <option value="Applicant">Success</option>
-                <option value="tutor">Failed</option>
-                <option value="Pending">Pending</option>
+                <option value="qualified">Qualified</option>
+                <option value="disqualified">Disqualified</option>
+                <option value="pending">Pending</option>
               </select>
             </div>
 
             <div class="col-lg-6">
-              <label class="label" for="statusofApplication"
-                >Application Status</label
-              >
+              <label class="label" for="statusofApplication">Category</label>
               <select
-                name="applicationStatus"
+                name="category"
                 id="applicationCategory"
                 class="apply-input"
               >
@@ -737,7 +735,11 @@
                 Close
               </button>
 
-              <button class="btn btn-danger me-lg-3" id="" type="submit">
+              <button
+                class="btn btn-danger me-lg-3"
+                id="update-data"
+                type="submit"
+              >
                 Update Data
               </button>
             </div>

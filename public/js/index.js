@@ -494,7 +494,7 @@ $(document).ready(function () {
         $("#levelOfApplicant").val(data.level);
         $("#course").val(data.coursing);
         $("#certicatePursuing").val(data.certPurs);
-        
+
         $("#schoolCompleted").val(data.schoolCompleted);
         $("#yearCompleted").val(data.YoC);
         $("#courseStudied").val(data.coursed);
@@ -517,13 +517,13 @@ $(document).ready(function () {
   $(".update-data").click(function () {
     const row = $(this).closest("tr"); // Get the parent row of the clicked button
     const applicationId = row.data("application-id"); // Assuming you have a data attribute for the application ID
-    const form = $("#update"); 
+    const form = $("#update");
 
     // Make an AJAX request to fetch data for the specific application
     $.ajax({
       type: "GET",
-      url: `/admin/details/${applicationId}`, 
-      dataType: "json", 
+      url: `/admin/details/${applicationId}`,
+      dataType: "json",
       success: function (data) {
         // Populate the form fields with the fetched data
         // form.find("#firstName").val(data.firstName);
@@ -543,7 +543,7 @@ $(document).ready(function () {
         // form.find("#status").val(data.status);
         // form.find("#location").val(data.location);
         // form.find("#schoolCompleted").val(data.schoolCompleted);
-        
+
         $("#firstName").val(data.firstName);
         $("#lastName").val(data.lastName);
         $("#location").val(data.location);
@@ -558,7 +558,7 @@ $(document).ready(function () {
         $("#levelOfApplicant").val(data.level);
         $("#course").val(data.coursing);
         $("#certicatePursuing").val(data.certPurs);
-        
+
         $("#schoolAttended").val(data.schoolCompleted);
         $("#yearCompleted").val(data.YoC);
         $("#courseStudied").val(data.coursed);
@@ -566,7 +566,7 @@ $(document).ready(function () {
 
         // Show the modal
         // Replace this with your modal display code (e.g., using Bootstrap modal functions)
-        $('#update').modal('show');
+        $("#update").modal("show");
       },
       error: function (jqXHR, textStatus, errorThrown) {
         // Handle any errors, e.g., display an error message
@@ -584,7 +584,7 @@ $(document).ready(function () {
 
     // Make an AJAX request to submit the updated data
     $.ajax({
-      type: "PUT", // You can use POST or PUT depending on your server implementation
+      type: "POST", // You can use POST or PUT depending on your server implementation
       url: "/admin/update/:id", // Adjust the URL to your server endpoint for updates
       data: formData,
       success: function () {

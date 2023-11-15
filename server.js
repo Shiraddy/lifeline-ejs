@@ -259,7 +259,7 @@ app.post("/admin/update/:id", async function (req, res) {
 
     res.status(200).json({ message: "Application updated successfully" });
   } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "Error updating Data" });
   }
 });
 
