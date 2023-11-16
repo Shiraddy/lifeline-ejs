@@ -33,61 +33,7 @@
   <body>
     <section id="form-header" class="container-fluid text-white banner">
       <div>
-        <nav class="navbar navbar-expand-lg navbar-dark container-sm">
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasResponsive"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="offcanvas-header me-auto">
-            <a href="/" class="navbar-brand pt-4"
-              ><img
-                id="#banner"
-                class="logo"
-                src="images/logo.png"
-                alt="LIFELINE"
-            /></a>
-          </div>
-
-          <div class="offcanvas-body">
-            <div
-              class="offcanvas-lg offcanvas-start"
-              tabindex="-1"
-              id="offcanvasResponsive"
-              aria-labelledby="offcanvasResponsiveLabel"
-            >
-              <button
-                type="button"
-                class="btn-close d-lg-none"
-                data-bs-dismiss="offcanvas"
-                data-bs-target="#offcanvasResponsive"
-              ></button>
-
-              <ul class="navbar-nav pe-3 d-flex justify-content-end py-3">
-                <li class="nav-item px-3 text-center">
-                  <a class="nav-link text-white" href="/">Home</a>
-                </li>
-                <li class="nav-item px-3 text-center">
-                  <a class="nav-link text-white" href="/login">Sign-in</a>
-                </li>
-                <li class="nav-item px-3 text-center">
-                  <a class="nav-link text-white" href="#about">Articles</a>
-                </li>
-                <li class="nav-item px-3 text-center">
-                  <a class="nav-link text-white" href="#contact">Contact</a>
-                </li>
-                <li class="nav-item px-3 text-center">
-                  <a class="nav-link text-white" href="/faq">Faq</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
+        <%- include('partials/NavBar') %>
         <div class="row container-sm apply-wall" id="inviteText">
           <!-- NOTICE BOARD -->
           <div class="col-lg-6">
@@ -102,10 +48,11 @@
 
           <!-- OTHER-TEXT -->
           <div class="col-lg-6 mt-lg-5 tutorText">
-            <h5 class="hero-header pt-lg-5">BECOME A TUTOR</h5>
+            <h5 class="hero-header pt-lg-5 mt-lg-2 mt-2">BECOME A TUTOR</h5>
             <p class="hero-text">
-              Apply to start receiving tutorial assignments from us. Lifeline
-              will train you further in teaching techniques.
+              Are you passionate about teaching? We're seeking talented tutors
+              to inspire and guide students on their educational journey. Take
+              the first step.
             </p>
 
             <div class="">
