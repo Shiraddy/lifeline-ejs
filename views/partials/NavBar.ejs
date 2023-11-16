@@ -1,56 +1,84 @@
-<nav class="navbar navbar-expand-lg navbar-dark container-fluid">
-  <a href="/" class="navbar-brand text-danger"
-    ><img
-      id="#banner"
-      class="logo"
-      src="images/logo.png"
-      alt="LIFELINE"
-    />LIFELINE</a
-  >
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#collapsibleNavbar"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav ms-auto pt-4 ps-2 me-lg-4">
-      <li class="nav-item px-3 text-center">
-        <a class="nav-link text-white" href="/">Home</a>
-      </li>
-      <li class="nav-item px-3 text-center dropdown">
-        <a class="nav-link text-white" href="#"
-          >Services<i class="fa-solid fa-caret-down px-1"></i
-        ></a>
-        <div class="dropdown-content">
-          <a class="nav-link" href="/tuition">Private Tuition</a>
-          <a class="nav-link" href="/counselling">Counselling</a>
-          <a class="nav-link" href="/consultancy">Consultancy</a>
-        </div>
-      </li>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a href="/" class="navbar-brand text-danger"
+      ><img
+        id="#banner"
+        class="logo"
+        src="images/logo.png"
+        alt="LIFELINE"
+      />LIFELINE</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel"
+    >
+      <!-- header -->
+      <div class="offcanvas-header">
+        <h5
+          class="offcanvas-title navbar-brand text-danger"
+          id="offcanvasNavbarLabel"
+        >
+          LIFELINE
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
 
-      <li class="nav-item px-3 text-center dropdown">
-        <a class="nav-link text-white" href="#"
-          >Tutor-Page<i class="fa-solid fa-caret-down px-1"></i
-        ></a>
-        <div class="dropdown-content">
-          <a class="nav-link" href="/login">Tutor Login</a>
-          <a class="nav-link" href="/apply">Tutor Application</a>
-          <a class="nav-link" href="/faq">Tutor Faq</a>
-          <!-- <a class="nav-link" href="#">Submit Forms</a> -->
-        </div>
-      </li>
-      <li class="nav-item px-3 text-center">
-        <a class="nav-link text-white" href="#">Blog</a>
-      </li>
-      <li class="nav-item px-3 text-center">
-        <a class="nav-link text-white" href="#contact">Contact</a>
-      </li>
-      <li class="nav-item px-3 text-center">
-        <a class="nav-link text-white" href="/faq">Faq</a>
-      </li>
-    </ul>
+      <!-- body -->
+      <div class="offcanvas-body">
+        <ul class="navbar-nav ms-auto pt-4 ps-2 me-lg-4">
+          <li class="nav-item px-3 text-center">
+            <a class="nav-link text-white" href="/">Home</a>
+          </li>
+          <li class="nav-item px-3 text-center dropdown">
+            <a class="nav-link text-white" href="#"
+              >Services<i class="fa-solid fa-caret-down px-1"></i
+            ></a>
+            <div class="dropdown-content">
+              <a class="nav-link" href="/tuition">Private Tuition</a>
+              <a class="nav-link" href="/counselling">Counselling</a>
+              <a class="nav-link" href="/consultancy">Consultancy</a>
+            </div>
+          </li>
+
+          <li class="nav-item px-3 text-center dropdown">
+            <a class="nav-link text-white" href="#"
+              >Tutor-Page<i class="fa-solid fa-caret-down px-1"></i
+            ></a>
+            <div class="dropdown-content">
+              <a class="nav-link" href="/login">Tutor Login</a>
+              <a class="nav-link" href="/apply">Tutor Application</a>
+              <a class="nav-link" href="/faq">Tutor Faq</a>
+              <!-- <a class="nav-link" href="#">Submit Forms</a> -->
+            </div>
+          </li>
+          <li class="nav-item px-3 text-center">
+            <a class="nav-link text-white" href="#">Blog</a>
+          </li>
+          <li class="nav-item px-3 text-center">
+            <a class="nav-link text-white" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item px-3 text-center">
+            <a class="nav-link text-white" href="/faq">Faq</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </nav>

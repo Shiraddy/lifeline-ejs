@@ -16,7 +16,7 @@
 
 .banner-half {
   width: 100%;
-  height: 85vh;
+  height: 55vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.686), rgba(0, 0, 0, 0.541)),
     url(/images/hero2.png);
   object-fit: cover;
@@ -1510,5 +1510,10 @@ body {
 
   .client-banner {
     height: 20vh;
+  }
+
+  .banner-half {
+    width: 100%;
+    height: 45vh;
   }
 }

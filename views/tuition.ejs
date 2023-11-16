@@ -1,12 +1,77 @@
 <%- include('partials/header') %>
 
-<div class="client-banner"><%- include('partials/NavBar') %></div>
+<div class="banner">
+  <%- include('partials/NavBar') %>
+  <div class="row">
+    <div class="col-lg-6"></div>
+    <div class="col-lg-6 text-white my-5 service-hero-text">
+      <h2 class="hero-header mt-lg-5 fs-1 mt-5">Looking For Tutor?</h2>
+      <p class="hero-text px-3 px-lg-5 fs-5 lh-lg">
+        Welcome to Lifeline Tuition, We empower students to excel with our use
+        of varied teaching methodologies and problem-solving techniques. We help
+        our students reach their full potentials.
+      </p>
+      <!-- <button class="btn btn-success btn-lg shadow-two my-lg-3 my-3 me-3">
+        SPEAK TO US
+      </button> -->
+
+      <a
+        class="btn btn-success btn-lg shadow-two my-lg-3 my-3"
+        id=""
+        href="/form"
+        >Request A Tutor</a
+      >
+    </div>
+  </div>
+</div>
 <!-----------Our Offers------------->
 <div id="lifeline" class="container-sm py-2 my-lg-5 services-apply mt-5 my-4">
-  <h2 class="choose-title mt-lg-3">OUR PRIVATE TUITION</h2>
+  <h2 class="choose-title mt-lg-5">WELCOME TO LIFELINE</h2>
   <p class="fs-4 text-dark-emphasis">
     We offer your ward the best tuition experience
   </p>
+
+  <section id="tuition-wall" class="py-5 shadow-one my-3">
+    <div class="container-sm">
+      <!-- <h2 class="text-center mb-4 choose-title">What We Do...</h2> -->
+      <!-- Add your services content here -->
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card hover">
+            <div class="card-body">
+              <h5 class="card-title">Subject Tutoring</h5>
+              <p class="card-text">
+                Expert tutors in various subjects. We teach all Basic Level
+                Subjects
+              </p>
+              <i class="fa-solid fa-book-open py-lg-2 icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card hover">
+            <div class="card-body">
+              <h5 class="card-title">Test Preparation</h5>
+              <p class="card-text">
+                Prepare for exams with our guidance. You will excel.
+              </p>
+              <i class="fa-solid fa-book-open-reader py-lg-2 icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card hover">
+            <div class="card-body">
+              <h5 class="card-title">Homework Help</h5>
+              <p class="card-text">Assistance with assignments and homework.</p>
+              <i class="fa-solid fa-school py-lg-2 icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="container-lg py-3 d-block shadow-one" id="">
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-6 banner-smile">
@@ -99,9 +164,6 @@
     </button>
   </section>
 
-  <!-- WHY CHOOSE US -->
-  <%- include('partials/chooseUs') %>
-
   <!-- About us -->
   <section id="about-us">
     <div class="col-sm py-lg-3">
@@ -127,6 +189,9 @@
       </div>
     </div>
   </section>
+
+  <!-- WHY CHOOSE US -->
+  <%- include('partials/chooseUs') %>
 
   <!-- Quotations -->
   <section id="quote">
