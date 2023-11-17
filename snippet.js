@@ -438,3 +438,62 @@ transporter.sendMail(mailOptions, function (error, info) {
     // console.log("Email sent: " + info.response);
   }
 });
+
+const db = require("./your-db-module"); // Import your database module
+
+app.post("/email", async function (req, res) {
+  try {
+    const emailData = req.body;
+    const date = emailData.date;
+    const subject = emailData.subject;
+    const message = emailData.message;
+    const sendTo = emailData.sendTo;
+
+    // Email Addresses
+    const tutorEmail = [];
+    const applicantEmail = [];
+    const all = [];
+
+    // Retrieve applicant email addresses
+    const applicantEmailAddresses = await db
+      .collection("TutorApplications")
+      .where("category", "==", "applicant")
+      .get();
+
+    applicantEmailAddresses.forEach((doc) => {
+      applicantEmail.push({
+        id: doc.id,
+      });
+    });
+
+    // Retrieve all email addresses
+    const allEmails = await db.collection("TutorApplications").get();
+
+    allEmails.forEach((doc) => {
+      all.push({
+        id: doc.id,
+      });
+    });
+
+    // Retrieve tutor email addresses
+    const tutorEmailAddresses = await db
+      .collection("TutorApplications")
+      .where("category", "==", "tutor")
+      .get();
+
+    tutorEmailAddresses.forEach((doc) => {
+      tutorEmail.push({
+        id: doc.id,
+      });
+    });
+
+    // Assuming 'Email' is a collection in the database to store emails
+    const savedEmail = await db.collection("Emails").add(emailData); // Changed collection name to 'Emails'
+    console.log(savedEmail);
+
+    res.status(200).json({ message: "Email sent successfully" });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});

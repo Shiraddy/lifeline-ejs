@@ -151,6 +151,9 @@ app.get("/post", function (req, res) {
 // Admin Page
 let tutors;
 let applications;
+let tutorEmail;
+let applicantEmail;
+let all;
 app.get("/admin", async function (req, res) {
   try {
     // Database Query
@@ -166,6 +169,9 @@ app.get("/admin", async function (req, res) {
 
     const applications = [];
     const tutors = [];
+    let tutorEmail = [];
+    let applicantEmail = [];
+    let all = [];
 
     // Store the applications data in the variable
     application.forEach((doc) => {
@@ -188,6 +194,43 @@ app.get("/admin", async function (req, res) {
         data: doc.data(),
       });
     });
+
+    // Retrieve applicant email addresses
+    const applicantEmailAddresses = await db
+      .collection("TutorApplications")
+      .where("category", "==", "applicant")
+      .get();
+
+    applicantEmailAddresses.forEach((doc) => {
+      applicantEmail.push({
+        id: doc.id,
+      });
+    });
+
+    // Retrieve all email addresses
+    const allEmails = await db.collection("TutorApplications").get();
+
+    allEmails.forEach((doc) => {
+      all.push({
+        id: doc.id,
+      });
+    });
+
+    // Retrieve tutor email addresses
+    const tutorEmailAddresses = await db
+      .collection("TutorApplications")
+      .where("category", "==", "tutor")
+      .get();
+
+    tutorEmailAddresses.forEach((doc) => {
+      tutorEmail.push({
+        id: doc.id,
+      });
+    });
+
+    // Store Email in FireStore
+    // const savedEmail = await db.collection("Emails").add(emailData);
+    // console.log(savedEmail);
 
     // console.log(tutors);
 
@@ -375,51 +418,20 @@ app.post("/message", async function (req, res) {
 });
 
 //EMAIL POST REQUEST
-var tutorEmail;
-app.post("/email", async function (req, res) {
-  let email = req.body;
-  let date = email.date;
-  let subject = email.subject;
-  let message = email.message;
-  let who = email.sendTo;
 
-  try {
-    // Database Query
-    // let applicantEmailAddresses = await db
-    //   .collection("Tutor Applications")
-    //   .where("category", "==", "applicant")
-    //   .get();
-    // // Store the applications data in the variable
-    // applicantEmailAddresses.forEach((doc) => {
-    //   applicantEmail.push({
-    //     id: doc.id,
-    //   });
-    // });
-    // let allEmails = await db.collection("Tutor Applications").get();
-    // allEmails.forEach((doc) => {
-    //   all.push({
-    //     id: doc.id,
-    //   });
-    // });
-    // let tutorEmailAddresses = await db
-    //   .collection("Tutor Applications")
-    //   .where("category", "==", "tutor")
-    //   .get();
-    // tutorEmailAddresses.forEach((doc) => {
-    //   tutorEmail.push({
-    //     id: doc.id,
-    //   });
-    // });
-    // let tutorEmail = [];
-    // let applicantEmail = [];
-    // let all = [];
-    // console.log(tutorEmail);
-    // const email = await db.collection("Email").add(email);
-    // console.log(tutors);
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+app.post("/email", async function (req, res) {
+  const emailData = req.body;
+  const date = emailData.date;
+  const subject = emailData.subject;
+  const message = emailData.message;
+  const sendTo = emailData.sendTo;
+
+  // try {
+  //   res.status(200).json({ message: "Email sent successfully" });
+  // } catch (error) {
+  //   console.error("Error:", error);
+  //   res.status(500).json({ error: "Internal Server Error" });
+  // }
 });
 
 //Tutor Application

@@ -1325,6 +1325,7 @@ body {
   }
 
   .btn-service,
+  .help-image,
   .service-image {
     width: 75%;
     margin: auto auto;
@@ -1497,10 +1498,11 @@ body {
     bottom: -2px;
     transition: 0.3s;
   }
-
+  /* 
   .help-image {
     width: 70%;
-  }
+    height: 40%;
+  } */
 
   .service-hero-text {
     position: relative;
