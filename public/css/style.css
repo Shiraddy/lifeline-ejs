@@ -251,6 +251,14 @@
   margin: auto;
 }
 
+.help-image {
+  width: 85%;
+  padding: 15px 10px;
+  margin: auto;
+  border-radius: 50%;
+  height: 33vh;
+}
+
 .service-text {
   font-family: "roboto", sans-serif;
   padding: 0.3rem;
@@ -757,7 +765,7 @@ body {
 }
 
 .card-body {
-  box-shadow: 3px 5px 2px;
+  box-shadow: 3px 4px 2px 3px;
 }
 
 .card-footer {
@@ -1488,6 +1496,20 @@ body {
     left: 20px;
     bottom: -2px;
     transition: 0.3s;
+  }
+
+  .help-image {
+    width: 70%;
+  }
+
+  .service-hero-text {
+    position: relative;
+    top: 15vh;
+    /* line-height: 100px; */
+  }
+
+  .hero-paragraph {
+    padding: 0 8vw;
   }
 
   .apply-sm-input,
