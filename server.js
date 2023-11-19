@@ -13,7 +13,7 @@ const cors = require("cors");
 app.use(cors());
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
-const session = require("express-session");
+const session = require("cookie-session");
 const http = require("https");
 const nodemailer = require("nodemailer");
 const multer = require("multer");
@@ -21,14 +21,37 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 app.use(cookieParser());
+
+// app.use(
+//   session({
+//     secret: "dgjlgjl524523",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: false }, // Adjust options as needed
+//   })
+// );
+
+app.set("trust proxy", 1);
+
 app.use(
   session({
+    cookie: {
+      secure: true,
+      maxAge: 60000,
+    },
+    // store: new admin.firestore(),
     secret: "dgjlgjl524523",
-    resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }, // Adjust options as needed
+    resave: false,
   })
 );
+
+// app.use(function (req, res, next) {
+//   if (!req.session) {
+//     return next(new Error("Oh no")); //handle error
+//   }
+//   next(); //otherwise continue
+// });
 
 //Lodash
 var _ = require("lodash");
@@ -151,9 +174,9 @@ app.get("/post", function (req, res) {
 // Admin Page
 let tutors;
 let applications;
-let tutorEmail;
-let applicantEmail;
-let all;
+// let tutorEmail;
+// let applicantEmail;
+// let all;
 app.get("/admin", async function (req, res) {
   try {
     // Database Query
@@ -169,9 +192,9 @@ app.get("/admin", async function (req, res) {
 
     const applications = [];
     const tutors = [];
-    let tutorEmail = [];
-    let applicantEmail = [];
-    let all = [];
+    // let tutorEmail = [];
+    // let applicantEmail = [];
+    // let all = [];
 
     // Store the applications data in the variable
     application.forEach((doc) => {
@@ -196,37 +219,37 @@ app.get("/admin", async function (req, res) {
     });
 
     // Retrieve applicant email addresses
-    const applicantEmailAddresses = await db
-      .collection("TutorApplications")
-      .where("category", "==", "applicant")
-      .get();
+    // const applicantEmailAddresses = await db
+    //   .collection("TutorApplications")
+    //   .where("category", "==", "applicant")
+    //   .get();
 
-    applicantEmailAddresses.forEach((doc) => {
-      applicantEmail.push({
-        id: doc.id,
-      });
-    });
+    // applicantEmailAddresses.forEach((doc) => {
+    //   applicantEmail.push({
+    //     id: doc.id,
+    //   });
+    // });
 
-    // Retrieve all email addresses
-    const allEmails = await db.collection("TutorApplications").get();
+    // // Retrieve all email addresses
+    // const allEmails = await db.collection("TutorApplications").get();
 
-    allEmails.forEach((doc) => {
-      all.push({
-        id: doc.id,
-      });
-    });
+    // allEmails.forEach((doc) => {
+    //   all.push({
+    //     id: doc.id,
+    //   });
+    // });
 
-    // Retrieve tutor email addresses
-    const tutorEmailAddresses = await db
-      .collection("TutorApplications")
-      .where("category", "==", "tutor")
-      .get();
+    // // Retrieve tutor email addresses
+    // const tutorEmailAddresses = await db
+    //   .collection("TutorApplications")
+    //   .where("category", "==", "tutor")
+    //   .get();
 
-    tutorEmailAddresses.forEach((doc) => {
-      tutorEmail.push({
-        id: doc.id,
-      });
-    });
+    // tutorEmailAddresses.forEach((doc) => {
+    //   tutorEmail.push({
+    //     id: doc.id,
+    //   });
+    // });
 
     // Store Email in FireStore
     // const savedEmail = await db.collection("Emails").add(emailData);
@@ -418,20 +441,125 @@ app.post("/message", async function (req, res) {
 });
 
 //EMAIL POST REQUEST
-
 app.post("/email", async function (req, res) {
-  const emailData = req.body;
-  const date = emailData.date;
-  const subject = emailData.subject;
-  const message = emailData.message;
-  const sendTo = emailData.sendTo;
+  try {
+    const emailData = req.body;
+    const date = emailData.date;
+    const subject = emailData.subject;
+    const message = emailData.message;
+    let sendTo = emailData.sendTo;
 
-  // try {
-  //   res.status(200).json({ message: "Email sent successfully" });
-  // } catch (error) {
-  //   console.error("Error:", error);
-  //   res.status(500).json({ error: "Internal Server Error" });
-  // }
+    // Capitalize the first letter of sendTo
+    sendTo = sendTo.charAt(0).toUpperCase() + sendTo.slice(1).toLowerCase();
+
+    let recipientEmails = [];
+
+    // Logic to fetch recipient emails based on 'sendTo'
+    if (sendTo === "All") {
+      // Fetch all email addresses
+      const allEmailsSnapshot = await db.collection("Tutor Applications").get();
+
+      allEmailsSnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.email) {
+          recipientEmails.push(data.email);
+        }
+      });
+    } else if (sendTo === "Tutor") {
+      // Fetch tutor email addresses
+      const tutorEmailSnapshot = await db
+        .collection("Tutor Applications")
+        .where("category", "==", "tutor")
+        .get();
+
+      tutorEmailSnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.email) {
+          recipientEmails.push(data.email);
+        }
+      });
+    } else if (sendTo === "Applicant") {
+      // Fetch applicant email addresses
+      const applicantEmailSnapshot = await db
+        .collection("Tutor Applications")
+        .where("category", "==", "applicant")
+        .get();
+
+      applicantEmailSnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.email) {
+          recipientEmails.push(data.email);
+        }
+      });
+    }
+    // Add other recipient categories if needed (clients, prospects, etc.)
+
+    // Prepare email template with proper placeholders
+    const emailTemplate = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>LIFELINE EMAIL</title>
+      <style>
+        /* Custom email styles */
+        .email {
+          max-width: 600px; /* Set a maximum width for the email content */
+          margin: 0 auto;   /* Center the email content */
+          padding: 20px;
+        }
+      </style>
+      </head>
+      <body>
+        <div class="email">
+          <p class="mb-4">Dear ${sendTo},</p>
+    
+          <p>
+            ${message}    
+          </p>   
+    
+          <p class="mt-4">
+            Regards.
+          </p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    // Replace placeholders in the email template
+    const personalizedEmail = emailTemplate.replace(/\${sendTo}/g, sendTo);
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "lifelineedusolutions@gmail.com",
+        pass: "hazw czvg ijak uigj",
+      },
+    });
+
+    const mailOptions = {
+      from: "lifelineedusolutions@gmail.com",
+      date: date,
+      to: recipientEmails.join(", "), // Join recipient emails with commas
+      cc: "shirazadnan53@gmail.com",
+      subject: subject,
+      html: personalizedEmail,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        res.status(500).json({ error: "Failed to send email" });
+      } else {
+        console.log("Email sent: " + info.response);
+        res.status(200).json({ message: "Email sent successfully" });
+      }
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 //Tutor Application

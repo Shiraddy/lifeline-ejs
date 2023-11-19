@@ -599,3 +599,31 @@ $(document).ready(function () {
     });
   });
 });
+
+//Admin Doc
+$(document).ready(function () {
+  $("#adminEmail").click(function (event) {
+    event.preventDefault();
+    // Serialize form data
+    var formData = $("#emailForm").serialize();
+
+    // AJAX request to handle form submission
+    $.ajax({
+      type: "POST",
+      url: "/email",
+      data: formData,
+      success: function (response) {
+        // Show success message
+        $("#responseMessage").html(
+          '<div class="success-message">' + response.message + "</div>"
+        );
+      },
+      error: function (xhr, status, error) {
+        // Show error message
+        $("#responseMessage").html(
+          '<div class="error-message">Error: ' + error + "</div>"
+        );
+      },
+    });
+  });
+});

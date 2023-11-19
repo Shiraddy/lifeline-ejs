@@ -439,8 +439,6 @@ transporter.sendMail(mailOptions, function (error, info) {
   }
 });
 
-const db = require("./your-db-module"); // Import your database module
-
 app.post("/email", async function (req, res) {
   try {
     const emailData = req.body;
@@ -497,3 +495,181 @@ app.post("/email", async function (req, res) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+const nodemailer = require("nodemailer"); // Import nodemailer if not imported already
+
+app.post("/email", async function (req, res) {
+  try {
+    const emailData = req.body;
+    const date = emailData.date;
+    const subject = emailData.subject;
+    const message = emailData.message;
+    let sendTo = emailData.sendTo;
+
+    // Capitalize the first letter of sendTo
+    sendTo = sendTo.charAt(0).toUpperCase() + sendTo.slice(1).toLowerCase();
+
+    let recipientEmails = [];
+
+    // Logic to fetch recipient emails based on 'sendTo'
+    if (sendTo === "All") {
+      // Fetch all email addresses
+      const allEmailsSnapshot = await db.collection("Tutor Applications").get();
+
+      allEmailsSnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.email) {
+          recipientEmails.push(data.email);
+        }
+      });
+    } else if (sendTo === "Tutor") {
+      // Fetch tutor email addresses
+      const tutorEmailSnapshot = await db
+        .collection("Tutor Applications")
+        .where("category", "==", "tutor")
+        .get();
+
+      tutorEmailSnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.email) {
+          recipientEmails.push(data.email);
+        }
+      });
+    } else if (sendTo === "Applicant") {
+      // Fetch applicant email addresses
+      const applicantEmailSnapshot = await db
+        .collection("Tutor Applications")
+        .where("category", "==", "applicant")
+        .get();
+
+      applicantEmailSnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.email) {
+          recipientEmails.push(data.email);
+        }
+      });
+    }
+    // Add other recipient categories if needed (clients, prospects, etc.)
+
+    // Prepare email template with proper placeholders
+    const emailTemplate = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>LIFELINE EMAIL</title>
+      <style>
+        /* Custom email styles */
+        .email {
+          max-width: 600px; /* Set a maximum width for the email content */
+          margin: 0 auto;   /* Center the email content */
+          padding: 20px;
+        }
+      </style>
+      </head>
+      <body>
+        <div class="email">
+          <p class="mb-4">Dear ${sendTo},</p>
+    
+          <p>
+            ${message}    
+          </p>   
+    
+          <p class="mt-4">
+            Regards.
+          </p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    // Replace placeholders in the email template
+    const personalizedEmail = emailTemplate.replace(/\${sendTo}/g, sendTo);
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "lifelineedusolutions@gmail.com",
+        pass: "hazw czvg ijak uigj",
+      },
+    });
+
+    const mailOptions = {
+      from: "lifelineedusolutions@gmail.com",
+      date: date,
+      to: recipientEmails.join(", "), // Join recipient emails with commas
+      cc: "shirazadnan53@gmail.com",
+      subject: subject,
+      html: personalizedEmail,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        res.status(500).json({ error: "Failed to send email" });
+      } else {
+        console.log("Email sent: " + info.response);
+        res.status(200).json({ message: "Email sent successfully" });
+      }
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Set up the session middleware
+app.use(
+  session({
+    store: new FirestoreStore({
+      database: admin.firestore(),
+      expirationMs: 86400000,
+      collection: "sessions",
+    }),
+    secret: "dgjlgjl524523",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 3600000,
+      secure: true,
+      httpOnly: true,
+    },
+  })
+);
+
+app.use(
+  session({
+    store: new FirestoreStore({
+      database: db,
+      expiration: 86400000, // Session expiration time in milliseconds (optional)
+      collection: "sessions", // Collection name for sessions (optional)
+    }),
+    secret: "dgjlgjl524523",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 3600000, // Session cookie expiration time in milliseconds (optional)
+      secure: true, // Set to true if your app is served over HTTPS (recommended for production)
+      httpOnly: true, // Reduce the risk of XSS attacks by preventing client-side access to cookies
+    },
+  })
+);
+
+app.use(
+  session({
+    store: new FirestoreStore({
+      database: db,
+      expiration: 86400000,
+      collection: "sessions",
+    }),
+    secret: "dgjlgjl524523",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 3600000,
+      secure: true,
+      httpOnly: true,
+    },
+  })
+);

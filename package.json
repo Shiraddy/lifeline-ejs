@@ -26,7 +26,9 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "body-parser": "^1.20.2",
+    "connect-session-firebase": "^11.0.0",
     "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
