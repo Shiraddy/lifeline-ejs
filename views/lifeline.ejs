@@ -1,0 +1,105 @@
+<%- include('partials/header') %>
+
+<section id="">
+  <div class="container-fluid text-white bg-danger banner">
+    <%- include('partials/NavBar') %>
+
+    <section class="container-sm">
+      <div id="offer" class="row py-lg-3 form-sign-in">
+        <div class="col-lg-8 text-start d-none d-lg-block"></div>
+        <div class="col-lg-4 col-md-6 col-sm-12 py-4 shadow-two">
+          <div class="py-2">
+            <h3>LIFELINE ADMIN</h3>
+            <p>Login With Your Credentials</p>
+          </div>
+          <form id="login-form" action="/admin" class="" method="post">
+            <input
+              required
+              type="text"
+              class="apply-input mb-4"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              value="<%= typeof email !== 'undefined' ? email : '' %>"
+            />
+            <small class="error-message" id="error-message"></small>
+            <!-- <small id="email-error" class="error-message"></small> -->
+            <br />
+
+            <input
+              required
+              class="apply-input"
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+            />
+            <br />
+
+            <!-- ERROR MESSAGE -->
+            <% if (typeof error !== 'undefined') { %>
+            <small class="danger mt-1"><%= error %></small>
+            <% } %>
+
+            <!-- SWITCH TO KEEP LOGGED IN -->
+            <!-- <div class="text-end">
+                  <input class="" type="checkbox" role="switch" />
+                  <small class="" for="flexSwitchCheckDefault"
+                    >Keep Me Logged In</small
+                  >
+                </div> -->
+
+            <!-- SUBMIT BUTTON -->
+            <button
+              id="submitbtn"
+              class="btn btn-danger apply-input mt-3"
+              type="submit"
+            >
+              Sign In
+              <span id="loading-spinner" class="d-none">
+                <div
+                  class="spinner-border spinner-border-sm text-white"
+                  role="status"
+                ></div>
+              </span>
+            </button>
+            <br />
+
+            <!-- PASSWORD & NEW-USER FIELD -->
+            <div class="d-flex justify-content-around py-3 my-lg-1">
+              <a class="link" href="#">Forgot Password</a>
+              <a class="link" href="/apply">New User? Sign-Up</a>
+            </div>
+
+            <!-- OTHER LOG IN OPTIONS -->
+            <!-- <div>
+                  <div class="py-lg-2">
+                    <p>
+                      Or Login Using:
+                      <i class="fa fa-google-plus-circle"></i>
+                      <i class="fa fa-facebook-official"></i>
+                      <i class="fa fa-twitter"></i>
+                    </p>
+                  </div>
+                </div> -->
+          </form>
+
+          <!-- <button class="btn btn-danger" id="test">Test</button>
+              <div id="error-message"></div> -->
+        </div>
+      </div>
+      <!-- NAVBAR -->
+      <div class="d-flex justify-content-between d-none d-lg-flex">
+        <div class="me-auto">
+          <a class="link" href="/">HOME </a>
+          <a class="link" href="/faq"> FAQ </a>
+          <a class="link" href="#"> CONTACT </a>
+          <a class="link" href="#"> TERMS OF USE</a>
+        </div>
+        <p class="pe-lg-5">Lifeline Educational Solutions Limited&copy;</p>
+      </div>
+    </section>
+  </div>
+</section>
+
+<%- include('partials/end') %>

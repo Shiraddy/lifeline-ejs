@@ -580,24 +580,57 @@ $(document).ready(function () {
     event.preventDefault();
 
     const form = $(this);
-    const formData = form.serialize(); // Serialize the form data
+    const formData = form.serializeArray(); // Serialize the form data as an array
 
-    // Make an AJAX request to submit the updated data
+    const updatedData = {};
+    formData.forEach((field) => {
+      updatedData[field.name] = field.value; // Convert serialized data to JSON object
+    });
+
+    const rowId = $("#tutorEmail").val(); // Retrieve the email value as the row ID
+
+    updatedData.rowId = rowId;
+
     $.ajax({
-      type: "POST", // You can use POST or PUT depending on your server implementation
-      url: "/admin/update/:id", // Adjust the URL to your server endpoint for updates
-      data: formData,
-      success: function () {
-        // Handle a successful update, e.g., display a success message
+      type: "PUT",
+      url: "/admin/update/" + rowId,
+      contentType: "application/json",
+      data: JSON.stringify(updatedData),
+      success: function (response) {
         console.log("Data updated successfully");
-        // Close the modal if needed
         $("#update").modal("hide");
+
+        const toastMessage = $("#toastMessage");
+        if (response.updated) {
+          toastMessage.text("Data updated successfully");
+          showSuccessToast();
+        } else {
+          toastMessage.text("Error updating data");
+          showErrorToast();
+        }
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log("Error:", errorThrown);
+        const toastMessage = $("#toastMessage");
+        toastMessage.text("Error: " + errorThrown);
+        showErrorToast();
       },
     });
   });
+
+  function showSuccessToast() {
+    const toastContainer = $("#toastContainer");
+    toastContainer.removeClass("bg-danger").addClass("bg-success");
+    var toast = new bootstrap.Toast(document.getElementById("toastContainer"));
+    toast.show();
+  }
+
+  function showErrorToast() {
+    const toastContainer = $("#toastContainer");
+    toastContainer.removeClass("bg-success").addClass("bg-danger");
+    var toast = new bootstrap.Toast(document.getElementById("toastContainer"));
+    toast.show();
+  }
 });
 
 //Admin Doc

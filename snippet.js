@@ -673,3 +673,286 @@ app.use(
     },
   })
 );
+
+let contracts;
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Authenticate user with provided email and password
+    const userCredential = await firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password);
+    const user = userCredential.user;
+
+    if (email === "lifelineedusolutions@gmail.com" && password === "LES12345") {
+      // For the admin user
+      const application = await db
+        .collection("Tutor Applications")
+        .where("category", "==", "applicant")
+        .get();
+
+      const tutor = await db
+        .collection("Tutor Applications")
+        .where("category", "==", "tutor")
+        .get();
+
+      const applications = [];
+      const tutors = [];
+
+      application.forEach((doc) => {
+        applications.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      if (!tutor.empty) {
+        tutor.forEach((doc) => {
+          tutors.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+      }
+
+      const noOfApplicants = applications.length;
+      const noOfTutors = tutors.length;
+
+      // Render the admin page for the admin user
+      res.render("admin", {
+        dayOfWeek: date, // Define 'date' elsewhere in your code
+        todo: todoLists, // You need to define todoLists
+        applicants: noOfApplicants,
+        applications: applications,
+        noOfTutors: noOfTutors,
+        tutors: tutors,
+        profileName: profileName,
+        fullName: fullName,
+        profile: profileData,
+        offers: contracts,
+      });
+    } else {
+      contracts = [];
+      offers.forEach((doc) => {
+        contracts.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+      // Regular user login
+      // Fetch user-related data from Firestore
+      const profile = db.collection("Tutor Applications").doc(email);
+      const doc = await profile.get();
+
+      if (doc.exists) {
+        // Document exists for regular users, fetch and render tutor page
+        const profileData = doc.data();
+        const fullName = profileData.lastName + " " + profileData.firstName;
+        const profileName = fullName.toUpperCase();
+
+        // Fetch other necessary data for regular users
+        // For example, fetching offers
+        const offers = await db.collection("Offers").get();
+
+        res.render("tutor", {
+          profileName: profileName,
+          fullName: fullName,
+          profile: profileData,
+          offers: contracts,
+        });
+      } else {
+        // Handle case where the user is not found in the database
+        res.render("login", {
+          email,
+          error: "User not found. Please sign up or check your credentials.",
+        });
+      }
+    }
+  } catch (error) {
+    console.error("Login Failed:", error.message);
+    // Handle other errors during login
+    res.render("login", {
+      email,
+      error: "An error occurred during login. Please try again.",
+    });
+  }
+});
+
+app.post("/apply", upload.single("profilePicture"), async (req, res) => {
+  const { email, password } = req.body;
+  const firstName = req.body.firstName;
+  const subject = "Lifeline Tutor Application";
+
+  try {
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    let userRecord;
+    let isNewUser = false;
+
+    try {
+      // Check if the user already exists in Firebase Authentication
+      userRecord = await admin.auth().getUserByEmail(email);
+    } catch (error) {
+      if (error.code === "auth/user-not-found") {
+        // If the user doesn't exist in Authentication, create a new user
+        userRecord = await admin.auth().createUser({
+          email,
+          password: hashedPassword, // Use the hashed password
+        });
+        isNewUser = true;
+      } else {
+        throw error; // Re-throw the error for other cases
+      }
+    }
+
+    const collection = db.collection("Tutor Applications"); // Create Collection
+    const Application = collection.doc(email); // Create Document
+
+    // Check if the user's data already exists in Firestore
+    const existingData = (await Application.get()).data();
+
+    if (!existingData || isNewUser) {
+      // Only update Firestore data if the user doesn't have data in Firestore or is a new user
+      // Filter and prepare data to be stored in Firestore
+      const filteredData = {};
+      for (const key in req.body) {
+        if (
+          req.body[key] !== null &&
+          req.body[key] !== undefined &&
+          req.body[key] !== ""
+        ) {
+          filteredData[key] = req.body[key];
+        }
+      }
+
+      // Data to be stored in Firestore
+      const updatedApplicant = {
+        uid: userRecord.uid,
+        applicationDate: new Date(),
+        email: email,
+        emailVerification: userRecord.emailVerified,
+        ...filteredData, // Include the filtered data fields
+        category: "applicant",
+        status: "active",
+        comment: " ",
+      };
+
+      if (req.file) {
+        const profilePicture = req.file;
+
+        // Upload the profile picture to Firebase Storage
+        const profilePictureFilename = `profile-pictures/${email}/${profilePicture.originalname}`;
+        const profilePictureFile = bucket.file(profilePictureFilename);
+        const profilePictureStream = profilePictureFile.createWriteStream({
+          metadata: {
+            contentType: profilePicture.mimetype,
+          },
+        });
+
+        profilePictureStream.on("error", (err) => {
+          console.error(err);
+          res.status(500).send("Error uploading profile picture");
+        });
+
+        profilePictureStream.on("finish", () => {
+          console.log("Profile picture uploaded");
+
+          // Add the profile picture URL to the Firestore data
+          updatedApplicant.profilePictureURL = profilePictureFilename;
+          Application.set(updatedApplicant);
+        });
+
+        profilePictureStream.end(profilePicture.buffer);
+      } else {
+        Application.set(updatedApplicant);
+      }
+    }
+
+    // Check if a profile picture file was uploaded
+
+    // Define the email template with a placeholder for the applicant's name
+    const emailTemplate = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LIFELINE EMAIL</title>
+        <style>
+          /* Custom email styles */
+          .email {
+            max-width: 600px; /* Set a maximum width for the email content */
+            margin: 0 auto;   /* Center the email content */
+            padding: 20px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="email">
+          <p class="mb-4">Dear ${firstName},</p>
+
+          <p>
+            We want to express our gratitude for your application to join our tuition service as a tutor. Your dedication and the effort you've put into your application have not gone unnoticed.
+          </p>
+
+          <p>
+            We have received your application and are in the process of reviewing it. We understand the importance of your qualifications and experience, and we are excited about the possibility of having you join our team.
+          </p>
+
+          <p>
+            Our selection process is thorough, and it includes reviewing applications and conducting interviews. If you are selected for an interview, we will reach out to you in the coming weeks to coordinate a suitable date and time.
+          </p>
+
+          <p>
+            We kindly ask for your patience during this process, as we have received a high number of applications. If you have any questions or concerns, please don't hesitate to reach out to us at
+            <a href="tel:0246011004">0246011004</a> or
+            <a href="tel:0243934353">0243934353</a>.
+          </p>
+
+          <p class="mt-4">
+            Regards,<br />Lifeline Educational Solution Limited.
+          </p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    const applicantName = firstName;
+    const personalizedEmail = emailTemplate.replace(
+      /{applicantName}/g,
+      applicantName
+    );
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "lifelineedusolutions@gmail.com",
+        pass: "hazw czvg ijak uigj",
+      },
+    });
+
+    const mailOptions = {
+      from: "lifelineedusolutions@gmail.com",
+      to: email,
+      subject: subject,
+      html: personalizedEmail,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        // console.log("Email sent: " + info.response);
+      }
+    });
+
+    res.render("received", { applicant: firstName });
+  } catch (error) {
+    console.error("Error creating/updating user data:", error);
+    res
+      .status(500)
+      .json({ error: "Application Failed, Check Your Internet and Try Again" });
+  }
+});

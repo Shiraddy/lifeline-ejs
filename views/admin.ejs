@@ -56,7 +56,7 @@
             ></a>
           </ul>
         </div>
-        <form class="" role="search">
+        <!-- <form class="" role="search">
           <input
             class="form-control my-2 shadow-two"
             type="search"
@@ -66,7 +66,7 @@
           <div class="d-grid">
             <button class="btn btn-success" type="submit">Search</button>
           </div>
-        </form>
+        </form> -->
       </div>
     </nav>
   </div>
@@ -413,6 +413,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav shadow-one">
+              <!-- <i class="fa-solid fa-rotate"></i> -->
               <div
                 class="btn-group"
                 role="group"
@@ -457,9 +458,9 @@
                 >
               </div>
             </ul>
-            <form class="d-flex ms-auto" role="search">
+            <form class="form-control-sm mx-5 d-flex ms-auto" role="search">
               <input
-                class="form-control me-2 shadow-one"
+                class="me-2 shadow-one"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
@@ -525,6 +526,28 @@
         </table>
       </div>
 
+      <!-- Bootstrap Toast -->
+      <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+        <div
+          id="toastContainer"
+          class="toast hide"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="toast-header">
+            <strong class="me-auto">Update Status</strong>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="toast-body" id="toastMessage"></div>
+        </div>
+      </div>
+
       <!-- UPDATE INFO -->
       <form action="/post" class="modal" id="update" tabindex="-1">
         <fieldset
@@ -574,7 +597,7 @@
               />
             </div>
 
-            <!-- <div class="col-lg-6">
+            <div class="col-lg-6">
               <label class="label" for="tutorEmail">Email Address</label>
               <input
                 class="apply-input"
@@ -584,7 +607,7 @@
                 disabled
                 placeholder="Enter Email Address"
               />
-            </div> -->
+            </div>
 
             <div class="col-lg-6">
               <label class="label" for="studentStatus">Student Status</label>
@@ -709,6 +732,16 @@
                 <option value="qualified">Qualified</option>
                 <option value="disqualified">Disqualified</option>
                 <option value="pending">Pending</option>
+              </select>
+            </div>
+
+            <div class="col-lg-6">
+              <label class="label" for="statusofApplication">Rating</label>
+              <select name="rating" id="applicationrating" class="apply-input">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">C</option>
               </select>
             </div>
 

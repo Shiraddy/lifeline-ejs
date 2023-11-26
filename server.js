@@ -19,6 +19,8 @@ const nodemailer = require("nodemailer");
 const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 app.use(cookieParser());
 
@@ -171,106 +173,158 @@ app.get("/post", function (req, res) {
   res.render("post-request");
 });
 
+app.get("/lifeline", function (req, res) {
+  res.render("lifeline");
+});
+
 // Admin Page
-let tutors;
-let applications;
+
 // let tutorEmail;
 // let applicantEmail;
 // let all;
-app.get("/admin", async function (req, res) {
+// app.post("/admin", async function (req, res) {
+//   const { email, password } = req.body;
+
+//   try {
+//     // Authenticate user with provided email and password
+//     const userCredential = await firebase
+//       .auth()
+//       .signInWithEmailAndPassword(email, password);
+//     const user = userCredential.user;
+
+//     // Database Query
+//     const application = await db
+//       .collection("Tutor Applications")
+//       .where("category", "==", "applicant")
+//       .get();
+
+//     const tutor = await db
+//       .collection("Tutor Applications")
+//       .where("category", "==", "tutor")
+//       .get();
+
+//     const applications = [];
+//     const tutors = [];
+//     // let tutorEmail = [];
+//     // let applicantEmail = [];
+//     // let all = [];
+
+//     // Store the applications data in the variable
+//     application.forEach((doc) => {
+//       applications.push({
+//         id: doc.id,
+//         data: doc.data(),
+//       });
+//     });
+
+//     // Store the tutor data in the variable
+
+//     if (tutor.empty) {
+//       console.log("No matching tutor documents.");
+//       return;
+//     }
+
+//     tutor.forEach((doc) => {
+//       tutors.push({
+//         id: doc.id,
+//         data: doc.data(),
+//       });
+//     });
+
+//     const noOfApplicants = applications.length;
+//     const noOfTutors = tutors.length;
+
+//     res.render("admin", {
+//       dayOfWeek: date, // Define 'date' elsewhere in your code
+//       todo: todoLists, // You need to define todoLists
+//       applicants: noOfApplicants,
+//       applications: applications,
+//       noOfTutors: noOfTutors,
+//       tutors: tutors, // Add the tutors data to the template
+//     });
+//   } catch (error) {
+//     console.error("Login Failed:", error.message);
+//     // Handle other errors during login
+//     res.render("login", {
+//       email,
+//       error: "An error occurred during login. Please try again.",
+//     });
+//   }
+// });
+
+// Hardcoded admin email and password
+
+let tutors;
+let applications;
+app.post("/admin", async function (req, res) {
+  const { email, password } = req.body;
+  const hardcodedAdminEmail = "lifelineedusolutions@gmail.com";
+  const hardcodedAdminPassword = "LES12345";
+
   try {
+    // Check if the provided email and password match the hardcoded admin credentials
+    if (email !== hardcodedAdminEmail || password !== hardcodedAdminPassword) {
+      throw new Error("Invalid email or password");
+    }
+
+    // Simulating a successful login by setting a flag isAdminLoggedIn to true
+    // You might want to handle sessions or other authentication mechanisms in a real application
+    const isAdminLoggedIn = true;
+
+    if (!isAdminLoggedIn) {
+      throw new Error("Failed to log in as admin");
+    }
+
     // Database Query
-    const application = await db
+    const applicationSnapshot = await db
       .collection("Tutor Applications")
       .where("category", "==", "applicant")
       .get();
-
-    const tutor = await db
+    const tutorSnapshot = await db
       .collection("Tutor Applications")
       .where("category", "==", "tutor")
       .get();
 
     const applications = [];
     const tutors = [];
-    // let tutorEmail = [];
-    // let applicantEmail = [];
-    // let all = [];
 
-    // Store the applications data in the variable
-    application.forEach((doc) => {
+    applicationSnapshot.forEach((doc) => {
       applications.push({
         id: doc.id,
         data: doc.data(),
       });
     });
 
-    // Store the tutor data in the variable
-
-    if (tutor.empty) {
+    if (tutorSnapshot.empty) {
       console.log("No matching tutor documents.");
       return;
     }
 
-    tutor.forEach((doc) => {
+    tutorSnapshot.forEach((doc) => {
       tutors.push({
         id: doc.id,
         data: doc.data(),
       });
     });
 
-    // Retrieve applicant email addresses
-    // const applicantEmailAddresses = await db
-    //   .collection("TutorApplications")
-    //   .where("category", "==", "applicant")
-    //   .get();
-
-    // applicantEmailAddresses.forEach((doc) => {
-    //   applicantEmail.push({
-    //     id: doc.id,
-    //   });
-    // });
-
-    // // Retrieve all email addresses
-    // const allEmails = await db.collection("TutorApplications").get();
-
-    // allEmails.forEach((doc) => {
-    //   all.push({
-    //     id: doc.id,
-    //   });
-    // });
-
-    // // Retrieve tutor email addresses
-    // const tutorEmailAddresses = await db
-    //   .collection("TutorApplications")
-    //   .where("category", "==", "tutor")
-    //   .get();
-
-    // tutorEmailAddresses.forEach((doc) => {
-    //   tutorEmail.push({
-    //     id: doc.id,
-    //   });
-    // });
-
-    // Store Email in FireStore
-    // const savedEmail = await db.collection("Emails").add(emailData);
-    // console.log(savedEmail);
-
-    // console.log(tutors);
-
     const noOfApplicants = applications.length;
     const noOfTutors = tutors.length;
 
     res.render("admin", {
       dayOfWeek: date, // Define 'date' elsewhere in your code
-      todo: todoLists, // You need to define todoLists
+      todo: [], // You need to define todoLists
       applicants: noOfApplicants,
       applications: applications,
       noOfTutors: noOfTutors,
-      tutors: tutors, // Add the tutors data to the template
+      tutors: tutors,
     });
   } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error("Login Failed:", error.message);
+    // Handle authentication failure
+    res.render("lifeline", {
+      email,
+      error: "Invalid email or password. Please try again.",
+    });
   }
 });
 
@@ -313,7 +367,7 @@ app.get("/admin/details/:id", async function (req, res) {
 });
 
 // Handle POST requests to update an application by ID
-app.post("/admin/update/:id", async function (req, res) {
+app.put("/admin/update/:id", async function (req, res) {
   const applicationId = req.params.id;
   const updatedData = req.body;
 
@@ -323,9 +377,12 @@ app.post("/admin/update/:id", async function (req, res) {
       .doc(applicationId)
       .update(updatedData);
 
-    res.status(200).json({ message: "Application updated successfully" });
+    // Sending a custom success message
+    res
+      .status(200)
+      .json({ message: "Application updated successfully", updated: true });
   } catch (error) {
-    res.status(500).json({ error: "Error updating Data" });
+    res.status(500).json({ error: "Error updating Data", updated: false });
   }
 });
 
@@ -563,6 +620,186 @@ app.post("/email", async function (req, res) {
 });
 
 //Tutor Application
+// app.post("/apply", upload.single("profilePicture"), async (req, res) => {
+//   const { email, password } = req.body;
+//   const firstName = req.body.firstName;
+//   const subject = "Lifeline Tutor Application";
+
+//   try {
+//     // Hash the password
+//     const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+//     let userRecord;
+//     let isNewUser = false;
+
+//     try {
+//       // Check if the user already exists in Firebase Authentication
+//       userRecord = await admin.auth().getUserByEmail(email);
+//     } catch (error) {
+//       if (error.code === "auth/user-not-found") {
+//         // If the user doesn't exist in Authentication, create a new user
+//         userRecord = await admin.auth().createUser({
+//           email,
+//           password: hashedPassword, // Use the hashed password
+//         });
+//         isNewUser = true;
+//       } else {
+//         throw error; // Re-throw the error for other cases
+//       }
+//     }
+
+//     const collection = db.collection("Tutor Applications"); // Create Collection
+//     const Application = collection.doc(email); // Create Document
+
+//     // Check if the user's data already exists in Firestore
+//     const existingData = (await Application.get()).data();
+
+//     if (!existingData || isNewUser) {
+//       // Only update Firestore data if the user doesn't have data in Firestore or is a new user
+//       // Filter and prepare data to be stored in Firestore
+//       const filteredData = {};
+//       for (const key in req.body) {
+//         if (
+//           req.body[key] !== null &&
+//           req.body[key] !== undefined &&
+//           req.body[key] !== "" &&
+//           key !== "password" &&
+//           key !== "password-confirm"
+//         ) {
+//           filteredData[key] = req.body[key];
+//         }
+//       }
+
+//       // Data to be stored in Firestore
+//       const updatedApplicant = {
+//         uid: userRecord.uid,
+//         applicationDate: new Date(),
+//         email: email,
+//         emailVerification: userRecord.emailVerified,
+//         ...filteredData, // Include the filtered data fields
+//         category: "applicant",
+//         status: "active",
+//         comment: " ",
+//       };
+
+//       if (req.file) {
+//         const profilePicture = req.file;
+
+//         // Upload the profile picture to Firebase Storage
+//         const profilePictureFilename = `profile-pictures/${email}/${profilePicture.originalname}`;
+//         const profilePictureFile = bucket.file(profilePictureFilename);
+//         const profilePictureStream = profilePictureFile.createWriteStream({
+//           metadata: {
+//             contentType: profilePicture.mimetype,
+//           },
+//         });
+
+//         profilePictureStream.on("error", (err) => {
+//           console.error(err);
+//           res.status(500).send("Error uploading profile picture");
+//         });
+
+//         profilePictureStream.on("finish", () => {
+//           console.log("Profile picture uploaded");
+
+//           // Add the profile picture URL to the Firestore data
+//           updatedApplicant.profilePictureURL = profilePictureFilename;
+//           Application.set(updatedApplicant);
+//         });
+
+//         profilePictureStream.end(profilePicture.buffer);
+//       } else {
+//         Application.set(updatedApplicant);
+//       }
+//     }
+
+//     // Check if a profile picture file was uploaded
+
+//     // Define the email template with a placeholder for the applicant's name
+//     const emailTemplate = `
+//       <!DOCTYPE html>
+//       <html lang="en">
+//       <head>
+//         <meta charset="UTF-8" />
+//         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+//         <title>LIFELINE EMAIL</title>
+//         <style>
+//           /* Custom email styles */
+//           .email {
+//             max-width: 600px; /* Set a maximum width for the email content */
+//             margin: 0 auto;   /* Center the email content */
+//             padding: 20px;
+//           }
+//         </style>
+//       </head>
+//       <body>
+//         <div class="email">
+//           <p class="mb-4">Dear ${firstName},</p>
+
+//           <p>
+//             We want to express our gratitude for your application to join our tuition service as a tutor. Your dedication and the effort you've put into your application have not gone unnoticed.
+//           </p>
+
+//           <p>
+//             We have received your application and are in the process of reviewing it. We understand the importance of your qualifications and experience, and we are excited about the possibility of having you join our team.
+//           </p>
+
+//           <p>
+//             Our selection process is thorough, and it includes reviewing applications and conducting interviews. If you are selected for an interview, we will reach out to you in the coming weeks to coordinate a suitable date and time.
+//           </p>
+
+//           <p>
+//             We kindly ask for your patience during this process, as we have received a high number of applications. If you have any questions or concerns, please don't hesitate to reach out to us at
+//             <a href="tel:0246011004">0246011004</a> or
+//             <a href="tel:0243934353">0243934353</a>.
+//           </p>
+
+//           <p class="mt-4">
+//             Regards,<br />Lifeline Educational Solution Limited.
+//           </p>
+//         </div>
+//       </body>
+//       </html>
+//     `;
+
+//     const applicantName = firstName;
+//     const personalizedEmail = emailTemplate.replace(
+//       /{applicantName}/g,
+//       applicantName
+//     );
+
+//     const transporter = nodemailer.createTransport({
+//       service: "gmail",
+//       auth: {
+//         user: "lifelineedusolutions@gmail.com",
+//         pass: "hazw czvg ijak uigj",
+//       },
+//     });
+
+//     const mailOptions = {
+//       from: "lifelineedusolutions@gmail.com",
+//       to: email,
+//       subject: subject,
+//       html: personalizedEmail,
+//     };
+
+//     transporter.sendMail(mailOptions, function (error, info) {
+//       if (error) {
+//         console.log(error);
+//       } else {
+//         // console.log("Email sent: " + info.response);
+//       }
+//     });
+
+//     res.render("received", { applicant: firstName });
+//   } catch (error) {
+//     console.error("Error creating/updating user data:", error);
+//     res
+//       .status(500)
+//       .json({ error: "Application Failed, Check Your Internet and Try Again" });
+//   }
+// });
+
 app.post("/apply", upload.single("profilePicture"), async (req, res) => {
   const { email, password } = req.body;
   const firstName = req.body.firstName;
@@ -604,7 +841,9 @@ app.post("/apply", upload.single("profilePicture"), async (req, res) => {
         if (
           req.body[key] !== null &&
           req.body[key] !== undefined &&
-          req.body[key] !== ""
+          req.body[key] !== "" &&
+          key !== "password" &&
+          key !== "password-confirm"
         ) {
           filteredData[key] = req.body[key];
         }
@@ -1060,6 +1299,17 @@ app.post("/form", async function (req, res) {
   }
 });
 
+//Add Data to FireStore
+// await db.collection('cities').doc('new-city-id').set(data); //Use set if I want to have a unique doc id.
+// Add a new document with a generated id.
+// let country = {
+//   name: 'Tokyo',
+//   country: 'Japan'
+// }
+// const res = await db.collection('cities').add();
+
+// console.log('Added document with ID: ', res.id);
+
 // READING ENTIRE DOCUMENT
 // const snapshot = await db.collection('users').get();
 // snapshot.forEach((doc) => {
@@ -1074,6 +1324,18 @@ app.post("/form", async function (req, res) {
 // } else {
 //   console.log('Document data:', doc.data());
 // }
+
+//Merge New Data with Old
+//const cityRef = db.collection('cities').doc('BJ');
+// const res = await cityRef.set({
+//   capital: true
+// }, { merge: true });
+
+//UPDATE DOCUMENT
+// const cityRef = db.collection('cities').doc('DC');
+
+// // Set the 'capital' field of the city
+// const res = await cityRef.update({capital: true});
 
 //READ SEVERAL DOCS WITH PARAMS
 // const citiesRef = db.collection('cities');
@@ -1111,7 +1373,6 @@ app.post("/form", async function (req, res) {
 //     console.log(body.toString());
 //   });
 // });
-
 // request.end();
 
 //Online and Local Server
