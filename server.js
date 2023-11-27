@@ -126,6 +126,18 @@ app.get("/", (req, res) => {
 });
 
 app.get("/tuition", async function (req, res) {
+  const prospectsSnapshot = await db
+    .collection("Request For Tutor")
+    .where("category", "==", "request")
+    .get();
+
+  // console.log(prospectsSnapshot);
+
+  const prospectData = [];
+  prospectsSnapshot.forEach((doc) => {
+    prospectData.push(doc.data());
+    console.log(prospectData);
+  });
   res.render("tuition");
 });
 
@@ -385,6 +397,64 @@ app.put("/admin/update/:id", async function (req, res) {
     res.status(500).json({ error: "Error updating Data", updated: false });
   }
 });
+
+app.get("/data/prospects", async function (req, res) {
+  try {
+    const prospectsSnapshot = await db
+      .collection("Request For Tutor")
+      .where("category", "==", "request")
+      .get();
+
+    const prospectData = [];
+    prospectsSnapshot.forEach((doc) => {
+      prospectData.push(doc.data());
+      // console.log(prospectData);
+    });
+    return res.json(prospectData);
+  } catch (error) {
+    // Handle server errors
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.get("/data/clients", async function (req, res) {
+  try {
+    const prospectsSnapshot = await db
+      .collection("Request For Tutor")
+      .where("category", "==", "client")
+      .get();
+
+    const clientData = [];
+    prospectsSnapshot.forEach((doc) => {
+      clientData.push(doc.data());
+      // console.log(clientData);
+    });
+    return res.json(clientData);
+  } catch (error) {
+    // Handle server errors
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+//Fetch Prospects Data
+// app.get("/admin/details/prospects", async function (req, res) {
+//   try {
+//     const prospectsSnapshot = await db
+//       .collection("Request For Tutor")
+//       .where("category", "==", "request")
+//       .get();
+
+//     const prospectData = [];
+//     prospectsSnapshot.forEach((doc) => {
+//       prospectData.push(doc.data());
+//       console.log(prospectData);
+//     });
+//     return res.json(prospectData);
+//   } catch (error) {
+//     // Handle server errors
+//     return res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
 
 // console.log(applications);
 

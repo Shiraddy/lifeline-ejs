@@ -92,14 +92,14 @@
         <div class="col-lg-3">
           <div class="client shadow-two bg-white">
             <h4>Contracts</h4>
-            <h5>1000</h5>
+            <h5 id="clientCount"></h5>
           </div>
         </div>
 
         <div class="col-lg-3">
           <div class="profit shadow-two bg-white">
-            <h4>Students</h4>
-            <p>1000</p>
+            <h4>Request</h4>
+            <h4>1000</h4>
           </div>
         </div>
       </div>
@@ -836,6 +836,47 @@
             <% }); %>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <section class="form-apply shadow-two py-2 px-lg-3">
+      <h3 class="py-1">CLIENT PANEL</h3>
+      <div
+        class="btn-toolbar my-3"
+        role="toolbar"
+        aria-label="Toolbar with button groups"
+      >
+        <div class="btn-group me-2" role="group" aria-label="First group">
+          <button id="clientsBtn" type="button" class="btn btn-primary">
+            Clients
+          </button>
+          <button id="prospectsBtn" type="button" class="btn btn-primary">
+            Prospects
+          </button>
+          <!-- <button type="button" class="btn btn-primary">Students</button> -->
+        </div>
+      </div>
+
+      <div id="table-container">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <!-- <h4>Tutors</h4> -->
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Ward</th>
+                <th>Relations</th>
+                <th>Sessions</th>
+                <!-- <th>Location</th> -->
+                <th>Fees</th>
+                <th>More</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
     </section>
   </div>

@@ -1,298 +1,201 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lifeline Edu. Solutions</title>
+<%- include('partials/header') %>
 
-    <!-- BOOTSTRAP CDN -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
+<body>
+  <!-- HERO PAGE AND NAV-BAR -->
+  <div id="banner" class="banner"><%- include('partials/NavBar') %></div>
+  <!-- HERO PAGE TEXT -->
+  <div class="content row">
+    <div class="col-lg-6 col-md-5 col-sm-12"></div>
+    <div class="col-lg-6 col-md-12 col-sm-12">
+      <h1 class="hero-header">
+        <span class="hero-home shadow">HOME TUITION</span>
+      </h1>
+      <p class="hero-text lh-base">
+        Your Child's Journey to Success Starts Now: We believe that every
+        student has the potential to succeed. At Lifeline, we partner with
+        parents and guardians to make this potential a reality.
+      </p>
+      <form class="d-flex justify-content-center" role="search">
+        <a
+          class="btn btn-danger shadow-two px-lg-4 search-button me-3"
+          href="/form"
+          >GET A TUTOR</a
+        >
+        <a
+          class="btn btn-primary shadow-two d-none d-lg-block search-button"
+          href="/apply"
+          >BECOME A TUTOR</a
+        >
+      </form>
+    </div>
+  </div>
 
-    <!-- MY CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+  <!-----------SERVICES SECTION------------->
+  <section id="services">
+    <div id="offer" class="container-sm py-2 services">
+      <h2 class="py-3 choose-title">OUR SERVICES</h2>
+      <hr />
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <div class="card shadow-two hover">
+            <img class="service-image" src="images/Tuition.png" alt="" />
+            <a class="btn btn-danger btn-service" id="tuition" href="/tuition"
+              >Private Tuition</a
+            >
+            <p class="service-text text-dark-emphasis my-2 px-lg-2 px-4">
+              We offer your child the best tuition experience using workable
+              methods and techniques.
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <div class="card shadow-two hover">
+            <img
+              class="service-image"
+              src="images/Skill.png"
+              alt="images/skill"
+            />
+            <a
+              class="btn btn-danger btn-service"
+              id="counseling"
+              href="/counselling"
+              >Counselling</a
+            >
+            <p class="service-text text-dark-emphasis my-2 px-lg-2 px-4">
+              Our guidance and counseling offers your child the helping hand to
+              make life-changing decisions.
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <div class="card shadow-two hover">
+            <img
+              class="service-image"
+              src="images/counselling.png"
+              alt="images"
+            />
+            <a class="btn btn-danger btn-service" id="skill" href="/consultancy"
+              >Consultancy</a
+            >
+            <p class="service-text text-dark-emphasis my-2 px-lg-2 px-4">
+              We proffer solutions to the many educational challenges schools
+              face through training and expertise.
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr />
 
-    <!-- BOOTSTRAP ICONS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
+      <!-- ABOUT SECTION -->
+      <%- include('partials/about') %>
 
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&family=Lato:wght@400&family=Merriweather:wght@400;900&family=Montserrat:wght@800&family=Noto+Serif:wght@600&family=Open+Sans&family=PT+Sans&display=swap"
-      rel="stylesheet"
-    />
+      <hr />
 
-    <!-- FAVICON -->
-    <link rel="icon" href="/images/logo.png" />
+      <!----------CHOOSE US SECTION------------>
+      <%- include('partials/chooseUs') %>
+      <hr />
 
-    <!-- FONT AWESOME -->
-    <script
-      src="https://kit.fontawesome.com/71529e80f4.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
+      <!----------TESTIMONIAL SECTION------------>
+      <section
+        id="testimonial"
+        class="carousel slide banner-half pt-5"
+        data-bs-ride="carousel"
+        data-bs-interval="6000"
+      >
+        <!-- Carousel-Indicators -->
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#testimonial"
+            data-bs-slide-to="0"
+            class="active"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#testimonial"
+            data-bs-slide-to="1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#testimonial"
+            data-bs-slide-to="2"
+          ></button>
+        </div>
 
-  <body>
-    <!-- HERO PAGE AND NAV-BAR -->
-    <div id="banner" class="banner">
-      <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
-        <a href="/" class="navbar-brand text-danger">
-          <img id="banner" class="logo" src="images/logo.png" alt="LIFELINE" />
-          LIFELINE
-        </a>
+        <!-- Carousel-content -->
+        <div class="carousel">
+          <div class="carousel-inner testimony shadow">
+            <h2 class="choose-title pt-lg-3">What Our Clients Say</h2>
+            <div class="carousel-item">
+              <p class="px-lg-5 px-md-4 py-lg-3 test-text">
+                I have had a number of tutors teach my children, but none has
+                been as effective as the Lifeline tutor I have now. Thank you.
+              </p>
+              <i
+                class="fa-solid fa-user icon shadow d-none d-lg-inline-block"
+              ></i>
+              <h4 class="testimonial-parent">Mr. Erik</h4>
+            </div>
+            <div class="carousel-item active">
+              <p class="px-lg-5 px-md-4 py-lg-3 test-text">
+                The tutor is very good. He takes his time to teach my children
+                and is very patient with them. I can see improvement.
+              </p>
+              <i
+                class="fa-solid fa-user icon shadow d-none d-lg-inline-block"
+              ></i>
+              <h4 class="testimonial-parent">Mr. Emmanuel</h4>
+            </div>
+            <div class="carousel-item">
+              <p class="px-lg-5 px-md-4 py-lg-3 test-text">
+                My four year old daughter had reading challenge.She couldn't
+                identify the letters and the sounds. Lifeline came in and
+                helped. Now she can read.
+              </p>
+              <i
+                class="fa-solid fa-user icon shadow d-none d-lg-inline-block"
+              ></i>
+              <h4 class="testimonial-parent">Mrs. David</h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel-buttons -->
         <button
-          class="navbar-toggler"
+          class="carousel-control-prev shadow-one"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapsibleNavbar"
+          data-bs-target="#testimonial"
+          data-bs-slide="prev"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span class="carousel-control-prev-icon caro-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav ms-auto pt-4 ps-2 me-lg-4">
-            <li class="nav-item px-3 text-center">
-              <a class="nav-link text-white" href="/">Home</a>
-            </li>
-            <li class="nav-item px-3 text-center dropdown">
-              <a class="nav-link text-white" href="#"
-                >Services<i class="fa-solid fa-caret-down px-1"></i
-              ></a>
-              <div class="dropdown-content">
-                <a class="nav-link" href="tuition">Private Tuition</a>
-                <a class="nav-link" href="counselling">Counselling</a>
-                <a class="nav-link" href="consultancy">Consultancy</a>
-              </div>
-            </li>
-            <li class="nav-item px-3 text-center dropdown">
-              <a class="nav-link text-white" href="#"
-                >Tutor-Page<i class="fa-solid fa-caret-down px-1"></i
-              ></a>
-              <div class="dropdown-content">
-                <a class="nav-link" href="/login">Tutor Login</a>
-                <a class="nav-link" href="/apply">Tutor Application</a>
-                <a class="nav-link" href="/faq">Tutor Faq</a>
-              </div>
-            </li>
-            <li class="nav-item px-3 text-center">
-              <a class="nav-link text-white" href="#">Blog</a>
-            </li>
-            <li class="nav-item px-3 text-center">
-              <a class="nav-link text-white" href="#contact">Contact</a>
-            </li>
-            <li class="nav-item px-3 text-center">
-              <a class="nav-link text-white" href="/faq">Faq</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <!-- HERO PAGE TEXT -->
-    <div class="content row">
-      <div class="col-lg-6 col-md-5 col-sm-12"></div>
-      <div class="col-lg-6 col-md-12 col-sm-12">
-        <h1 class="hero-header">
-          <span class="hero-home shadow">HOME TUITION</span>
-        </h1>
-        <p class="hero-text lh-base">
-          Your Child's Journey to Success Starts Now: We believe that every
-          student has the potential to succeed. At Lifeline, we partner with
-          parents and guardians to make this potential a reality.
-        </p>
-        <form class="d-flex justify-content-center" role="search">
-          <a
-            class="btn btn-danger shadow-two px-lg-4 search-button me-3"
-            href="/form"
-            >GET A TUTOR</a
-          >
-          <a
-            class="btn btn-primary shadow-two d-none d-lg-block search-button"
-            href="/apply"
-            >BECOME A TUTOR</a
-          >
-        </form>
-      </div>
-    </div>
 
-    <!-----------SERVICES SECTION------------->
-    <section id="services">
-      <div id="offer" class="container-sm py-2 services">
-        <h2 class="py-3 choose-title">OUR SERVICES</h2>
-        <hr />
-        <div class="row">
-          <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card shadow-two hover">
-              <img class="service-image" src="images/Tuition.png" alt="" />
-              <a class="btn btn-danger btn-service" id="tuition" href="/tuition"
-                >Private Tuition</a
-              >
-              <p class="service-text text-dark-emphasis my-2 px-lg-2 px-4">
-                We offer your child the best tuition experience using workable
-                methods and techniques.
-              </p>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card shadow-two hover">
-              <img
-                class="service-image"
-                src="images/Skill.png"
-                alt="images/skill"
-              />
-              <a
-                class="btn btn-danger btn-service"
-                id="counseling"
-                href="/counselling"
-                >Counselling</a
-              >
-              <p class="service-text text-dark-emphasis my-2 px-lg-2 px-4">
-                Our guidance and counseling offers your child the helping hand
-                to make life-changing decisions.
-              </p>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card shadow-two hover">
-              <img
-                class="service-image"
-                src="images/counselling.png"
-                alt="images"
-              />
-              <a
-                class="btn btn-danger btn-service"
-                id="skill"
-                href="/consultancy"
-                >Consultancy</a
-              >
-              <p class="service-text text-dark-emphasis my-2 px-lg-2 px-4">
-                We proffer solutions to the many educational challenges schools
-                face through training and expertise.
-              </p>
-            </div>
-          </div>
-        </div>
-        <hr />
-
-        <!-- ABOUT SECTION -->
-        <%- include('partials/about') %>
-
-        <hr />
-
-        <!----------CHOOSE US SECTION------------>
-        <%- include('partials/chooseUs') %>
-        <hr />
-
-        <!----------TESTIMONIAL SECTION------------>
-        <section
-          id="testimonial"
-          class="carousel slide banner-half pt-5"
-          data-bs-ride="carousel"
-          data-bs-interval="6000"
+        <button
+          class="carousel-control-next shadow-one"
+          type="button"
+          data-bs-target="#testimonial"
+          data-bs-slide="next"
         >
-          <!-- Carousel-Indicators -->
-          <div class="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#testimonial"
-              data-bs-slide-to="0"
-              class="active"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#testimonial"
-              data-bs-slide-to="1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#testimonial"
-              data-bs-slide-to="2"
-            ></button>
-          </div>
+          <span class="carousel-control-next-icon caro-icon"></span>
+        </button>
+      </section>
+      <hr />
 
-          <!-- Carousel-content -->
-          <div class="carousel">
-            <div class="carousel-inner testimony shadow">
-              <h2 class="choose-title pt-lg-3">What Our Clients Say</h2>
-              <div class="carousel-item">
-                <p class="px-lg-5 px-md-4 py-lg-3 test-text">
-                  I have had a number of tutors teach my children, but none has
-                  been as effective as the Lifeline tutor I have now. Thank you.
-                </p>
-                <i
-                  class="fa-solid fa-user icon shadow d-none d-lg-inline-block"
-                ></i>
-                <h4 class="testimonial-parent">Mr. Erik</h4>
-              </div>
-              <div class="carousel-item active">
-                <p class="px-lg-5 px-md-4 py-lg-3 test-text">
-                  The tutor is very good. He takes his time to teach my children
-                  and is very patient with them. I can see improvement.
-                </p>
-                <i
-                  class="fa-solid fa-user icon shadow d-none d-lg-inline-block"
-                ></i>
-                <h4 class="testimonial-parent">Mr. Emmanuel</h4>
-              </div>
-              <div class="carousel-item">
-                <p class="px-lg-5 px-md-4 py-lg-3 test-text">
-                  My four year old daughter had reading challenge.She couldn't
-                  identify the letters and the sounds. Lifeline came in and
-                  helped. Now she can read.
-                </p>
-                <i
-                  class="fa-solid fa-user icon shadow d-none d-lg-inline-block"
-                ></i>
-                <h4 class="testimonial-parent">Mrs. David</h4>
-              </div>
-            </div>
-          </div>
+      <!--TUTORS SECTION-->
 
-          <!-- Carousel-buttons -->
-          <button
-            class="carousel-control-prev shadow-one"
-            type="button"
-            data-bs-target="#testimonial"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon caro-icon"></span>
-          </button>
+      <%- include('partials/tutorlist') %>
 
-          <button
-            class="carousel-control-next shadow-one"
-            type="button"
-            data-bs-target="#testimonial"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon caro-icon"></span>
-          </button>
-        </section>
-        <hr />
+      <!-- EMAIL US  -->
 
-        <!--TUTORS SECTION-->
+      <%- include('partials/message') %>
+    </div>
 
-        <%- include('partials/tutorlist') %>
+    <!-- CONTACT-SECTION -->
+    <%- include('partials/contact') %>
 
-        <!-- EMAIL US  -->
+    <!-- FOOTER SECTION -->
+    <%- include('partials/footer') %>
+  </section>
 
-        <%- include('partials/message') %>
-      </div>
-
-      <!-- CONTACT-SECTION -->
-      <%- include('partials/contact') %>
-
-      <!-- FOOTER SECTION -->
-      <%- include('partials/footer') %>
-    </section>
-
-    <%- include('partials/end') %>
-  </body>
-</html>
+  <%- include('partials/end') %>
+</body>

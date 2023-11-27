@@ -660,3 +660,134 @@ $(document).ready(function () {
     });
   });
 });
+
+// client table
+$(document).ready(function () {
+  $.ajax({
+    method: "GET",
+    url: "data/clients",
+    dataType: "json",
+    success: function (response) {
+      if (response.error) {
+        // Handle error message
+        console.log(response.error);
+      } else {
+        // Assuming response is an array of client objects
+        const clients = response; // Assuming response is an array
+        const clientCount = clients.length;
+        $("#clientCount").text(`${clientCount}`);
+
+        // Clear the table body before adding new data
+        $("#table-container tbody").empty();
+
+        // Iterate through each client and populate the table
+        clients.forEach(function (client, index) {
+          const tableRow = `
+          <tr>
+          <td>${index + 1}</td>
+          <td>${client.parent}</td>
+          <td>${client.contact}</td>
+          <td>${client.student}</td>
+          <td>${client.relationship}</td>
+          <td>${client.weeklySession}</td>
+          <td>${client.fees}</td>
+          <td>${client.tutor}</td>
+        </tr>
+          `;
+          // Append the table row to the table body
+          $("#table-container tbody").append(tableRow);
+        });
+      }
+    },
+    error: function (xhr, status, error) {
+      // Show error message
+      console.log(status, xhr, error);
+    },
+  });
+
+  $("#prospectsBtn").click(function () {
+    $.ajax({
+      method: "GET",
+      url: "data/prospects",
+      dataType: "json",
+      success: function (response) {
+        if (response.error) {
+          // Handle error message
+          console.log(response.error);
+        } else {
+          // Assuming response is an array of client objects
+          const clients = response; // Assuming response is an array
+
+          // Clear the table body before adding new data
+          $("#table-container tbody").empty();
+
+          // Iterate through each client and populate the table
+          clients.forEach(function (client, index) {
+            const tableRow = `
+              <tr>
+                <td>${index + 1}</td>
+                <td>${client.parent}</td>
+                <td>${client.contact}</td>
+                <td>${client.student}</td>
+                <td>${client.relationship}</td>
+                <td>${client.weeklySession}</td>
+                <td>${client.fees}</td>
+                <td>${client.tutor}</td>
+              </tr>
+            `;
+            // Append the table row to the table body
+            $("#table-container tbody").append(tableRow);
+          });
+        }
+      },
+      error: function (xhr, status, error) {
+        // Show error message
+        console.log(status, xhr, error);
+      },
+    });
+  });
+
+  $("#clientsBtn").click(function () {
+    $.ajax({
+      method: "GET",
+      url: "data/clients",
+      dataType: "json",
+      success: function (response) {
+        if (response.error) {
+          // Handle error message
+          console.log(response.error);
+        } else {
+          // Assuming response is an array of client objects
+          const clients = response; // Assuming response is an array
+          const clientCount = clients.length;
+          $("#clientCount").text(`${clientCount}`);
+
+          // Clear the table body before adding new data
+          $("#table-container tbody").empty();
+
+          // Iterate through each client and populate the table
+          clients.forEach(function (client, index) {
+            const tableRow = `
+              <tr>
+                <td>${index + 1}</td>
+                <td>${client.parent}</td>
+                <td>${client.contact}</td>
+                <td>${client.student}</td>
+                <td>${client.relationship}</td>
+                <td>${client.weeklySession}</td>
+                <td>${client.fees}</td>
+                <td>${client.tutor}</td>
+              </tr>
+            `;
+            // Append the table row to the table body
+            $("#table-container tbody").append(tableRow);
+          });
+        }
+      },
+      error: function (xhr, status, error) {
+        // Show error message
+        console.log(status, xhr, error);
+      },
+    });
+  });
+});
