@@ -731,8 +731,8 @@ body {
 }
 
 .link-user:hover {
-  border-left: 6px solid #a73121;
-  color: #a73121;
+  border-left: 6px solid #fff;
+  color: #fff;
 }
 
 .tutor-intro {
@@ -1584,6 +1584,7 @@ body {
 
   .res-center {
     margin: auto auto;
+    width: 100%;
   }
 
   .res-tw {

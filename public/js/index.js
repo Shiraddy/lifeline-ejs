@@ -791,3 +791,17 @@ $(document).ready(function () {
     });
   });
 });
+
+$(document).ready(function () {
+  if (window.innerWidth < 1028) {
+    $(".resource").removeClass("table").addClass("table-sm");
+  }
+});
+
+$(window).resize(function () {
+  if (window.innerWidth < 1028) {
+    $(".resource").addClass("table-sm").removeClass("table");
+  } else {
+    $(".resource").addClass("table").removeClass("table-sm");
+  }
+});
