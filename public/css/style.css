@@ -96,6 +96,11 @@
   width: 95%;
 }
 
+.container-faq {
+  margin: auto auto;
+  width: 95%;
+}
+
 .container-apply {
   width: 60%;
   margin: auto auto;
@@ -947,7 +952,7 @@ body {
 
 .link:hover {
   /* border-bottom: 0.3rem solid red; */
-  background-color: red;
+  /* background-color: red; */
   padding: 0.2rem 0.5rem;
   /* border-radius: 30%; */
 }
@@ -1541,6 +1546,14 @@ body {
     margin-top: 17%;
   }
 
+  .login {
+    width: 100vw;
+    margin: auto auto;
+    background-color: white;
+    color: #000;
+    height: 60vh;
+  }
+
   .client-form-text {
     margin-top: 9rem;
     /* padding: 0 1rem; */
@@ -1553,5 +1566,31 @@ body {
   .banner-half {
     width: 100%;
     height: 45vh;
+  }
+
+  .container-faq {
+    margin: auto auto;
+    width: 100%;
+  }
+
+  /* Responsive class utility */
+  .res-bg-white {
+    background-color: #fff;
+  }
+
+  .res-center {
+    margin: auto auto;
+  }
+
+  .res-tw {
+    color: #fff;
+  }
+  .res-tb {
+    color: #000;
+  }
+
+  .res-shadow {
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+      rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   }
 }

@@ -1,466 +1,436 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lifeline - Apply</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&family=Merriweather:wght@400;900&family=Montserrat:wght@800&family=Noto+Serif:wght@600&family=Open+Sans&family=PT+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="images/logo.png" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
-    <script
-      src="https://kit.fontawesome.com/71529e80f4.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
+<%- include('partials/header') %>
 
-  <body>
-    <section id="form-header" class="container-fluid text-white banner">
-      <div>
-        <%- include('partials/NavBar') %>
-        <div class="row container-sm apply-wall" id="inviteText">
-          <!-- NOTICE BOARD -->
-          <div class="col-lg-6">
-            <div class="tutorContact">
-              <div><h4>CONTACTS:</h4></div>
-              <div class="">
-                <h5><i class="fa fa-address-book-o"></i>0246-011-004</h5>
-                <h5><i class="fa fa-address-card-o"></i> 0243-934-353</h5>
-              </div>
-            </div>
-          </div>
-
-          <!-- OTHER-TEXT -->
-          <div class="col-lg-6 mt-lg-5 tutorText">
-            <h5 class="hero-header pt-lg-5 mt-lg-2 mt-2">BECOME A TUTOR</h5>
-            <p class="hero-text">
-              Are you passionate about teaching? We're seeking talented tutors
-              to inspire and guide students on their educational journey. Take
-              the first step.
-            </p>
-
+<body>
+  <section id="form-header" class="container-fluid text-white banner">
+    <div>
+      <%- include('partials/NavBar') %>
+      <div class="row container-sm apply-wall" id="inviteText">
+        <!-- NOTICE BOARD -->
+        <div class="col-lg-6">
+          <div class="tutorContact">
+            <div><h4>CONTACTS:</h4></div>
             <div class="">
-              <button
-                class="btn btn-lg btn-success me-lg-3 shadow-two"
-                type="button"
-                id="tutorApply"
-              >
-                Apply Now
-              </button>
-              <button
-                id="tutorContactBtn"
-                class="btn btn-lg btn-primary shadow-two"
-                type="button"
-              >
-                Contact Us
-              </button>
+              <h5><i class="fa fa-address-book-o"></i>0246-011-004</h5>
+              <h5><i class="fa fa-address-card-o"></i> 0243-934-353</h5>
             </div>
           </div>
         </div>
+
+        <!-- OTHER-TEXT -->
+        <div class="col-lg-6 mt-lg-5 tutorText">
+          <h5 class="hero-header pt-lg-5 mt-lg-2 mt-2">BECOME A TUTOR</h5>
+          <p class="hero-text">
+            Are you passionate about teaching? We're seeking talented tutors to
+            inspire and guide students on their educational journey. Take the
+            first step.
+          </p>
+
+          <div class="">
+            <button
+              class="btn btn-lg btn-success me-lg-3 shadow-two"
+              type="button"
+              id="tutorApply"
+            >
+              Apply Now
+            </button>
+            <button
+              id="tutorContactBtn"
+              class="btn btn-lg btn-primary shadow-two"
+              type="button"
+            >
+              Contact Us
+            </button>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-----------APPLICATION FORM------------>
+  <!-----------APPLICATION FORM------------>
 
-    <div id="tutorApplication" class="container-apply services-apply mt-lg-5">
-      <section class="">
-        <h3 class="apply-header">APPLICATION FORM</h3>
-        <div class="form-apply">
-          <form
-            action="/apply"
-            method="post"
-            id="multi-section-form"
-            enctype="multipart/form-data"
-          >
-            <!-- LOGIN DETAILS -->
-            <fieldset id="login" class="form-section" data-section="1">
-              <section class="login pt-sm-5">
-                <legend class="legend me-auto">Create Login Details</legend>
+  <div id="tutorApplication" class="container-apply services-apply mt-lg-5">
+    <section class="">
+      <h3 class="apply-header">APPLICATION FORM</h3>
+      <div class="form-apply">
+        <form
+          action="/apply"
+          method="post"
+          id="multi-section-form"
+          enctype="multipart/form-data"
+        >
+          <!-- LOGIN DETAILS -->
+          <fieldset id="login" class="form-section" data-section="1">
+            <section class="pt-sm-5">
+              <legend class="legend me-auto">Create Login Details</legend>
 
-                <div class="row my-lg-2 my-sm-3">
-                  <div class="col-lg-12">
-                    <label class="label" for="email">Email Address</label>
-                    <input
-                      class="apply-input"
-                      type="email"
-                      name="email"
-                      required
-                    />
-                    <p class="error-message text-danger lh-1">
-                      Please enter a valid email address
-                    </p>
-                  </div>
+              <div class="row my-lg-2 my-sm-3">
+                <div class="col-lg-12">
+                  <label class="label" for="email">Email Address</label>
+                  <input
+                    class="apply-input"
+                    type="email"
+                    name="email"
+                    required
+                  />
+                  <p class="error-message text-danger lh-1">
+                    Please enter a valid email address
+                  </p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6 my-sm-3">
+                  <label class="label" for="password">Password</label>
+                  <input
+                    required
+                    class="apply-input"
+                    type="password"
+                    name="password"
+                  />
+                  <p class="error-message text-danger lh-1">
+                    This field is required
+                  </p>
                 </div>
 
-                <div class="row">
-                  <div class="col-lg-6 my-sm-3">
-                    <label class="label" for="password">Password</label>
-                    <input
-                      required
-                      class="apply-input"
-                      type="password"
-                      name="password"
-                    />
-                    <p class="error-message text-danger lh-1">
-                      This field is required
-                    </p>
-                  </div>
-
-                  <div class="col-lg-6 my-sm-3">
-                    <label class="label" for="altpassword"
-                      >Confirm Password</label
-                    >
-                    <input
-                      required
-                      class="apply-input"
-                      type="password"
-                      name="password-confirm"
-                    />
-                    <p class="error-message text-danger lh-1">
-                      The Two (2) Passwords do not match
-                    </p>
-                  </div>
-                </div>
-
-                <!-- <input class="apply-input" type="file" name="profilePic" /> -->
-                <div class="d-lg-flex justify-content-end py-lg-2 py-3">
-                  <button
-                    id="btnlog"
-                    class="btn btn-success my-lg-4 btn-prev-next me-lg-5 next-section"
-                    type="button"
+                <div class="col-lg-6 my-sm-3">
+                  <label class="label" for="altpassword"
+                    >Confirm Password</label
                   >
-                    <i class="fa fa-arrow-circle-o-right"></i>
-                  </button>
+                  <input
+                    required
+                    class="apply-input"
+                    type="password"
+                    name="password-confirm"
+                  />
+                  <p class="error-message text-danger lh-1">
+                    The Two (2) Passwords do not match
+                  </p>
                 </div>
-              </section>
-            </fieldset>
+              </div>
 
-            <!-- PERSONAL INFORMATION -->
-            <fieldset id="personal" class="form-section" data-section="2">
-              <section class="personal">
-                <legend class="legend me-auto">Personal Details</legend>
-
-                <div class="row my-lg-5">
-                  <div class="col-lg-6 col-sm-12">
-                    <label class="label" for="firstName">First Name</label>
-                    <input
-                      class="apply-input"
-                      name="firstName"
-                      type="text"
-                      required
-                    />
-
-                    <p class="error-message text-danger lh-1">
-                      Please enter your First Name
-                    </p>
-                  </div>
-
-                  <div class="col-lg-6 col-sm-12">
-                    <label class="label" for="lastName">Last Name</label>
-                    <input
-                      class="apply-input"
-                      type="text"
-                      name="lastName"
-                      required
-                    />
-                    <p class="error-message text-danger lh-1">
-                      Please enter your Last Name
-                    </p>
-                  </div>
-                </div>
-
-                <div class="row my-lg-5">
-                  <div class="col-lg-6">
-                    <label class="label" for="sex">Sex</label>
-                    <select name="sex" id="" class="apply-input">
-                      <option value="">Select Gender</option>
-                      <option value="">MALE</option>
-                      <option value="">FEMALE</option>
-                    </select>
-                    <p class="error-message text-danger lh-1">
-                      Select your gender
-                    </p>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <label class="label" for="dateOfBirth">Date of Birth</label>
-                    <input
-                      class="apply-input"
-                      type="date"
-                      name="DoB"
-                      id=""
-                      required
-                    />
-                    <p class="error-message text-danger lh-1">
-                      Enter your Date of Birth
-                    </p>
-                  </div>
-                </div>
-
-                <div class="row my-lg-5">
-                  <div class="col-lg-6">
-                    <label class="label" for="contact">Contact</label>
-                    <input
-                      class="apply-input"
-                      type="tel"
-                      name="contact"
-                      required
-                    />
-                    <p class="error-message text-danger lh-1">
-                      Enter your Phone Number
-                    </p>
-                  </div>
-
-                  <div class="col-lg-6">
-                    <label class="label" for="altContact"
-                      >Emergency Contact</label
-                    >
-                    <input
-                      class="apply-input"
-                      type="tel"
-                      name="emergency"
-                      required
-                    />
-                    <p class="error-message text-danger lh-1">
-                      Enter an Emergency Contact Number
-                    </p>
-                  </div>
-
-                  <div class="col-lg-12 shadow-two mt-lg-3 py-2">
-                    <div class="row py-3">
-                      <div class="col-lg-5 py-2">
-                        <image id="profilePic" src="images/Pic.png" />
-                      </div>
-                      <input
-                        id="imageUpload"
-                        type="file"
-                        name="profilePicture"
-                        accept="image/png, image/jpeg"
-                        placeholder="Photo"
-                        required=""
-                        capture
-                      />
-                      <div class="col-lg-7">
-                        <div class="shadow-two py-2">
-                          <h6 class="fs-6">PROFILE PICTURE</h6>
-
-                          <ol>
-                            <li class="text-center ps-2">
-                              Click on the picture icon
-                            </li>
-                            <li class="text-center ps-2">
-                              Choose a recent picture of yourself
-                            </li>
-                            <li class="text-center ps-2">
-                              Click open to see a preview
-                            </li>
-                          </ol>
-                          <p class="text-dark-50">
-                            NB: Picture should be in png or jpeg format and
-                            should not be more than 400 kb
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="d-lg-flex justify-content-end my-lg-2 py-lg-3 py-4">
-                  <button
-                    id="prevlog"
-                    class="btn btn-danger my-lg-4 btn-prev-next me-3 prev-section"
-                    type="button"
-                  >
-                    <i class="fa fa-arrow-circle-o-left"></i>
-                  </button>
-                  <button
-                    id="nextOne"
-                    class="btn btn-success my-lg-4 btn-prev-next me-lg-5 next-section"
-                    type="button"
-                  >
-                    <i class="fa fa-arrow-circle-o-right"></i>
-                  </button>
-                </div>
-              </section>
-            </fieldset>
-
-            <!-- EDUCATION -->
-            <fieldset id="education" class="form-section" data-section="3">
-              <section class="education">
-                <legend class="legend">Education & Qualification</legend>
-                <h6>Select Your Student Status</h6>
-                <div>
-                  <div
-                    class="btn-group pb-lg-3"
-                    role="group"
-                    aria-label="Vertical radio toggle button group"
-                  >
-                    <input
-                      type="radio"
-                      class="btn-check"
-                      name="studentStatus"
-                      value="Undergraduate"
-                      id="vbtn-radio1"
-                      autocomplete="off"
-                      checked
-                    />
-                    <label
-                      id="undergradbtn"
-                      class="btn btn-outline-success"
-                      for="vbtn-radio1"
-                      >Undergraduate</label
-                    >
-                    <input
-                      type="radio"
-                      class="btn-check"
-                      name="studentStatus"
-                      value="Graduate"
-                      id="vbtn-radio2"
-                      autocomplete="off"
-                    />
-                    <label
-                      id="gradbtn"
-                      class="btn btn-outline-success px-lg-5 px-sm-4"
-                      for="vbtn-radio2"
-                      >Graduate</label
-                    >
-                  </div>
-                </div>
-                <br />
-
-                <!-- UNDERGRADUATE -->
-                <div id="undergrad">
-                  <div class="row my-lg-4">
-                    <div class="col-lg-6">
-                      <label class="label" for="school_attending"
-                        >School Attending</label
-                      >
-                      <input
-                        class="apply-input"
-                        type="text"
-                        name="school_attending"
-                      />
-                    </div>
-
-                    <div class="col-lg-6">
-                      <label class="label" for="level">Level</label>
-                      <input
-                        class="apply-input"
-                        type="text"
-                        name="level"
-                        placeholder="Level; Eg - Level 200"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="row my-lg-4">
-                    <div class="col-lg-6">
-                      <label class="label" for="highest_level_of_education"
-                        >Certificate Pursuing</label
-                      >
-                      <select class="apply-input" name="certPurs">
-                        <option value="">Select Certificate</option>
-                        <option value="">Master</option>
-                        <option value="">Degree</option>
-                        <option value="">Diploma</option>
-                        <option value="">HND</option>
-                        <option value="">Certificate</option>
-                      </select>
-                    </div>
-
-                    <div class="col-lg-6">
-                      <label class="label" for="course_studying"
-                        >Course Studying</label
-                      >
-                      <input class="apply-input" type="text" name="coursing" />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- POSTGRADUATES -->
-                <div id="grad">
-                  <div class="row my-lg-4">
-                    <div class="col-lg-6">
-                      <label class="label" for="schoolCompleted"
-                        >School Completed</label
-                      >
-                      <input
-                        class="apply-input"
-                        type="text"
-                        name="schoolCompleted"
-                      />
-                    </div>
-
-                    <div class="col-lg-6">
-                      <label class="label" for="DoC">Date of Completion</label>
-                      <input class="apply-input" type="month" name="YoC" />
-                    </div>
-                  </div>
-
-                  <div class="row my-lg-4">
-                    <div class="col-lg-6">
-                      <label class="label" for="course_studied"
-                        >Course Studied</label
-                      >
-                      <input class="apply-input" type="text" name="coursed" />
-                    </div>
-
-                    <div class="col-lg-6">
-                      <label class="label" for="highest_level_of_education"
-                        >Certificate Attained</label
-                      >
-                      <select class="apply-input" name="certAttained">
-                        <option value="">Select Certificate</option>
-                        <option value="">Masters</option>
-                        <option value="">Degree</option>
-                        <option value="">Diploma</option>
-                        <option value="">HND</option>
-                        <option value="">Certificate</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              <div class="d-lg-flex justify-content-end py-3">
+              <!-- <input class="apply-input" type="file" name="profilePic" /> -->
+              <div class="d-lg-flex justify-content-end py-lg-2 py-3">
                 <button
-                  id="prevOne"
-                  class="mt-lg-5 me-lg-3 btn btn-danger prev-section"
-                  type="button"
-                >
-                  <i class="fa fa-arrow-circle-o-left"></i>
-                </button>
-                <button
-                  id="nextTwo"
-                  class="mt-lg-5 btn btn-success me-lg-4 next-section"
+                  id="btnlog"
+                  class="btn btn-success my-lg-4 btn-prev-next me-lg-5 next-section"
                   type="button"
                 >
                   <i class="fa fa-arrow-circle-o-right"></i>
                 </button>
               </div>
-            </fieldset>
+            </section>
+          </fieldset>
 
-            <!-- LEVEL OF STUDENTS TUTOR CAN TEACH -->
-            <fieldset id="level" class="form-section" data-section="4">
-              <!-- LEVELS YOU CAN TEACH -->
-              <section class="level">
-                <!-- <div>
+          <!-- PERSONAL INFORMATION -->
+          <fieldset id="personal" class="form-section" data-section="2">
+            <section class="personal">
+              <legend class="legend me-auto">Personal Details</legend>
+
+              <div class="row my-lg-5">
+                <div class="col-lg-6 col-sm-12">
+                  <label class="label" for="firstName">First Name</label>
+                  <input
+                    class="apply-input"
+                    name="firstName"
+                    type="text"
+                    required
+                  />
+
+                  <p class="error-message text-danger lh-1">
+                    Please enter your First Name
+                  </p>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                  <label class="label" for="lastName">Last Name</label>
+                  <input
+                    class="apply-input"
+                    type="text"
+                    name="lastName"
+                    required
+                  />
+                  <p class="error-message text-danger lh-1">
+                    Please enter your Last Name
+                  </p>
+                </div>
+              </div>
+
+              <div class="row my-lg-5">
+                <div class="col-lg-6">
+                  <label class="label" for="sex">Sex</label>
+                  <select name="sex" id="" class="apply-input">
+                    <option value="">Select Gender</option>
+                    <option value="">MALE</option>
+                    <option value="">FEMALE</option>
+                  </select>
+                  <p class="error-message text-danger lh-1">
+                    Select your gender
+                  </p>
+                </div>
+
+                <div class="col-lg-6">
+                  <label class="label" for="dateOfBirth">Date of Birth</label>
+                  <input
+                    class="apply-input"
+                    type="date"
+                    name="DoB"
+                    id=""
+                    required
+                  />
+                  <p class="error-message text-danger lh-1">
+                    Enter your Date of Birth
+                  </p>
+                </div>
+              </div>
+
+              <div class="row my-lg-5">
+                <div class="col-lg-6">
+                  <label class="label" for="contact">Contact</label>
+                  <input
+                    class="apply-input"
+                    type="tel"
+                    name="contact"
+                    required
+                  />
+                  <p class="error-message text-danger lh-1">
+                    Enter your Phone Number
+                  </p>
+                </div>
+
+                <div class="col-lg-6">
+                  <label class="label" for="altContact"
+                    >Emergency Contact</label
+                  >
+                  <input
+                    class="apply-input"
+                    type="tel"
+                    name="emergency"
+                    required
+                  />
+                  <p class="error-message text-danger lh-1">
+                    Enter an Emergency Contact Number
+                  </p>
+                </div>
+
+                <div class="col-lg-12 shadow-two mt-lg-3 py-2">
+                  <div class="row py-3">
+                    <div class="col-lg-5 py-2">
+                      <image id="profilePic" src="images/Pic.png" />
+                    </div>
+                    <input
+                      id="imageUpload"
+                      type="file"
+                      name="profilePicture"
+                      accept="image/png, image/jpeg"
+                      placeholder="Photo"
+                      required=""
+                      capture
+                    />
+                    <div class="col-lg-7">
+                      <div class="shadow-two py-2">
+                        <h6 class="fs-6">PROFILE PICTURE</h6>
+
+                        <ol>
+                          <li class="text-center ps-2">
+                            Click on the picture icon
+                          </li>
+                          <li class="text-center ps-2">
+                            Choose a recent picture of yourself
+                          </li>
+                          <li class="text-center ps-2">
+                            Click open to see a preview
+                          </li>
+                        </ol>
+                        <p class="text-dark-50">
+                          NB: Picture should be in png or jpeg format and should
+                          not be more than 400 kb
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-lg-flex justify-content-end my-lg-2 py-lg-3 py-4">
+                <button
+                  id="prevlog"
+                  class="btn btn-danger my-lg-4 btn-prev-next me-3 prev-section"
+                  type="button"
+                >
+                  <i class="fa fa-arrow-circle-o-left"></i>
+                </button>
+                <button
+                  id="nextOne"
+                  class="btn btn-success my-lg-4 btn-prev-next me-lg-5 next-section"
+                  type="button"
+                >
+                  <i class="fa fa-arrow-circle-o-right"></i>
+                </button>
+              </div>
+            </section>
+          </fieldset>
+
+          <!-- EDUCATION -->
+          <fieldset id="education" class="form-section" data-section="3">
+            <section class="education">
+              <legend class="legend">Education & Qualification</legend>
+              <h6>Select Your Student Status</h6>
+              <div>
+                <div
+                  class="btn-group pb-lg-3"
+                  role="group"
+                  aria-label="Vertical radio toggle button group"
+                >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="studentStatus"
+                    value="Undergraduate"
+                    id="vbtn-radio1"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label
+                    id="undergradbtn"
+                    class="btn btn-outline-success"
+                    for="vbtn-radio1"
+                    >Undergraduate</label
+                  >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="studentStatus"
+                    value="Graduate"
+                    id="vbtn-radio2"
+                    autocomplete="off"
+                  />
+                  <label
+                    id="gradbtn"
+                    class="btn btn-outline-success px-lg-5 px-sm-4"
+                    for="vbtn-radio2"
+                    >Graduate</label
+                  >
+                </div>
+              </div>
+              <br />
+
+              <!-- UNDERGRADUATE -->
+              <div id="undergrad">
+                <div class="row my-lg-4">
+                  <div class="col-lg-6">
+                    <label class="label" for="school_attending"
+                      >School Attending</label
+                    >
+                    <input
+                      class="apply-input"
+                      type="text"
+                      name="school_attending"
+                    />
+                  </div>
+
+                  <div class="col-lg-6">
+                    <label class="label" for="level">Level</label>
+                    <input
+                      class="apply-input"
+                      type="text"
+                      name="level"
+                      placeholder="Level; Eg - Level 200"
+                    />
+                  </div>
+                </div>
+
+                <div class="row my-lg-4">
+                  <div class="col-lg-6">
+                    <label class="label" for="highest_level_of_education"
+                      >Certificate Pursuing</label
+                    >
+                    <select class="apply-input" name="certPurs">
+                      <option value="">Select Certificate</option>
+                      <option value="">Master</option>
+                      <option value="">Degree</option>
+                      <option value="">Diploma</option>
+                      <option value="">HND</option>
+                      <option value="">Certificate</option>
+                    </select>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <label class="label" for="course_studying"
+                      >Course Studying</label
+                    >
+                    <input class="apply-input" type="text" name="coursing" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- POSTGRADUATES -->
+              <div id="grad">
+                <div class="row my-lg-4">
+                  <div class="col-lg-6">
+                    <label class="label" for="schoolCompleted"
+                      >School Completed</label
+                    >
+                    <input
+                      class="apply-input"
+                      type="text"
+                      name="schoolCompleted"
+                    />
+                  </div>
+
+                  <div class="col-lg-6">
+                    <label class="label" for="DoC">Date of Completion</label>
+                    <input class="apply-input" type="month" name="YoC" />
+                  </div>
+                </div>
+
+                <div class="row my-lg-4">
+                  <div class="col-lg-6">
+                    <label class="label" for="course_studied"
+                      >Course Studied</label
+                    >
+                    <input class="apply-input" type="text" name="coursed" />
+                  </div>
+
+                  <div class="col-lg-6">
+                    <label class="label" for="highest_level_of_education"
+                      >Certificate Attained</label
+                    >
+                    <select class="apply-input" name="certAttained">
+                      <option value="">Select Certificate</option>
+                      <option value="">Masters</option>
+                      <option value="">Degree</option>
+                      <option value="">Diploma</option>
+                      <option value="">HND</option>
+                      <option value="">Certificate</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="d-lg-flex justify-content-end py-3">
+              <button
+                id="prevOne"
+                class="mt-lg-5 me-lg-3 btn btn-danger prev-section"
+                type="button"
+              >
+                <i class="fa fa-arrow-circle-o-left"></i>
+              </button>
+              <button
+                id="nextTwo"
+                class="mt-lg-5 btn btn-success me-lg-4 next-section"
+                type="button"
+              >
+                <i class="fa fa-arrow-circle-o-right"></i>
+              </button>
+            </div>
+          </fieldset>
+
+          <!-- LEVEL OF STUDENTS TUTOR CAN TEACH -->
+          <fieldset id="level" class="form-section" data-section="4">
+            <!-- LEVELS YOU CAN TEACH -->
+            <section class="level">
+              <!-- <div>
                   <legend class="legend">Tutoring Preferences</legend>
                   <h6 class="d-flex justify-content-start mt-lg-5" for="">
                     Level You Prefer to Teach (Tick)
@@ -563,664 +533,648 @@
                     </div>
                   </div>
                 </div> -->
-                <!-- SUBJECTS SELECTS -->
-                <div class="accordion my-lg-2" id="accordionExample">
-                  <h5 class="d-flex justify-content-start mt-5" for="">
-                    Select the Levels and Subjects You can Teach
-                  </h5>
-                  <!-- FIRST LEVEL SUBJECTS -->
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button
-                        class="accordion-button bg-danger text-white"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne"
-                        aria-expanded="false"
-                        aria-controls="collapseOne"
-                      >
-                        <h5 class="faqHead">Pre-School</h5>
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseOne"
-                      class="accordion-collapse collapse row"
-                      data-bs-parent="#accordionExample"
+              <!-- SUBJECTS SELECTS -->
+              <div class="accordion my-lg-2" id="accordionExample">
+                <h5 class="d-flex justify-content-start mt-5" for="">
+                  Select the Levels and Subjects You can Teach
+                </h5>
+                <!-- FIRST LEVEL SUBJECTS -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button bg-danger text-white"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="false"
+                      aria-controls="collapseOne"
                     >
-                      <div
-                        class="accordion-body d-lg-flex justify-content-around"
-                      >
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox1"
-                            name="pre_school"
-                            value="Reading"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox1"
-                            >Reading</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox2"
-                            name="pre_school"
-                            value="Writing"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox2"
-                            >Writing</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox3"
-                            name="pre_school"
-                            value="Mathematics"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox3"
-                            >Mathematics</label
-                          >
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox4"
-                            name="pre_school"
-                            value="Science"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox4"
-                            >Science</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox5"
-                            name="pre_school"
-                            value="Phonics"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox5"
-                            >Phonics</label
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- SECOND LEVEL SUBJECTS -->
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button
-                        class="accordion-button collapsed bg-danger text-white"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo"
-                        aria-expanded="false"
-                        aria-controls="collapseTwo"
-                      >
-                        <h5 class="faqHead">Lower Primary</h5>
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseTwo"
-                      class="accordion-collapse collapse"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div
-                        class="accordion-body d-lg-flex justify-content-around"
-                      >
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox1"
-                            name="lower_primary"
-                            value="Reading"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox1"
-                            >Reading</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox2"
-                            name="lower_primary"
-                            value="Writing"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox2"
-                            >Writing</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox3"
-                            name="lower_primary"
-                            value="Mathematics"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox3"
-                            >Mathematics</label
-                          >
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox4"
-                            name="lower_primary"
-                            value="Science"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox4"
-                            >Science</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox5"
-                            name="lower_primary"
-                            value="Phonics"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox5"
-                            >Phonics</label
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- THIRD LEVEL SUBJECTS -->
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button
-                        class="accordion-button collapsed bg-danger text-white"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree"
-                        aria-expanded="false"
-                        aria-controls="collapseThree"
-                      >
-                        <h5 class="faqHead">Upper Primary</h5>
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseThree"
-                      class="accordion-collapse collapse"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div
-                        class="accordion-body d-lg-flex justify-content-around"
-                      >
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox1"
-                            name="upper_primary"
-                            value="Reading"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox1"
-                            >Reading</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox2"
-                            name="upper_primary"
-                            value="Writing"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox2"
-                            >Writing</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox3"
-                            name="upper_primary"
-                            value="Mathematics"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox3"
-                            >Mathematics</label
-                          >
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox4"
-                            name="upper_primary"
-                            value="Science"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox4"
-                            >Science</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox5"
-                            name="upper_primary"
-                            value="Phonics"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox5"
-                            >Phonics</label
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- FOURTH LEVEL SUBJECTS -->
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button
-                        class="accordion-button collapsed bg-danger text-white"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseFive"
-                        aria-expanded="false"
-                        aria-controls="collapseFive"
-                      >
-                        <h5 class="faqHead">Junior High School</h5>
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseFive"
-                      class="accordion-collapse collapse"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div
-                        class="accordion-body d-lg-flex justify-content-around"
-                      >
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox1"
-                            name="JHS"
-                            value="English"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox1"
-                            >English</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox2"
-                            name="JHS"
-                            value="Writing"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox2"
-                            >Writing</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox3"
-                            name="JHS"
-                            value="Mathematics"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox3"
-                            >Mathematics</label
-                          >
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox4"
-                            name="JHS"
-                            value="Science"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox4"
-                            >Science</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox5"
-                            name="JHS"
-                            value="others"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox5"
-                            >others</label
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- FIFTH LEVEL SUBJECTS -->
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button
-                        class="accordion-button collapsed bg-danger text-white"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseSix"
-                        aria-expanded="false"
-                        aria-controls="collapseSix"
-                      >
-                        <h5 class="faqHead">Senior High School</h5>
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseSix"
-                      class="accordion-collapse collapse"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div
-                        class="accordion-body d-lg-flex justify-content-around"
-                      >
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox1"
-                            name="SHS"
-                            value="English"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox1"
-                            >English</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox2"
-                            name="SHS"
-                            value="Social"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox2"
-                            >Social</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox3"
-                            name="SHS"
-                            value="Mathematics"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox3"
-                            >Mathematics</label
-                          >
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox4"
-                            name="SHS"
-                            value="Science"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox4"
-                            >Science</label
-                          >
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox5"
-                            name="SHS"
-                            value="Others"
-                          />
-                          <label class="form-check-label" for="inlineCheckbox5"
-                            >Others</label
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <textarea
-                    class="form-control my-3 border shadow-two"
-                    name="otherSubjects"
-                    id=""
-                    placeholder="What other subjects can you teach?"
-                  ></textarea>
-                </div>
-                <!-- NEXT-PREV-BTN -->
-                <div class="d-lg-flex justify-content-end py-4">
-                  <button
-                    id="prevTwo"
-                    class="btn btn-danger me-3 prev-section"
-                    type="button"
+                      <h5 class="faqHead">Pre-School</h5>
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse row"
+                    data-bs-parent="#accordionExample"
                   >
-                    <i class="fa fa-arrow-circle-o-left"></i>
-                  </button>
-                  <button
-                    id="toContact"
-                    class="btn btn-success next-section"
-                    type="button"
+                    <div
+                      class="accordion-body d-lg-flex justify-content-around"
+                    >
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox1"
+                          name="pre_school"
+                          value="Reading"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox1"
+                          >Reading</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox2"
+                          name="pre_school"
+                          value="Writing"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox2"
+                          >Writing</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox3"
+                          name="pre_school"
+                          value="Mathematics"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox3"
+                          >Mathematics</label
+                        >
+                      </div>
+
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox4"
+                          name="pre_school"
+                          value="Science"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox4"
+                          >Science</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox5"
+                          name="pre_school"
+                          value="Phonics"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox5"
+                          >Phonics</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- SECOND LEVEL SUBJECTS -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed bg-danger text-white"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
+                      <h5 class="faqHead">Lower Primary</h5>
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#accordionExample"
                   >
-                    <i class="fa fa-arrow-circle-o-right"></i>
-                  </button>
-                </div>
-              </section>
-            </fieldset>
-
-            <!-- CONTACT AND LOCATION -->
-            <fieldset
-              id="contactLocation"
-              class="form-section"
-              data-section="5"
-            >
-              <section>
-                <legend class="legend">Location and Other Details</legend>
-
-                <div class="row my-3">
-                  <div class="col-lg-6">
-                    <label class="label" for="Mobile Money"
-                      >Enter Your Mobile Money Number</label
+                    <div
+                      class="accordion-body d-lg-flex justify-content-around"
                     >
-                    <input
-                      required
-                      class="apply-input"
-                      type="tel"
-                      name="momo_number"
-                      placeholder="This will be used for payments of allowances"
-                    />
-                    <p class="error-message text-danger lh-1">
-                      This field is required
-                    </p>
-                  </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox1"
+                          name="lower_primary"
+                          value="Reading"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox1"
+                          >Reading</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox2"
+                          name="lower_primary"
+                          value="Writing"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox2"
+                          >Writing</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox3"
+                          name="lower_primary"
+                          value="Mathematics"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox3"
+                          >Mathematics</label
+                        >
+                      </div>
 
-                  <div class="col-lg-6">
-                    <label class="label" for="gps"
-                      >Enter Your House GPS Address</label
-                    >
-                    <input
-                      required
-                      class="apply-input"
-                      type="text"
-                      name="gps"
-                      placeholder="Ghana Post GPS of Residence."
-                    />
-                    <p class="error-message text-danger lh-1">
-                      This field is required
-                    </p>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox4"
+                          name="lower_primary"
+                          value="Science"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox4"
+                          >Science</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox5"
+                          name="lower_primary"
+                          value="Phonics"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox5"
+                          >Phonics</label
+                        >
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <!-- THIRD LEVEL SUBJECTS -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed bg-danger text-white"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
+                      <h5 class="faqHead">Upper Primary</h5>
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div
+                      class="accordion-body d-lg-flex justify-content-around"
+                    >
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox1"
+                          name="upper_primary"
+                          value="Reading"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox1"
+                          >Reading</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox2"
+                          name="upper_primary"
+                          value="Writing"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox2"
+                          >Writing</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox3"
+                          name="upper_primary"
+                          value="Mathematics"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox3"
+                          >Mathematics</label
+                        >
+                      </div>
 
-                <div class="mb-3">
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox4"
+                          name="upper_primary"
+                          value="Science"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox4"
+                          >Science</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox5"
+                          name="upper_primary"
+                          value="Phonics"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox5"
+                          >Phonics</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- FOURTH LEVEL SUBJECTS -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed bg-danger text-white"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFive"
+                      aria-expanded="false"
+                      aria-controls="collapseFive"
+                    >
+                      <h5 class="faqHead">Junior High School</h5>
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFive"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div
+                      class="accordion-body d-lg-flex justify-content-around"
+                    >
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox1"
+                          name="JHS"
+                          value="English"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox1"
+                          >English</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox2"
+                          name="JHS"
+                          value="Writing"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox2"
+                          >Writing</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox3"
+                          name="JHS"
+                          value="Mathematics"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox3"
+                          >Mathematics</label
+                        >
+                      </div>
+
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox4"
+                          name="JHS"
+                          value="Science"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox4"
+                          >Science</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox5"
+                          name="JHS"
+                          value="others"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox5"
+                          >others</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- FIFTH LEVEL SUBJECTS -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed bg-danger text-white"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSix"
+                      aria-expanded="false"
+                      aria-controls="collapseSix"
+                    >
+                      <h5 class="faqHead">Senior High School</h5>
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseSix"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div
+                      class="accordion-body d-lg-flex justify-content-around"
+                    >
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox1"
+                          name="SHS"
+                          value="English"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox1"
+                          >English</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox2"
+                          name="SHS"
+                          value="Social"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox2"
+                          >Social</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox3"
+                          name="SHS"
+                          value="Mathematics"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox3"
+                          >Mathematics</label
+                        >
+                      </div>
+
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox4"
+                          name="SHS"
+                          value="Science"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox4"
+                          >Science</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox5"
+                          name="SHS"
+                          value="Others"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox5"
+                          >Others</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <textarea
+                  class="form-control my-3 border shadow-two"
+                  name="otherSubjects"
+                  id=""
+                  placeholder="What other subjects can you teach?"
+                ></textarea>
+              </div>
+              <!-- NEXT-PREV-BTN -->
+              <div class="d-lg-flex justify-content-end py-4">
+                <button
+                  id="prevTwo"
+                  class="btn btn-danger me-3 prev-section"
+                  type="button"
+                >
+                  <i class="fa fa-arrow-circle-o-left"></i>
+                </button>
+                <button
+                  id="toContact"
+                  class="btn btn-success next-section"
+                  type="button"
+                >
+                  <i class="fa fa-arrow-circle-o-right"></i>
+                </button>
+              </div>
+            </section>
+          </fieldset>
+
+          <!-- CONTACT AND LOCATION -->
+          <fieldset id="contactLocation" class="form-section" data-section="5">
+            <section>
+              <legend class="legend">Location and Other Details</legend>
+
+              <div class="row my-3">
+                <div class="col-lg-6">
                   <label class="label" for="Mobile Money"
-                    >Enter Your Area of Residence</label
+                    >Enter Your Mobile Money Number</label
+                  >
+                  <input
+                    required
+                    class="apply-input"
+                    type="tel"
+                    name="momo_number"
+                    placeholder="This will be used for payments of allowances"
+                  />
+                  <p class="error-message text-danger lh-1">
+                    This field is required
+                  </p>
+                </div>
+
+                <div class="col-lg-6">
+                  <label class="label" for="gps"
+                    >Enter Your House GPS Address</label
                   >
                   <input
                     required
                     class="apply-input"
                     type="text"
-                    name="location"
-                    placeholder="Eg: Moshi-Zongo"
+                    name="gps"
+                    placeholder="Ghana Post GPS of Residence."
                   />
-                  <p class="error-message text-danger lh-1">This is required</p>
-                </div>
-
-                <div class="my-3">
-                  <label class="label" for="Mobile Money"
-                    >What Other Areas Can You Go</label
-                  >
-                  <textarea
-                    name="accessibleLocations"
-                    class="apply-input"
-                    placeholder="Eg: Moshi-Zongo, Gumani, Water-works, ... Agric and Environs.."
-                  ></textarea>
                   <p class="error-message text-danger lh-1">
-                    Please specify other areas you can go
+                    This field is required
                   </p>
                 </div>
+              </div>
 
-                <div class="py-4">
-                  <button
-                    id="prevFour"
-                    class="btn btn-danger prev-section"
-                    type="button"
-                  >
-                    <i class="fa fa-arrow-circle-o-left"></i>
-                  </button>
-                  <button
-                    id="nextFive"
-                    class="btn btn-success next-section"
-                    type="button"
-                  >
-                    <i class="fa fa-arrow-circle-o-right"></i>
-                  </button>
-                </div>
-              </section>
-            </fieldset>
-
-            <!-- SUBMITTING FORM -->
-            <fieldset id="submit" class="form-section" data-section="6">
-              <section class="submit py-5">
-                <!-- <h3>Thank You For Applying</h3> -->
-                <textarea
+              <div class="mb-3">
+                <label class="label" for="Mobile Money"
+                  >Enter Your Area of Residence</label
+                >
+                <input
                   required
-                  class="apply-textarea"
-                  name="motivation"
-                  id=""
-                  placeholder="What is your motivation for applying"
+                  class="apply-input"
+                  type="text"
+                  name="location"
+                  placeholder="Eg: Moshi-Zongo"
+                />
+                <p class="error-message text-danger lh-1">This is required</p>
+              </div>
+
+              <div class="my-3">
+                <label class="label" for="Mobile Money"
+                  >What Other Areas Can You Go</label
+                >
+                <textarea
+                  name="accessibleLocations"
+                  class="apply-input"
+                  placeholder="Eg: Moshi-Zongo, Gumani, Water-works, ... Agric and Environs.."
                 ></textarea>
+                <p class="error-message text-danger lh-1">
+                  Please specify other areas you can go
+                </p>
+              </div>
 
-                <div class="form-check form-check-inline my-3">
-                  <legend>Where did you hear about us?</legend>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="aboutMedia"
-                      value="WhatsApp"
-                      id=""
-                    />
-                    <label class="form-check-label" for="aboutMedia"
-                      >WhatsApp</label
-                    >
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="aboutMedia"
-                      value="Facebook"
-                      id=""
-                    />
-                    <label class="form-check-label" for="aboutMedia"
-                      >Facebook</label
-                    >
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="aboutMedia"
-                      value="friends"
-                      id=""
-                    />
-                    <label class="form-check-label" for="aboutMedia"
-                      >Friends</label
-                    >
-                  </div>
-                </div>
+              <div class="py-4">
+                <button
+                  id="prevFour"
+                  class="btn btn-danger prev-section"
+                  type="button"
+                >
+                  <i class="fa fa-arrow-circle-o-left"></i>
+                </button>
+                <button
+                  id="nextFive"
+                  class="btn btn-success next-section"
+                  type="button"
+                >
+                  <i class="fa fa-arrow-circle-o-right"></i>
+                </button>
+              </div>
+            </section>
+          </fieldset>
 
-                <div class="form-check form-check-inline mt-3">
+          <!-- SUBMITTING FORM -->
+          <fieldset id="submit" class="form-section" data-section="6">
+            <section class="submit py-5">
+              <!-- <h3>Thank You For Applying</h3> -->
+              <textarea
+                required
+                class="apply-textarea"
+                name="motivation"
+                id=""
+                placeholder="What is your motivation for applying"
+              ></textarea>
+
+              <div class="form-check form-check-inline my-3">
+                <legend>Where did you hear about us?</legend>
+                <div class="form-check form-check-inline">
                   <input
-                    required
                     class="form-check-input"
-                    type="checkbox"
-                    name="agreement"
-                    value="yes"
+                    type="radio"
+                    name="aboutMedia"
+                    value="WhatsApp"
+                    id=""
                   />
-                  <label class="form-check-label" for="agreement"
-                    >I confirm the accuracy of the information provided; my
-                    application may be rejected if the information provided is
-                    found untrue or deceptive.</label
+                  <label class="form-check-label" for="aboutMedia"
+                    >WhatsApp</label
                   >
                 </div>
-                <br />
-
-                <div class="my-3">
-                  <button
-                    id="prevFive"
-                    class="btn btn-danger px-2 prev-section"
-                    type="button"
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="aboutMedia"
+                    value="Facebook"
+                    id=""
+                  />
+                  <label class="form-check-label" for="aboutMedia"
+                    >Facebook</label
                   >
-                    Edit Form Fields
-                  </button>
-
-                  <button
-                    class="btn btn-success"
-                    type="submit"
-                    id="applySubmit"
-                  >
-                    Submit Application
-                    <div
-                      id="applyLoad"
-                      class="spinner-border spinner-border-sm d-none"
-                      role="status"
-                    >
-                      <span class="visually-hidden">Loading...</span>
-                    </div>
-                  </button>
                 </div>
-              </section>
-            </fieldset>
-          </form>
-        </div>
-      </section>
-    </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="aboutMedia"
+                    value="friends"
+                    id=""
+                  />
+                  <label class="form-check-label" for="aboutMedia"
+                    >Friends</label
+                  >
+                </div>
+              </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-    <script src="js/index.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+              <div class="form-check form-check-inline mt-3">
+                <input
+                  required
+                  class="form-check-input"
+                  type="checkbox"
+                  name="agreement"
+                  value="yes"
+                />
+                <label class="form-check-label" for="agreement"
+                  >I confirm the accuracy of the information provided; my
+                  application may be rejected if the information provided is
+                  found untrue or deceptive.</label
+                >
+              </div>
+              <br />
+
+              <div class="my-3">
+                <button
+                  id="prevFive"
+                  class="btn btn-danger px-2 prev-section"
+                  type="button"
+                >
+                  Edit Form Fields
+                </button>
+
+                <button class="btn btn-success" type="submit" id="applySubmit">
+                  Submit Application
+                  <div
+                    id="applyLoad"
+                    class="spinner-border spinner-border-sm d-none"
+                    role="status"
+                  >
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </button>
+              </div>
+            </section>
+          </fieldset>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <%- include('partials/end') %>
+</body>

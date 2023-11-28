@@ -136,7 +136,7 @@ app.get("/tuition", async function (req, res) {
   const prospectData = [];
   prospectsSnapshot.forEach((doc) => {
     prospectData.push(doc.data());
-    console.log(prospectData);
+    // console.log(prospectData);
   });
   res.render("tuition");
 });

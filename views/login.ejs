@@ -48,7 +48,7 @@
         <section class="container-sm">
           <div id="offer" class="row py-lg-3 form-sign-in">
             <div class="col-lg-8 text-start d-none d-lg-block"></div>
-            <div class="col-lg-4 col-md-6 col-sm-12 py-4 shadow-two">
+            <div class="col-lg-4 col-md-6 col-sm-12 py-4 shadow-two login">
               <div class="py-2">
                 <h3>WELCOME BACK</h3>
                 <p>Login With Your Credentials</p>
@@ -57,7 +57,7 @@
                 <input
                   required
                   type="text"
-                  class="apply-input mb-4"
+                  class="apply-input mb-4 res-shadow"
                   id="email"
                   name="email"
                   placeholder="Enter your email"
@@ -69,7 +69,7 @@
 
                 <input
                   required
-                  class="apply-input"
+                  class="apply-input res-shadow"
                   type="password"
                   name="password"
                   id="password"
@@ -106,11 +106,12 @@
                 </button>
                 <br />
 
-                <!-- PASSWORD & NEW-USER FIELD -->
-                <div class="d-flex justify-content-around py-3 my-lg-1">
-                  <a class="link" href="#">Forgot Password</a>
+                <p>
+                  <a class="link res-tb" href="#">Forgot Password</a>
+                </p>
+                <button class="btn btn-secondary">
                   <a class="link" href="/apply">New User? Sign-Up</a>
-                </div>
+                </button>
 
                 <!-- OTHER LOG IN OPTIONS -->
                 <!-- <div>
@@ -130,14 +131,16 @@
             </div>
           </div>
           <!-- NAVBAR -->
-          <div class="d-flex justify-content-between d-none d-lg-flex">
-            <div class="me-auto">
+          <div class="d-flex justify-content-end d-none d-lg-flex">
+            <!-- <div class="me-auto">
               <a class="link" href="/">HOME </a>
               <a class="link" href="/faq"> FAQ </a>
               <a class="link" href="#"> CONTACT </a>
               <a class="link" href="#"> TERMS OF USE</a>
-            </div>
-            <p class="pe-lg-5">Lifeline Educational Solutions Limited&copy;</p>
+            </div> -->
+            <p class="me-5 pe-3">
+              Lifeline Educational Solutions Limited&copy;
+            </p>
           </div>
         </section>
       </div>
