@@ -800,7 +800,7 @@ $(document).ready(function () {
 
 $(window).resize(function () {
   if (window.innerWidth < 1028) {
-    $(".resource").addClass("table-sm").removeClass("table");
+    $(".resource").removeClass("table").addClass("table-sm");
   } else {
     $(".resource").addClass("table").removeClass("table-sm");
   }

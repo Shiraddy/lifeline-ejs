@@ -639,6 +639,12 @@
   box-shadow: 10px 10px #fff;
 }
 
+.image-link {
+  width: 50%;
+  margin: auto auto;
+  padding: 5px;
+}
+
 #tutorRequest,
 .tutorContact,
 #tutorApplication,
