@@ -805,3 +805,39 @@ $(window).resize(function () {
     $(".resource").addClass("table").removeClass("table-sm");
   }
 });
+
+$(document).ready(function () {
+  $("#lesResSearch").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#lesResCentre tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+
+  $("#gesResSearch").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#gesResCentre tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+
+  $("#lBtn").click(function () {
+    $("#lesResource").toggle();
+  });
+});
+
+$("document").ready(function () {
+  $("#tutorSearchBar").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#tutorApplicants tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+
+  $("#clientSearchBar").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#clientSearch tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+});

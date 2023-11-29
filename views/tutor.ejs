@@ -279,47 +279,27 @@
         <div class="section shadow-two">
           <!-- LIFELINE -->
           <a class="navbar-brand" href="#">Resource Centre</a>
+          <p>Select to download the resource you need</p>
 
           <div class="row">
-            <div class="col-lg-12 row">
+            <div class="col-lg-12 row my-5">
               <div class="col">
-                <div class="card">
-                  <div class="card-body">
-                    <img class="image-link" src="/images/ges.png" alt="" />
-                    <div class="card-title">GES SYLLABUS</div>
-                    <p class="card-text">
-                      Download Ghana Education Service Syllabus
-                    </p>
-                    <a class="btn btn-success" href="#">Download </a>
-                  </div>
+                <div class="res hover" id="lBtn">
+                  <img class="image-link" src="/images/logo.png" alt="" />
+                  <div class="card-title">LIFELINE RESOURCE</div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="res hover" id="gBtn">
+                  <img class="image-link" src="/images/ges.png" alt="" />
+                  <div class="card-title">G.E.S RESOURCE</div>
                 </div>
               </div>
               <div class="col">
-                <div class="card">
-                  <div class="card-body">
-                    <img class="image-link" src="/images/res.png" alt="" />
-                    <div class="card-title">TUTOR RESOURCE</div>
-                    <p class="card-text">
-                      Download Ghana Education Service Syllabus
-                    </p>
-                    <a class="btn btn-success" href="#">Download </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card">
-                  <div class="card-body">
-                    <img
-                      class="image-link card-img-top"
-                      src="/images/logo.png"
-                      alt=""
-                    />
-                    <div class="card-title">LIFELINE RESOURCE</div>
-                    <p class="card-text">
-                      Download Ghana Education Service Syllabus
-                    </p>
-                    <a class="btn btn-success" href="#">Download </a>
-                  </div>
+                <div class="res hover" id="tBtn">
+                  <img class="image-link" src="/images/res.png" alt="" />
+                  <div class="card-title">TUTOR RESOURCE</div>
                 </div>
               </div>
 
@@ -328,9 +308,25 @@
               <div class="col"><i class="fa-solid fa-file-pdf"></i></div> -->
             </div>
             <div class="col-12">
-              <div class="lifeline text-start px-5">
-                <h5>Lifeline Tutor Repository</h5>
-                <p>Lifeline Resources available for use.</p>
+              <div class="lifeline text-start px-5" id="lesResource">
+                <div class="row my-3 py-2">
+                  <div class="col-lg-6">
+                    <h5>Lifeline Tutor Repository</h5>
+                    <!-- <small>Download Lifeline's Resources</small> -->
+                  </div>
+                  <div class="col-lg-6">
+                    <form class="d-flex" role="search">
+                      <input
+                        class="form-control me-2 shadow-one"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                        id="lesResSearch"
+                      />
+                    </form>
+                  </div>
+                </div>
+
                 <table
                   class="table table-sm table-bordered border-primary table-hover resource"
                 >
@@ -342,7 +338,8 @@
                       <th scope="col">Download</th>
                     </tr>
                   </thead>
-                  <tbody class="table-group-divider">
+
+                  <tbody class="table-group-divider" id="lesResCentre">
                     <tr>
                       <td>1</td>
                       <td>Log Sheet</td>
@@ -370,7 +367,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td>2</td>
+                      <td>3</td>
                       <td>Tutor's Handbook</td>
                       <td>
                         This document will help you become a better tutor.
@@ -386,8 +383,23 @@
               </div>
 
               <div class="text-start px-5 mt-5">
-                <h5>Standards Based Curriculum</h5>
-                <p>Ghana Education Service (GES) Standards Based Curriculum.</p>
+                <div class="row my-3">
+                  <div class="col-lg-6">
+                    <h5>Standards Based Curriculum</h5>
+                  </div>
+                  <div class="col-lg-6">
+                    <form class="d-flex" role="search">
+                      <input
+                        class="form-control me-2 shadow-one"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                        id="gesResSearch"
+                      />
+                    </form>
+                  </div>
+                </div>
+                <!-- <p>Ghana Education Service (GES) Standards Based Curriculum.</p> -->
                 <table
                   class="table table-sm table-bordered border-primary table-hover resource"
                 >
@@ -399,7 +411,7 @@
                       <th scope="col">Download</th>
                     </tr>
                   </thead>
-                  <tbody class="table-group-divider">
+                  <tbody class="table-group-divider" id="gesResCentre">
                     <tr>
                       <td>1</td>
                       <td>Log Sheet</td>
@@ -418,6 +430,7 @@
                 <h5>Reading Centre</h5>
                 <p>Reading resource to help you teach reading effectively.</p>
                 <table
+                  id="rResCentre"
                   class="table table-sm table-bordered border-primary table-hover resource"
                 >
                   <thead class="">
@@ -584,10 +597,12 @@
             >Progress Report</label
           >
         </div>
+
         <!-- PROGRESS REPORT -->
-        <div class="py-4 px-5 row col-lg-12 d-flex justify-content-center">
-          <div class="col-lg-5">
-            <div class="shadow-two bg-white">
+        <div class="px-5 py-3">
+          <div class="row shadow-two">
+            <div class="col-lg-6 d-none d-lg-block"></div>
+            <div class="col-lg-6 shadow-two bg-white">
               <h4 class="my-lg-4 my-2">PROGRESS REPORT</h4>
               <div class="my-lg-3">
                 <!-- <label for="">CONTRACT TYPE:</label> <br /> -->
@@ -671,9 +686,14 @@
               </button>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="col-lg-5">
-            <div class="shadow-two bg-white">
+      <section>
+        <div class="px-5 py-3">
+          <div class="row shadow-two">
+            <div class="col-lg-6 d-none d-lg-block"></div>
+            <div class="col-lg-6 shadow-two bg-white">
               <h4 class="my-lg-3">LOG SHEET</h4>
               <form action="" method="post">
                 <div class="div">

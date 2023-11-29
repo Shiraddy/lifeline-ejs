@@ -2,7 +2,7 @@
 <!-- BODY -->
 <div class="row">
   <!-- SIDE BAR -->
-  <div class="col-lg-2 col-md-3 col-sm-12 shadow-two">
+  <div class="col-lg-2 col-md-3 col-sm-12 shadow-two bg-success">
     <nav id="nav">
       <button
         class="navbar-toggler d-lg-none d-flex justify-content-end my-2 ms-2"
@@ -413,7 +413,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav shadow-one">
-              <!-- <i class="fa-solid fa-rotate"></i> -->
               <div
                 class="btn-group"
                 role="group"
@@ -460,14 +459,12 @@
             </ul>
             <form class="form-control-sm mx-5 d-flex ms-auto" role="search">
               <input
-                class="me-2 shadow-one"
+                class="me-2 shadow-one form-control"
                 type="search"
+                id="tutorSearchBar"
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button class="btn btn-outline-success shadow-one" type="submit">
-                Search
-              </button>
             </form>
           </div>
         </div>
@@ -490,7 +487,7 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tutorApplicants">
             <% applications.forEach(function(application, index) { %>
             <tr data-application-id="<%= application.id %>">
               <td><%= index + 1 %></td>
@@ -841,19 +838,85 @@
 
     <section class="form-apply shadow-two py-2 px-lg-3">
       <h3 class="py-1">CLIENT PANEL</h3>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div
+            class="btn-toolbar my-3"
+            role="toolbar"
+            aria-label="Toolbar with button groups"
+          >
+            <div class="btn-group me-2" role="group" aria-label="First group">
+              <button
+                id="clientsBtn"
+                type="button"
+                class="btn btn-outline-success"
+              >
+                Clients <i class="fa-solid fa-user px-2"></i>
+              </button>
+              <button
+                id="prospectsBtn"
+                type="button"
+                class="btn btn-outline-success"
+              >
+                Prospects<i class="fa-solid fa-rotate px-2"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-success"
+                data-bs-toggle="modal"
+                data-bs-target="#regClient"
+              >
+                Add Client <i class="fa-solid fa-user-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <form class="form-control-sm mx-5 d-flex ms-auto" role="search">
+            <input
+              class="shadow-one form-control mt-lg-2 mt-3"
+              type="search"
+              id="clientSearchBar"
+              placeholder="Search"
+              aria-label="Search"
+            />
+          </form>
+        </div>
+      </div>
+
       <div
-        class="btn-toolbar my-3"
-        role="toolbar"
-        aria-label="Toolbar with button groups"
+        class="modal fade"
+        id="regClient"
+        tabindex="-1"
+        aria-labelledby="regClient"
+        aria-hidden="true"
       >
-        <div class="btn-group me-2" role="group" aria-label="First group">
-          <button id="clientsBtn" type="button" class="btn btn-primary">
-            Clients
-          </button>
-          <button id="prospectsBtn" type="button" class="btn btn-primary">
-            Prospects
-          </button>
-          <!-- <button type="button" class="btn btn-primary">Students</button> -->
+        <div
+          class="modal-content modal-dialog modal-dialog-centered modal-dialog-scrollable"
+        >
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Client</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body"><%- include('partials/form') %></div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
         </div>
       </div>
 
@@ -874,12 +937,14 @@
                 <th>More</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody id="clientSearch"></tbody>
           </table>
         </div>
       </div>
     </section>
   </div>
 </div>
+
+<!-- <i class="fa-regular fa-square-plus"></i> -->
 
 <%- include('partials/end') %>
