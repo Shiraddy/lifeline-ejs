@@ -841,3 +841,8 @@ $("document").ready(function () {
     });
   });
 });
+
+$("#calender").datetimepicker({
+  inline: true,
+  format: "L",
+});

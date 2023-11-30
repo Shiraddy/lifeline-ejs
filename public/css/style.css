@@ -1608,4 +1608,25 @@ body {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
       rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   }
+
+  .tutor,
+  .revenue,
+  .profit,
+  .client {
+    height: 8rem;
+    width: 100%;
+    margin: auto auto;
+    padding-top: 2rem;
+    font-size: 5vw;
+    margin: 2vw;
+  }
+
+  .motivation {
+    border-left: 6px solid #a73121;
+    color: #000;
+    /* padding: 10%; */
+    width: 100%;
+    margin: auto auto;
+    /* height: fit-content; */
+  }
 }

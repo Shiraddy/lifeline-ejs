@@ -3,7 +3,7 @@
 <div class="row">
   <!-- SIDE BAR -->
   <div class="col-lg-2 col-md-3 col-sm-12 shadow-two bg-success">
-    <nav id="nav">
+    <nav id="nav" class="">
       <button
         class="navbar-toggler d-lg-none d-flex justify-content-end my-2 ms-2"
         type="button"
@@ -56,47 +56,36 @@
             ></a>
           </ul>
         </div>
-        <!-- <form class="" role="search">
-          <input
-            class="form-control my-2 shadow-two"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <div class="d-grid">
-            <button class="btn btn-success" type="submit">Search</button>
-          </div>
-        </form> -->
       </div>
     </nav>
   </div>
 
   <!-- MAIN AREA -->
   <div class="col-lg-10">
-    <section id="adminDash" class="admin-body">
+    <section id="adminDash" class="admin-body mb-5">
       <!-- STATISTICS -->
-      <div class="row my-lg-4 my-5">
-        <div class="col-lg-3">
+      <div class="row my-lg-4 my-5 pt-5">
+        <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="revenue shadow-two bg-white">
             <h4>Applicants</h4>
             <h5><%= applicants %></h5>
           </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="tutor shadow-two bg-white">
             <h4>Tutors</h4>
             <h5><%= noOfTutors %></h5>
           </div>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="client shadow-two bg-white">
             <h4>Contracts</h4>
             <h5 id="clientCount"></h5>
           </div>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="profit shadow-two bg-white">
             <h4>Request</h4>
             <h4>1000</h4>
@@ -106,10 +95,10 @@
 
       <!-- MOTIVATION AND TODO -->
       <div class="row mt-lg-3 h-75">
-        <div class="col-lg-8">
+        <div class="col-lg-8 col-sm-12 my-4">
           <div class="motivation shadow-two py-lg-5 bg-white">
             <h4><%= dayOfWeek %></h4>
-            <p class="px-lg-5 px-2">
+            <p class="px-lg-5 px-2 py-5">
               WHEN SOMEONE GIVES YOU A SHOVE FROM BEHIND, USE THE MOMENTUM TO
               PROPEL YOURSELF TO SUCCESS. YOU ARE MORE THAN THE SETBACK.
             </p>
@@ -117,9 +106,12 @@
         </div>
 
         <!-- TO DO LIST -->
-        <div class="col-lg-4">
-          <div class="to-do shadow-two bg-white">
-            <h6>To Do List</h6>
+        <div class="col-lg-4 col-sm-12">
+          <div class="to-do shadow-two bg-white h-75 my-4">
+            <h6>
+              To Do List
+              <i class="fa fa-laptop bg-danger" aria-hidden="true"></i>
+            </h6>
             <form
               class="my-lg-3 my-2 form-floating"
               action="/todo"
