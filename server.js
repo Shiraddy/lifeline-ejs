@@ -268,12 +268,19 @@ app.get("/lifeline", function (req, res) {
 
 let tutors;
 let applications;
+let prospectData;
+let clientData;
 app.post("/admin", async function (req, res) {
   const { email, password } = req.body;
   const hardcodedAdminEmail = "lifelineedusolutions@gmail.com";
   const hardcodedAdminPassword = "LES12345";
 
   try {
+    const applications = [];
+    const tutors = [];
+    const clientData = [];
+    const prospectData = [];
+
     // Check if the provided email and password match the hardcoded admin credentials
     if (email !== hardcodedAdminEmail || password !== hardcodedAdminPassword) {
       throw new Error("Invalid email or password");
@@ -292,13 +299,39 @@ app.post("/admin", async function (req, res) {
       .collection("Tutor Applications")
       .where("category", "==", "applicant")
       .get();
+
     const tutorSnapshot = await db
       .collection("Tutor Applications")
       .where("category", "==", "tutor")
       .get();
 
-    const applications = [];
-    const tutors = [];
+    const clientsSnapshot = await db
+      .collection("Request For Tutor")
+      .where("category", "==", "client")
+      .get();
+
+    clientsSnapshot.forEach((doc) => {
+      clientData.push({
+        id: doc.id,
+        data: doc.data(),
+      });
+      // console.log(clientData);
+    });
+
+    const prospectsSnapshot = await db
+      .collection("Request For Tutor")
+      .where("category", "==", "request")
+      .get();
+
+    prospectsSnapshot.forEach((doc) => {
+      prospectData.push({
+        id: doc.id,
+        data: doc.data(),
+      });
+      // console.log(prospectData);
+    });
+
+    // console.log(clientData);
 
     applicationSnapshot.forEach((doc) => {
       applications.push({
@@ -319,6 +352,8 @@ app.post("/admin", async function (req, res) {
       });
     });
 
+    const noOfContracts = clientData.length;
+    const noOfProspects = prospectData.length;
     const noOfApplicants = applications.length;
     const noOfTutors = tutors.length;
 
@@ -329,6 +364,10 @@ app.post("/admin", async function (req, res) {
       applications: applications,
       noOfTutors: noOfTutors,
       tutors: tutors,
+      clients: clientData,
+      noOfContracts: noOfContracts,
+      prospects: prospectData,
+      noOfProspects: noOfProspects,
     });
   } catch (error) {
     console.error("Login Failed:", error.message);
@@ -949,7 +988,7 @@ app.post("/apply", upload.single("profilePicture"), async (req, res) => {
         });
 
         profilePictureStream.on("finish", () => {
-          console.log("Profile picture uploaded");
+          // console.log("Profile picture uploaded");
 
           // Add the profile picture URL to the Firestore data
           updatedApplicant.profilePictureURL = profilePictureFilename;

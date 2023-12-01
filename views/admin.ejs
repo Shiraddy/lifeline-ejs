@@ -2,7 +2,7 @@
 <!-- BODY -->
 <div class="row">
   <!-- SIDE BAR -->
-  <div class="col-lg-2 col-md-3 col-sm-12 shadow-two bg-success">
+  <div class="col-lg-2 col-md-3 col-sm-12 shadow-two admin-side">
     <nav id="nav" class="">
       <button
         class="navbar-toggler d-lg-none d-flex justify-content-end my-2 ms-2"
@@ -45,15 +45,39 @@
                 ><i class="fa-solid fa-chevron-down ms-5"></i></span
             ></a>
 
-            <a class="admin-list" href="#adminLinks">
+            <a class="admin-list dropdown" href="#" data-bs-toggle="dropdown">
               <i class="fa-solid fa-link admin-icon"></i> LINKS
-              <i class="fa-solid fa-chevron-down ms-5 admin-icon"></i>
+              <i class="fa-solid fa-sort-down"></i>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Upload Contract</a></li>
+                <li><a class="dropdown-item" href="#">Send Email</a></li>
+                <li>
+                  <a class="dropdown-item" href="#">Post Notice</a>
+                </li>
+              </ul>
             </a>
 
-            <a class="admin-list" href="#adminLinks">
+            <a
+              class="admin-list dropdown"
+              data-bs-toggle="dropdown"
+              href="#"
+              role="button"
+            >
               <i class="fa-solid fa-file-invoice-dollar admin-icon"></i> FINANCE
-              <i class="fa-solid fa-chevron-down ms-5 admin-icon"></i
-            ></a>
+              <i class="fa-solid fa-sort-down"></i>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">Tutor PayRoll</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Client Payments</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item" href="#">Company Revenue</a>
+                </li>
+              </ul>
+            </a>
           </ul>
         </div>
       </div>
@@ -62,84 +86,698 @@
 
   <!-- MAIN AREA -->
   <div class="col-lg-10">
+    <nav class="navbar navbar-expand-lg d-none d-lg-block shadow-one">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo01"
+          aria-controls="navbarTogglerDemo01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand me-auto mb-2 mb-lg-0 text-danger" href="#"
+            >LIFELINE</a
+          >
+
+          <div class="me-2">
+            <button type="button" class="btn btn-success">
+              Messages <i class="fa-solid fa-message ps-2"></i>
+            </button>
+            <button type="button" class="btn btn-primary">
+              Notification <i class="fa-solid fa-bell ps-1"></i>
+            </button>
+            <button type="button" class="btn btn-primary">
+              <%= dayOfWeek %>
+              <i class="fa-solid fa-calendar-check ps-1"></i>
+            </button>
+          </div>
+
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2 shadow-two"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-danger" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
     <section id="adminDash" class="admin-body mb-5">
       <!-- STATISTICS -->
-      <div class="row my-lg-4 my-5 pt-5">
+      <div class="row my-lg-4 my-5 pt-3">
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="revenue shadow-two bg-white">
+          <div class="revenue shadow-two bg-white hover">
             <h4>Applicants</h4>
             <h5><%= applicants %></h5>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="tutor shadow-two bg-white">
+          <div class="tutor shadow-two bg-white hover">
             <h4>Tutors</h4>
             <h5><%= noOfTutors %></h5>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="client shadow-two bg-white">
+          <div class="client shadow-two bg-white hover">
             <h4>Contracts</h4>
-            <h5 id="clientCount"></h5>
+            <h5><%= noOfContracts %></h5>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="profit shadow-two bg-white">
+          <div class="profit shadow-two bg-white hover">
             <h4>Request</h4>
-            <h4>1000</h4>
+            <h5><%= noOfProspects %></h5>
           </div>
         </div>
       </div>
 
-      <!-- MOTIVATION AND TODO -->
-      <div class="row mt-lg-3 h-75">
-        <div class="col-lg-8 col-sm-12 my-4">
-          <div class="motivation shadow-two py-lg-5 bg-white">
-            <h4><%= dayOfWeek %></h4>
-            <p class="px-lg-5 px-2 py-5">
-              WHEN SOMEONE GIVES YOU A SHOVE FROM BEHIND, USE THE MOMENTUM TO
-              PROPEL YOURSELF TO SUCCESS. YOU ARE MORE THAN THE SETBACK.
-            </p>
+      <!-- CLIENT PANEL -->
+      <section class="shadow-two py-2 px-lg-3">
+        <div class="row">
+          <div class="col-lg-7 me-auto">
+            <div
+              class="btn-toolbar my-3"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <a class="navbar-brand me-4 fs-4" href="#">Clients</a>
+              <div class="me-2" role="group" aria-label="First group">
+                <button
+                  id="clientsBtn"
+                  type="button"
+                  class="btn btn-outline-success active"
+                >
+                  Contracts <i class="fa-solid fa-user px-2"></i>
+                </button>
+                <button
+                  id="prospectsBtn"
+                  type="button"
+                  class="btn btn-outline-success"
+                >
+                  Prospects<i class="fa-solid fa-rotate px-2"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#regClient"
+                >
+                  Add Client <i class="fa-solid fa-user-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <form class="form-control-sm" role="search">
+              <input
+                class="shadow-one form-control mt-lg-2 mt-3"
+                type="search"
+                id="clientSearchBar"
+                placeholder="Search"
+                aria-label="Search"
+              />
+            </form>
           </div>
         </div>
 
-        <!-- TO DO LIST -->
-        <div class="col-lg-4 col-sm-12">
-          <div class="to-do shadow-two bg-white h-75 my-4">
-            <h6>
-              To Do List
-              <i class="fa fa-laptop bg-danger" aria-hidden="true"></i>
-            </h6>
-            <form
-              class="my-lg-3 my-2 form-floating"
-              action="/todo"
-              method="post"
-            >
-              <input
-                class="form-control-sm"
-                name="todo"
-                type="text"
-                placeholder="Set Goals for Today"
-                autocomplete="off"
-              />
-              <button class="btn btn-danger ms-2" type="submit">+</button>
-            </form>
-            <div class="box px-lg-2 px-2">
-              <% for (let i = 0; i < todo.length; i++) { %>
-              <div class="todoList form-check">
-                <input class="form-check-input" type="checkbox" />
-                <p class="form-check-label text-start ps-1">
-                  <%= todo[i] %>
-                  <button type="button" class="btn-close ps-lg-3"></button>
-                </p>
-              </div>
-              <% } %>
+        <!-- CLIENT REGISTRATION MODAL -->
+        <div
+          class="modal fade"
+          id="regClient"
+          tabindex="-1"
+          aria-labelledby="regClient"
+          aria-hidden="true"
+        >
+          <div
+            class="modal-content modal-dialog modal-dialog-centered modal-dialog-scrollable"
+          >
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                CLIENT REGISTRATION
+              </h1>
+              <!-- <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button> -->
+            </div>
+
+            <div class="modal-body"><%- include('partials/form') %></div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-danger px-2"
+                data-bs-dismiss="modal"
+              >
+                Close <i class="fa-regular fa-circle-xmark"></i>
+              </button>
             </div>
           </div>
         </div>
-      </div>
+
+        <!-- CLIENT DATA TABLE -->
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <!-- <h4>Tutors</h4> -->
+            <thead>
+              <tr>
+                <th>S/NO</th>
+                <th>Client</th>
+                <th>Contact</th>
+                <th>Ward</th>
+                <th>Relation</th>
+                <th>Sessions</th>
+                <th>Fees</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% clients.forEach(function(client, index) { %>
+              <tr data-application-id="<%= client.id %>">
+                <td><%= index + 1 %></td>
+                <td><%= client.data.parent %></td>
+                <td>
+                  <a href="tel:<%= client.data.contact %>"
+                    ><%= client.data.contact %></a
+                  >
+                </td>
+                <td><%= client.data.student %></td>
+                <td><%= client.data.relationship %></td>
+                <td><%= client.data.weeklySession %></td>
+                <td>
+                  <% if (client.data.fees > 200) { %>
+                  <button type="button" class="btn btn-success">
+                    <%= client.data.fees %>
+                  </button>
+                  <% } else { %>
+                  <button type="button" class="btn btn-danger">
+                    <%= client.data.fees %>
+                  </button>
+                  <% } %>
+                </td>
+
+                <td>
+                  <!-- ACTION BUTTONS -->
+                  <div class="d-flex justify-content-center">
+                    <!-- <button
+                      type="button"
+                      class="btn tutorIcon me-2 view-details"
+                      data-bs-toggle="modal"
+                      data-bs-target="#detail"
+                    >
+                      <a><i class="fa-solid fa-expand"></i></a>
+                    </button> -->
+
+                    <button
+                      type="button"
+                      class="btn tutorIcon me-2 update-data"
+                      data-bs-toggle="modal"
+                      data-bs-target="#update"
+                    >
+                      <a><i class="fa-solid fa-pen-to-square"></i></a>
+                    </button>
+
+                    <!-- <button class="btn tutorIcon me-2 delete-row">
+                      <a><i class="fa-solid fa-trash"></i></a>
+                    </button> -->
+                  </div>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- APPLICANTS AND TUTORS -->
+      <section id="tutorData" class="my-3 py-2 px-lg-3 shadow-two">
+        <!-- <h3 class="py-1">TUTOR PANEL</h3> -->
+        <!-- NavBar -->
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <!-- <a class="navbar-brand text-start" href="#">APPLICATIONS</a> -->
+            <button
+              class="navbar-toggler dropdown-toggle-split"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDarkDropdown"
+              aria-controls="navbarNavDarkDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+              <ul class="navbar-nav nav nav-tabs">
+                <div
+                  class=""
+                  role="group"
+                  aria-label="Basic radio toggle button group"
+                >
+                  <a class="navbar-brand me-4 fs-4" href="#">Tutors</a>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="btnradio"
+                    id="btnradio1"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-success" for="btnradio1">
+                    <span class="badge bg-danger me-2 shadow-two rounded-pill"
+                      ><%= applicants %></span
+                    >Applicants</label
+                  >
+
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="btnradio"
+                    id="btnradio2"
+                    autocomplete="off"
+                  />
+
+                  <label class="btn btn-outline-success" for="btnradio2"
+                    ><span class="badge bg-danger me-2 shadow-two rounded-pill"
+                      ><%= noOfTutors %></span
+                    >Tutors <i class="fa-solid fa-folder"></i
+                  ></label>
+
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="btnradio"
+                    id="btnradio3"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-success" for="btnradio3"
+                    >Pending <i class="fa-solid fa-users"></i
+                  ></label>
+                </div>
+              </ul>
+              <form class="form-control-sm mx-5 ms-auto" role="search">
+                <input
+                  class="me-2 shadow-one form-control"
+                  type="search"
+                  id="tutorSearchBar"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <!-- APPLICANTS TABLE -->
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Education</th>
+                <th>Status</th>
+                <!-- <th>Location</th> -->
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="tutorApplicants">
+              <% applications.forEach(function(application, index) { %>
+              <tr data-application-id="<%= application.id %>">
+                <td><%= index + 1 %></td>
+                <td>
+                  <%= application.data.lastName %> <%=
+                  application.data.firstName %>
+                </td>
+                <td>
+                  <a href="tel:<%= application.data.contact%>"
+                    ><%= application.data.contact %></a
+                  >
+                </td>
+                <td><%= application.data.studentStatus %></td>
+                <td><%= application.data.status %></td>
+                <!-- <td><%#= application.data.location %></td> -->
+                <td><small><%= application.data.email %></small></td>
+                <td>
+                  <!-- ACTION BUTTONS -->
+                  <div class="d-flex justify-content-center">
+                    <button
+                      type="button"
+                      class="btn tutorIcon me-2 update-data"
+                      data-bs-toggle="modal"
+                      data-bs-target="#update"
+                    >
+                      <a><i class="fa-solid fa-pen-to-square"></i></a>
+                    </button>
+
+                    <button class="btn tutorIcon me-2 delete-row">
+                      <a><i class="fa-solid fa-trash"></i></a>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Bootstrap Toast -->
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+          <div
+            id="toastContainer"
+            class="toast hide"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            <div class="toast-header">
+              <strong class="me-auto">Update Status</strong>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="toast"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="toast-body" id="toastMessage"></div>
+          </div>
+        </div>
+
+        <!-- UPDATE INFO -->
+        <form action="/post" class="modal" id="update" tabindex="-1">
+          <fieldset
+            class="modal-content modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            data-section="1"
+          >
+            <div class="row modal-body modal-dialog-scrollable">
+              <h5 class="my-4 d-flex justify-content-start modal-header">
+                APPLICANT DATA
+              </h5>
+
+              <div class="col-lg-6">
+                <label class="label" for="firstName">First Name</label>
+                <input
+                  id="firstName"
+                  disabled
+                  class="apply-input"
+                  type="text"
+                  name="firstName"
+                  placeholder=""
+                  autocapitalize="words"
+                />
+                <div class="error-message">This is a required field</div>
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="lastName">Last Name</label>
+                <input
+                  id="lastName"
+                  disabled
+                  class="apply-input"
+                  type="text"
+                  name="lastName"
+                  placeholder=""
+                />
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="DoB">Date of Birth</label>
+                <input
+                  class="apply-input"
+                  type="text"
+                  disabled
+                  name="DoB"
+                  id="DoB"
+                  placeholder=""
+                />
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="tutorEmail">Email Address</label>
+                <input
+                  class="apply-input"
+                  type="email"
+                  name="tutorEmail"
+                  id="tutorEmail"
+                  disabled
+                  placeholder="Enter Email Address"
+                />
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="studentStatus">Student Status</label>
+                <input
+                  id="studentStatusOfApplicant"
+                  disabled
+                  class="apply-input"
+                  type="text"
+                  name="studentStatus"
+                />
+              </div>
+
+              <!-- Graduate -->
+              <div class="col-lg-6">
+                <label class="label" for="schoolAttended"
+                  >School Attended</label
+                >
+                <input
+                  id="schoolAttended"
+                  disabled
+                  required
+                  class="apply-input"
+                  type="text"
+                  name="schoolAttended"
+                />
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="yearCompleted"
+                  >Year of Completion</label
+                >
+                <input
+                  id="yearCompleted"
+                  required
+                  class="apply-input"
+                  disabled
+                  type="text"
+                  name="yearCompleted"
+                />
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="courseStudied">Course Studied</label>
+                <input
+                  id="courseStudied"
+                  required
+                  class="apply-input"
+                  disabled
+                  type="text"
+                  name="courseStudied"
+                />
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="school">Certificate Attained</label>
+                <input
+                  id="certificateAttained"
+                  required
+                  class="apply-input"
+                  disabled
+                  type="text"
+                  name="school"
+                />
+              </div>
+
+              <!-- Undergraduate -->
+              <div class="col-lg-6">
+                <label class="label" for="course">School Attending</label>
+                <input
+                  id="schoolAttending"
+                  required
+                  disabled
+                  class="apply-input"
+                  type="text"
+                  name="course"
+                />
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="course">Level</label>
+                <input
+                  id="levelOfApplicant"
+                  required
+                  disabled
+                  class="apply-input"
+                  type="text"
+                  name="course"
+                />
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="course">Course Studying</label>
+                <input
+                  id="course"
+                  required
+                  disabled
+                  class="apply-input"
+                  type="text"
+                  name="course"
+                />
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="course">Certificate Pursuing</label>
+                <input
+                  id="certificatePursuing"
+                  required
+                  disabled
+                  class="apply-input"
+                  type="text"
+                  name="course"
+                />
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="statusofApplication"
+                  >Application Status</label
+                >
+                <select
+                  name="qualification"
+                  id="qualification"
+                  class="apply-input"
+                >
+                  <option value="qualified">Qualified</option>
+                  <option value="disqualified">Disqualified</option>
+                  <option value="pending">Pending</option>
+                </select>
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="statusofApplication">Rating</label>
+                <select
+                  name="rating"
+                  id="applicationrating"
+                  class="apply-input"
+                >
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">C</option>
+                </select>
+              </div>
+
+              <div class="col-lg-6">
+                <label class="label" for="statusofApplication">Category</label>
+                <select
+                  name="category"
+                  id="applicationCategory"
+                  class="apply-input"
+                >
+                  <option value="tutor">Tutor</option>
+                  <option value="applicant">Applicant</option>
+                </select>
+              </div>
+
+              <!-- BUTTON -->
+              <div
+                class="py-3 d-lg-flex justify-content-end pe-lg-3 modal-footer"
+              >
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+
+                <button
+                  class="btn btn-danger me-lg-3"
+                  id="update-data"
+                  type="submit"
+                >
+                  Update Data
+                </button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+
+        <!-- TUTORS TABLE -->
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <legend>LIFELINE TUTORS</legend>
+            <!-- <h4>Tutors</h4> -->
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Education</th>
+                <th>Status</th>
+                <!-- <th>Location</th> -->
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% tutors.forEach(function(tutor, index) { %>
+              <tr data-application-id="<%= tutor.id %>">
+                <td><%= index + 1 %></td>
+                <td><%= tutor.data.lastName %> <%= tutor.data.firstName %></td>
+                <td><%= tutor.data.contact %></td>
+                <td><%= tutor.data.studentStatus %></td>
+                <td><%= tutor.data.status %></td>
+                <!-- <td><%#= tutor.data.location %></td> -->
+                <td><small><%= tutor.data.email %></small></td>
+                <td>
+                  <!-- ACTION BUTTONS -->
+                  <div class="d-flex justify-content-center">
+                    <!-- <button
+                      type="button"
+                      class="btn tutorIcon me-2 view-details"
+                      data-bs-toggle="modal"
+                      data-bs-target="#detail"
+                    >
+                      <a><i class="fa-solid fa-expand"></i></a>
+                    </button> -->
+
+                    <button
+                      type="button"
+                      class="btn tutorIcon me-2 update-data"
+                      data-bs-toggle="modal"
+                      data-bs-target="#update"
+                    >
+                      <a><i class="fa-solid fa-pen-to-square"></i></a>
+                    </button>
+
+                    <button class="btn tutorIcon me-2 delete-row">
+                      <a><i class="fa-solid fa-trash"></i></a>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </section>
 
     <!-- CONTRACT UPLOAD -->
@@ -376,562 +1014,6 @@
             </button>
           </div>
         </form>
-      </div>
-    </section>
-
-    <!-- REGISTER CLIENT -->
-    <section id="clientData" class="shadow-two form-apply my-3 bg-white">
-      <h3 class="py-lg-4 py-2">TUTOR REQUEST</h3>
-      <%- include('partials/form') %>
-    </section>
-
-    <!-- TUTOR APPLICATIONS -->
-    <section id="clientData" class="form-apply my-3 py-2 px-lg-3 shadow-two">
-      <h3 class="py-1">TUTOR PANEL</h3>
-      <!-- NavBar -->
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <!-- <a class="navbar-brand text-start" href="#">APPLICATIONS</a> -->
-          <button
-            class="navbar-toggler dropdown-toggle-split"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDarkDropdown"
-            aria-controls="navbarNavDarkDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-            <ul class="navbar-nav shadow-one">
-              <div
-                class="btn-group"
-                role="group"
-                aria-label="Basic radio toggle button group"
-              >
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="btnradio"
-                  id="btnradio1"
-                  autocomplete="off"
-                  checked
-                />
-                <label class="btn btn-outline-success" for="btnradio1">
-                  <span class="badge bg-danger me-2 shadow-two rounded-pill"
-                    ><%= applicants %></span
-                  >Applicants</label
-                >
-
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="btnradio"
-                  id="btnradio2"
-                  autocomplete="off"
-                />
-                <label class="btn btn-outline-success" for="btnradio2"
-                  ><span class="badge bg-danger me-2 shadow-two rounded-pill"
-                    ><%= noOfTutors %></span
-                  >Tutors</label
-                >
-
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="btnradio"
-                  id="btnradio3"
-                  autocomplete="off"
-                />
-                <label class="btn btn-outline-success" for="btnradio3"
-                  >Pending</label
-                >
-              </div>
-            </ul>
-            <form class="form-control-sm mx-5 d-flex ms-auto" role="search">
-              <input
-                class="me-2 shadow-one form-control"
-                type="search"
-                id="tutorSearchBar"
-                placeholder="Search"
-                aria-label="Search"
-              />
-            </form>
-          </div>
-        </div>
-      </nav>
-
-      <%# console.log(applications) %>
-
-      <!-- TUTOR TABLE -->
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Contact</th>
-              <th>Student Status</th>
-              <th>Application Status</th>
-              <!-- <th>Location</th> -->
-              <th>Email</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="tutorApplicants">
-            <% applications.forEach(function(application, index) { %>
-            <tr data-application-id="<%= application.id %>">
-              <td><%= index + 1 %></td>
-              <td>
-                <%= application.data.lastName %> <%= application.data.firstName
-                %>
-              </td>
-              <td><%= application.data.contact %></td>
-              <td><%= application.data.studentStatus %></td>
-              <td><%= application.data.status %></td>
-              <!-- <td><%#= application.data.location %></td> -->
-              <td><small><%= application.data.email %></small></td>
-              <td>
-                <!-- ACTION BUTTONS -->
-                <div class="d-flex justify-content-center">
-                  <button
-                    type="button"
-                    class="btn tutorIcon me-2 update-data"
-                    data-bs-toggle="modal"
-                    data-bs-target="#update"
-                  >
-                    <a><i class="fa-solid fa-pen-to-square"></i></a>
-                  </button>
-
-                  <button class="btn tutorIcon me-2 delete-row">
-                    <a><i class="fa-solid fa-trash"></i></a>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Bootstrap Toast -->
-      <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
-        <div
-          id="toastContainer"
-          class="toast hide"
-          role="alert"
-          aria-live="assertive"
-          aria-atomic="true"
-        >
-          <div class="toast-header">
-            <strong class="me-auto">Update Status</strong>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="toast"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="toast-body" id="toastMessage"></div>
-        </div>
-      </div>
-
-      <!-- UPDATE INFO -->
-      <form action="/post" class="modal" id="update" tabindex="-1">
-        <fieldset
-          class="modal-content modal-dialog modal-dialog-centered modal-dialog-scrollable"
-          data-section="1"
-        >
-          <div class="row modal-body modal-dialog-scrollable">
-            <h5 class="my-4 d-flex justify-content-start modal-header">
-              APPLICANT DATA
-            </h5>
-
-            <div class="col-lg-6">
-              <label class="label" for="firstName">First Name</label>
-              <input
-                id="firstName"
-                disabled
-                class="apply-input"
-                type="text"
-                name="firstName"
-                placeholder=""
-                autocapitalize="words"
-              />
-              <div class="error-message">This is a required field</div>
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="lastName">Last Name</label>
-              <input
-                id="lastName"
-                disabled
-                class="apply-input"
-                type="text"
-                name="lastName"
-                placeholder=""
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="DoB">Date of Birth</label>
-              <input
-                class="apply-input"
-                type="text"
-                disabled
-                name="DoB"
-                id="DoB"
-                placeholder=""
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="tutorEmail">Email Address</label>
-              <input
-                class="apply-input"
-                type="email"
-                name="tutorEmail"
-                id="tutorEmail"
-                disabled
-                placeholder="Enter Email Address"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="studentStatus">Student Status</label>
-              <input
-                id="studentStatusOfApplicant"
-                disabled
-                class="apply-input"
-                type="text"
-                name="studentStatus"
-              />
-            </div>
-
-            <!-- Graduate -->
-            <div class="col-lg-6">
-              <label class="label" for="schoolAttended">School Attended</label>
-              <input
-                id="schoolAttended"
-                disabled
-                required
-                class="apply-input"
-                type="text"
-                name="schoolAttended"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="yearCompleted"
-                >Year of Completion</label
-              >
-              <input
-                id="yearCompleted"
-                required
-                class="apply-input"
-                disabled
-                type="text"
-                name="yearCompleted"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="courseStudied">Course Studied</label>
-              <input
-                id="courseStudied"
-                required
-                class="apply-input"
-                disabled
-                type="text"
-                name="courseStudied"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="school">Certificate Attained</label>
-              <input
-                id="certificateAttained"
-                required
-                class="apply-input"
-                disabled
-                type="text"
-                name="school"
-              />
-            </div>
-
-            <!-- Undergraduate -->
-            <div class="col-lg-6">
-              <label class="label" for="course">School Attending</label>
-              <input
-                id="schoolAttending"
-                required
-                disabled
-                class="apply-input"
-                type="text"
-                name="course"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="course">Level</label>
-              <input
-                id="levelOfApplicant"
-                required
-                disabled
-                class="apply-input"
-                type="text"
-                name="course"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="course">Course Studying</label>
-              <input
-                id="course"
-                required
-                disabled
-                class="apply-input"
-                type="text"
-                name="course"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="course">Certificate Pursuing</label>
-              <input
-                id="certificatePursuing"
-                required
-                disabled
-                class="apply-input"
-                type="text"
-                name="course"
-              />
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="statusofApplication"
-                >Application Status</label
-              >
-              <select
-                name="qualification"
-                id="qualification"
-                class="apply-input"
-              >
-                <option value="qualified">Qualified</option>
-                <option value="disqualified">Disqualified</option>
-                <option value="pending">Pending</option>
-              </select>
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="statusofApplication">Rating</label>
-              <select name="rating" id="applicationrating" class="apply-input">
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">C</option>
-              </select>
-            </div>
-
-            <div class="col-lg-6">
-              <label class="label" for="statusofApplication">Category</label>
-              <select
-                name="category"
-                id="applicationCategory"
-                class="apply-input"
-              >
-                <option value="tutor">Tutor</option>
-                <option value="applicant">Applicant</option>
-              </select>
-            </div>
-
-            <!-- BUTTON -->
-            <div
-              class="py-3 d-lg-flex justify-content-end pe-lg-3 modal-footer"
-            >
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-
-              <button
-                class="btn btn-danger me-lg-3"
-                id="update-data"
-                type="submit"
-              >
-                Update Data
-              </button>
-            </div>
-          </div>
-        </fieldset>
-      </form>
-
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-          <!-- <h4>Tutors</h4> -->
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Contact</th>
-              <th>Student Status</th>
-              <th>Application Status</th>
-              <!-- <th>Location</th> -->
-              <th>Email</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% tutors.forEach(function(tutor, index) { %>
-            <tr data-application-id="<%= tutor.id %>">
-              <td><%= index + 1 %></td>
-              <td><%= tutor.data.lastName %> <%= tutor.data.firstName %></td>
-              <td><%= tutor.data.contact %></td>
-              <td><%= tutor.data.studentStatus %></td>
-              <td><%= tutor.data.status %></td>
-              <!-- <td><%#= tutor.data.location %></td> -->
-              <td><small><%= tutor.data.email %></small></td>
-              <td>
-                <!-- ACTION BUTTONS -->
-                <div class="d-flex justify-content-center">
-                  <!-- <button
-                    type="button"
-                    class="btn tutorIcon me-2 view-details"
-                    data-bs-toggle="modal"
-                    data-bs-target="#detail"
-                  >
-                    <a><i class="fa-solid fa-expand"></i></a>
-                  </button> -->
-
-                  <button
-                    type="button"
-                    class="btn tutorIcon me-2 update-data"
-                    data-bs-toggle="modal"
-                    data-bs-target="#update"
-                  >
-                    <a><i class="fa-solid fa-pen-to-square"></i></a>
-                  </button>
-
-                  <button class="btn tutorIcon me-2 delete-row">
-                    <a><i class="fa-solid fa-trash"></i></a>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="form-apply shadow-two py-2 px-lg-3">
-      <h3 class="py-1">CLIENT PANEL</h3>
-
-      <div class="row">
-        <div class="col-lg-6">
-          <div
-            class="btn-toolbar my-3"
-            role="toolbar"
-            aria-label="Toolbar with button groups"
-          >
-            <div class="btn-group me-2" role="group" aria-label="First group">
-              <button
-                id="clientsBtn"
-                type="button"
-                class="btn btn-outline-success"
-              >
-                Clients <i class="fa-solid fa-user px-2"></i>
-              </button>
-              <button
-                id="prospectsBtn"
-                type="button"
-                class="btn btn-outline-success"
-              >
-                Prospects<i class="fa-solid fa-rotate px-2"></i>
-              </button>
-              <button
-                type="button"
-                class="btn btn-outline-success"
-                data-bs-toggle="modal"
-                data-bs-target="#regClient"
-              >
-                Add Client <i class="fa-solid fa-user-plus"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <form class="form-control-sm mx-5 d-flex ms-auto" role="search">
-            <input
-              class="shadow-one form-control mt-lg-2 mt-3"
-              type="search"
-              id="clientSearchBar"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </form>
-        </div>
-      </div>
-
-      <div
-        class="modal fade"
-        id="regClient"
-        tabindex="-1"
-        aria-labelledby="regClient"
-        aria-hidden="true"
-      >
-        <div
-          class="modal-content modal-dialog modal-dialog-centered modal-dialog-scrollable"
-        >
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Client</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-
-          <div class="modal-body"><%- include('partials/form') %></div>
-
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-
-      <div id="table-container">
-        <div class="table-responsive">
-          <table class="table table-bordered table-hover">
-            <!-- <h4>Tutors</h4> -->
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Contact</th>
-                <th>Ward</th>
-                <th>Relations</th>
-                <th>Sessions</th>
-                <!-- <th>Location</th> -->
-                <th>Fees</th>
-                <th>More</th>
-              </tr>
-            </thead>
-            <tbody id="clientSearch"></tbody>
-          </table>
-        </div>
       </div>
     </section>
   </div>
