@@ -475,6 +475,44 @@ app.get("/data/clients", async function (req, res) {
   }
 });
 
+app.get("/admin/studentInfo/:id", async function (req, res) {
+  const clientId = req.params.id;
+
+  try {
+    const studentSnapshot = await db
+      .collection("Request For Tutor")
+      .doc(clientId)
+      .get();
+
+    if (!studentSnapshot.exists) {
+      return res.status(404).json({ error: "Student not found" });
+    }
+
+    const studentData = studentSnapshot.data();
+    return res.json(studentData);
+  } catch (error) {
+    console.error("Error fetching student:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.put("/admin/contractUpdate/:id", async function (req, res) {
+  const clientId = req.params.id;
+  const updatedData = req.body;
+  // console.log(clientId, updatedData);
+
+  try {
+    await db.collection("Request For Tutor").doc(clientId).update(updatedData);
+
+    // Sending a custom success message
+    res
+      .status(200)
+      .json({ message: "Application updated successfully", updated: true });
+  } catch (error) {
+    res.status(500).json({ error: "Error updating Data", updated: false });
+  }
+});
+
 //Fetch Prospects Data
 // app.get("/admin/details/prospects", async function (req, res) {
 //   try {

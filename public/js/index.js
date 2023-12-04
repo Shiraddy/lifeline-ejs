@@ -792,6 +792,7 @@ $(document).ready(function () {
 //   });
 // });
 
+//Table Responsive
 $(document).ready(function () {
   if (window.innerWidth < 1028) {
     $(".resource").removeClass("table").addClass("table-sm");
@@ -806,6 +807,7 @@ $(window).resize(function () {
   }
 });
 
+//Search Bars
 $(document).ready(function () {
   $("#lesResSearch").on("keyup", function () {
     var value = $(this).val().toLowerCase();
@@ -826,18 +828,172 @@ $(document).ready(function () {
   });
 });
 
+//SEARCH BARS
 $("document").ready(function () {
   $("#tutorSearchBar").on("keyup", function () {
     var value = $(this).val().toLowerCase();
-    $("#tutorApplicants tr").filter(function () {
+    $("#tutorData tr, #applicantsData tr").filter(function () {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
     });
   });
+});
 
+$("document").ready(function () {
   $("#clientSearchBar").on("keyup", function () {
     var value = $(this).val().toLowerCase();
-    $("#clientSearch tr").filter(function () {
+    $("#clientsData tr, #prospectsData tr").filter(function () {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
     });
   });
+});
+
+$(document).ready(function () {
+  $(".student-link").on("click", function (event) {
+    event.preventDefault();
+    const clientId = $(this).data("clientid");
+
+    // Make AJAX GET request to fetch student info based on the ID
+    $.ajax({
+      url: `/admin/studentInfo/${clientId}`, // Route for the request
+      type: "GET",
+      success: function (data) {
+        // Assuming data contains the necessary student information
+        const modalBody = $("#modalBody");
+
+        // Populate modal fields with retrieved data
+        $("#sfirstName").val(data.student);
+        $("#sdob").val(data.DoB);
+        $("#sSex").val(data.sex);
+        $("#sLevel").val(data.level);
+        $("#sClass").val(data.class);
+        $("#schoolStudentAttends").val(data.schoolName);
+        $("#sChallenges").val(data.challenge);
+        $("#tGoals").val(data.preferredSubjects);
+        $("#contractStarted").val(data.starting_date);
+        $("#tutorAssigned").val(data.tutor);
+        $("#tutorAssignedContact").val(data.tutor_contact);
+
+        // Show the modal
+        $("#studentInfo").modal("show");
+      },
+      error: function (xhr, status, error) {
+        console.error(error);
+        // Handle errors if any
+      },
+    });
+  });
+});
+
+//Table Disabled Remover
+$(document).ready(function () {
+  $("#editContract").click(function () {
+    $("#contractUpdate")
+      .find("input:disabled, textarea:disabled radio:disabled")
+      .removeClass("disabled")
+      .prop("disabled", false);
+  });
+});
+
+//Contract Update
+$(document).ready(function () {
+  let rowId; // Declaring rowId variable to store the clientId
+
+  // Event listener for clicking table rows to retrieve clientId
+  $("table").on("click", "tr", function () {
+    rowId = $(this).find("td.d-none").text(); // Access hidden column content (clientId)
+    console.log("Clicked Client ID:", rowId);
+  });
+
+  // Form submission handling
+  $("#contractUpdate").submit(function (event) {
+    event.preventDefault();
+
+    const form = $(this);
+    const formData = form.serializeArray(); // Serialize the form data as an array
+
+    const updatedData = {};
+
+    formData.forEach((field) => {
+      updatedData[field.name] = field.value; // Convert serialized data to JSON object
+    });
+
+    // Add the retrieved clientId to the updatedData object
+    updatedData.rowId = rowId;
+
+    // AJAX call to send form data along with clientId to the backend
+    $.ajax({
+      type: "PUT",
+      url: "/admin/contractUpdate/" + rowId,
+      contentType: "application/json",
+      data: JSON.stringify(updatedData),
+      success: function (response) {
+        console.log("Data updated successfully");
+        $("#studentInfo").modal("hide");
+
+        const toastMessage = $("#toastMessage");
+        if (response.updated) {
+          toastMessage.text("Data updated successfully");
+          showSuccessToast();
+        } else {
+          toastMessage.text("Error updating data");
+          showErrorToast();
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log("Error:", errorThrown);
+        const toastMessage = $("#toastMessage");
+        toastMessage.text("Error: " + errorThrown);
+        showErrorToast();
+      },
+    });
+  });
+});
+
+$(document).ready(function () {
+  // Clients button click event
+  $("#clientsTableBtn").click(function () {
+    $("#clientsData").show(); // Show Clients table
+    $("#prospectsData").hide(); // Hide Prospects table
+  });
+
+  // Prospects button click event
+  $("#prospectsTableBtn").click(function () {
+    $("#prospectsData").show(); // Show Prospects table
+    $("#clientsData").hide(); // Hide Clients table
+  });
+
+  $("#prospectsData").hide();
+
+  $("#applicantTableBtn").click(function () {
+    $("#applicantsData").show(); // Show Prospects table
+    $("#tutorData").hide(); // Hide Clients table
+  });
+
+  $("#tutorTableBtn").click(function () {
+    $("#tutorData").show(); // Show Prospects table
+    $("#applicantsData").hide(); // Hide Clients table
+  });
+
+  $("#applicantsData").hide();
+
+  $("#emailBtn").click(function () {
+    $("#emailForm").show(); // Show Prospects table
+    $("#noteForm").hide(); // Hide Clients table
+    $("#offerForm").hide(); // Hide Clients table
+  });
+
+  $("#noteBtn").click(function () {
+    $("#noteForm").show(); // Show Prospects table
+    $("#emailForm").hide(); // Hide Clients table
+    $("#offerForm").hide(); // Hide Clients table
+  });
+
+  $("#offerBtn").click(function () {
+    $("#offerForm").show(); // Show Prospects table
+    $("#emailForm").hide(); // Hide Clients table
+    $("#noteForm").hide(); // Hide Clients table
+  });
+
+  $("#noteForm").hide();
+  $("#emailForm").hide();
 });

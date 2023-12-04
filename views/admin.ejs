@@ -34,12 +34,12 @@
               ><i class="fa-solid fa-clipboard admin-icon"></i> DASHBOARD
             </a>
 
-            <a class="admin-list" href="#adminTutors"
+            <a class="admin-list" href="#adminTutor"
               ><i class="fa-solid fa-users admin-icon"></i> TUTORS
               <i class="fa-solid fa-chevron-down ms-5 admin-icon"></i
             ></a>
 
-            <a class="admin-list" href="#adminClients"
+            <a class="admin-list" href="#adminClient"
               ><i class="fa-solid fa-handshake admin-icon"></i> CLIENTS
               <span class="admin-icon"
                 ><i class="fa-solid fa-chevron-down ms-5"></i></span
@@ -164,7 +164,7 @@
       </div>
 
       <!-- CLIENT PANEL -->
-      <section class="shadow-two py-2 px-lg-3">
+      <section id="adminClient" class="shadow-two py-2 px-lg-3">
         <div class="row">
           <div class="col-lg-7 me-auto">
             <div
@@ -172,22 +172,29 @@
               role="toolbar"
               aria-label="Toolbar with button groups"
             >
-              <a class="navbar-brand me-4 fs-4" href="#">Clients</a>
+              <a class="navbar-brand me-4 fs-4" href="#"> Clients</a>
               <div class="me-2" role="group" aria-label="First group">
                 <button
-                  id="clientsBtn"
-                  type="button"
-                  class="btn btn-outline-success active"
-                >
-                  Contracts <i class="fa-solid fa-user px-2"></i>
-                </button>
-                <button
-                  id="prospectsBtn"
+                  id="clientsTableBtn"
                   type="button"
                   class="btn btn-outline-success"
                 >
+                  <span class="badge text-bg-danger me-2"
+                    ><%= noOfContracts %></span
+                  >Contracts <i class="fa-solid fa-user px-2"></i>
+                </button>
+
+                <button
+                  id="prospectsTableBtn"
+                  type="button"
+                  class="btn btn-outline-success"
+                >
+                  <span class="badge text-bg-danger me-2"
+                    ><%= noOfProspects %></span
+                  >
                   Prospects<i class="fa-solid fa-rotate px-2"></i>
                 </button>
+
                 <button
                   type="button"
                   class="btn btn-outline-success"
@@ -250,11 +257,11 @@
           </div>
         </div>
 
-        <!-- CLIENT DATA TABLE -->
+        <!-- CLIENT AND PROSPECTS DATA TABLE -->
         <div class="table-responsive">
           <table class="table table-bordered table-hover">
             <!-- <h4>Tutors</h4> -->
-            <thead>
+            <thead class="">
               <tr>
                 <th>S/NO</th>
                 <th>Client</th>
@@ -262,11 +269,13 @@
                 <th>Ward</th>
                 <th>Relation</th>
                 <th>Sessions</th>
+                <th class="d-none">Client Id</th>
                 <th>Fees</th>
-                <th>Action</th>
+                <th>Time</th>
               </tr>
             </thead>
-            <tbody>
+
+            <tbody id="clientsData" class="shadow-one">
               <% clients.forEach(function(client, index) { %>
               <tr data-application-id="<%= client.id %>">
                 <td><%= index + 1 %></td>
@@ -276,9 +285,19 @@
                     ><%= client.data.contact %></a
                   >
                 </td>
-                <td><%= client.data.student %></td>
+
+                <td>
+                  <a
+                    href="#"
+                    class="student-link"
+                    data-clientId="<%= client.id %>"
+                    ><%= client.data.student %></a
+                  >
+                </td>
+
                 <td><%= client.data.relationship %></td>
                 <td><%= client.data.weeklySession %></td>
+                <td class="d-none"><%= client.id %></td>
                 <td>
                   <% if (client.data.fees > 200) { %>
                   <button type="button" class="btn btn-success">
@@ -291,41 +310,288 @@
                   <% } %>
                 </td>
 
+                <!-- ACTION BUTTONS -->
+                <td><%= client.data.periodLength %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+
+            <tbody id="prospectsData" class="shadow-one">
+              <% prospects.forEach(function(prospect, index) { %>
+              <tr data-application-id="<%= prospect.id %>">
+                <td><%= index + 1 %></td>
+                <td><%= prospect.data.parent %></td>
                 <td>
-                  <!-- ACTION BUTTONS -->
-                  <div class="d-flex justify-content-center">
-                    <!-- <button
-                      type="button"
-                      class="btn tutorIcon me-2 view-details"
-                      data-bs-toggle="modal"
-                      data-bs-target="#detail"
-                    >
-                      <a><i class="fa-solid fa-expand"></i></a>
-                    </button> -->
-
-                    <button
-                      type="button"
-                      class="btn tutorIcon me-2 update-data"
-                      data-bs-toggle="modal"
-                      data-bs-target="#update"
-                    >
-                      <a><i class="fa-solid fa-pen-to-square"></i></a>
-                    </button>
-
-                    <!-- <button class="btn tutorIcon me-2 delete-row">
-                      <a><i class="fa-solid fa-trash"></i></a>
-                    </button> -->
-                  </div>
+                  <a href="tel:<%= prospect.data.contact %>"
+                    ><%= prospect.data.contact %></a
+                  >
                 </td>
+
+                <td>
+                  <a
+                    href="#"
+                    class="student-link"
+                    data-prospectId="<%= prospect.id %>"
+                    ><%= prospect.data.student %></a
+                  >
+                </td>
+
+                <td><%= prospect.data.relationship %></td>
+                <td><%= prospect.data.weeklySession %></td>
+                <td class="d-none"><%= prospect.id %></td>
+                <td>
+                  <% if (prospect.data.fees > 200) { %>
+                  <button type="button" class="btn btn-success">
+                    <%= prospect.data.fees %>
+                  </button>
+                  <% } else { %>
+                  <button type="button" class="btn btn-danger">
+                    <%= prospect.data.fees %>
+                  </button>
+                  <% } %>
+                </td>
+
+                <!-- ACTION BUTTONS -->
+                <td><%= client.data.periodLength %></td>
               </tr>
               <% }); %>
             </tbody>
           </table>
         </div>
+
+        <!-- CONTRACT UPDATE MODAL -->
+        <div
+          class="modal fade"
+          id="studentInfo"
+          tabindex="-1"
+          aria-labelledby="studentInfo"
+          aria-hidden="true"
+        >
+          <div
+            class="modal-content modal-dialog modal-dialog-centered modal-dialog-scrollable"
+          >
+            <div class="modal-header row">
+              <div class="col-10">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  CONTRACT DETAILS
+                </h1>
+              </div>
+
+              <div class="col-2">
+                <button
+                  type="button"
+                  class="btn btn-outline-danger px-2"
+                  data-bs-dismiss="modal"
+                >
+                  <i class="fa-regular fa-circle-xmark"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="modal-body" id="modalBody">
+              <form
+                action="/contractInfoUpdate"
+                id="contractUpdate"
+                method="post"
+              >
+                <div class="row">
+                  <h6 class="bg-success shadow-two py-2 mb-4">
+                    Student Section
+                  </h6>
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="student">Student Name</label>
+                    <input
+                      id="sfirstName"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                      name="student"
+                      placeholder=""
+                      autocapitalize="words"
+                    />
+                    <div class="error-message">This is a required field</div>
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="sex">Date of Birth</label>
+                    <input
+                      id="sSex"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                      name="sex"
+                      placeholder=""
+                    />
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="DoB">Date of Birth</label>
+                    <input
+                      id="sdob"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                      name="DoB"
+                      placeholder=""
+                    />
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="level">Level</label>
+                    <input
+                      class="apply-input"
+                      type="text"
+                      disabled
+                      name="level"
+                      id="sLevel"
+                      placeholder=""
+                    />
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="class">Class</label>
+                    <input
+                      class="apply-input"
+                      type="text"
+                      name="class"
+                      id="sClass"
+                      disabled
+                      placeholder=""
+                    />
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="schoolName"
+                      >School Attending</label
+                    >
+                    <input
+                      name="schoolName"
+                      disabled
+                      class="apply-input"
+                      id="schoolStudentAttends"
+                      type="text"
+                    />
+                  </div>
+
+                  <div class="col-12 my-2">
+                    <label class="label" for="challenge">Challenges</label>
+                    <textarea
+                      name="challenge"
+                      id="sChallenges"
+                      disabled
+                      class="form-control"
+                    ></textarea>
+                  </div>
+
+                  <div class="col-12 my-2">
+                    <label class="label" for="preferredSubjects"
+                      >Tuition Objectives</label
+                    >
+                    <textarea
+                      name="preferredSubjects"
+                      disabled
+                      id="tGoals"
+                      class="form-control"
+                    ></textarea>
+                  </div>
+
+                  <h6 class="bg-success shadow-two py-2 my-4">
+                    Contract Section
+                  </h6>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="starting_Date">Started</label>
+                    <input
+                      name="starting_date"
+                      id="contractStarted"
+                      disabled
+                      class="apply-input"
+                      type="date"
+                      placeholder=""
+                    />
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="status">Contract Status</label>
+                    <select name="status" id="" class="apply-input" disabled>
+                      <option value="active">active</option>
+                      <option value="paused">paused</option>
+                      <option value="terminated">terminated</option>
+                      <option value="completed">completed</option>
+                      <option value="yet-to-start">Yet to Start</option>
+                    </select>
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="tutor">Assigned Tutor</label>
+                    <input
+                      name="tutor"
+                      id="tutorAssigned"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                    />
+                  </div>
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="tutor_contact"
+                      >Tutor Contact</label
+                    >
+                    <input
+                      name="tutor_contact"
+                      id="tutorAssignedContact"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary px-2"
+                id="editContract"
+              >
+                Edit Contract <i class="fa-regular fa-circle-check"></i>
+              </button>
+
+              <button
+                type="submit"
+                form="contractUpdate"
+                class="btn btn-outline-success px-2"
+              >
+                Save Update <i class="fa-regular fa-circle-check"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+          <div
+            id="toastContainer"
+            class="toast hide"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            <div class="toast-header">
+              <strong class="me-auto">Update Status</strong>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="toast"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="toast-body" id="toastMessage"></div>
+          </div>
+        </div>
       </section>
 
-      <!-- APPLICANTS AND TUTORS -->
-      <section id="tutorData" class="my-3 py-2 px-lg-3 shadow-two">
+      <!-- TUTORS PANEL -->
+      <section id="adminTutor" class="my-3 py-2 px-lg-3 shadow-two">
         <!-- <h3 class="py-1">TUTOR PANEL</h3> -->
         <!-- NavBar -->
         <nav class="navbar navbar-expand-lg">
@@ -344,50 +610,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
               <ul class="navbar-nav nav nav-tabs">
-                <div
-                  class=""
-                  role="group"
-                  aria-label="Basic radio toggle button group"
-                >
+                <div>
                   <a class="navbar-brand me-4 fs-4" href="#">Tutors</a>
-                  <input
-                    type="radio"
-                    class="btn-check"
-                    name="btnradio"
-                    id="btnradio1"
-                    autocomplete="off"
-                    checked
-                  />
-                  <label class="btn btn-outline-success" for="btnradio1">
-                    <span class="badge bg-danger me-2 shadow-two rounded-pill"
-                      ><%= applicants %></span
-                    >Applicants</label
-                  >
 
-                  <input
-                    type="radio"
-                    class="btn-check"
-                    name="btnradio"
-                    id="btnradio2"
-                    autocomplete="off"
-                  />
-
-                  <label class="btn btn-outline-success" for="btnradio2"
+                  <label class="btn btn-outline-success" id="tutorTableBtn"
                     ><span class="badge bg-danger me-2 shadow-two rounded-pill"
                       ><%= noOfTutors %></span
                     >Tutors <i class="fa-solid fa-folder"></i
                   ></label>
 
-                  <input
-                    type="radio"
-                    class="btn-check"
-                    name="btnradio"
-                    id="btnradio3"
-                    autocomplete="off"
-                  />
-                  <label class="btn btn-outline-success" for="btnradio3"
-                    >Pending <i class="fa-solid fa-users"></i
-                  ></label>
+                  <label class="btn btn-outline-success" id="applicantTableBtn">
+                    <span class="badge bg-danger me-2 shadow-two rounded-pill"
+                      ><%= applicants %></span
+                    >Applicants</label
+                  >
                 </div>
               </ul>
               <form class="form-control-sm mx-5 ms-auto" role="search">
@@ -402,61 +638,6 @@
             </div>
           </div>
         </nav>
-
-        <!-- APPLICANTS TABLE -->
-        <div class="table-responsive">
-          <table class="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Contact</th>
-                <th>Education</th>
-                <th>Status</th>
-                <!-- <th>Location</th> -->
-                <th>Email</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="tutorApplicants">
-              <% applications.forEach(function(application, index) { %>
-              <tr data-application-id="<%= application.id %>">
-                <td><%= index + 1 %></td>
-                <td>
-                  <%= application.data.lastName %> <%=
-                  application.data.firstName %>
-                </td>
-                <td>
-                  <a href="tel:<%= application.data.contact%>"
-                    ><%= application.data.contact %></a
-                  >
-                </td>
-                <td><%= application.data.studentStatus %></td>
-                <td><%= application.data.status %></td>
-                <!-- <td><%#= application.data.location %></td> -->
-                <td><small><%= application.data.email %></small></td>
-                <td>
-                  <!-- ACTION BUTTONS -->
-                  <div class="d-flex justify-content-center">
-                    <button
-                      type="button"
-                      class="btn tutorIcon me-2 update-data"
-                      data-bs-toggle="modal"
-                      data-bs-target="#update"
-                    >
-                      <a><i class="fa-solid fa-pen-to-square"></i></a>
-                    </button>
-
-                    <button class="btn tutorIcon me-2 delete-row">
-                      <a><i class="fa-solid fa-trash"></i></a>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <% }); %>
-            </tbody>
-          </table>
-        </div>
 
         <!-- Bootstrap Toast -->
         <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
@@ -704,15 +885,19 @@
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >
-                  Close
+                  Close<i class="fa-regular fa-circle-xmark"></i>
+                </button>
+
+                <button class="btn btn-danger delete-row">
+                  <a>Delete<i class="fa-solid fa-trash"></i></a>
                 </button>
 
                 <button
-                  class="btn btn-danger me-lg-3"
+                  class="btn btn-success me-lg-3"
                   id="update-data"
                   type="submit"
                 >
-                  Update Data
+                  Update Data<i class="fa-regular fa-circle-check"></i>
                 </button>
               </div>
             </div>
@@ -722,8 +907,6 @@
         <!-- TUTORS TABLE -->
         <div class="table-responsive">
           <table class="table table-bordered table-hover">
-            <legend>LIFELINE TUTORS</legend>
-            <!-- <h4>Tutors</h4> -->
             <thead>
               <tr>
                 <th>#</th>
@@ -736,12 +919,16 @@
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="tutorData" class="shadow-one">
               <% tutors.forEach(function(tutor, index) { %>
               <tr data-application-id="<%= tutor.id %>">
                 <td><%= index + 1 %></td>
                 <td><%= tutor.data.lastName %> <%= tutor.data.firstName %></td>
-                <td><%= tutor.data.contact %></td>
+                <td>
+                  <a href="tel:<%= tutor.data.contact%>"
+                    ><%= tutor.data.contact %></a
+                  >
+                </td>
                 <td><%= tutor.data.studentStatus %></td>
                 <td><%= tutor.data.status %></td>
                 <!-- <td><%#= tutor.data.location %></td> -->
@@ -749,15 +936,6 @@
                 <td>
                   <!-- ACTION BUTTONS -->
                   <div class="d-flex justify-content-center">
-                    <!-- <button
-                      type="button"
-                      class="btn tutorIcon me-2 view-details"
-                      data-bs-toggle="modal"
-                      data-bs-target="#detail"
-                    >
-                      <a><i class="fa-solid fa-expand"></i></a>
-                    </button> -->
-
                     <button
                       type="button"
                       class="btn tutorIcon me-2 update-data"
@@ -775,250 +953,320 @@
               </tr>
               <% }); %>
             </tbody>
+
+            <tbody id="applicantsData" class="shadow-one">
+              <% applications.forEach(function(application, index) { %>
+              <tr data-application-id="<%= application.id %>">
+                <td><%= index + 1 %></td>
+                <td>
+                  <%= application.data.lastName %> <%=
+                  application.data.firstName %>
+                </td>
+                <td>
+                  <a href="tel:<%= application.data.contact%>"
+                    ><%= application.data.contact %></a
+                  >
+                </td>
+                <td><%= application.data.studentStatus %></td>
+                <td><%= application.data.status %></td>
+                <!-- <td><%#= application.data.location %></td> -->
+                <td><small><%= application.data.email %></small></td>
+                <td>
+                  <!-- ACTION BUTTONS -->
+                  <div class="d-flex justify-content-center">
+                    <button
+                      type="button"
+                      class="btn tutorIcon me-2 update-data"
+                      data-bs-toggle="modal"
+                      data-bs-target="#update"
+                    >
+                      <a><i class="fa-solid fa-pen-to-square"></i></a>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
           </table>
         </div>
       </section>
-    </section>
 
-    <!-- CONTRACT UPLOAD -->
-    <section id="adminNotice" class="form-apply shadow-two my-3 row">
-      <div class="col-lg-6 d-none d-lg-block pb-5"></div>
-      <div class="col-lg-6 shadow-two bg-white">
-        <h4 class="my-lg-4 my-2">UPLOAD CONTRACT</h4>
-        <div class="my-lg-3">
-          <!-- <label for="">CONTRACT TYPE:</label> <br /> -->
-          <select name="type" id="" class="profile-input">
-            <option value="">CONTRACT TYPE</option>
-            <option value="DUO">DUO</option>
-            <option value="TRI">TRI</option>
-            <option value="QUAD">QUAD</option>
-            <option value="PENT">PENT</option>
-          </select>
-        </div>
-
-        <div class="">
-          <!-- <label class="" for="">Mode of Tuition:</label> <br /> -->
-          <select name="mode" id="" class="profile-input">
-            <option value="">MODE OF TUITION</option>
-            <option value="online">Online</option>
-            <option value="in-person">In-Person</option>
-          </select>
-        </div>
-
-        <div class="my-3">
-          <!-- <label for="">Level:</label> <br /> -->
-          <select name="level" id="" class="profile-input">
-            <option value="">LEVEL OF STUDENT</option>
-            <option value="KG">KINDERGARTEN</option>
-            <option value="PRIMARY">PRIMARY</option>
-            <option value="JHS">JHS</option>
-            <option value="SHS">SHS</option>
-          </select>
-        </div>
-
-        <div class="div">
-          <!-- <label for="">Class:</label> <br /> -->
-          <input
-            class="profile-input"
-            type="tel"
-            name="class"
-            placeholder="CLASS"
-          />
-        </div>
-
-        <div class="my-3">
-          <!-- <label for="">Subjects:</label> <br /> -->
-          <textarea
-            name="subjects"
-            id=""
-            class="profile-input-textarea"
-            placeholder="TUITION SUBJECT(S)"
-          ></textarea>
-        </div>
-
-        <div class="div">
-          <!-- <label for="">Lesson Duration</label> <br /> -->
-          <select name="duration" id="" class="profile-input">
-            <option value="">LESSON DURATION</option>
-            <option value="1 hour">1 hour</option>
-            <option value="1.5 hours">1.5 hrs</option>
-            <option value="2 hours">2 hrs</option>
-            <option value="2.5 hours">2.5 hrs</option>
-            <option value="3 hours">3 hrs</option>
-          </select>
-        </div>
-
-        <div class="my-3">
-          <!-- <label for="">Location:</label> <br /> -->
-          <input
-            class="profile-input"
-            type="text"
-            name="location"
-            placeholder="LOCATION"
-          />
-        </div>
-
-        <div class="div">
-          <!-- <label for="">Allowance</label> <br /> -->
-          <input
-            class="profile-input"
-            type="text"
-            name="allowance"
-            placeholder="ALLOWANCE"
-          />
-        </div>
-
-        <button
-          class="btn btn-success my-lg-4 my-3 shadow-two"
-          type="submit"
-          name="postContract"
-        >
-          POST CONTRACT
-        </button>
-      </div>
-    </section>
-
-    <!-- NOTICE BOARD -->
-    <section id="adminNotice" class="form-apply shadow-two my-3 row">
-      <div class="col-lg-6 d-none d-lg-block pb-5"></div>
-      <div class="col-lg-6 shadow-two bg-white">
-        <h4 class="my-lg-3">NOTICE BOARD</h4>
-        <!-- <h3 class="py-1">NOTICE</h3> -->
-        <form action="/notice" method="post" class="">
-          <div class="my-4">
-            <label class="d-flex justify-content-start" for="News Title"
-              >TITLE</label
-            >
-
-            <input
-              class="shadow-one form-control"
-              type="text"
-              name="title"
-              placeholder="Notice Title"
-            />
-          </div>
-
-          <div class="">
-            <label class="label" for="News Title">DATE</label>
-            <input
-              class="shadow-one form-control"
-              type="date"
-              name="title"
-              placeholder="Notice Title"
-            />
-          </div>
-
-          <div class="my-4">
-            <label for="sendTo" class="label">SEND TO:</label>
-            <select name="sendTo" id="" class="shadow-one form-control">
-              <!-- <option>Notice To:</option> -->
-              <option value="all">All</option>
-              <option value="tutors">Tutors</option>
-              <option value="applicants">Applicants</option>
-            </select>
-          </div>
-
-          <div class="">
-            <label for="message" class="label">MESSAGE</label>
-            <textarea
-              class="form-control shadow-one"
-              name="message"
-              id=""
-              placeholder="Enter notice"
-            ></textarea>
-          </div>
-          <!-- <input type="text" name="news" placeholder="News" /> -->
-          <div class="">
-            <button
-              class="btn btn-success shadow-one my-3"
-              type="submit"
-              name="sendNotice"
-            >
-              SEND NOTICE
+      <!-- UPLOADS SECTION -->
+      <section id="adminUpload" class="shadow-two row">
+        <div class="col-lg-2 bg-success text-white">
+          <a class="navbar-brand text-white my-4" href="#">Uploads</a>
+          <div class="d-grid gap-2 py-sm-5">
+            <button type="button" class="btn btn-light" id="offerBtn">
+              Offer <i class="fa-solid fa-user-tie ms-2"></i>
             </button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <!-- EMAIL -->
-    <section class="form-apply shadow-two my-lg-4 row">
-      <div class="col-lg-6 d-none d-lg-block pb-5 shadow-two"></div>
-      <div class="col-lg-6 shadow-two bg-white">
-        <h4 class="my-lg-4">BULK EMAIL</h4>
-        <!-- <h3 class="py-1">NOTICE</h3> -->
-        <form action="/email" method="post" class="" id="emailForm">
-          <div class="my-4">
-            <label class="d-flex justify-content-start" for="News Title"
-              >SUBJECT</label
-            >
-
-            <input
-              class="form-control shadow-one"
-              type="text"
-              name="subject"
-              placeholder="Enter email subject"
-            />
-          </div>
-
-          <div class="">
-            <label class="label" for="News Title">DATE</label>
-            <input
-              class="form-control shadow-one"
-              type="date"
-              name="date"
-              placeholder="Notice Title"
-            />
-          </div>
-
-          <div class="my-4">
-            <label for="sendTo" class="label">SEND TO:</label>
-            <select name="sendTo" id="" class="form-control shadow-one">
-              <option value="all">All</option>
-              <option value="tutors">Tutors</option>
-              <option value="applicants">Applicants</option>
-              <option value="clients">Clients</option>
-              <option value="prospects">Prospects</option>
-            </select>
-          </div>
-
-          <!-- <div class="my-4">
-                <label for="sendTo" class="label mb-3">COPY TO:</label>
-                <select name="sendTo" id="" class="form-control">
-                  <option value="supervisors">Supervisors</option>
-                  <option value="management">Management</option>
-                  <option value="parents">Parents</option>
-                </select>
-              </div> -->
-
-          <div class="">
-            <label for="message" class="label">MESSAGE</label>
-            <textarea
-              class="form-control shadow-one"
-              name="message"
-              id=""
-              placeholder="Enter notice"
-            ></textarea>
-          </div>
-
-          <div class="text-success my-2" id="responseMessage"></div>
-
-          <!-- <input type="text" name="news" placeholder="News" /> -->
-          <div class="my-3">
-            <button
-              class="btn btn-success shadow-one"
-              type="submit"
-              id="adminEmail"
-            >
-              SEND EMAIL
+            <button type="button" class="btn btn-light" id="noteBtn">
+              Note <i class="fa-solid fa-clipboard ms-2"></i>
             </button>
+            <button type="button" class="btn btn-light" id="emailBtn">
+              Email <i class="fa-solid fa-envelope-circle-check ms-2"></i>
+            </button>
+            <!-- <button type="button" class="btn btn-light">Primary</button> -->
+            <!-- <form class="my-5" role="search">
+              <input
+                class="shadow-two form-control"
+                type="search"
+                id="searchForm"
+                placeholder="Search Form"
+              />
+            </form> -->
           </div>
-        </form>
-      </div>
+        </div>
+
+        <div class="col-lg-10">
+          <div class="div" id="">
+            <!-- UPLOAD CONTRACT -->
+            <section id="offerForm" class="form-apply shadow-two my-3 row">
+              <div class="col-lg-6 d-none d-lg-block pb-5"></div>
+              <div class="col-lg-6 shadow-two bg-white">
+                <h4 class="my-lg-4 my-2">OFFER UPLOADS</h4>
+                <div class="my-lg-3">
+                  <!-- <label for="">CONTRACT TYPE:</label> <br /> -->
+                  <select name="type" id="" class="form-control shadow-two">
+                    <option value="">CONTRACT TYPE</option>
+                    <option value="DUO">DUO</option>
+                    <option value="TRI">TRI</option>
+                    <option value="QUAD">QUAD</option>
+                    <option value="PENT">PENT</option>
+                  </select>
+                </div>
+
+                <div class="">
+                  <!-- <label class="" for="">Mode of Tuition:</label> <br /> -->
+                  <select name="mode" id="" class="form-control shadow-two">
+                    <option value="">MODE OF TUITION</option>
+                    <option value="online">Online</option>
+                    <option value="in-person">In-Person</option>
+                  </select>
+                </div>
+
+                <div class="my-3">
+                  <!-- <label for="">Level:</label> <br /> -->
+                  <select name="level" id="" class="form-control shadow-two">
+                    <option value="">LEVEL OF STUDENT</option>
+                    <option value="KG">KINDERGARTEN</option>
+                    <option value="PRIMARY">PRIMARY</option>
+                    <option value="JHS">JHS</option>
+                    <option value="SHS">SHS</option>
+                  </select>
+                </div>
+
+                <div class="div">
+                  <!-- <label for="">Class:</label> <br /> -->
+                  <input
+                    class="form-control shadow-two"
+                    type="tel"
+                    name="class"
+                    placeholder="CLASS"
+                  />
+                </div>
+
+                <div class="my-3">
+                  <!-- <label for="">Subjects:</label> <br /> -->
+                  <textarea
+                    name="subjects"
+                    id=""
+                    class="form-control shadow-two"
+                    placeholder="TUITION SUBJECT(S)"
+                  ></textarea>
+                </div>
+
+                <div class="div">
+                  <!-- <label for="">Lesson Duration</label> <br /> -->
+                  <select name="duration" id="" class="form-control shadow-two">
+                    <option value="">
+                      LESSON DURATION
+                      <i class="fa-solid fa-chevron-down ms-auto"></i>
+                    </option>
+                    <option value="1 hour">1 hour</option>
+                    <option value="1.5 hours">1.5 hrs</option>
+                    <option value="2 hours">2 hrs</option>
+                    <option value="2.5 hours">2.5 hrs</option>
+                    <option value="3 hours">3 hrs</option>
+                  </select>
+                </div>
+
+                <div class="my-3">
+                  <!-- <label for="">Location:</label> <br /> -->
+                  <input
+                    class="form-control shadow-two"
+                    type="text"
+                    name="location"
+                    placeholder="LOCATION"
+                  />
+                </div>
+
+                <div class="div">
+                  <!-- <label for="">Allowance</label> <br /> -->
+                  <input
+                    class="form-control shadow-two"
+                    type="text"
+                    name="allowance"
+                    placeholder="ALLOWANCE"
+                  />
+                </div>
+
+                <button
+                  class="btn btn-success my-lg-4 my-3 shadow-two"
+                  type="submit"
+                  name="postContract"
+                >
+                  POST CONTRACT
+                </button>
+              </div>
+            </section>
+
+            <!-- NOTICE BOARD -->
+            <section id="noteForm" class="form-apply shadow-two my-3 row">
+              <div class="col-lg-6 d-none d-lg-block pb-5"></div>
+              <div class="col-lg-6 shadow-two bg-white">
+                <h4 class="my-lg-3">NOTICE BOARD</h4>
+                <!-- <h3 class="py-1">NOTICE</h3> -->
+                <form action="/notice" method="post" class="">
+                  <div class="my-4">
+                    <label class="d-flex justify-content-start" for="News Title"
+                      >TITLE</label
+                    >
+
+                    <input
+                      class="shadow-one form-control"
+                      type="text"
+                      name="title"
+                      placeholder="Notice Title"
+                    />
+                  </div>
+
+                  <div class="">
+                    <label class="label" for="News Title">DATE</label>
+                    <input
+                      class="shadow-one form-control"
+                      type="date"
+                      name="title"
+                      placeholder="Notice Title"
+                    />
+                  </div>
+
+                  <div class="my-4">
+                    <label for="sendTo" class="label">SEND TO:</label>
+                    <select name="sendTo" id="" class="shadow-one form-control">
+                      <!-- <option>Notice To:</option> -->
+                      <option value="all">All</option>
+                      <option value="tutors">Tutors</option>
+                      <option value="applicants">Applicants</option>
+                    </select>
+                  </div>
+
+                  <div class="">
+                    <label for="message" class="label">MESSAGE</label>
+                    <textarea
+                      class="form-control shadow-one"
+                      name="message"
+                      id=""
+                      placeholder="Enter notice"
+                    ></textarea>
+                  </div>
+                  <!-- <input type="text" name="news" placeholder="News" /> -->
+                  <div class="">
+                    <button
+                      class="btn btn-success shadow-one my-3"
+                      type="submit"
+                      name="sendNotice"
+                    >
+                      SEND NOTICE
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </section>
+
+            <!-- EMAIL -->
+            <section id="emailForm" class="form-apply shadow-two my-lg-4 row">
+              <div class="col-lg-6 d-none d-lg-block pb-5 shadow-two"></div>
+              <div class="col-lg-6 shadow-two bg-white">
+                <h4 class="my-lg-4">EMAIL</h4>
+                <!-- <h3 class="py-1">NOTICE</h3> -->
+                <form action="/email" method="post" class="">
+                  <div class="my-4">
+                    <label class="d-flex justify-content-start" for="News Title"
+                      >SUBJECT</label
+                    >
+
+                    <input
+                      class="form-control shadow-one"
+                      type="text"
+                      name="subject"
+                      placeholder="Enter email subject"
+                    />
+                  </div>
+
+                  <div class="">
+                    <label class="label" for="News Title">DATE</label>
+                    <input
+                      class="form-control shadow-one"
+                      type="date"
+                      name="date"
+                      placeholder="Notice Title"
+                    />
+                  </div>
+
+                  <div class="my-4">
+                    <label for="sendTo" class="label">SEND TO:</label>
+                    <select name="sendTo" id="" class="form-control shadow-one">
+                      <option value="all">All</option>
+                      <option value="tutors">Tutors</option>
+                      <option value="applicants">Applicants</option>
+                      <option value="clients">Clients</option>
+                      <option value="prospects">Prospects</option>
+                    </select>
+                  </div>
+
+                  <!-- <div class="my-4">
+                      <label for="sendTo" class="label mb-3">COPY TO:</label>
+                      <select name="sendTo" id="" class="form-control">
+                        <option value="supervisors">Supervisors</option>
+                        <option value="management">Management</option>
+                        <option value="parents">Parents</option>
+                      </select>
+                    </div> -->
+
+                  <div class="">
+                    <label for="message" class="label">MESSAGE</label>
+                    <textarea
+                      class="form-control shadow-one"
+                      name="message"
+                      id=""
+                      placeholder="Enter notice"
+                    ></textarea>
+                  </div>
+
+                  <div class="text-success my-2" id="responseMessage"></div>
+
+                  <!-- <input type="text" name="news" placeholder="News" /> -->
+                  <div class="my-3">
+                    <button
+                      class="btn btn-success shadow-one"
+                      type="submit"
+                      id="adminEmail"
+                    >
+                      SEND EMAIL
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
     </section>
   </div>
 </div>
 
 <!-- <i class="fa-regular fa-square-plus"></i> -->
+<!-- <i class="fa-solid fa-expand"></i> -->
+<!-- <i class="fa-solid fa-users"></i> -->
 
 <%- include('partials/end') %>
