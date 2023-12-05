@@ -1176,6 +1176,7 @@ app.post("/login", async (req, res) => {
         fullName: fullName,
         profile: profileData,
         offers: contracts,
+        date: date,
         // profile: profileData,
       });
     }

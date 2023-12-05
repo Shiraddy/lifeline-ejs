@@ -2,7 +2,7 @@
 
 <div class="container-fluid row">
   <!-- SIDE BAR -->
-  <div class="col-lg-2 shadow-two bg-danger col-sm-12" id="">
+  <div class="col-lg-2 shadow-two col-sm-12 aside" id="">
     <div class="profile-side" id="">
       <button
         class="navbar-toggler d-lg-none d-flex justify-content-start py-2"
@@ -31,7 +31,7 @@
         <div class="offcanvas-body tutor-sidebar">
           <div class="d-block mt-lg-2 side-bar">
             <img class="profile-pic" src="images/Pic.png" alt="" />
-            <h5 class="text-white"><%= profileName %></h5>
+
             <ul class="nav navbar-nav">
               <a class="link-user active" href="#">DASHBOARD</a>
               <a class="link-user" href="#">PROFILE</a>
@@ -55,234 +55,145 @@
 
   <!-- MAIN BODY AREA -->
   <div class="col-lg-10 col-sm-12 col-md-12">
-    <section id="tutorDashboard" class="client-banner container-faq">
-      <nav class="navbar navbar-expand-lg d-none d-lg-flex container-fluid">
-        <div class="container-fluid">
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div
-            class="collapse navbar-collapse text-white"
-            id="navbarTogglerDemo01"
-          >
-            <a class="navbar-brand me-auto text-danger" href="#">Lifeline</a>
-            <ul class="navbar-nav mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a
-                  class="nav-link active text-white"
-                  aria-current="page"
-                  href="#"
-                  >Home</a
-                >
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#">Tuition</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white">Faq</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white btn btn-outline-success" href="#"
-                  >Log-out</a
-                >
-              </li>
-            </ul>
-            <!-- <form class="d-flex" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form> -->
-          </div>
+    <nav class="navbar navbar-expand-lg mx-0 d-none d-lg-block">
+      <div class="container-fluid">
+        <a class="navbar-brand text-danger" href="#">Lifeline</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Blog</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Training
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2 shadow-two"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success shadow-two" type="submit">
+              Search
+            </button>
+          </form>
         </div>
-      </nav>
-    </section>
+      </div>
+    </nav>
 
-    <div class="services-apply res-d1 container-faq mt-5 mt-lg-2">
-      <!-- PROFILE -->
-      <section id="profile" class="col-lg-12">
-        <div class="section shadow-two">
-          <a class="navbar-brand" href="#">Profile</a>
-          <div class="row">
-            <div class="col-lg-6 py-sm-3">
-              <div class="">
-                <label class="" for="fullName">Full Name</label> <br />
-                <input
-                  class="profile-input"
-                  type="text"
-                  name="fullName"
-                  placeholder="<%= fullName %>"
-                  id=""
-                  disabled
-                />
-              </div>
+    <div class="admin-body mt-3">
+      <!-- WELCOME SECTION -->
+      <section class="row shadow-two rounded profile">
+        <div class="col-lg-6 col-sm-12 text-start pt-5 px-5">
+          <h2 class="fs-2 fw-bolder">Hello <%= fullName %>,</h2>
+          <h4 class="fw-semibold fs-beauty text-muted">It is <%= date %></h4>
+          <h5 class="fs-beauty text-muted">
+            Tutor Status: <%= profile.status %>
+          </h5>
+          <!-- <h6 class="fs-beauty">Are You Ready to Begin...</h6> -->
+          <button class="btn btn-primary my-3">Let's explore ...</button>
+        </div>
+        <div class="col-lg-6 col-sm-12 py-3 row">
+          <h5 class="text-start">Dashboard Statistics</h5>
+          <div class="col-lg-3">
+            <div class="revenue shadow-two bg-white text-primary">
+              <h6>Home Work</h6>
+              <h6><i class="fa-solid fa-receipt ms-3"></i>45+</h6>
             </div>
-
-            <div class="col-lg-6 py-sm-3">
-              <div class="">
-                <label class="" for="">Gender</label><br />
-                <input
-                  class="profile-input"
-                  type="gender"
-                  name="gender"
-                  placeholder="<%= profile.gender %>"
-                  disabled
-                  id=""
-                />
-              </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="profit shadow-two bg-white text-info">
+              <h6>Articles</h6>
+              <h6><i class="fa-solid fa-book-open ms-3"></i>45+</h6>
             </div>
-
-            <div class="col-lg-6 py-sm-3">
-              <div class="">
-                <label class="" for="">Date of Birth</label><br />
-                <input
-                  class="profile-input"
-                  type="text"
-                  name="DoB"
-                  id=""
-                  disabled
-                  placeholder="<%= profile.DoB %>"
-                />
-              </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="client shadow-two bg-white text-danger">
+              <h6>Offers</h6>
+              <h6><i class="fa-solid fa-handshake ms-3"></i>80+</h6>
             </div>
-
-            <div class="col-lg-6 py-sm-3">
-              <div class="">
-                <label class="" for="">Email</label><br />
-                <input
-                  class="profile-input"
-                  type="email"
-                  name="email"
-                  id=""
-                  placeholder="<%= profile.email %>"
-                  disabled
-                />
-              </div>
-            </div>
-
-            <div class="col-lg-6 py-sm-3">
-              <div class="">
-                <label class="" for="">Contact</label><br />
-                <input
-                  class="profile-input"
-                  type="tel"
-                  name="contact"
-                  placeholder="<%= profile.contact %>"
-                  disabled
-                  id=""
-                />
-              </div>
-            </div>
-
-            <div class="col-lg-6 py-sm-3">
-              <div class="">
-                <label class="" for="">Home GPS Address</label><br />
-                <input
-                  class="profile-input"
-                  type="tel"
-                  name="gps"
-                  placeholder="<%= profile.gps %>"
-                  id=""
-                  disabled
-                />
-              </div>
-            </div>
-
-            <!-- <div class="col-lg-6 py-sm-3">
-                <div class="">
-                  <label class="" for="">Mobile Money Number</label><br />
-                  <input
-                    class="profile-input"
-                    type="tel"
-                    name="momo_number"
-                    disabled
-                    id=""
-                  />
-                </div>
-              </div> -->
-
-            <div class="col-lg-6 py-sm-3">
-              <div class="">
-                <label class="" for="">Emergency Contact</label><br />
-                <input
-                  class="profile-input"
-                  type="tel"
-                  name="emergencyNumber"
-                  placeholder="<%= profile.emergency %>"
-                  disabled
-                  id=""
-                />
-              </div>
-            </div>
-
-            <!-- <div class="col-lg-6 py-sm-3">
-                <div class="">
-                  <label class="" for="">Account Verification</label><br />
-                  <input
-                    class="profile-input"
-                    type="text"
-                    name="accountVerification"
-                    disabled
-                    id=""
-                  />
-                </div>
-              </div> -->
-
-            <!-- <div class="col-lg-6 py-sm-3">
-                <div class="">
-                  <label class="" for="">Tutor Category</label><br />
-                  <input
-                    class="profile-input"
-                    type="text"
-                    name="category"
-                    disabled
-                    placeholder="<%#= profile.category %>"
-                    id=""
-                  />
-                </div>
-              </div> -->
-
-            <div class="col-lg-6 py-sm-3">
-              <div class="">
-                <label class="" for="">Tutor Status</label> <br />
-                <input
-                  class="profile-input"
-                  type="text"
-                  name="status"
-                  disabled
-                  placeholder="<%= profile.status %>"
-                  id=""
-                />
-              </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="tutor bg-white shadow-two text-success">
+              <h6 class="">Tutors</h6>
+              <h6 class="ms-2"><i class="fa-solid fa-user"></i>100+</h6>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- RESOURCE CENTRE -->
-      <section id="resourceCentre" class="col-lg-12">
-        <!-- <h4>Resource Centre</h4> -->
-        <div class="section shadow-two">
-          <!-- LIFELINE -->
-          <a class="navbar-brand" href="#">Resource Centre</a>
-          <p>Select to download the resource you need</p>
+      <section class="row shadow-two rounded py-4">
+        <h4 class="text-start mx-3">My Board</h4>
+        <div class="col-lg-8">
+          <div class="shadow-two bg-white row notice">
+            <h4>Notice Board</h4>
+            <p class="blockquote">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde hic,
+              pariatur voluptate assumenda itaque doloremque, incidunt alias,
+              sint consequuntur quis mollitia rerum adipisci! Voluptatum
+            </p>
+            <div class="row">
+              <div class="col-lg-2">
+                <i class="fa-solid fa-circle-arrow-left me-3"></i
+                ><i class="fa-solid fa-circle-arrow-right"></i>
+              </div>
+              <div class="col-lg-10 text-end">
+                <small class="blockquote-footer"><%= date %></small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row col-lg-4">
+          <div class="quote shadow-two">
+            <h4>Event Bite</h4>
+            <p class="blockquote">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
+              earum!
+            </p>
+          </div>
+        </div>
+      </section>
 
-          <div class="row">
-            <!-- <div class="col-lg-12 row my-5">
+      <div class="mt-5 mt-lg-2">
+        <!-- RESOURCE CENTRE -->
+        <section id="resourceCentre" class="col-lg-12">
+          <!-- <h4>Resource Centre</h4> -->
+          <div class="section shadow-two">
+            <!-- LIFELINE -->
+            <a class="navbar-brand" href="#">Resource Centre</a>
+
+            <div class="row">
+              <!-- <div class="col-lg-12 row my-5">
               <div class="col">
                 <div class="res hover" id="lBtn">
                   <img class="image-link" src="/images/logo.png" alt="" />
@@ -305,483 +216,412 @@
 
             </div> -->
 
-            <!-- <div class="col"><i class="fa-regular fa-file-pdf"></i></div>
+              <!-- <div class="col"><i class="fa-regular fa-file-pdf"></i></div>
             <div class="col"><i class="fa-regular fa-file-pdf"></i></div>
             <div class="col"><i class="fa-solid fa-file-pdf"></i></div> -->
-            <div class="col-12">
-              <div class="lifeline text-start px-5" id="lesResource">
-                <div class="row my-3 py-2">
-                  <div class="col-lg-6">
-                    <h5>Lifeline Tutor Repository</h5>
-                    <!-- <small>Download Lifeline's Resources</small> -->
+              <div class="col-12">
+                <div class="lifeline text-start px-5" id="lesResource">
+                  <div class="row my-3 py-2">
+                    <div class="col-lg-6">
+                      <h5>Lifeline Tutor Repository</h5>
+                      <!-- <small>Download Lifeline's Resources</small> -->
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                      <form class="d-flex" role="search">
+                        <input
+                          class="form-control me-2 shadow-one"
+                          type="search"
+                          placeholder="Search"
+                          aria-label="Search"
+                          id="lesResSearch"
+                        />
+                      </form>
+                    </div>
                   </div>
-                  <div class="col-lg-6 col-sm-12">
-                    <form class="d-flex" role="search">
-                      <input
-                        class="form-control me-2 shadow-one"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search"
-                        id="lesResSearch"
-                      />
-                    </form>
-                  </div>
+
+                  <table
+                    class="table table-sm table-bordered border-primary table-hover resource"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Download</th>
+                      </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider" id="lesResCentre">
+                      <tr>
+                        <td>1</td>
+                        <td>Log Sheet</td>
+                        <td>This is used to record tutor attendance.</td>
+                        <td>
+                          <a
+                            class="btn btn-danger"
+                            href="https://firebasestorage.googleapis.com/v0/b/lifeline-edu-site.appspot.com/o/Tutor%20Resources%2FLog%20sheet.pdf?alt=media&token=a1a2927c-c086-4f20-8930-808a782794bb"
+                            id="download"
+                            ><i class="fa-solid fa-download"></i
+                          ></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Code of Conduct</td>
+                        <td>This documents spells out our rules.</td>
+                        <td>
+                          <a
+                            class="btn btn-danger"
+                            href="https://firebasestorage.googleapis.com/v0/b/lifeline-edu-site.appspot.com/o/Tutor%20Resources%2FLifeline's%20Tutor%20Code%20of%20Conduct.pdf?alt=media&token=17cbb614-401f-495f-9311-8b4aa8076a6e"
+                            id="download"
+                            ><i class="fa-solid fa-download"></i
+                          ></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Tutor's Handbook</td>
+                        <td>
+                          This document will help you become a better tutor.
+                        </td>
+                        <td>
+                          <a class="btn btn-danger" href="#" id="download"
+                            ><i class="fa-solid fa-download"></i
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
 
-                <table
-                  class="table table-sm table-bordered border-primary table-hover resource"
-                >
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Description</th>
-                      <th scope="col">Download</th>
-                    </tr>
-                  </thead>
-
-                  <tbody class="table-group-divider" id="lesResCentre">
-                    <tr>
-                      <td>1</td>
-                      <td>Log Sheet</td>
-                      <td>This is used to record tutor attendance.</td>
-                      <td>
-                        <a
-                          class="btn btn-danger"
-                          href="https://firebasestorage.googleapis.com/v0/b/lifeline-edu-site.appspot.com/o/Tutor%20Resources%2FLog%20sheet.pdf?alt=media&token=a1a2927c-c086-4f20-8930-808a782794bb"
-                          id="download"
-                          ><i class="fa-solid fa-download"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Code of Conduct</td>
-                      <td>This documents spells out our rules.</td>
-                      <td>
-                        <a
-                          class="btn btn-danger"
-                          href="https://firebasestorage.googleapis.com/v0/b/lifeline-edu-site.appspot.com/o/Tutor%20Resources%2FLifeline's%20Tutor%20Code%20of%20Conduct.pdf?alt=media&token=17cbb614-401f-495f-9311-8b4aa8076a6e"
-                          id="download"
-                          ><i class="fa-solid fa-download"></i
-                        ></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Tutor's Handbook</td>
-                      <td>
-                        This document will help you become a better tutor.
-                      </td>
-                      <td>
-                        <a class="btn btn-danger" href="#" id="download"
-                          ><i class="fa-solid fa-download"></i
-                        ></a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="text-start px-5 mt-5">
-                <div class="row my-3">
-                  <div class="col-lg-6">
-                    <h5>Standards Based Curriculum</h5>
+                <div class="text-start px-5 mt-5">
+                  <div class="row my-3">
+                    <div class="col-lg-6">
+                      <h5>Standards Based Curriculum</h5>
+                    </div>
+                    <div class="col-lg-6">
+                      <form class="d-flex" role="search">
+                        <input
+                          class="form-control me-2 shadow-one"
+                          type="search"
+                          placeholder="Search"
+                          aria-label="Search"
+                          id="gesResSearch"
+                        />
+                      </form>
+                    </div>
                   </div>
-                  <div class="col-lg-6">
-                    <form class="d-flex" role="search">
-                      <input
-                        class="form-control me-2 shadow-one"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search"
-                        id="gesResSearch"
-                      />
-                    </form>
-                  </div>
+                  <!-- <p>Ghana Education Service (GES) Standards Based Curriculum.</p> -->
+                  <table
+                    class="table table-sm table-bordered border-primary table-hover resource"
+                  >
+                    <thead class="">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Download</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-group-divider" id="gesResCentre">
+                      <tr>
+                        <td>1</td>
+                        <td>Log Sheet</td>
+                        <td>This is used to record tutor attendance.</td>
+                        <td>
+                          <a class="btn btn-danger" href="#" id="download"
+                            ><i class="fa-solid fa-download"></i
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <!-- <p>Ghana Education Service (GES) Standards Based Curriculum.</p> -->
-                <table
-                  class="table table-sm table-bordered border-primary table-hover resource"
-                >
-                  <thead class="">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Class</th>
-                      <th scope="col">Subject</th>
-                      <th scope="col">Download</th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-group-divider" id="gesResCentre">
-                    <tr>
-                      <td>1</td>
-                      <td>Log Sheet</td>
-                      <td>This is used to record tutor attendance.</td>
-                      <td>
-                        <a class="btn btn-danger" href="#" id="download"
-                          ><i class="fa-solid fa-download"></i
-                        ></a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
 
-              <div class="reading text-start px-5 mt-5">
-                <h5>Reading Centre</h5>
-                <p>Reading resource to help you teach reading effectively.</p>
-                <table
-                  id="rResCentre"
-                  class="table table-sm table-bordered border-primary table-hover resource"
-                >
-                  <thead class="">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Material</th>
-                      <th scope="col">Description</th>
-                      <th scope="col">Download</th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-group-divider">
-                    <tr>
-                      <td>1</td>
-                      <td>Teaching Guide</td>
-                      <td>Teaching students using varied approaches.</td>
-                      <td>
-                        <a class="btn btn-danger" href="#" id="download"
-                          ><i class="fa-solid fa-download"></i
-                        ></a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="reading text-start px-5 mt-5">
+                  <h5>Reading Centre</h5>
+                  <p>Reading resource to help you teach reading effectively.</p>
+                  <table
+                    id="rResCentre"
+                    class="table table-sm table-bordered border-primary table-hover resource"
+                  >
+                    <thead class="">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Material</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Download</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                      <tr>
+                        <td>1</td>
+                        <td>Teaching Guide</td>
+                        <td>Teaching students using varied approaches.</td>
+                        <td>
+                          <a class="btn btn-danger" href="#" id="download"
+                            ><i class="fa-solid fa-download"></i
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- CONTRACTS -->
-      <section id="jobs" class="col-lg-12 shadow-two">
-        <a class="navbar-brand" href="#">Contracts</a>
-        <!-- <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <button
-            class="navbar-toggler dropdown-toggle-split"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDarkDropdown"
-            aria-controls="navbarNavDarkDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-            <ul class="navbar-nav">
-              <div
-                class="btn-group"
-                role="group"
-                aria-label="Basic radio toggle button group"
-              >
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="btnradio"
-                  id="btnradio1"
-                  autocomplete="off"
-                  checked
-                />
-                <label class="btn btn-outline-success" for="btnradio1">
-                  <span class="badge bg-danger shadow-two rounded-pill">14</span
-                  >Applicants</label
-                >
-
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="btnradio"
-                  id="btnradio2"
-                  autocomplete="off"
-                />
-                <label class="btn btn-outline-success" for="btnradio2"
-                  >Tutors</label
-                >
-
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="btnradio"
-                  id="btnradio3"
-                  autocomplete="off"
-                />
-                <label class="btn btn-outline-success" for="btnradio3"
-                  >Pending</label
-                >
-              </div>
-            </ul>
-            <form class="d-flex ms-auto shadow-two" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
-          </div>
-        </div>
-      </nav> -->
-        <div class="section">
-          <!-- <h3 class="">Contracts</h3> -->
-          <div class="row">
-            <% offers.forEach(function(offer, index) { %>
-            <div class="col-md-4">
-              <div class="card h-80 mb-3 hoverTutor">
-                <div class="card-header py-1">
-                  <h4><%= offer.data.type %></h4>
-                </div>
-                <div class="card-body">
-                  <p>MODE: <%= offer.data.mode %></p>
-                  <p>LEVEL: <%= offer.data.level %></p>
-                  <p>DURATION: <%= offer.data.duration %></p>
-                  <p>LOCATION: <%= offer.data.location %></p>
-                  <h5><%= offer.data.allowance %></h5>
-                  <div class="py-2">
-                    <form action="/more" class="d-flex justify-content-end">
-                      <button class="btn tutorIcon me-2" type="submit">
-                        <i class="fa-solid fa-expand"></i>
-                      </button>
-                      <button type="submit" class="btn tutorIcon">
-                        <i class="fa-regular fa-circle-check"></i>
-                      </button>
-                    </form>
+        <!-- CONTRACTS -->
+        <section id="jobs" class="col-lg-12 shadow-two">
+          <a class="navbar-brand" href="#">Contracts</a>
+          <div class="section">
+            <div class="row">
+              <% offers.forEach(function(offer, index) { %>
+              <div class="col-md-4">
+                <div class="card h-80 mb-3 hoverTutor rounded">
+                  <div class="card-header py-1">
+                    <h4><%= offer.data.type %></h4>
+                  </div>
+                  <div class="card-body">
+                    <p>MODE: <%= offer.data.mode %></p>
+                    <p>LEVEL: <%= offer.data.level %></p>
+                    <p>DURATION: <%= offer.data.duration %></p>
+                    <p>LOCATION: <%= offer.data.location %></p>
+                    <h5><%= offer.data.allowance %></h5>
+                    <div class="py-2">
+                      <form action="/more" class="d-flex justify-content-end">
+                        <button class="btn tutorIcon me-2" type="submit">
+                          <i class="fa-solid fa-expand"></i>
+                        </button>
+                        <button type="submit" class="btn tutorIcon">
+                          <i class="fa-regular fa-circle-check"></i>
+                        </button>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
+              <% if ((index + 1) % 3 === 0) { %>
             </div>
-            <% if ((index + 1) % 3 === 0) { %>
+            <div class="row"><% } %> <% }); %></div>
           </div>
-          <div class="row"><% } %> <% }); %></div>
-        </div>
-      </section>
+        </section>
 
-      <!-- FORMS -->
-      <section id="tutorForms" class="col-lg-12 shadow-two my-3">
-        <div
-          class="btn-group my-3"
-          role="group"
-          aria-label="Basic radio toggle button group"
-        >
-          <input
-            type="radio"
-            class="btn-check"
-            name="btnradio"
-            id="btnradio1"
-            autocomplete="off"
-            checked
-          />
-          <label class="btn btn-outline-primary" for="btnradio1"
-            >Log Sheet</label
+        <!-- FORMS -->
+        <section id="tutorForms" class="col-lg-12 shadow-two my-3">
+          <div
+            class="btn-group my-3"
+            role="group"
+            aria-label="Basic radio toggle button group"
           >
+            <input
+              type="radio"
+              class="btn-check"
+              name="btnradio"
+              id="btnradio1"
+              autocomplete="off"
+              checked
+            />
+            <label class="btn btn-outline-primary" for="btnradio1"
+              >Log Sheet</label
+            >
 
-          <input
-            type="radio"
-            class="btn-check"
-            name="btnradio"
-            id="btnradio2"
-            autocomplete="off"
-          />
-          <label class="btn btn-outline-primary" for="btnradio2"
-            >Progress Report</label
-          >
-        </div>
-
-        <!-- PROGRESS REPORT -->
-        <div class="px-5 py-3">
-          <div class="row shadow-two">
-            <div class="col-lg-6 d-none d-lg-block"></div>
-            <div class="col-lg-6 shadow-two bg-white">
-              <h4 class="my-lg-4 my-2">PROGRESS REPORT</h4>
-              <div class="my-lg-3">
-                <!-- <label for="">CONTRACT TYPE:</label> <br /> -->
-                <select name="type" id="" class="profile-input">
-                  <option value="">CONTRACT TYPE</option>
-                  <option value="DUO">DUO</option>
-                  <option value="TRI">TRI</option>
-                  <option value="QUAD">QUAD</option>
-                  <option value="PENT">PENT</option>
-                </select>
-              </div>
-
-              <div class="">
-                <!-- <label class="" for="">Mode of Tuition:</label> <br /> -->
-                <select name="mode" id="" class="profile-input">
-                  <option value="">MODE OF TUITION</option>
-                  <option value="online">Online</option>
-                  <option value="in-person">In-Person</option>
-                </select>
-              </div>
-
-              <div class="my-3">
-                <!-- <label for="">Level:</label> <br /> -->
-                <select name="level" id="" class="profile-input">
-                  <option value="">LEVEL OF STUDENT</option>
-                  <option value="KG">KINDERGARTEN</option>
-                  <option value="PRIMARY">PRIMARY</option>
-                  <option value="JHS">JHS</option>
-                  <option value="SHS">SHS</option>
-                </select>
-              </div>
-
-              <div class="div">
-                <!-- <label for="">Class:</label> <br /> -->
-                <input
-                  class="profile-input"
-                  type="tel"
-                  name="class"
-                  placeholder="CLASS"
-                />
-              </div>
-
-              <div class="my-3">
-                <!-- <label for="">Subjects:</label> <br /> -->
-                <textarea
-                  name="subjects"
-                  id=""
-                  class="profile-input-textarea"
-                  placeholder="TUITION SUBJECT(S)"
-                ></textarea>
-              </div>
-
-              <div class="div">
-                <!-- <label for="">Lesson Duration</label> <br /> -->
-                <select name="duration" id="" class="profile-input">
-                  <option value="">LESSON DURATION</option>
-                  <option value="1 hour">1 hour</option>
-                  <option value="1.5 hours">1.5 hrs</option>
-                  <option value="2 hours">2 hrs</option>
-                  <option value="2.5 hours">2.5 hrs</option>
-                  <option value="3 hours">3 hrs</option>
-                </select>
-              </div>
-
-              <div class="my-3">
-                <!-- <label for="">Location:</label> <br /> -->
-                <input
-                  class="profile-input"
-                  type="text"
-                  name="location"
-                  placeholder="LOCATION"
-                />
-              </div>
-
-              <button
-                class="btn btn-success my-lg-4 my-3 shadow-two"
-                type="submit"
-                name="postContract"
-              >
-                UPLOAD REPORT
-              </button>
-            </div>
+            <input
+              type="radio"
+              class="btn-check"
+              name="btnradio"
+              id="btnradio2"
+              autocomplete="off"
+            />
+            <label class="btn btn-outline-primary" for="btnradio2"
+              >Progress Report</label
+            >
           </div>
-        </div>
-      </section>
 
-      <section>
-        <div class="px-5 py-3">
-          <div class="row shadow-two">
-            <div class="col-lg-6 d-none d-lg-block"></div>
-            <div class="col-lg-6 shadow-two bg-white">
-              <h4 class="my-lg-3">LOG SHEET</h4>
-              <form action="" method="post">
-                <div class="div">
-                  <label class="label" for="">Tutor ID:</label>
-                  <input
-                    class="apply-input"
-                    type="text"
-                    name="tutorId"
-                    disabled
-                  />
+          <!-- PROGRESS REPORT -->
+          <div class="px-5 py-3">
+            <div class="row shadow-two">
+              <div class="col-lg-6 d-none d-lg-block"></div>
+              <div class="col-lg-6 shadow-two bg-white">
+                <h4 class="my-lg-4 my-2">PROGRESS REPORT</h4>
+                <div class="my-lg-3">
+                  <!-- <label for="">CONTRACT TYPE:</label> <br /> -->
+                  <select name="type" id="" class="profile-input">
+                    <option value="">CONTRACT TYPE</option>
+                    <option value="DUO">DUO</option>
+                    <option value="TRI">TRI</option>
+                    <option value="QUAD">QUAD</option>
+                    <option value="PENT">PENT</option>
+                  </select>
+                </div>
+
+                <div class="">
+                  <!-- <label class="" for="">Mode of Tuition:</label> <br /> -->
+                  <select name="mode" id="" class="profile-input">
+                    <option value="">MODE OF TUITION</option>
+                    <option value="online">Online</option>
+                    <option value="in-person">In-Person</option>
+                  </select>
+                </div>
+
+                <div class="my-3">
+                  <!-- <label for="">Level:</label> <br /> -->
+                  <select name="level" id="" class="profile-input">
+                    <option value="">LEVEL OF STUDENT</option>
+                    <option value="KG">KINDERGARTEN</option>
+                    <option value="PRIMARY">PRIMARY</option>
+                    <option value="JHS">JHS</option>
+                    <option value="SHS">SHS</option>
+                  </select>
                 </div>
 
                 <div class="div">
-                  <label class="label" for="">Email:</label>
+                  <!-- <label for="">Class:</label> <br /> -->
                   <input
-                    class="apply-input"
-                    type="email"
-                    name="tutorId"
-                    disabled
-                  />
-                </div>
-
-                <div class="div">
-                  <label class="label" for="">Contact:</label>
-                  <input
-                    class="apply-input"
+                    class="profile-input"
                     type="tel"
-                    name="contact"
-                    disabled
+                    name="class"
+                    placeholder="CLASS"
                   />
                 </div>
 
-                <div class="div">
-                  <label class="label" for="">Log Sheet For (Month):</label>
-                  <input class="apply-input" type="month" name="date" />
+                <div class="my-3">
+                  <!-- <label for="">Subjects:</label> <br /> -->
+                  <textarea
+                    name="subjects"
+                    id=""
+                    class="profile-input-textarea"
+                    placeholder="TUITION SUBJECT(S)"
+                  ></textarea>
                 </div>
 
                 <div class="div">
-                  <label class="label" for="">Contract Id:</label>
-                  <input class="apply-input" type="text" name="contractId" />
+                  <!-- <label for="">Lesson Duration</label> <br /> -->
+                  <select name="duration" id="" class="profile-input">
+                    <option value="">LESSON DURATION</option>
+                    <option value="1 hour">1 hour</option>
+                    <option value="1.5 hours">1.5 hrs</option>
+                    <option value="2 hours">2 hrs</option>
+                    <option value="2.5 hours">2.5 hrs</option>
+                    <option value="3 hours">3 hrs</option>
+                  </select>
                 </div>
 
-                <div class="div">
-                  <label class="label" for="">Upload Log Sheet</label>
-                  <input class="apply-input" type="file" name="logSheet" />
+                <div class="my-3">
+                  <!-- <label for="">Location:</label> <br /> -->
+                  <input
+                    class="profile-input"
+                    type="text"
+                    name="location"
+                    placeholder="LOCATION"
+                  />
                 </div>
 
-                <button class="btn btn-success my-lg-4" type="submit">
-                  SUBMIT
+                <button
+                  class="btn btn-success my-lg-4 my-3 shadow-two"
+                  type="submit"
+                  name="postContract"
+                >
+                  UPLOAD REPORT
                 </button>
-              </form>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- TRAINING -->
-      <section class="d-none d-lg-block">
-        <div class="px-5 py-5">
-          <a class="navbar-brand" href="#">Training</a>
-          <!-- 
+        <section>
+          <div class="px-5 py-3">
+            <div class="row shadow-two">
+              <div class="col-lg-6 d-none d-lg-block"></div>
+              <div class="col-lg-6 shadow-two bg-white">
+                <h4 class="my-lg-3">LOG SHEET</h4>
+                <form action="" method="post">
+                  <div class="div">
+                    <label class="label" for="">Tutor ID:</label>
+                    <input
+                      class="apply-input"
+                      type="text"
+                      name="tutorId"
+                      disabled
+                    />
+                  </div>
+
+                  <div class="div">
+                    <label class="label" for="">Email:</label>
+                    <input
+                      class="apply-input"
+                      type="email"
+                      name="tutorId"
+                      disabled
+                    />
+                  </div>
+
+                  <div class="div">
+                    <label class="label" for="">Contact:</label>
+                    <input
+                      class="apply-input"
+                      type="tel"
+                      name="contact"
+                      disabled
+                    />
+                  </div>
+
+                  <div class="div">
+                    <label class="label" for="">Log Sheet For (Month):</label>
+                    <input class="apply-input" type="month" name="date" />
+                  </div>
+
+                  <div class="div">
+                    <label class="label" for="">Contract Id:</label>
+                    <input class="apply-input" type="text" name="contractId" />
+                  </div>
+
+                  <div class="div">
+                    <label class="label" for="">Upload Log Sheet</label>
+                    <input class="apply-input" type="file" name="logSheet" />
+                  </div>
+
+                  <button class="btn btn-success my-lg-4" type="submit">
+                    SUBMIT
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TRAINING -->
+        <section class="d-none d-lg-block">
+          <div class="px-5 py-5">
+            <a class="navbar-brand" href="#">Training</a>
+            <!-- 
           <iframe
             src="https://drive.google.com/file/d/1mb4olB1spPu2VnkWn34BNT-pXBtPE6i5/view?usp=sharing"
             frameborder="0"
           ></iframe> -->
 
-          <!-- <video
+            <!-- <video
             src="https://drive.google.com/file/d/1mb4olB1spPu2VnkWn34BNT-pXBtPE6i5/view?usp=sharing"
             width="320"
             height="240"
             type="video/mp4"
           ></video> -->
 
-          <div class="">
-            <iframe
-              src="https://docs.google.com/presentation/d/e/2PACX-1vS6LQfaUqPWGECS-5B8CotEciAAFI3PuLIacC9AXLYehYpd0cHSuTuoyZxxX6bZ41Hot8qi0UjHiJYK/embed?start=false&loop=false&delayms=3000"
-              frameborder="0"
-              width="920"
-              height="569"
-              allowfullscreen="true"
-              mozallowfullscreen="true"
-              webkitallowfullscreen="true"
-            ></iframe>
+            <div class="">
+              <iframe
+                src="https://docs.google.com/presentation/d/e/2PACX-1vS6LQfaUqPWGECS-5B8CotEciAAFI3PuLIacC9AXLYehYpd0cHSuTuoyZxxX6bZ41Hot8qi0UjHiJYK/embed?start=false&loop=false&delayms=3000"
+                frameborder="0"
+                width="920"
+                height="569"
+                allowfullscreen="true"
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+              ></iframe>
+            </div>
           </div>
-        </div>
 
-        <!-- <div class="d-none d-lg-block">
+          <!-- <div class="d-none d-lg-block">
           <iframe
             src="https://docs.google.com/presentation/d/e/2PACX-1vTUPj33FUkMxsqTS2fut6FEtLLcxOWFaxfBT2_RSwvZcE_FUzpXVN4Li_V1hOjetj3SuA8KCG1HfgRZ/embed?start=false&loop=false&delayms=15000"
             frameborder="0"
@@ -792,7 +632,8 @@
             webkitallowfullscreen="true"
           ></iframe>
         </div> -->
-      </section>
+        </section>
+      </div>
     </div>
   </div>
 </div>

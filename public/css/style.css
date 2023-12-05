@@ -57,6 +57,10 @@
   height: 7rem;
 }
 
+/* .aside {
+  border-right: 1px black solid;
+} */
+
 .tutor-sidebar {
   position: fixed;
   width: 15vw;
@@ -702,6 +706,7 @@ hr {
 body {
   background-color: #ece2e1;
   text-align: center;
+  box-sizing: border-box;
 }
 
 /* UTILITY CLASSES */
@@ -723,11 +728,19 @@ body {
   margin: auto auto;
 } */
 
+.profile {
+  background-color: #e5d4ff;
+}
+
 .profile-pic {
   margin: 2rem;
   width: 50%;
   height: auto;
   border-radius: 100%;
+}
+
+.f-beauty {
+  font-family: "Kanit", "Pt-Sans";
 }
 
 .profile-side {
@@ -1238,6 +1251,23 @@ body {
   margin-left: 1rem;
 }
 
+.notice {
+  border-left: 4px green solid;
+}
+
+.quote {
+  border-left: 4px purple solid;
+  background-color: #fff;
+}
+
+.notice,
+.quote {
+  border-radius: 2%;
+  padding: 4% 6%;
+  margin: 0 2%;
+  height: 35vh;
+}
+
 .danger {
   color: #fff;
   background-color: #bb2525;
@@ -1266,6 +1296,11 @@ body {
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   border-radius: 50%;
+}
+
+.laptop {
+  width: 87%;
+  height: 95%;
 }
 
 #profilePic:hover {
@@ -1646,5 +1681,9 @@ body {
     width: 100%;
     margin: auto auto;
     /* height: fit-content; */
+  }
+
+  .notice {
+    margin: 5% 2%;
   }
 }
