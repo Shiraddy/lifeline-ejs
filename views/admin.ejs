@@ -919,7 +919,7 @@
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody id="tutorData" class="shadow-one">
+            <tbody id="tutorData" class="shadow-one table-responsive">
               <% tutors.forEach(function(tutor, index) { %>
               <tr data-application-id="<%= tutor.id %>">
                 <td><%= index + 1 %></td>
@@ -954,7 +954,7 @@
               <% }); %>
             </tbody>
 
-            <tbody id="applicantsData" class="shadow-one">
+            <tbody id="applicantsData" class="shadow-one table-responsive">
               <% applications.forEach(function(application, index) { %>
               <tr data-application-id="<%= application.id %>">
                 <td><%= index + 1 %></td>

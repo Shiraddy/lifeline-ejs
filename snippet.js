@@ -956,3 +956,6 @@ app.post("/apply", upload.single("profilePicture"), async (req, res) => {
       .json({ error: "Application Failed, Check Your Internet and Try Again" });
   }
 });
+
+
+

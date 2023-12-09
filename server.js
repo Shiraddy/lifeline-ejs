@@ -19,8 +19,8 @@ const nodemailer = require("nodemailer");
 const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
+// const bcrypt = require("bcrypt");
+// const saltRounds = 10;
 
 app.use(cookieParser());
 
@@ -62,8 +62,8 @@ var array = require("lodash/array");
 var object = require("lodash/fp/object");
 
 //FireBase
-var admin = require("firebase-admin");
-var serviceAccount = require("./service account.json");
+const admin = require("firebase-admin");
+const serviceAccount = require("./serviceAccountKey.json");
 const { getStorage } = require("firebase-admin/storage");
 
 admin.initializeApp({
@@ -1171,7 +1171,8 @@ app.post("/login", async (req, res) => {
       let profileName = fullName.toUpperCase();
       // console.log(profileName);
       // console.log("ProfileData:", profileData);
-      res.render("tutor", {
+      
+        res.render("tutor", {
         profileName: profileName,
         fullName: fullName,
         profile: profileData,

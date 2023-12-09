@@ -996,4 +996,17 @@ $(document).ready(function () {
 
   $("#noteForm").hide();
   $("#emailForm").hide();
+
+  $("#progressBtn").click(function () {
+    $("#progress").show(); // Show Prospects table
+    $("#logsheet").hide(); // Hide Clients table
+  });
+
+  $("#logsheetBtn").click(function () {
+    $("#logsheet").show(); // Show Prospects table
+    $("#progress").hide(); // Hide Clients table
+  });
+
+  $("#progress").hide();
 });
+

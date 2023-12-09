@@ -1086,6 +1086,10 @@ body {
   /* border-radius: 100%; */
 }
 
+.table-responsive {
+  max-height: 500px;
+}
+
 /* .admin-icon:hover {
   color: #fff;
 } */

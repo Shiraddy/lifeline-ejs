@@ -16,5 +16,7 @@
     "vbtn",
     "Zongo"
   ],
-  "auto-close-tag.disableOnLanguage": []
+  "auto-close-tag.disableOnLanguage": [],
+  "editor.fontSize": 14,
+  "editor.linkedEditing": true
 }

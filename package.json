@@ -25,7 +25,6 @@
   "homepage": "https://github.com/Shiraddy/Lifeline-Edu-Site#readme",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "connect-session-firebase": "^11.0.0",
     "cookie-parser": "^1.4.6",
@@ -43,6 +42,7 @@
     "validator": "^13.11.0"
   },
   "devDependencies": {
-    "@babel/helper-compilation-targets": "^7.22.15"
+    "@babel/helper-compilation-targets": "^7.22.15",
+    "nodemon": "^3.0.2"
   }
 }
