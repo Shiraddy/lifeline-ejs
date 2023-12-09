@@ -164,31 +164,43 @@
         <h4 class="text-start mx-3">My Board</h4>
         <div class="col-lg-8">
           <div class="shadow-two bg-white row notice">
-            <h4>Notice Board</h4>
+            <h4 class="fw-bolder">Notice Board</h4>
             <div id="noticeBoard" class="carousel slide">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="..." class="d-block w-100" alt="..." />
+              <div class="carousel-inner my-1">
+                <% notices.forEach(function(notice, index) { %>
+                <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                  <div class="row mb-2">
+                    <div class="col-lg-6">
+                      <h5 class="text-start fs-6">
+                        Subject: <%= notice.data.title %>
+                      </h5>
+                    </div>
+                    <div class="col-lg-6">
+                      <h5 class="text-end fs-6">
+                        Date Issued: <%= notice.data.Date_Issued %>
+                      </h5>
+                    </div>
+                  </div>
+                  <p class="text-start fs-6"><%= notice.data.message %></p>
                 </div>
-                <div class="carousel-item">
-                  <img src="..." class="d-block w-100" alt="..." />
-                </div>
-                <div class="carousel-item">
-                  <img src="..." class="d-block w-100" alt="..." />
-                </div>
+                <% }); %>
               </div>
+
+              <!-- <small class="blockquote-footer text-end"><%#= date %></small> -->
+
               <div class="">
                 <button
-                  class="carousel-control-prev"
                   type="button"
+                  class="btn btn-danger"
                   data-bs-target="#noticeBoard"
                   data-bs-slide="prev"
                 >
                   <i class="fa-solid fa-circle-left"></i>
                 </button>
+
                 <button
-                  class="carousel-control-next"
                   type="button"
+                  class="btn btn-danger"
                   data-bs-target="#noticeBoard"
                   data-bs-slide="next"
                 >
@@ -196,17 +208,13 @@
                 </button>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-2"></div>
-              <div class="col-lg-10 text-end">
-                <small class="blockquote-footer"><%= date %></small>
-              </div>
-            </div>
           </div>
         </div>
+
+        <!-- EVENT BITE -->
         <div class="row col-lg-4">
           <div class="quote shadow-two">
-            <h4>Event Bite</h4>
+            <h4 class="fw-bolder">Event Bite</h4>
             <p class="blockquote">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
               earum!

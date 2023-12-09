@@ -1128,6 +1128,7 @@ app.post("/apply", upload.single("profilePicture"), async (req, res) => {
 
 //Login Page Credentials
 let contracts;
+let tutorNotice;
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -1151,11 +1152,20 @@ app.post("/login", async (req, res) => {
 
     // Database Query
     const offers = await db.collection("Offers").get();
+    const notices = await db.collection("Notices").get();
 
     // Store the applications data in the variable
     contracts = [];
+    tutorNotice = [];
     offers.forEach((doc) => {
       contracts.push({
+        id: doc.id,
+        data: doc.data(),
+      });
+    });
+
+    notices.forEach((doc) => {
+      tutorNotice.push({
         id: doc.id,
         data: doc.data(),
       });
@@ -1171,13 +1181,14 @@ app.post("/login", async (req, res) => {
       let profileName = fullName.toUpperCase();
       // console.log(profileName);
       // console.log("ProfileData:", profileData);
-      
-        res.render("tutor", {
+
+      res.render("tutor", {
         profileName: profileName,
         fullName: fullName,
         profile: profileData,
         offers: contracts,
         date: date,
+        notices: tutorNotice,
         // profile: profileData,
       });
     }
@@ -1233,16 +1244,16 @@ app.post("/contract", async function (req, res) {
 });
 
 //NOTICE
-let notices;
+// let notices;
 app.post("/notice", async function (req, res) {
-  let notice = req.body;
-  // let date = new Date();
-  // console.log(notice);
-  notice = notices = db.collection("Notices").doc();
-  notices = [];
-
   try {
-    await notices.set(notice);
+    const noticeData = req.body;
+
+    // Create a new document reference in the "Notices" collection
+    const noticeRef = db.collection("Notices").doc();
+
+    // Set the notice data to the Firestore document
+    await noticeRef.set(noticeData);
 
     res.send("Notice has been Posted");
   } catch (error) {

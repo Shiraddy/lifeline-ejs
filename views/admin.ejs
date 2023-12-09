@@ -1000,7 +1000,7 @@
               Offer <i class="fa-solid fa-user-tie ms-2"></i>
             </button>
             <button type="button" class="btn btn-light" id="noteBtn">
-              Note <i class="fa-solid fa-clipboard ms-2"></i>
+              Notice <i class="fa-solid fa-clipboard ms-2"></i>
             </button>
             <button type="button" class="btn btn-light" id="emailBtn">
               Email <i class="fa-solid fa-envelope-circle-check ms-2"></i>
@@ -1140,27 +1140,17 @@
                     />
                   </div>
 
-                  <div class="">
+                  <div class="my-4">
                     <label class="label" for="News Title">DATE</label>
                     <input
                       class="shadow-one form-control"
                       type="date"
-                      name="title"
-                      placeholder="Notice Title"
+                      name="Date_Issued"
+                      placeholder="Select Date"
                     />
                   </div>
 
                   <div class="my-4">
-                    <label for="sendTo" class="label">SEND TO:</label>
-                    <select name="sendTo" id="" class="shadow-one form-control">
-                      <!-- <option>Notice To:</option> -->
-                      <option value="all">All</option>
-                      <option value="tutors">Tutors</option>
-                      <option value="applicants">Applicants</option>
-                    </select>
-                  </div>
-
-                  <div class="">
                     <label for="message" class="label">MESSAGE</label>
                     <textarea
                       class="form-control shadow-one"
@@ -1170,11 +1160,10 @@
                     ></textarea>
                   </div>
                   <!-- <input type="text" name="news" placeholder="News" /> -->
-                  <div class="">
+                  <div class="my-4">
                     <button
                       class="btn btn-success shadow-one my-3"
                       type="submit"
-                      name="sendNotice"
                     >
                       SEND NOTICE
                     </button>
