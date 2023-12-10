@@ -1,9 +1,9 @@
 <%- include('partials/header') %>
 
-<div class="container-fluid row">
+<div class="row">
   <!-- SIDE BAR -->
-  <div class="col-lg-2 shadow-two col-sm-12 aside" id="">
-    <div class="profile-side" id="">
+  <div class="col-lg-2 shadow-two col-sm-12" id="">
+    <div class="profile-side side-bar" id="">
       <button
         class="navbar-toggler d-lg-none d-flex justify-content-start py-2"
         type="button"
@@ -27,8 +27,9 @@
             data-bs-target="#offcanvasResponsive"
           ></button>
         </div>
-        <div class="offcanvas-body tutor-sidebar">
-          <div class="d-block mt-lg-2 side-bar">
+
+        <div class="offcanvas-body">
+          <div class="d-block mt-lg-2 side-bar h-100">
             <a class="navbar-brand text-danger fs-4" href="#"
               ><img
                 src="/images/logo.png"
@@ -122,8 +123,8 @@
       <!-- WELCOME SECTION -->
       <section class="row shadow-two rounded profile">
         <div class="col-lg-6 col-sm-12 text-start pt-5 px-5">
-          <h2 class="fs-2 fw-bolder">Hello <%= fullName %>,</h2>
-          <h4 class="fw-semibold fs-beauty text-muted">It is <%= date %></h4>
+          <h2 class="fs-3 fw-bold">Hello <%= fullName %>,</h2>
+          <h4 class="fs-beauty text-muted fs-4">It is <%= date %></h4>
           <h5 class="fs-beauty text-muted">
             Tutor Status: <%= profile.status %>
           </h5>
@@ -131,7 +132,7 @@
           <button class="btn btn-primary my-3">Let's explore ...</button>
         </div>
         <div class="col-lg-6 col-sm-12 py-3 row d-none d-lg-flex">
-          <h5 class="text-start">Dashboard Statistics</h5>
+          <h5 class="text-start fw-bolder pt-3">Dashboard Statistics</h5>
           <div class="col-lg-3">
             <div class="revenue shadow-two bg-white text-primary">
               <h6>Home Work</h6>
@@ -163,6 +164,7 @@
       <section class="row shadow-two rounded py-4">
         <h4 class="text-start mx-3">My Board</h4>
         <div class="col-lg-8">
+          <!-- NOTICE BOARD -->
           <div class="shadow-two bg-white row notice">
             <h4 class="fw-bolder">Notice Board</h4>
             <div id="noticeBoard" class="carousel slide">
@@ -170,14 +172,14 @@
                 <% notices.forEach(function(notice, index) { %>
                 <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
                   <div class="row mb-2">
-                    <div class="col-lg-6">
+                    <div class="col-lg-7">
                       <h5 class="text-start fs-6">
                         Subject: <%= notice.data.title %>
                       </h5>
                     </div>
-                    <div class="col-lg-6">
-                      <h5 class="text-end fs-6">
-                        Date Issued: <%= notice.data.Date_Issued %>
+                    <div class="col-lg-5">
+                      <h5 class="text-start fs-6">
+                        Issued: <%= notice.data.Date_Issued %>
                       </h5>
                     </div>
                   </div>
@@ -212,7 +214,7 @@
         </div>
 
         <!-- EVENT BITE -->
-        <div class="row col-lg-4">
+        <div class="col-lg-4">
           <div class="quote shadow-two">
             <h4 class="fw-bolder">Event Bite</h4>
             <p class="blockquote">
@@ -416,13 +418,13 @@
           <a class="navbar-brand pt-3" href="#">Lifeline Offers</a>
           <div class="row">
             <% offers.forEach(function(offer, index) { %>
-            <div class="col-md-4">
+            <div class="col-lg-4 col-sm-6">
               <div class="card h-80 mb-3 hoverTutor rounded">
                 <div class="card-header py-1">
                   <h4><%= offer.data.type %></h4>
                 </div>
                 <div class="card-body">
-                  <p>MODE: <%= offer.data.mode %></p>
+                  <p class="fs-6">MODE: <%= offer.data.mode %></p>
                   <p>LEVEL: <%= offer.data.level %></p>
                   <p>DURATION: <%= offer.data.duration %></p>
                   <p>LOCATION: <%= offer.data.location %></p>
@@ -634,5 +636,4 @@
     </div>
   </div>
 </div>
-
 <%- include('partials/end') %>

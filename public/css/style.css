@@ -66,6 +66,11 @@
   width: 15vw;
 }
 
+.side-bar {
+  position: fixed;
+  width: 16%;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -728,10 +733,10 @@ body {
 }
 
 /***************TUTORS*****************/
-/* 
+
 #profile {
   margin: auto auto;
-} */
+}
 
 .profile {
   background-color: #e5d4ff;
@@ -744,13 +749,13 @@ body {
   border-radius: 100%;
 }
 
-.f-beauty {
+.fs-beauty {
   font-family: "Kanit", "Pt-Sans";
 }
 
-.profile-side {
-  height: 100%;
-}
+/* .profile-side {
+  width: 40%;
+} */
 
 .link-user {
   text-decoration: none;
@@ -1540,10 +1545,6 @@ body {
     font-size: 5vw;
   }
 
-  .tutor-sidebar {
-    position: relative;
-    width: 60vw;
-  }
   .apply-input {
     width: 80%;
   }
@@ -1678,6 +1679,11 @@ body {
     margin: 2vw;
   }
 
+  .notice,
+  .quote {
+    height: 40vh;
+  }
+
   .motivation {
     border-left: 6px solid #a73121;
     color: #000;
@@ -1689,5 +1695,11 @@ body {
 
   .notice {
     margin: 5% 2%;
+  }
+
+  .side-bar {
+    position: fixed;
+    width: 50%;
+    z-index: 100;
   }
 }
