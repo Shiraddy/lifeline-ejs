@@ -2,56 +2,66 @@
 
 <div class="row">
   <!-- SIDE BAR -->
-  <div class="col-lg-2 shadow-two col-sm-12" id="">
-    <div class="profile-side side-bar" id="">
-      <button
-        class="navbar-toggler d-lg-none d-flex justify-content-start py-2"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasResponsive"
-      >
-        <span class="navbar-toggler-icon navbar-dark d-flex"></span>
-      </button>
+  <div class="col-lg-2 shadow-two col-sm-12 bg-danger" id="">
+    <div class="profile-side side-bar d-none d-lg-block" id="">
+      <div>
+        <div class="">
+          <div class="mt-lg-2 side-bar">
+            <img
+              class="profile-pic d-none d-lg-block"
+              src="images/Pic.png"
+              alt=""
+            />
 
-      <div
-        class="offcanvas-lg offcanvas-start"
-        tabindex="-1"
-        id="offcanvasResponsive"
-        aria-labelledby="offcanvasResponsiveLabel"
-      >
-        <div class="offcanvas-header">
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="offcanvas"
-            data-bs-target="#offcanvasResponsive"
-          ></button>
-        </div>
+            <div>
+              <h5 class="text-uppercase text-white"><%= fullName %></h5>
+            </div>
 
-        <div class="offcanvas-body">
-          <div class="d-block mt-lg-2 side-bar h-100">
-            <a class="navbar-brand text-danger fs-4" href="#"
-              ><img
-                src="/images/logo.png"
-                alt="Bootstrap"
-                width="55"
-                height="55"
-              />LIFELINE</a
-            >
-            <img class="profile-pic" src="images/Pic.png" alt="" />
+            <ul class="navbar-nav text-start ms-4 mt-4">
+              <li class="nav-item">
+                <a class="link-user" href="#"
+                  ><i class="fa-solid fa-user me-2"></i>PROFILE</a
+                >
+              </li>
 
-            <ul class="nav navbar-nav">
-              <a class="link-user active" href="#">DASHBOARD</a>
-              <a class="link-user" href="#">PROFILE</a>
-              <a class="link-user" href="#">TRAINING</a>
-              <a class="link-user" href="#">OFFERS</a>
-              <a class="link-user" href="#">RESOURCES</a>
-              <a class="link-user" href="#">SUBMIT FORMS</a>
+              <li class="nav-item">
+                <a class="link-user" href="#"
+                  ><i class="fa-solid fa-sheet-plastic me-2"></i>DASHBOARD</a
+                >
+              </li>
+
+              <li class="nav-item">
+                <a class="link-user" href="#"
+                  ><i class="fa-solid fa-layer-group me-2"></i>TRAINING</a
+                >
+              </li>
+
+              <li class="nav-item">
+                <a class="link-user" href="#"
+                  ><i class="fa-regular fa-folder-open me-2"></i>OFFERS</a
+                >
+              </li>
+
+              <li class="nav-item">
+                <a class="link-user" href="#"
+                  ><i class="fa-solid fa-file me-2"></i>SUBMIT FORMS</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="link-user" href="#"
+                  ><i class="fa-solid fa-list me-2"></i>RESOURCES</a
+                >
+              </li>
             </ul>
+
+            <!-- <div class="homepage my-3 d-none d-lg-block">
+              <img src="/images/homepage.png" alt="" width="120" height="70" />
+            </div> -->
+
             <div class="">
               <form action="/logout" method="GET">
                 <button class="btn btn-success shadow-two my-3" type="submit">
-                  Logout
+                  <i class="fa-solid fa-reply me-3"></i>Logout
                 </button>
               </form>
             </div>
@@ -63,73 +73,40 @@
 
   <!-- MAIN BODY AREA -->
   <div class="col-lg-10 col-sm-12 col-md-12">
-    <nav class="navbar navbar-expand-lg mx-0 d-none d-lg-block shadow-two">
-      <div class="container-fluid">
-        <!-- <a class="navbar-brand text-danger" href="#">Lifeline</a> -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Blog</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Training
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2 shadow-two"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success shadow-two" type="submit">
-              Search
-            </button>
-          </form>
+    <nav class="navbar navbar-expand d-none d-lg-block">
+      <div class="row">
+        <div class="col-lg-5 text-start">
+          <a class="navbar-brand text-danger fs-4" href="#">LIFELINE</a>
+          <h6 class="fs-beauty text-muted ps-2"><%= date %></h6>
+        </div>
+        <!-- <i class="fa-solid fa-circle-user me-2"></i> -->
+        <div class="col-lg-7 text-end pe-4">
+          <i class="fa-solid fa-message pe-2"></i>
+          <i class="fa-solid fa-bell pe-2"></i>
+          <small
+            ><%= fullName %> <i class="fa-solid fa-chevron-down"></i
+          ></small>
         </div>
       </div>
     </nav>
 
-    <div class="admin-body mt-3">
+    <div class="admin-body mt-lg-3">
       <!-- WELCOME SECTION -->
+      <!-- <div class="client-banner"></div> -->
       <section class="row shadow-two rounded profile">
-        <div class="col-lg-6 col-sm-12 text-start pt-5 px-5">
+        <div class="col-lg-6 col-sm-12 text-start pt-lg-3 px-5">
           <h2 class="fs-3 fw-bold">Hello <%= fullName %>,</h2>
-          <h4 class="fs-beauty text-muted fs-4">It is <%= date %></h4>
-          <h5 class="fs-beauty text-muted">
-            Tutor Status: <%= profile.status %>
-          </h5>
+          <p class="fs-beauty text-muted fs-5">
+            Welcome to Lifeline Tutor Portal. Get the resources that you need to
+            become effective...
+          </p>
+          <div class="row">
+            <!-- <div class="col">
+             
+            </div> -->
+          </div>
+
           <!-- <h6 class="fs-beauty">Are You Ready to Begin...</h6> -->
-          <button class="btn btn-primary my-3">Let's explore ...</button>
         </div>
         <div class="col-lg-6 col-sm-12 py-3 row d-none d-lg-flex">
           <h5 class="text-start fw-bolder pt-3">Dashboard Statistics</h5>
@@ -215,12 +192,39 @@
 
         <!-- EVENT BITE -->
         <div class="col-lg-4">
-          <div class="quote shadow-two">
-            <h4 class="fw-bolder">Event Bite</h4>
-            <p class="blockquote">
+          <div class="quote shadow-two text-start">
+            <h4 class="fw-bolder mt-3">My Profile</h4>
+            <div class="col mt-4">
+              <h6 class="fs-beauty text-muted text-uppercase">
+                <i class="fa-solid fa-user me-2"></i><%= fullName %>
+              </h6>
+            </div>
+
+            <div class="col">
+              <h6 class="fs-beauty text-muted text-uppercase">
+                <i class="fa-solid fa-play me-2"></i>Category: <%=
+                profile.category %>
+              </h6>
+            </div>
+
+            <div class="col">
+              <h6 class="fs-beauty text-muted text-uppercase">
+                <i class="fa-brands fa-codepen me-2"></i> Status: <%=
+                profile.status %>
+              </h6>
+            </div>
+
+            <div class="col">
+              <h6 class="fs-beauty text-muted text-uppercase">
+                <i class="fa-solid fa-mobile-screen me-2"></i> Contact: <%=
+                profile.contact %>
+              </h6>
+            </div>
+
+            <!-- <p class="blockquote">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
               earum!
-            </p>
+            </p> -->
           </div>
         </div>
       </section>
@@ -277,6 +281,17 @@
                       />
                     </form>
                   </div>
+                  <div class="col-lg-12 col-sm-12 my-2">
+                    <button type="button" class="btn btn-outline-primary">
+                      Lifeline Repository
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary">
+                      Reading Clinic
+                    </button>
+                    <button type="button" class="btn btn-outline-success">
+                      G.E.S Repository
+                    </button>
+                  </div>
                 </div>
 
                 <table
@@ -330,9 +345,45 @@
                         ></a>
                       </td>
                     </tr>
+
+                    <!-- <tr>
+                      <td>4</td>
+                      <td>Reading Stories</td>
+                      <td>A huge library of stories for students.</td>
+                      <td>
+                        <a
+                          class="btn btn-danger"
+                          href="https://www.uniteforliteracy.com/"
+                          >Open</a
+                        >
+                      </td>
+                    </tr> -->
+                    <tr>
+                      <td>3</td>
+                      <td>Phonics</td>
+                      <td>Learn the sounds of letters, blending and more.</td>
+                      <td>
+                        <a
+                          class="btn btn-danger"
+                          href="https://www.readingbear.org/"
+                          target="framename"
+                          ><i class="fa-solid fa-download"></i
+                        ></a>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
+
+              <!-- READING CLINIC -->
+              <section class="px-5 shadow-two my-lg-4 my-3">
+                <h5 class="text-start pt-4">Reading Clinic</h5>
+                <iframe
+                  src="https://www.uniteforliteracy.com/"
+                  class="shadow-two resource-frame"
+                  frameborder="0"
+                ></iframe>
+              </section>
 
               <div class="text-start px-5 mt-5">
                 <div class="row my-3">
@@ -351,6 +402,7 @@
                     </form>
                   </div>
                 </div>
+
                 <!-- <p>Ghana Education Service (GES) Standards Based Curriculum.</p> -->
                 <table
                   class="table table-sm table-bordered border-primary table-hover resource"
@@ -358,27 +410,78 @@
                   <thead class="">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Class</th>
-                      <th scope="col">Subject</th>
-                      <th scope="col">Download</th>
+                      <th scope="col">CLASS</th>
+                      <th scope="col">SUBJECT</th>
+                      <th scope="col">DOWNLOAD</th>
                     </tr>
                   </thead>
                   <tbody class="table-group-divider" id="gesResCentre">
                     <tr>
                       <td>1</td>
-                      <td>Log Sheet</td>
-                      <td>This is used to record tutor attendance.</td>
+                      <td>BASIC ONE</td>
+                      <td>ENGLISH LANGUAGE</td>
                       <td>
                         <a class="btn btn-danger" href="#" id="download"
                           ><i class="fa-solid fa-download"></i
                         ></a>
                       </td>
                     </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>BASIC ONE</td>
+                      <td>MATHEMATICS</td>
+                      <td>
+                        <a class="btn btn-danger" href="#" id="download"
+                          ><i class="fa-solid fa-download"></i
+                        ></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>BASIC ONE</td>
+                      <td>SCIENCE</td>
+                      <td>
+                        <a class="btn btn-danger" href="#" id="download"
+                          ><i class="fa-solid fa-download"></i
+                        ></a>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>4</td>
+                      <td>BASIC TWO</td>
+                      <td>ENGLISH LANGUAGE</td>
+                      <td>
+                        <button class="btn btn-danger">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>BASIC TWO</td>
+                      <td>MATHEMATICS</td>
+                      <td>
+                        <button class="btn btn-danger">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>BASIC TWO</td>
+                      <td>SCIENCE</td>
+                      <td>
+                        <button class="btn btn-danger">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
 
-              <div class="reading text-start px-5 mt-5">
+              <!-- <div class="reading text-start px-5 mt-5">
                 <h5>Reading Centre</h5>
                 <p>Reading resource to help you teach reading effectively.</p>
                 <table
@@ -406,7 +509,7 @@
                     </tr>
                   </tbody>
                 </table>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -430,14 +533,11 @@
                   <p>LOCATION: <%= offer.data.location %></p>
                   <h5><%= offer.data.allowance %></h5>
                   <div class="py-2">
-                    <form action="/more" class="d-flex justify-content-end">
-                      <button class="btn tutorIcon me-2" type="submit">
-                        <i class="fa-solid fa-expand"></i>
-                      </button>
-                      <button type="submit" class="btn tutorIcon">
-                        <i class="fa-regular fa-circle-check"></i>
-                      </button>
-                    </form>
+                    <small
+                      class="text-end text-white shadow-two px-2 py-1 <% if (offer.data.availability === 'awarded') { %> bg-danger <% } else if (offer.data.availability === 'available') { %> bg-success <% } %>"
+                    >
+                      Status: <%= offer.data.availability %>
+                    </small>
                   </div>
                 </div>
               </div>
@@ -470,7 +570,7 @@
         </div>
 
         <!-- PROGRESS REPORT -->
-        <div id="progress" class="px-5 py-3">
+        <div id="progress" class="px-5">
           <div class="row shadow-two">
             <div class="col-lg-6 d-none d-lg-block"></div>
             <div class="col-lg-6 shadow-two bg-white">
@@ -563,7 +663,7 @@
         <div id="logsheet" class="px-5 py-3">
           <div class="row shadow-two">
             <div class="col-lg-6 d-none d-lg-block"></div>
-            <div class="col-lg-6 shadow-two bg-white">
+            <div class="col-lg-6 shadow-two bg-white py-3">
               <h4 class="my-lg-3">LOG SHEET</h4>
               <form action="" method="post">
                 <div class="div">
@@ -630,10 +730,36 @@
       </section>
 
       <!-- MESSAGE -->
-      <section class="px-5 py-3 shadow-two">
+      <section class="px-5 py-3 shadow-two my-4">
         <%- include('partials/message') %>
       </section>
+
+      <%- include('partials/dictionary') %>
     </div>
   </div>
 </div>
+
+<nav class="navbar navbar-expand d-lg-none d-block sticky-bottom">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#"
+          ><i class="fa-solid fa-house-chimney"></i
+        ></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa-solid fa-suitcase"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa-solid fa-sliders"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa-solid fa-handshake"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa-solid fa-layer-group"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
 <%- include('partials/end') %>

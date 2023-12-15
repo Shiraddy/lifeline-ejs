@@ -1010,3 +1010,88 @@ $(document).ready(function () {
   $("#progress").hide();
 });
 
+$(document).ready(function () {
+  $("#searchForm").submit(function (event) {
+    event.preventDefault();
+    const word = $('input[name="word"]').val();
+
+    $.ajax({
+      url: "/tutor/dictionary",
+      method: "POST",
+      data: { word: word },
+      success: function (data) {
+        displayResults(data);
+      },
+      error: function (error) {
+        console.error("Error:", error);
+      },
+    });
+  });
+
+  function displayResults(data) {
+    const resultsDiv = $("#results");
+    resultsDiv.empty();
+
+    // Create an inner div to contain the content
+    const innerDiv = $('<div class="inner-content"></div>');
+
+    data.forEach((entry) => {
+      innerDiv.append(`<h2 class="mb-3">${entry.word}</h2>`);
+
+      entry.meanings.forEach((meaning) => {
+        innerDiv.append(`<h3 class="mb-2">${meaning.partOfSpeech}</h3>`);
+
+        meaning.definitions.forEach((definition) => {
+          innerDiv.append(
+            `<p><strong>Definition:</strong> ${definition.definition}</p>`
+          );
+          if (definition.synonyms.length > 0) {
+            innerDiv.append(
+              `<p><strong>Synonyms:</strong> ${definition.synonyms.join(
+                ", "
+              )}</p>`
+            );
+          }
+          if (definition.antonyms.length > 0) {
+            innerDiv.append(
+              `<p><strong>Antonyms:</strong> ${definition.antonyms.join(
+                ", "
+              )}</p>`
+            );
+          }
+          if (definition.example) {
+            innerDiv.append(
+              `<p><strong>Example:</strong> ${definition.example}</p>`
+            );
+          }
+        });
+      });
+
+      entry.phonetics.forEach((phonetic) => {
+        innerDiv.append(`<p><strong>Phonetic:</strong> ${phonetic.text}</p>`);
+        if (phonetic.audio) {
+          innerDiv.append(
+            `<audio controls class="mb-3"><source src="${phonetic.audio}" type="audio/mpeg"></audio>`
+          );
+        }
+      });
+    });
+
+    // Append the inner div to the resultsDiv
+    resultsDiv.append(innerDiv);
+
+    // // Set height and overflow for the inner div
+    // innerDiv.css({
+    //   height: "100%",
+    //   "overflow-y": "scroll",
+    //   border: "1px solid #ccc",
+    //   padding: "10px",
+    // });
+
+    // // Set height for resultsDiv
+    // resultsDiv.css({
+    //   height: "60%",
+    //   overflow: "hidden",
+    // });
+  }
+});

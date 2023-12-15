@@ -14,7 +14,7 @@ app.use(cors());
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 const session = require("cookie-session");
-const http = require("https");
+const https = require("https");
 const nodemailer = require("nodemailer");
 const multer = require("multer");
 const storage = multer.memoryStorage();
@@ -126,18 +126,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/tuition", async function (req, res) {
-  const prospectsSnapshot = await db
-    .collection("Request For Tutor")
-    .where("category", "==", "request")
-    .get();
-
-  // console.log(prospectsSnapshot);
-
-  const prospectData = [];
-  prospectsSnapshot.forEach((doc) => {
-    prospectData.push(doc.data());
-    // console.log(prospectData);
-  });
   res.render("tuition");
 });
 
@@ -166,6 +154,11 @@ app.get("/signup", function (req, res) {
   res.render("signup");
 });
 
+//CODE OF CONDUCT
+app.get("/code", function (req, res) {
+  res.render("code");
+});
+
 //REFACTOR
 app.get("/refactor", function (req, res) {
   res.render("refactor");
@@ -190,81 +183,6 @@ app.get("/lifeline", function (req, res) {
 });
 
 // Admin Page
-
-// let tutorEmail;
-// let applicantEmail;
-// let all;
-// app.post("/admin", async function (req, res) {
-//   const { email, password } = req.body;
-
-//   try {
-//     // Authenticate user with provided email and password
-//     const userCredential = await firebase
-//       .auth()
-//       .signInWithEmailAndPassword(email, password);
-//     const user = userCredential.user;
-
-//     // Database Query
-//     const application = await db
-//       .collection("Tutor Applications")
-//       .where("category", "==", "applicant")
-//       .get();
-
-//     const tutor = await db
-//       .collection("Tutor Applications")
-//       .where("category", "==", "tutor")
-//       .get();
-
-//     const applications = [];
-//     const tutors = [];
-//     // let tutorEmail = [];
-//     // let applicantEmail = [];
-//     // let all = [];
-
-//     // Store the applications data in the variable
-//     application.forEach((doc) => {
-//       applications.push({
-//         id: doc.id,
-//         data: doc.data(),
-//       });
-//     });
-
-//     // Store the tutor data in the variable
-
-//     if (tutor.empty) {
-//       console.log("No matching tutor documents.");
-//       return;
-//     }
-
-//     tutor.forEach((doc) => {
-//       tutors.push({
-//         id: doc.id,
-//         data: doc.data(),
-//       });
-//     });
-
-//     const noOfApplicants = applications.length;
-//     const noOfTutors = tutors.length;
-
-//     res.render("admin", {
-//       dayOfWeek: date, // Define 'date' elsewhere in your code
-//       todo: todoLists, // You need to define todoLists
-//       applicants: noOfApplicants,
-//       applications: applications,
-//       noOfTutors: noOfTutors,
-//       tutors: tutors, // Add the tutors data to the template
-//     });
-//   } catch (error) {
-//     console.error("Login Failed:", error.message);
-//     // Handle other errors during login
-//     res.render("login", {
-//       email,
-//       error: "An error occurred during login. Please try again.",
-//     });
-//   }
-// });
-
-// Hardcoded admin email and password
 
 let tutors;
 let applications;
@@ -1149,6 +1067,7 @@ app.post("/login", async (req, res) => {
     const profile = db.collection("Tutor Applications").doc(email);
 
     const doc = await profile.get();
+    // console.log(doc);
 
     // Database Query
     const offers = await db.collection("Offers").get();
@@ -1175,12 +1094,15 @@ app.post("/login", async (req, res) => {
     if (!doc.exists) {
       console.log("No such document!");
     } else {
-      // console.log("Document data:", doc.data());
       let profileData = doc.data();
+      // console.log(profileData);
       let fullName = profileData.lastName + " " + profileData.firstName;
+      let imageUrl = profileData.profilePictureUrl;
+      let storageUrl = "https://gs://lifeline-edu-site.appspot.com/" + imageUrl;
+      // profilePicture.src = storageUrl;
+      // console.log(storageUrl);
+
       let profileName = fullName.toUpperCase();
-      // console.log(profileName);
-      // console.log("ProfileData:", profileData);
 
       res.render("tutor", {
         profileName: profileName,
@@ -1188,8 +1110,8 @@ app.post("/login", async (req, res) => {
         profile: profileData,
         offers: contracts,
         date: date,
+        // profilePicture: profilePicture,
         notices: tutorNotice,
-        // profile: profileData,
       });
     }
   } catch (error) {
@@ -1227,14 +1149,53 @@ app.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
+app.post("/tutor/dictionary", (req, res) => {
+  const word = req.body.word; // Access the 'word' field from the form
+
+  const options = {
+    hostname: "api.dictionaryapi.dev",
+    path: `/api/v2/entries/en/${word}`,
+    method: "GET",
+  };
+
+  const request = https.request(options, (apiResponse) => {
+    let data = "";
+
+    apiResponse.on("data", (chunk) => {
+      data += chunk;
+    });
+
+    apiResponse.on("end", () => {
+      try {
+        const parsedData = JSON.parse(data);
+        // console.log(parsedData);
+        res.json(parsedData);
+      } catch (error) {
+        res.status(500).json({ error: "Error parsing API response" });
+      }
+    });
+  });
+
+  request.on("error", (error) => {
+    res.status(500).json({ error: error.message });
+  });
+
+  request.end();
+});
+
 //POST CONTRACT
 app.post("/contract", async function (req, res) {
   const contractType = req.body;
   const offers = db.collection("Offers").doc();
 
   try {
+    let offer = {
+      data: contractType,
+      availability: "available",
+      posted: new date(),
+    };
     // Assuming "contractType" is an object and you want to store it in the Firestore document.
-    await offers.set(contractType);
+    await offers.set(offer);
 
     res.send("Contract Posted");
   } catch (error) {
@@ -1534,6 +1495,8 @@ app.post("/form", async function (req, res) {
 //   });
 // });
 // request.end();
+
+// const http = require('https');
 
 //Online and Local Server
 app.listen(process.env.PORT || 3000, function () {
