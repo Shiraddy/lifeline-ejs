@@ -958,4 +958,3 @@ app.post("/apply", upload.single("profilePicture"), async (req, res) => {
 });
 
 
-

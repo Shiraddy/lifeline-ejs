@@ -1,29 +1,343 @@
 <%- include('partials/header') %>
-<div class="banner">
+<div class="counsel-banner">
   <%- include('partials/NavBar') %>
   <div class="row">
-    <div class="col-lg-6"></div>
-    <div class="col-lg-6 text-white my-5 service-hero-text">
-      <h2 class="hero-header mt-lg-5 fs-1 mt-5">
-        Do You Want To Make An Important Decision?
-      </h2>
-      <p class="hero-text px-3 px-lg-5 fs-5">
-        Speak to a counsellor. Here at Lifeline, we provide you the information
-        you need to make informed decisions about your ward's education and
-        future.
+    <div class="col-lg-6 text-white my-5 service-hero-text text-start">
+      <h1 class="hero-header mt-lg-5 mt-5 mb-0">
+        ARE YOU IN NEED OF A
+        <span class="text-primary shadow-two">GUIDANCE?</span> WE CAN HELP YOU
+        ...
+      </h1>
+      <p class="hero-text fs-5 mt-0">
+        Here at Lifeline, We help connect you to a professional counsellor to
+        assist you with your challenge.
+        <br />
+        <a
+          class="btn btn-primary btn-lg shadow-two mx my-3"
+          id="bookBtn"
+          href="#"
+          >BOOK A SESSION</a
+        >
       </p>
-      <!-- <button class="btn btn-success btn-lg shadow-two my-lg-3 my-3 me-3">
-        SPEAK TO US
-      </button> -->
-
-      <a
-        class="btn btn-danger btn-lg shadow-two my-lg-3 my-3"
-        id="bookBtn"
-        href="#message"
-        >BOOK A SESSION</a
-      >
     </div>
+    <div class="col-lg-6"></div>
   </div>
 </div>
-<div class="container-sm py-2 services"><%- include('partials/message') %></div>
-<%- include('partials/end') %>
+<div class="container-sm py-2 services">
+  <h2 class="pt-2 mt-3 mb-0 fw-bolder">Here for Guidance & Counselling?</h2>
+  <p class="mt-0">
+    We have just the right counsellors to help you through your challenge
+  </p>
+  <div class="my-5 py-3">
+    <div class="row">
+      <div class="col-lg-4 col-sm-12">
+        <img src="/images/con8.gif" alt="" class="con-image" />
+        <h5>Career Guidance</h5>
+        <p class="px-2 px-lg-4 text-body-secondary">
+          Make the right decisions about your career path. Seek professional
+          counsel.
+        </p>
+      </div>
+
+      <div class="col-lg-4 col-sm-12">
+        <img src="/images/con2.gif" alt="" class="con-image" />
+        <h5>Academic Guidance</h5>
+        <p class="px-2 px-lg-4 text-body-secondary">
+          Get the right advice the make informed educational choices.
+        </p>
+      </div>
+
+      <div class="col-lg-4 col-sm-12">
+        <img src="/images/con3.gif" alt="" class="con-image" />
+        <h5>Counselling Service</h5>
+        <p class="px-2 px-lg-4 text-body-secondary">
+          Let us help you through your challenges. Get the right guidance.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-5 py-5">
+    <div class="col-lg-6 text-start">
+      <h2 class="px-lg-5">
+        <span class="text-danger fs-1">O</span>ur Guidance & Counselling
+      </h2>
+      <p class="text-body-secondary px-lg-5 px-2 lh-lg">
+        We are here to assist you with a professional voice so you can see
+        through your options and make good decisions about your life, education
+        or career. There is no greater agony than getting to the end of life
+        only to realise that you could have lived it well had you sought the
+        right guidance.
+      </p>
+      <button class="btn btn-outline-primary ms-lg-5">
+        Speak to a Counsellor
+      </button>
+      <!-- <p class="text-body-secondary px-lg-5 px-2 lh-1g">
+        We provide guidance for parents and counselling services for students.
+        Knowing the right decision to make is, in our estimation, the most
+        important part of the decision making process.
+      </p> -->
+    </div>
+    <div class="col-lg-6"><img src="/images/conso3.png" alt="" /></div>
+  </div>
+
+  <div class="row my-5 bg-danger">
+    <div class="col-lg-6 text-start py-5 text-white px-3 px-lg-4">
+      <h2>Ready to Move to the Next Level?</h2>
+      <p>Speak to a professional Counsellor Today</p>
+      <button class="btn btn-primary">Book Session</button>
+    </div>
+    <div class="col-lg-6">
+      <img src="/images/call3.png" alt="" class="caller" />
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <form class="form-apply px-3 shadow-two" action="/counselling" method="post">
+    <div
+      class="btn-group mt-5"
+      role="group"
+      aria-label="Basic radio toggle button group"
+    >
+      <input
+        type="radio"
+        class="btn-check px-3"
+        name="userType"
+        id="btnradio1"
+        autocomplete="off"
+        checked
+      />
+      <label class="btn btn-outline-primary" for="btnradio1">Guardian</label>
+
+      <input
+        type="radio"
+        class="btn-check px-3"
+        name="userType"
+        id="btnradio2"
+        autocomplete="off"
+      />
+      <label class="btn btn-outline-primary" for="btnradio2">Student</label>
+    </div>
+    <!-- Parent/Guardian -->
+    <div class="py-3">
+      <fieldset class="row py-5">
+        <h5 class="text-start">Parent/Guardian</h5>
+        <div class="col-lg-6 my-2">
+          <label class="label" for="parentName">Parent's Name</label>
+          <input
+            class="form-control shadow-two"
+            type="text"
+            name="parentName"
+            placeholder="Enter your name"
+          />
+        </div>
+
+        <div class="col-lg-6 my-2">
+          <label class="label" for="parentContact">Contact</label>
+          <input
+            class="form-control shadow-two"
+            type="tel"
+            name="parentContact"
+            maxlength="10"
+            minlength="10"
+            placeholder="Enter your contact"
+          />
+        </div>
+
+        <div class="col-lg-6 my-2">
+          <label class="label" for="parentAltContact">Other Contact</label>
+          <input
+            class="form-control shadow-two"
+            type="tel"
+            name="parentAltContact"
+            maxlength="10"
+            minlength="10"
+            placeholder="Enter your other contact (If any)"
+          />
+        </div>
+
+        <div class="col-lg-6 my-2">
+          <label class="label" for="parentEmail">Email</label>
+          <input
+            class="form-control shadow-two"
+            type="email"
+            name="parentEmail"
+            placeholder="Enter your email address"
+          />
+        </div>
+      </fieldset>
+
+      <!-- Child/Student -->
+      <fieldset class="row">
+        <h5 class="text-start">Child/Student</h5>
+        <div class="col-lg-6 my-2">
+          <label class="label" for="childName">Name</label>
+          <input
+            class="form-control shadow-two"
+            type="text"
+            name="childName"
+            placeholder="Enter your child's name"
+          />
+        </div>
+
+        <div class="col-lg-6 my-2">
+          <label class="label" for="childAge">Age</label>
+          <input
+            class="form-control shadow-two"
+            type="number"
+            name="childAge"
+            placeholder="Enter your child's age"
+          />
+        </div>
+
+        <div class="col-lg-6 my-2">
+          <label class="label" for="childGrade">Grade/Class</label>
+          <input
+            class="form-control shadow-two"
+            type="text"
+            name="childGrade"
+            placeholder="Enter your child's grade/class"
+          />
+        </div>
+
+        <div class="col-lg-6 my-2">
+          <label class="label" for="childSchool">School (Optional)</label>
+          <input
+            class="form-control shadow-two"
+            type="text"
+            name="childSchool"
+            placeholder="Enter your child's school name (optional)"
+          />
+        </div>
+      </fieldset>
+
+      <!-- Challenges -->
+      <fieldset>
+        <!-- <h5 class="text-start">Challenges</h5> -->
+        <div class="row">
+          <div class="col-lg-12 col-12 my-2">
+            <label class="label" for="reason"
+              >Reason for Counselling Request</label
+            >
+            <textarea
+              name="reason"
+              id="reason"
+              class="form-control shadow-two"
+              placeholder="In about 150 words or less."
+            ></textarea>
+          </div>
+
+          <div class="col-lg-12 col-12 my-2">
+            <label class="label" for="additionalComments"
+              >Additional Comments or Concerns</label
+            >
+            <textarea
+              name="additionalComments"
+              id="additionalComments"
+              class="form-control shadow-two"
+              placeholder="In about 150 words or less."
+            ></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Preferences -->
+      <fieldset>
+        <div class="row my-5">
+          <h5 class="text-start">Preferences</h5>
+          <div id="price" class="text-danger fw-bold"></div>
+          <div class="col-lg-6">
+            <label class="label" for="preferredMode">Preferred Mode</label>
+            <select
+              name="preferredMode"
+              class="form-control shadow-two"
+              id="preferredMode"
+            >
+              <option value="">Select</option>
+              <option value="Phone Call">Phone Call</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="In-person">In-person</option>
+            </select>
+          </div>
+
+          <div class="col-lg-6">
+            <label class="label" for="preferredMode">Preferred Duration</label>
+            <select
+              name="preferredDuration"
+              id="preferredDuration"
+              class="form-control shadow-two"
+            >
+              <option value="">Select Session Duration</option>
+              <option value="0.5">30 minutes</option>
+              <option value="1">1 hour</option>
+              <option value="1.5">1.5 hours</option>
+              <option value="2">2 hours</option>
+              <!-- Other duration options -->
+            </select>
+          </div>
+
+          <div class="col-lg-6 my-2">
+            <label class="label" for="urgency">Urgency</label>
+            <select class="form-control shadow-two" name="urgency" id="urgency">
+              <option value="">Please Indicate Urgency of Issue</option>
+              <option value="Urgent">Urgent</option>
+              <option value="Moderately Urgent">Moderately Urgent</option>
+              <option value="Not Urgent">Not Urgent</option>
+            </select>
+          </div>
+
+          <div class="col-lg-6 my-2">
+            <label class="label" for="preferredDate"
+              >Preferred Session Date & Time</label
+            >
+            <input
+              class="form-control shadow-two"
+              type="datetime-local"
+              name="preferredDate"
+              id="preferredDate"
+            />
+          </div>
+
+          <div class="col-lg-12 col-12 my-2">
+            <label class="label" for="specialRequest"
+              >Special Request (If any)</label
+            >
+            <textarea
+              name="specialRequest"
+              id="specialRequest"
+              class="form-control shadow-two"
+              placeholder="Do you have any special request? "
+            ></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="text-start text-danger">
+                <h5>Note The Following:</h5>
+                <ol>
+                  <li>
+                    <small
+                      >Additional charges will be incurred for follow-up and
+                      Special Request(s).</small
+                    >
+                  </li>
+                  <li>
+                    <small>Payment to be made before service delivery.</small>
+                  </li>
+                </ol>
+              </div>
+            </div>
+            <div class="col-lg-6"></div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="my-3 py-2 text-end">
+        <button class="btn btn-danger" type="reset">Clear Form Data</button>
+        <button class="btn btn-success" type="submit">Submit Form Data</button>
+      </fieldset>
+    </div>
+  </form>
+</div>
+<%- include('partials/contact') %> <%- include('partials/footer') %> <%-
+include('partials/end') %>

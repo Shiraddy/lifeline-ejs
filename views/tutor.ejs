@@ -3,7 +3,7 @@
 <div class="row">
   <!-- SIDE BAR -->
   <div class="col-lg-2 shadow-two col-sm-12 bg-danger" id="">
-    <div class="profile-side side-bar d-none d-lg-block" id="">
+    <div class="profile-side side-bar">
       <div>
         <div class="">
           <div class="mt-lg-2 side-bar">
@@ -14,15 +14,18 @@
             />
 
             <div>
-              <h5 class="text-uppercase text-white"><%= fullName %></h5>
+              <h5 class="text-uppercase text-white mb-0 fs-6">
+                <%= fullName %>
+              </h5>
+              <small class="mt-0 text-white"><%= profile.email %></small>
             </div>
 
             <ul class="navbar-nav text-start ms-4 mt-4">
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="link-user" href="#"
                   ><i class="fa-solid fa-user me-2"></i>PROFILE</a
                 >
-              </li>
+              </li> -->
 
               <li class="nav-item">
                 <a class="link-user" href="#"
@@ -55,8 +58,8 @@
             </ul>
 
             <!-- <div class="homepage my-3 d-none d-lg-block">
-              <img src="/images/homepage.png" alt="" width="120" height="70" />
-            </div> -->
+                <img src="/images/homepage.png" alt="" width="120" height="70" />
+              </div> -->
 
             <div class="">
               <form action="/logout" method="GET">
@@ -73,62 +76,58 @@
 
   <!-- MAIN BODY AREA -->
   <div class="col-lg-10 col-sm-12 col-md-12">
-    <nav class="navbar navbar-expand d-none d-lg-block">
-      <div class="row">
-        <div class="col-lg-5 text-start">
-          <a class="navbar-brand text-danger fs-4" href="#">LIFELINE</a>
-          <h6 class="fs-beauty text-muted ps-2"><%= date %></h6>
+    <div class="client-banner">
+      <nav class="navbar navbar-expand d-none d-lg-block text-white">
+        <div class="row">
+          <div class="col-lg-5 text-start">
+            <a class="navbar-brand text-danger fs-4" href="#">LIFELINE</a>
+            <h6 class="fs-beauty text-muted ps-2"></h6>
+          </div>
+          <!-- <i class="fa-solid fa-circle-user me-2"></i> -->
+          <div class="col-lg-7 text-end pe-4">
+            <i class="fa-solid fa-message pe-2"></i>
+            <i class="fa-solid fa-bell pe-2"></i>
+            <small
+              ><%= fullName %> <i class="fa-solid fa-chevron-down"></i
+            ></small>
+          </div>
         </div>
-        <!-- <i class="fa-solid fa-circle-user me-2"></i> -->
-        <div class="col-lg-7 text-end pe-4">
-          <i class="fa-solid fa-message pe-2"></i>
-          <i class="fa-solid fa-bell pe-2"></i>
-          <small
-            ><%= fullName %> <i class="fa-solid fa-chevron-down"></i
-          ></small>
+      </nav>
+
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 text-start py-lg-3 px-2 text-white px-4">
+          <h2 class="fs-3 fw-bold mb-0">Hello <%= fullName %>,</h2>
+          <p class="fs-beauty fs-5 mt-0">It's <%= date %></p>
+          <!-- <h6 class="fs-beauty mt-0">Are You Ready to Begin...</h6> -->
         </div>
       </div>
-    </nav>
+    </div>
 
     <div class="admin-body mt-lg-3">
       <!-- WELCOME SECTION -->
       <!-- <div class="client-banner"></div> -->
-      <section class="row shadow-two rounded profile">
-        <div class="col-lg-6 col-sm-12 text-start pt-lg-3 px-5">
-          <h2 class="fs-3 fw-bold">Hello <%= fullName %>,</h2>
-          <p class="fs-beauty text-muted fs-5">
-            Welcome to Lifeline Tutor Portal. Get the resources that you need to
-            become effective...
-          </p>
-          <div class="row">
-            <!-- <div class="col">
-             
-            </div> -->
-          </div>
-
-          <!-- <h6 class="fs-beauty">Are You Ready to Begin...</h6> -->
-        </div>
-        <div class="col-lg-6 col-sm-12 py-3 row d-none d-lg-flex">
-          <h5 class="text-start fw-bolder pt-3">Dashboard Statistics</h5>
-          <div class="col-lg-3">
+      <section class="row shadow-two rounded bg-white profile my-4">
+        <div class="col-lg-12 col-sm-12 py-3 row">
+          <h6 class="text-start fw-bolder py-2">My Data Centre</h6>
+          <div class="col-lg-3 col-6">
             <div class="revenue shadow-two bg-white text-primary">
               <h6>Home Work</h6>
               <h6><i class="fa-solid fa-receipt ms-3"></i>45+</h6>
             </div>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-3 col-6">
             <div class="profit shadow-two bg-white text-info">
               <h6>Articles</h6>
               <h6><i class="fa-solid fa-book-open ms-3"></i>45+</h6>
             </div>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-3 col-6">
             <div class="client shadow-two bg-white text-danger">
               <h6>Offers</h6>
               <h6><i class="fa-solid fa-handshake ms-3"></i>80+</h6>
             </div>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-3 col-6">
             <div class="tutor bg-white shadow-two text-success">
               <h6 class="">Tutors</h6>
               <h6 class="ms-2"><i class="fa-solid fa-user"></i>100+</h6>
@@ -139,7 +138,7 @@
 
       <!-- BOARD -->
       <section class="row shadow-two rounded py-4">
-        <h4 class="text-start mx-3">My Board</h4>
+        <!-- <h4 class="text-start mx-3">My Board</h4> -->
         <div class="col-lg-8">
           <!-- NOTICE BOARD -->
           <div class="shadow-two bg-white row notice">
@@ -190,9 +189,9 @@
           </div>
         </div>
 
-        <!-- EVENT BITE -->
+        <!-- PROFILE -->
         <div class="col-lg-4">
-          <div class="quote shadow-two text-start">
+          <div class="quote shadow-two text-start my-lg-1 my-3">
             <h4 class="fw-bolder mt-3">My Profile</h4>
             <div class="col mt-4">
               <h6 class="fs-beauty text-muted text-uppercase">
@@ -264,7 +263,7 @@
             <div class="col"><i class="fa-regular fa-file-pdf"></i></div>
             <div class="col"><i class="fa-solid fa-file-pdf"></i></div> -->
             <div class="col-12">
-              <div class="lifeline text-start px-5" id="lesResource">
+              <div class="lifeline text-start" id="lesResource">
                 <div class="row my-3 py-2">
                   <div class="col-lg-6">
                     <h5>Lifeline Tutor Repository</h5>
@@ -376,7 +375,7 @@
               </div>
 
               <!-- READING CLINIC -->
-              <section class="px-5 shadow-two my-lg-4 my-3">
+              <section class="shadow-two my-lg-4 my-3">
                 <h5 class="text-start pt-4">Reading Clinic</h5>
                 <iframe
                   src="https://www.uniteforliteracy.com/"
@@ -385,7 +384,7 @@
                 ></iframe>
               </section>
 
-              <div class="text-start px-5 mt-5">
+              <div class="text-start mt-5">
                 <div class="row my-3">
                   <div class="col-lg-6">
                     <h5>Standards Based Curriculum</h5>
@@ -739,7 +738,7 @@
   </div>
 </div>
 
-<nav class="navbar navbar-expand d-lg-none d-block sticky-bottom">
+<!-- <nav class="navbar navbar-expand d-lg-none d-block sticky-bottom">
   <div class="container-fluid">
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -761,5 +760,5 @@
       </li>
     </ul>
   </div>
-</nav>
+</nav> -->
 <%- include('partials/end') %>

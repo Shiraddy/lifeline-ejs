@@ -1095,3 +1095,79 @@ $(document).ready(function () {
     // });
   }
 });
+
+//CALCULATION FOR GUIDANCE AND COUNSELLING
+$(document).ready(function () {
+  function calculatePrice() {
+    const mode = $("#preferredMode").val();
+    const durationInput = $("#preferredDuration").val();
+    const duration = parseFloat(durationInput);
+
+    // console.log("Selected mode:", mode);
+    // console.log("Selected duration:", duration);
+
+    // Check if duration is a valid number
+    // if (isNaN(duration)) {
+    //   console.log("Invalid duration input");
+    //   return; // Stop further execution
+    // }
+
+    let baseCharge = 0;
+
+    // Example calculation based on mode and duration
+    if (mode === "Phone Call" && duration === 0.5) {
+      baseCharge = 30;
+    } else if (mode === "Phone Call" && duration === 1) {
+      baseCharge = 50;
+    } else if (mode === "Phone Call" && duration === 1.5) {
+      baseCharge = 70;
+    } else if (mode === "Phone Call" && duration === 2) {
+      baseCharge = 100;
+    } else if (mode === "In-person" && duration === 0.5) {
+      baseCharge = 60;
+    } else if (mode === "In-person" && duration === 1) {
+      baseCharge = 100;
+    } else if (mode === "In-person" && duration === 1.5) {
+      baseCharge = 150;
+    } else if (mode === "In-person" && duration === 2) {
+      baseCharge = 180;
+    } else if (mode === "WhatsApp" && duration === 0.5) {
+      baseCharge = 25;
+    } else if (mode === "WhatsApp" && duration === 1) {
+      baseCharge = 40;
+    } else if (mode === "WhatsApp" && duration === 1.5) {
+      baseCharge = 60;
+    } else if (mode === "WhatsApp" && duration === 2) {
+      baseCharge = 100;
+    }
+    // Add other conditions as needed
+
+    // console.log("Base charge:", baseCharge);
+
+    // Apply urgency increment
+    let urgencyIncrement = 0;
+    const urgency = $("#urgency").val();
+
+    if (urgency === "Urgent") {
+      urgencyIncrement = 0.3;
+    } else if (urgency === "Moderately Urgent") {
+      urgencyIncrement = 0.2;
+    }
+
+    // console.log("Urgency increment:", urgencyIncrement);
+
+    // Calculate total price including urgency increment
+    let totalPrice = baseCharge * (1 + urgencyIncrement);
+
+    // console.log("Total price:", totalPrice);
+
+    // Display the calculated price in the priceDisplay div
+    $("#price").text(`Charges: ${totalPrice.toFixed(2)} Cedis`);
+  }
+
+  // Event listeners for changes in mode, duration, and urgency
+  $("#preferredMode, #preferredDuration, #urgency").change(function () {
+    // console.clear(); // Clear console for better debugging
+    calculatePrice();
+  });
+});
