@@ -1,8 +1,3 @@
-//Button in Tuition (After Offers)
-$(".offer-btn").on("click", function () {
-  $(".form-apply").slideToggle();
-});
-
 //Button in Contact Section (To show Mobile Number)
 $(".phone-btn").on("click", function () {
   $(".phone").slideToggle();
@@ -949,6 +944,7 @@ $(document).ready(function () {
   });
 });
 
+//ADMIN PANEL
 $(document).ready(function () {
   // Clients button click event
   $("#clientsTableBtn").click(function () {
@@ -1169,5 +1165,53 @@ $(document).ready(function () {
   $("#preferredMode, #preferredDuration, #urgency").change(function () {
     // console.clear(); // Clear console for better debugging
     calculatePrice();
+  });
+});
+
+//Counselling Form
+$(document).ready(function () {
+  $("#counselling-form").hide();
+  $(".studentContactDetails").hide();
+
+  $(".bookSession").click(function () {
+    $("#counselling-form").slideToggle();
+    $(".counsellingIntro").slideToggle();
+  });
+
+  $(".studentCounsellingBtn").click(function () {
+    $(".parentCounselling").hide();
+    $(".studentContactDetails").show();
+  });
+  $(".parentCounsellingBtn").click(function () {
+    $(".parentCounselling").show();
+  });
+
+  $("#counselling-form").submit(function (e) {
+    e.preventDefault();
+
+    const form = $(this);
+    const formData = form.serializeArray();
+
+    $.ajax({
+      type: "POST",
+      url: "guidance/counselling",
+      contentType: "application/json",
+      data: JSON.stringify(formData),
+      success: function () {
+        alert("Form Data Sent");
+      },
+    });
+  });
+});
+
+$(document).ready(function () {
+  $(".tutorFormRegister").hide();
+
+  $(".allTuitionDataBtn").on("click", function () {
+    // $(".allTuitionData").hide();
+    $(".tutorFormRegister").slideToggle();
+    $(".allTuitionData").slideToggle();
+    // $("#privateTuitionPage").removeClass("banner");
+    // addClass("client-banner");
   });
 });

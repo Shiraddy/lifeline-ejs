@@ -1,25 +1,116 @@
 <%- include('partials/header') %>
-<div class="banner">
+<div class="consult-banner">
   <%- include('partials/NavBar') %>
   <div class="row">
     <div class="col-lg-6"></div>
-    <div class="col-lg-6 text-white">
-      <h2 class="hero-header mt-lg-5">Do You Need To Take the Next Step?</h2>
-      <p class="hero-text">
-        Welcome to Lifeline Educational Solutions. Here we provide you the
-        solution you need to take your school to the next level. We solve
-        leadership and management problems, classroom challenges, student
-        challenges...
+    <div class="col-lg-6 text-white text-start">
+      <h2 class="hero-header mt-lg-5 fs-1">
+        A JOURNEY TOWARDS <span class="text-info">GREATNESS...</span>
+      </h2>
+      <p class="hero-text fs-beauty">
+        Welcome to Lifeline Educational Solutions. Here we provide solutions
+        that will propel your school to greater heights. Let us help take your
+        school to the next level.
       </p>
-      <button class="btn btn-danger btn-lg shadow-two my-lg-3 my-3">
-        BOOK SESSION
-      </button>
+      <div class="ms-lg-5 my-2 my-lg-2 text-center text-lg-start">
+        <button class="btn btn-info btn-lg shadow-two">BOOK SESSION</button>
 
-      <button class="btn btn-success btn-lg shadow-two my-lg-3 my-3 me-3">
-        SPEAK TO US
-      </button>
+        <!-- <button class="btn btn-success btn-lg shadow-two my-lg-3 my-3 me-3">
+          SPEAK TO US
+        </button> -->
+      </div>
     </div>
   </div>
 </div>
-<div class="container-sm py-2 services"><%- include('partials/message') %></div>
-<%- include('partials/end') %>
+<div class="container-sm py-3 services">
+  <h2 class="fs-1 pt-2 mb-0">EDUCATIONAL CONSULTANCY</h2>
+  <h4 class="text-dark-emphasis">
+    We Offer the Following Consultancy Services
+  </h4>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card card-body">
+        <img class="card-image" src="/images/consul3.jpg" alt="" />
+        <div class="card-title">Educational Technology</div>
+        <p class="card-text text-dark-emphasis">
+          We help schools use technology to assist in effective school
+          management. This includes website creation and management. etc
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card card-body">
+        <img class="card-image" src="/images/consul5.jpg" alt="" />
+        <div class="card-title">Teacher Training</div>
+        <p class="card-text text-dark-emphasis">
+          We offer trainings in teaching methodologies and techniques, classroom
+          management, effective teacher-student communication,
+          lesson-notes-preparation, etc
+        </p>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card card-body">
+        <img class="card-image" src="/images/consul2.jpg" alt="" />
+        <div class="card-title">Strategic Planning</div>
+        <p class="card-text text-dark-emphasis">
+          We assist schools in developing long-term strategic plans, defining
+          their vision, mission, and values, and aligning their resources to
+          achieve their educational goals.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-4 bg-success py-5">
+    <div class="col-lg-6">
+      <img class="consultantPic" src="/images/website.jpg" alt="" />
+    </div>
+    <div class="col-lg-6 text-white">
+      <h3>Online Presence</h3>
+      <p class="text-start lh-lg">
+        We understand the significance of a strong online presence in fostering
+        communication, enhancing accessibility, and showcasing the achievements
+        and offerings of your esteemed institution. With our expertise in
+        leveraging advanced technology, we aim to assist your school in securing
+        a prominent place on the internet, enabling your stakeholders to benefit
+        significantly
+      </p>
+    </div>
+  </div>
+
+  <div class="row my-4 py-5">
+    <div class="col-lg-6">
+      <img class="consultantPic" src="/images/consul5.jpg" alt="" />
+    </div>
+    <div class="col-lg-6 px-lg-4 px-2">
+      <h3 class="mb-0">Teacher Training</h3>
+      <h5 class="text-body-secondary">
+        Enhance Your Skill with Expert Guidance
+      </h5>
+      <div class="text-start lh-lg text-dark-emphasis">
+        <p>
+          At Lifeline Educational Solutions, we're passionate about empowering
+          educators to excel in their craft! 🚀
+        </p>
+
+        <p>
+          Our tailored teacher training services are designed to equip you with
+          cutting-edge methodologies and techniques that amplify classroom
+          success.
+        </p>
+
+        <p>
+          From honing classroom management strategies to fostering effective
+          teacher-student communication, crafting engaging lesson plans, and
+          mastering note preparation, we've got you covered.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <%- include('partials/about') %> <%- include('partials/message') %>
+</div>
+<%- include('partials/contact') %> <%- include('partials/footer') %> <%-
+include('partials/end') %>

@@ -8,7 +8,7 @@ const path = require("path");
 const validator = require("validator");
 const firebase = require("firebase/app");
 require("firebase/auth");
-const createPopper = require("@popperjs/core");
+// const createPopper = require("@popperjs/core");
 // const cors = require("cors");
 // app.use(cors());
 const cookieParser = require("cookie-parser");
@@ -125,8 +125,13 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/tuition", async function (req, res) {
+app.get("/tuition", function (req, res) {
   res.render("tuition");
+});
+
+
+app.get("/about", function (req, res) {
+  res.render("about-us");
 });
 
 //Tutor Application
@@ -142,6 +147,11 @@ app.get("/login", async function (req, res) {
 //Client Form
 app.get("/form", function (req, res) {
   res.render("form");
+});
+
+//Client Form
+app.get("/carousel", function (req, res) {
+  res.render("carousel");
 });
 
 // FAQ Page
