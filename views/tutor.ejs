@@ -3,7 +3,7 @@
 <div class="row">
   <!-- SIDE BAR -->
   <div class="col-lg-2 shadow-two col-sm-12 bg-danger" id="">
-    <div class="profile-side side-bar">
+    <div class="profile-side side-bar d-none d-lg-block">
       <div>
         <div class="">
           <div class="mt-lg-2 side-bar">
@@ -29,30 +29,30 @@
 
               <li class="nav-item">
                 <a class="link-user" href="#"
-                  ><i class="fa-solid fa-sheet-plastic me-2"></i>DASHBOARD</a
+                  ><i class="fa fa-sheet-plastic me-2"></i>DASHBOARD</a
                 >
               </li>
 
               <li class="nav-item">
                 <a class="link-user" href="#"
-                  ><i class="fa-solid fa-layer-group me-2"></i>TRAINING</a
+                  ><i class="fa fa-layer-group me-2"></i>TRAINING</a
                 >
               </li>
 
               <li class="nav-item">
                 <a class="link-user" href="#"
-                  ><i class="fa-regular fa-folder-open me-2"></i>OFFERS</a
+                  ><i class="fa fa-folder-open me-2"></i>OFFERS</a
                 >
               </li>
 
               <li class="nav-item">
                 <a class="link-user" href="#"
-                  ><i class="fa-solid fa-file me-2"></i>SUBMIT FORMS</a
+                  ><i class="fa fa-file me-2"></i>SUBMIT FORMS</a
                 >
               </li>
               <li class="nav-item">
                 <a class="link-user" href="#"
-                  ><i class="fa-solid fa-list me-2"></i>RESOURCES</a
+                  ><i class="fa fa-list me-2"></i>RESOURCES</a
                 >
               </li>
             </ul>
@@ -95,7 +95,9 @@
       </nav>
 
       <div class="row">
-        <div class="col-lg-6 col-sm-12 text-start py-lg-3 px-2 text-white px-4">
+        <div
+          class="col-lg-6 col-sm-12 text-start py-lg-3 px-2 text-white px-4 mt-5"
+        >
           <h2 class="fs-3 fw-bold mb-0">Hello <%= fullName %>,</h2>
           <p class="fs-beauty fs-5 mt-0">It's <%= date %></p>
           <!-- <h6 class="fs-beauty mt-0">Are You Ready to Begin...</h6> -->
@@ -173,7 +175,8 @@
                   data-bs-target="#noticeBoard"
                   data-bs-slide="prev"
                 >
-                  <i class="fa-solid fa-circle-left"></i>
+                  <i class="fa fa-arrow-circle-o-left"></i>
+                  <!-- <i class="fa fa-arrow-circle-left"></i> -->
                 </button>
 
                 <button
@@ -182,7 +185,7 @@
                   data-bs-target="#noticeBoard"
                   data-bs-slide="next"
                 >
-                  <i class="fa-solid fa-circle-right"></i>
+                  <i class="fa fa-arrow-circle-o-right"></i>
                 </button>
               </div>
             </div>

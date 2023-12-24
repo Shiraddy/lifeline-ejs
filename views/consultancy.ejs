@@ -3,7 +3,7 @@
   <%- include('partials/NavBar') %>
   <div class="row">
     <div class="col-lg-6"></div>
-    <div class="col-lg-6 text-white text-start">
+    <div class="col-lg-6 text-white text-start res-hero mt-sm-5">
       <h2 class="hero-header mt-lg-5 fs-1">
         A JOURNEY TOWARDS <span class="text-info">GREATNESS...</span>
       </h2>
@@ -23,10 +23,10 @@
   </div>
 </div>
 <div class="container-sm py-3 services">
-  <h2 class="fs-1 pt-2 mb-0">EDUCATIONAL CONSULTANCY</h2>
-  <h4 class="text-dark-emphasis">
+  <h2 class="fs-2 pt-2 mb-0 fw-bolder">EDUCATIONAL CONSULTANCY</h2>
+  <h5 class="text-dark-emphasis mt-0">
     We Offer the Following Consultancy Services
-  </h4>
+  </h5>
   <div class="row">
     <div class="col-lg-4">
       <div class="card card-body">
@@ -63,13 +63,13 @@
     </div>
   </div>
 
-  <div class="row my-4 bg-success py-5">
-    <div class="col-lg-6">
-      <img class="consultantPic" src="/images/website.jpg" alt="" />
+  <div class="row my-4 mx-lg-2">
+    <div class="col-lg-6 shadow-two bg-success py-lg-5">
+      <img class="consultantPic pt-3" src="/images/website.jpg" alt="" />
     </div>
-    <div class="col-lg-6 text-white">
+    <div class="col-lg-6 text-white shadow-two bg-success py-lg-5">
       <h3>Online Presence</h3>
-      <p class="text-start lh-lg">
+      <p class="text-start lh-lg px-2">
         We understand the significance of a strong online presence in fostering
         communication, enhancing accessibility, and showcasing the achievements
         and offerings of your esteemed institution. With our expertise in
@@ -80,19 +80,19 @@
     </div>
   </div>
 
-  <div class="row my-4 py-5">
-    <div class="col-lg-6">
+  <div class="row my-4 py-5 px-lg-3">
+    <div class="col-lg-6 bg-white pt-4 shadow-two">
       <img class="consultantPic" src="/images/consul5.jpg" alt="" />
     </div>
-    <div class="col-lg-6 px-lg-4 px-2">
+    <div class="col-lg-6 px-lg-4 px-2 bg-white pt-lg-4 shadow-two">
       <h3 class="mb-0">Teacher Training</h3>
-      <h5 class="text-body-secondary">
+      <h6 class="text-body-secondary">
         Enhance Your Skill with Expert Guidance
-      </h5>
-      <div class="text-start lh-lg text-dark-emphasis">
+      </h6>
+      <div class="text-start lh-lg text-dark-emphasis px-3">
         <p>
           At Lifeline Educational Solutions, we're passionate about empowering
-          educators to excel in their craft! 🚀
+          educators to excel in their craft!
         </p>
 
         <p>
@@ -104,13 +104,15 @@
         <p>
           From honing classroom management strategies to fostering effective
           teacher-student communication, crafting engaging lesson plans, and
-          mastering note preparation, we've got you covered.
+          mastering note preparation.
         </p>
       </div>
     </div>
   </div>
+  <div class="my-5"><%- include('partials/about') %></div>
 
-  <%- include('partials/about') %> <%- include('partials/message') %>
+  <div class="my-5"><%- include('partials/chooseUs') %></div>
+  <%- include('partials/message') %>
 </div>
 <%- include('partials/contact') %> <%- include('partials/footer') %> <%-
 include('partials/end') %>

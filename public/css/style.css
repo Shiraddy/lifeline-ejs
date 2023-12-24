@@ -59,9 +59,10 @@
 
 .banner-half {
   width: 100%;
-  height: 55vh;
+  height: 60vh;
+  max-height: 65vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.686), rgba(0, 0, 0, 0.541)),
-    url(/images/hero2.png);
+    url(/images/us.jpg);
   object-fit: cover;
   background-size: cover;
   background-position: center;
@@ -299,6 +300,11 @@
   background-color: #efefef;
 }
 
+.story {
+  margin-top: 30%;
+  /* align-items: center; */
+}
+
 .smile {
   display: none;
 }
@@ -307,6 +313,12 @@
   display: block;
   background-color: #bb2525;
 }
+
+/* #aboutUs {
+  max-height: 80vh;
+  height: 70vh;
+  margin: 8% 0;
+} */
 
 .iframe {
   width: 920;
@@ -457,12 +469,6 @@
 .tes-text {
   color: white;
 }
-.testimonial-parent {
-  font-size: 0.9rem;
-  font-family: "Pt Sans", sans-serif;
-  font-weight: 400;
-  padding-bottom: 1.2rem;
-}
 
 .testimony {
   background-color: #fff;
@@ -474,22 +480,37 @@
   font-size: 1.1rem;
 }
 
+.testimonial-item {
+  height: 130%;
+  padding: 7% 8%;
+}
+
 .carousel-control-next {
   padding: 5px;
   margin: 5px;
 }
 
+.caro-item {
+  height: 45vh;
+}
+
 .carousel-caption {
   background-color: rgba(0, 0, 0, 0.8);
   width: 55%;
-  height: 30%;
+  height: 50%;
   font-size: 1.1rem;
   font-family: "Kanit" Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 15px;
   padding: 7px 10px;
-  /* position: absolute;
-  top: 68%; */
+  position: absolute;
+  top: 35%;
   left: 23.33%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .carousel-inner {
@@ -1746,6 +1767,10 @@ body {
   .res-center {
     margin: auto auto;
     width: 100%;
+  }
+
+  .caro-item {
+    height: 65vh;
   }
 
   .res-tw {

@@ -13,15 +13,31 @@
         <%- include('partials/NavBar') %>
         <!-- HERO PAGE TEXT -->
         <div class="content row">
-          <div class="col-lg-6 col-md-5 col-sm-12"></div>
+          <div class="col-lg-6 col-md-5 col-sm-12">
+            <!-- <div class="">
+              <i
+                type="button"
+                data-bs-target="#hero-carousel"
+                data-bs-slide="prev"
+                class="fa fa-arrow-circle-left text-danger fs-1"
+              ></i>
+
+              <i
+                type="button"
+                data-bs-target="#hero-carousel"
+                data-bs-slide="next"
+                class="fa fa-arrow-circle-right text-danger fs-1"
+              ></i>
+            </div> -->
+          </div>
           <div class="col-lg-6 col-md-12 col-sm-12 text-start ps-lg-4">
             <h1 class="hero-header fs-1">
               DO YOU NEED A <br />
               <span class="hero-home shadow-one text-info">HOME TUTOR?</span>
             </h1>
             <p class="hero-text lh-base my-1">
-              Welcome to Lifeline. Here we connect you to a professional home
-              tutor to help your ward excel. <br />
+              Welcome to Lifeline. Here we provide you a professional home tutor
+              to help your ward excel. <br />
               <a
                 class="btn shadow-two px-lg-4 search-button me-3 my-2"
                 href="/tuition"
@@ -85,21 +101,6 @@
       </div>
     </div>
   </div>
-  <!-- <div class="d-flex justify-content-center">
-    <i
-      class="fa fa-arrow-circle-o-left"
-      type="button"
-      data-bs-target="#hero-carousel"
-      data-bs-slide="prev"
-    ></i>
-
-    <i
-      class="fa fa-arrow-circle-o-right"
-      type="button"
-      data-bs-target="#hero-carousel"
-      data-bs-slide="next"
-    ></i>
-  </div> -->
 </div>
 
 <!-----------SERVICES SECTION------------->
@@ -110,21 +111,22 @@
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card shadow-two hover">
-          <img class="service-image" src="images/Tuition.png" alt="" />
+          <img class="service-image" src="images/student1.png" alt="" />
           <a class="btn btn-danger btn-service" id="tuition" href="/tuition"
             >Private Tuition</a
           >
           <p class="service-text text-dark-emphasis my-2 px-lg-2 px-4">
-            We offer your child the best tuition experience using workable
-            methods and techniques.
+            We offer your child the best tuition experience using varied methods
+            and approaches.
           </p>
         </div>
       </div>
+
       <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card shadow-two hover">
           <img
             class="service-image"
-            src="images/Skill.png"
+            src="images/counsel1.png"
             alt="images/skill"
           />
           <a
@@ -134,18 +136,15 @@
             >Counselling</a
           >
           <p class="service-text text-dark-emphasis my-2 px-lg-2 px-4">
-            Our guidance and counseling offers your child the helping hand to
-            make life-changing decisions.
+            Our guidance and counseling empowers you to make the right decisions
+            about your ward.
           </p>
         </div>
       </div>
+
       <div class="col-sm-12 col-md-12 col-lg-4">
         <div class="card shadow-two hover">
-          <img
-            class="service-image"
-            src="images/counselling.png"
-            alt="images"
-          />
+          <img class="service-image" src="images/skill1.png" alt="images" />
           <a class="btn btn-danger btn-service" id="skill" href="/consultancy"
             >Consultancy</a
           >
@@ -164,13 +163,14 @@
     <hr />
 
     <!----------CHOOSE US SECTION------------>
-    <%- include('partials/chooseUs') %>
+    <div class="mx-lg-4 my-5"><%- include('partials/chooseUs') %></div>
+
     <hr />
 
     <!----------TESTIMONIAL SECTION------------>
     <section
       id="testimonial"
-      class="carousel slide banner-half pt-5"
+      class="carousel slide banner-half"
       data-bs-ride="carousel"
       data-bs-interval="6000"
     >
@@ -195,40 +195,33 @@
       </div>
 
       <!-- Carousel-content -->
-      <div class="carousel">
-        <div class="carousel-inner testimony shadow">
-          <h2 class="choose-title pt-lg-3">What Our Clients Say</h2>
-          <div class="carousel-item">
-            <p class="px-lg-5 px-md-4 py-lg-3 test-text">
-              I have had a number of tutors teach my children, but none has been
-              as effective as the Lifeline tutor I have now. Thank you.
-            </p>
-            <i
-              class="fa-solid fa-user icon shadow d-none d-lg-inline-block"
-            ></i>
-            <h4 class="testimonial-parent">Mr. Erik</h4>
-          </div>
-          <div class="carousel-item active">
-            <p class="px-lg-5 px-md-4 py-lg-3 test-text">
-              The tutor is very good. He takes his time to teach my children and
-              is very patient with them. I can see improvement.
-            </p>
-            <i
-              class="fa-solid fa-user icon shadow d-none d-lg-inline-block"
-            ></i>
-            <h4 class="testimonial-parent">Mr. Emmanuel</h4>
-          </div>
-          <div class="carousel-item">
-            <p class="px-lg-5 px-md-4 py-lg-3 test-text">
-              My four year old daughter had reading challenge.She couldn't
-              identify the letters and the sounds. Lifeline came in and helped.
-              Now she can read.
-            </p>
-            <i
-              class="fa-solid fa-user icon shadow d-none d-lg-inline-block"
-            ></i>
-            <h4 class="testimonial-parent">Mrs. David</h4>
-          </div>
+
+      <div class="carousel-inner testimony shadow">
+        <h2 class="choose-title pt-lg-3">What Our Clients Say</h2>
+        <div class="carousel-item testimonial-item">
+          <p class="">
+            I have had a number of tutors teach my children, but none has been
+            as effective as the Lifeline tutor I have now. Thank you.
+          </p>
+
+          <h4 class="">Mr. Erik</h4>
+        </div>
+        <div class="carousel-item active testimonial-item">
+          <p class="">
+            The tutor is very good. He takes his time to teach my children and
+            is very patient with them.
+          </p>
+
+          <h4 class="">Mr. Emmanuel</h4>
+        </div>
+        <div class="carousel-item testimonial-item">
+          <p class="">
+            My four year old daughter had reading challenge.She couldn't
+            identify the letters and the sounds. Lifeline came in and helped.
+            Now she can read.
+          </p>
+
+          <h4 class="">Mrs. David</h4>
         </div>
       </div>
 
@@ -258,7 +251,6 @@
     <%- include('partials/tutorlist') %>
 
     <!-- EMAIL US  -->
-
     <%- include('partials/message') %>
   </div>
 
