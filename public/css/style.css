@@ -490,7 +490,7 @@
   margin: 5px;
 }
 
-.caro-item {
+.caro-item-about {
   height: 45vh;
 }
 
@@ -533,6 +533,7 @@
 #option {
   display: none;
 } */
+
 #price-display {
   position: -webkit-sticky;
   position: sticky;
@@ -564,6 +565,17 @@
 }
 
 .client-banner {
+  width: 100%;
+  height: 40vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.686), rgba(0, 0, 0, 0.541)),
+    url(/images/us.jpg);
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tutor-profile-banner {
   width: 100%;
   height: 40vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.686), rgba(0, 0, 0, 0.541)),
@@ -835,9 +847,6 @@ body {
   font-family: "Kanit", "Pt-Sans";
 }
 
-/* .profile-side {
-  width: 40%;
-} */
 .pdf {
   width: 80vw;
   height: 150vh;
@@ -1092,12 +1101,12 @@ body {
   border-radius: 30%;
 } */
 
-.fa {
+/* .fa {
   font-size: 1.7vw;
   padding-top: 5%;
   margin-right: 3%;
   color: white;
-}
+} */
 
 .click {
   border-bottom: 2px solid green;
@@ -1643,10 +1652,9 @@ body {
     width: 100%;
   } */
 
-  .fa {
+  /* .fa {
     font-size: 5vw;
-    /* display: inline; */
-  }
+  } */
 
   .apply-input {
     width: 80%;
@@ -1745,6 +1753,15 @@ body {
     height: 20vh;
   }
 
+  .tutor-profile-banner {
+    height: 25vh;
+  }
+
+  .caro-item-about {
+    height: 47dvh;
+    padding: 5% 2%;
+  }
+
   .banner-half {
     width: 100%;
     height: 45vh;
@@ -1820,10 +1837,14 @@ body {
   .notice {
     margin: 5% 0;
   }
+  /* 
+  .offcanvas-sm {
+    width: 20%;
+  } */
 
   .side-bar {
     position: fixed;
-    width: 80%;
+    width: 70%;
     z-index: 100;
   }
 }

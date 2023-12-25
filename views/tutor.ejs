@@ -2,71 +2,98 @@
 
 <div class="row">
   <!-- SIDE BAR -->
-  <div class="col-lg-2 shadow-two col-sm-12 bg-danger" id="">
-    <div class="profile-side side-bar d-none d-lg-block">
+  <div class="col-lg-2 shadow-two col-sm-12 bg-success" id="">
+    <div class="d-block d-lg-none d-flex justify-content-between fixed">
+      <a class="navbar-brand text-white fs-3" href="#">LIFELINE</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar"
+      >
+        <i class="bi-filter-circle fs-1 text-white me-1"></i>
+      </button>
+    </div>
+
+    <div class="profile-side side-bar">
       <div>
-        <div class="">
-          <div class="mt-lg-2 side-bar">
-            <img
-              class="profile-pic d-none d-lg-block"
-              src="images/Pic.png"
-              alt=""
-            />
+        <div
+          class="offcanvas-sm offcanvas-start navbar-dark bg-dark myOffCanvas"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          data-bs-scroll="true"
+        >
+          <div class="" id="offcanvasNavbar">
+            <div class="mt-lg-2 side-bar">
+              <img
+                class="profile-pic d-none d-lg-block"
+                src="images/Pic.png"
+                alt=""
+              />
 
-            <div>
-              <h5 class="text-uppercase text-white mb-0 fs-6">
-                <%= fullName %>
-              </h5>
-              <small class="mt-0 text-white"><%= profile.email %></small>
-            </div>
-
-            <ul class="navbar-nav text-start ms-4 mt-4">
-              <!-- <li class="nav-item">
-                <a class="link-user" href="#"
-                  ><i class="fa-solid fa-user me-2"></i>PROFILE</a
+              <div class="offcanvas-header">
+                <a
+                  class="navbar-brand text-danger fs-3 offcanvas-title"
+                  href="#"
+                  >LIFELINE</a
                 >
-              </li> -->
+                <button
+                  type="button"
+                  class="btn-close btn-close-dark"
+                  data-bs-dismiss="offcanvasNavbar"
+                ></button>
+              </div>
 
-              <li class="nav-item">
-                <a class="link-user" href="#"
-                  ><i class="fa fa-sheet-plastic me-2"></i>DASHBOARD</a
+              <div class="">
+                <h5 class="text-uppercase text-white mb-0 fs-6">
+                  <%= fullName %>
+                </h5>
+                <small class="mt-0 text-white d-6 fs-beauty"
+                  ><%= profile.email %></small
                 >
-              </li>
+              </div>
 
-              <li class="nav-item">
-                <a class="link-user" href="#"
-                  ><i class="fa fa-layer-group me-2"></i>TRAINING</a
-                >
-              </li>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav text-start ms-4 mt-4">
+                  <li class="nav-item">
+                    <a class="link-user" href="#"
+                      ><i class="bi-columns-gap me-2 text-white"></i
+                      >DASHBOARD</a
+                    >
+                  </li>
 
-              <li class="nav-item">
-                <a class="link-user" href="#"
-                  ><i class="fa fa-folder-open me-2"></i>OFFERS</a
-                >
-              </li>
+                  <li class="nav-item">
+                    <a class="link-user" href="#"
+                      ><i class="fa fa-laptop me-2"></i>TRAINING</a
+                    >
+                  </li>
 
-              <li class="nav-item">
-                <a class="link-user" href="#"
-                  ><i class="fa fa-file me-2"></i>SUBMIT FORMS</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="link-user" href="#"
-                  ><i class="fa fa-list me-2"></i>RESOURCES</a
-                >
-              </li>
-            </ul>
+                  <li class="nav-item">
+                    <a class="link-user" href="#"
+                      ><i class="bi-files me-2"></i>OFFERS</a
+                    >
+                  </li>
 
-            <!-- <div class="homepage my-3 d-none d-lg-block">
-                <img src="/images/homepage.png" alt="" width="120" height="70" />
-              </div> -->
-
-            <div class="">
-              <form action="/logout" method="GET">
-                <button class="btn btn-success shadow-two my-3" type="submit">
-                  <i class="fa-solid fa-reply me-3"></i>Logout
-                </button>
-              </form>
+                  <li class="nav-item">
+                    <a class="link-user" href="#"
+                      ><i class="bi-clipboard-data me-2"></i>SUBMIT FORMS</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="link-user" href="#"
+                      ><i class="bi-collection me-2"></i>RESOURCES</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="">
+                <form action="/logout" method="GET">
+                  <button class="btn btn-danger shadow-two my-3" type="submit">
+                    <i class="bi-box-arrow-left text-white me-2"></i>Logout
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -76,30 +103,30 @@
 
   <!-- MAIN BODY AREA -->
   <div class="col-lg-10 col-sm-12 col-md-12">
-    <div class="client-banner">
-      <nav class="navbar navbar-expand d-none d-lg-block text-white">
-        <div class="row">
-          <div class="col-lg-5 text-start">
-            <a class="navbar-brand text-danger fs-4" href="#">LIFELINE</a>
-            <h6 class="fs-beauty text-muted ps-2"></h6>
-          </div>
-          <!-- <i class="fa-solid fa-circle-user me-2"></i> -->
-          <div class="col-lg-7 text-end pe-4">
-            <i class="fa-solid fa-message pe-2"></i>
-            <i class="fa-solid fa-bell pe-2"></i>
-            <small
-              ><%= fullName %> <i class="fa-solid fa-chevron-down"></i
-            ></small>
+    <div class="tutor-profile-banner">
+      <nav class="d-none d-lg-block">
+        <div class="container-fluid">
+          <div class="nav">
+            <a class="navbar-brand text-danger fs-3 me-auto" href="#"
+              >LIFELINE</a
+            >
+            <div class="text-white me-4">
+              <i class="fa fa-bell-o me-3"></i>
+              <i class="bi-chat-square-text"></i>
+            </div>
+            <h6 class="text-white mt-1"><%= fullName %></h6>
+            <i class="bi-sliders mx-1 text-white"></i>
           </div>
         </div>
       </nav>
 
-      <div class="row">
+      <div class="row mt-lg-5">
         <div
-          class="col-lg-6 col-sm-12 text-start py-lg-3 px-2 text-white px-4 mt-5"
+          class="col-lg-6 col-sm-12 text-start py-lg-3 px-2 text-white px-4 mt-5 mt-lg-5"
         >
           <h2 class="fs-3 fw-bold mb-0">Hello <%= fullName %>,</h2>
-          <p class="fs-beauty fs-5 mt-0">It's <%= date %></p>
+          <p class="fs-beauty fs-5 mt-0 mb-0">Welcome Back to Lifeline,</p>
+          <p class="fs-beauty fs-5 mt-0">It's <%= date %>.</p>
           <!-- <h6 class="fs-beauty mt-0">Are You Ready to Begin...</h6> -->
         </div>
       </div>
@@ -108,33 +135,34 @@
     <div class="admin-body mt-lg-3">
       <!-- WELCOME SECTION -->
       <!-- <div class="client-banner"></div> -->
-      <section class="row shadow-two rounded bg-white profile my-4">
+      <section class="row shadow-two rounded bg-white profile my-lg-4">
         <div class="col-lg-12 col-sm-12 py-3 row">
           <h6 class="text-start fw-bolder py-2">My Data Centre</h6>
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-12">
             <div class="revenue shadow-two bg-white text-primary">
               <h6>Home Work</h6>
-              <h6><i class="fa-solid fa-receipt ms-3"></i>45+</h6>
+              <h6><i class="fa fa-receipt ms-3"></i>45+</h6>
             </div>
           </div>
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-12">
             <div class="profit shadow-two bg-white text-info">
               <h6>Articles</h6>
-              <h6><i class="fa-solid fa-book-open ms-3"></i>45+</h6>
+              <h6><i class="fa fa-book-open ms-3"></i>45+</h6>
             </div>
           </div>
-          <div class="col-lg-3 col-6">
+
+          <div class="col-lg-4 col-12">
             <div class="client shadow-two bg-white text-danger">
               <h6>Offers</h6>
-              <h6><i class="fa-solid fa-handshake ms-3"></i>80+</h6>
+              <h6><i class="fa fa-handshake ms-3"></i>80+</h6>
             </div>
           </div>
-          <div class="col-lg-3 col-6">
+          <!-- <div class="col-lg-3 col-6">
             <div class="tutor bg-white shadow-two text-success">
               <h6 class="">Tutors</h6>
-              <h6 class="ms-2"><i class="fa-solid fa-user"></i>100+</h6>
+              <h6 class="ms-2"><i class="fa fa-users"></i>100+</h6>
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
 
@@ -195,38 +223,24 @@
         <!-- PROFILE -->
         <div class="col-lg-4">
           <div class="quote shadow-two text-start my-lg-1 my-3">
-            <h4 class="fw-bolder mt-3">My Profile</h4>
+            <h4 class="fw-bolder mt-2">My Profile</h4>
             <div class="col mt-4">
               <h6 class="fs-beauty text-muted text-uppercase">
-                <i class="fa-solid fa-user me-2"></i><%= fullName %>
+                <i class="fa fa-user me-2"></i><%= fullName %>
               </h6>
             </div>
 
             <div class="col">
               <h6 class="fs-beauty text-muted text-uppercase">
-                <i class="fa-solid fa-play me-2"></i>Category: <%=
-                profile.category %>
+                <i class="fa fa-play me-2"></i>Category: <%= profile.category %>
               </h6>
             </div>
 
             <div class="col">
               <h6 class="fs-beauty text-muted text-uppercase">
-                <i class="fa-brands fa-codepen me-2"></i> Status: <%=
-                profile.status %>
+                <i class="fa fa-codepen me-2"></i> Status: <%= profile.status %>
               </h6>
             </div>
-
-            <div class="col">
-              <h6 class="fs-beauty text-muted text-uppercase">
-                <i class="fa-solid fa-mobile-screen me-2"></i> Contact: <%=
-                profile.contact %>
-              </h6>
-            </div>
-
-            <!-- <p class="blockquote">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
-              earum!
-            </p> -->
           </div>
         </div>
       </section>
@@ -318,7 +332,7 @@
                           class="btn btn-danger"
                           href="https://firebasestorage.googleapis.com/v0/b/lifeline-edu-site.appspot.com/o/Tutor%20Resources%2FLog%20sheet.pdf?alt=media&token=a1a2927c-c086-4f20-8930-808a782794bb"
                           id="download"
-                          ><i class="fa-solid fa-download"></i
+                          ><i class="fa fa-download"></i
                         ></a>
                       </td>
                     </tr>
@@ -331,7 +345,7 @@
                           class="btn btn-danger"
                           href="https://firebasestorage.googleapis.com/v0/b/lifeline-edu-site.appspot.com/o/Tutor%20Resources%2FLifeline's%20Tutor%20Code%20of%20Conduct.pdf?alt=media&token=17cbb614-401f-495f-9311-8b4aa8076a6e"
                           id="download"
-                          ><i class="fa-solid fa-download"></i
+                          ><i class="fa fa-download"></i
                         ></a>
                       </td>
                     </tr>
@@ -343,23 +357,11 @@
                       </td>
                       <td>
                         <a class="btn btn-danger" href="#" id="download"
-                          ><i class="fa-solid fa-download"></i
+                          ><i class="fa fa-download"></i
                         ></a>
                       </td>
                     </tr>
 
-                    <!-- <tr>
-                      <td>4</td>
-                      <td>Reading Stories</td>
-                      <td>A huge library of stories for students.</td>
-                      <td>
-                        <a
-                          class="btn btn-danger"
-                          href="https://www.uniteforliteracy.com/"
-                          >Open</a
-                        >
-                      </td>
-                    </tr> -->
                     <tr>
                       <td>3</td>
                       <td>Phonics</td>
@@ -369,7 +371,7 @@
                           class="btn btn-danger"
                           href="https://www.readingbear.org/"
                           target="framename"
-                          ><i class="fa-solid fa-download"></i
+                          ><i class="fa fa-download"></i
                         ></a>
                       </td>
                     </tr>
@@ -424,7 +426,7 @@
                       <td>ENGLISH LANGUAGE</td>
                       <td>
                         <a class="btn btn-danger" href="#" id="download"
-                          ><i class="fa-solid fa-download"></i
+                          ><i class="fa fa-download"></i
                         ></a>
                       </td>
                     </tr>
@@ -434,7 +436,7 @@
                       <td>MATHEMATICS</td>
                       <td>
                         <a class="btn btn-danger" href="#" id="download"
-                          ><i class="fa-solid fa-download"></i
+                          ><i class="fa fa-download"></i
                         ></a>
                       </td>
                     </tr>
@@ -444,7 +446,7 @@
                       <td>SCIENCE</td>
                       <td>
                         <a class="btn btn-danger" href="#" id="download"
-                          ><i class="fa-solid fa-download"></i
+                          ><i class="fa fa-download"></i
                         ></a>
                       </td>
                     </tr>
@@ -455,7 +457,7 @@
                       <td>ENGLISH LANGUAGE</td>
                       <td>
                         <button class="btn btn-danger">
-                          <i class="fa-solid fa-download"></i>
+                          <i class="fa fa-download"></i>
                         </button>
                       </td>
                     </tr>
@@ -465,7 +467,7 @@
                       <td>MATHEMATICS</td>
                       <td>
                         <button class="btn btn-danger">
-                          <i class="fa-solid fa-download"></i>
+                          <i class="fa fa-download"></i>
                         </button>
                       </td>
                     </tr>
@@ -475,7 +477,7 @@
                       <td>SCIENCE</td>
                       <td>
                         <button class="btn btn-danger">
-                          <i class="fa-solid fa-download"></i>
+                          <i class="fa fa-download"></i>
                         </button>
                       </td>
                     </tr>

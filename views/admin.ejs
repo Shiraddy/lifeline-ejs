@@ -31,23 +31,22 @@
           <img class="admin-pic" src="images/Pic.png" alt="" />
           <ul class="nav navbar-nav admin-ul">
             <a class="admin-list" href="#adminDash"
-              ><i class="fa-solid fa-clipboard admin-icon"></i> DASHBOARD
+              ><i class="bi-columns-gap me-2 text-white"></i> DASHBOARD
             </a>
 
             <a class="admin-list" href="#adminTutor"
-              ><i class="fa-solid fa-users admin-icon"></i> TUTORS
-              <i class="fa-solid fa-chevron-down ms-5 admin-icon"></i
-            ></a>
+              ><i class="bi-person-square me-2"></i> TUTORS
+            </a>
 
             <a class="admin-list" href="#adminClient"
-              ><i class="fa-solid fa-handshake admin-icon"></i> CLIENTS
-              <span class="admin-icon"
-                ><i class="fa-solid fa-chevron-down ms-5"></i></span
-            ></a>
+              ><i class="bi-person-lines-fill me-2"></i> CLIENTS
+            </a>
 
             <a class="admin-list dropdown" href="#" data-bs-toggle="dropdown">
-              <i class="fa-solid fa-link admin-icon"></i> LINKS
-              <i class="fa-solid fa-sort-down"></i>
+              <i class="bi-calendar2-range me-2"></i> LINKS
+              <span class="admin-icon"
+                ><i class="fa fa-chevron-down ms-5"></i
+              ></span>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Upload Contract</a></li>
                 <li><a class="dropdown-item" href="#">Send Email</a></li>
@@ -63,8 +62,10 @@
               href="#"
               role="button"
             >
-              <i class="fa-solid fa-file-invoice-dollar admin-icon"></i> FINANCE
-              <i class="fa-solid fa-sort-down"></i>
+              <i class="bi-clipboard-data me-2 text-white"></i> FINANCE
+              <span class="admin-icon"
+                ><i class="fa fa-chevron-down ms-5"></i
+              ></span>
               <ul class="dropdown-menu">
                 <li>
                   <a class="dropdown-item" href="#">Tutor PayRoll</a>
@@ -125,7 +126,7 @@
               aria-label="Search"
             />
             <button class="btn btn-outline-danger" type="submit">
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i class="bi-search"></i>
             </button>
           </form>
         </div>
@@ -181,7 +182,7 @@
                 >
                   <span class="badge text-bg-danger me-2"
                     ><%= noOfContracts %></span
-                  >Contracts <i class="fa-solid fa-user px-2"></i>
+                  >Contracts <i class="fa fa-user px-2"></i>
                 </button>
 
                 <button
@@ -192,7 +193,7 @@
                   <span class="badge text-bg-danger me-2"
                     ><%= noOfProspects %></span
                   >
-                  Prospects<i class="fa-solid fa-rotate px-2"></i>
+                  Prospects<i class="fa fa-rotate px-2"></i>
                 </button>
 
                 <button
@@ -201,7 +202,7 @@
                   data-bs-toggle="modal"
                   data-bs-target="#regClient"
                 >
-                  Add Client <i class="fa-solid fa-user-plus"></i>
+                  Add Client <i class="fa fa-user-plus"></i>
                 </button>
               </div>
             </div>
@@ -942,11 +943,11 @@
                       data-bs-toggle="modal"
                       data-bs-target="#update"
                     >
-                      <a><i class="fa-solid fa-pen-to-square"></i></a>
+                      <a><i class="fa fa-info-circle"></i></a>
                     </button>
 
                     <button class="btn tutorIcon me-2 delete-row">
-                      <a><i class="fa-solid fa-trash"></i></a>
+                      <a><i class="fa fa-trash"></i></a>
                     </button>
                   </div>
                 </td>
@@ -980,7 +981,7 @@
                       data-bs-toggle="modal"
                       data-bs-target="#update"
                     >
-                      <a><i class="fa-solid fa-pen-to-square"></i></a>
+                      <a><i class="fa fa-info-circle me-2"></i></a>
                     </button>
                   </div>
                 </td>
