@@ -1007,8 +1007,10 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+  $(".dic-spin").hide();
   $("#searchForm").submit(function (event) {
     event.preventDefault();
+    $(".dic-spin").show();
     const word = $('input[name="word"]').val();
 
     $.ajax({
@@ -1017,6 +1019,7 @@ $(document).ready(function () {
       data: { word: word },
       success: function (data) {
         displayResults(data);
+        $(".dic-spin").hide();
       },
       error: function (error) {
         console.error("Error:", error);
@@ -1184,6 +1187,7 @@ $(document).ready(function () {
   });
   $(".parentCounsellingBtn").click(function () {
     $(".parentCounselling").show();
+    $(".studentContactDetails").hide();
   });
 
   $("#counselling-form").submit(function (e) {

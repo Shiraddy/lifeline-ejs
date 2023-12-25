@@ -2,48 +2,47 @@
 
 <div class="row">
   <!-- SIDE BAR -->
+
   <div class="col-lg-2 shadow-two col-sm-12 bg-success" id="">
-    <div class="d-block d-lg-none d-flex justify-content-between fixed">
+    <div class="d-block d-lg-none d-flex justify-content-between my-2">
       <a class="navbar-brand text-white fs-3" href="#">LIFELINE</a>
 
       <button
         class="navbar-toggler"
         type="button"
         data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasNavbar"
+        data-bs-target="#offcanvas"
       >
-        <i class="bi-filter-circle fs-1 text-white me-1"></i>
+        <i class="bi-filter-square me-1"></i>
       </button>
     </div>
 
-    <div class="profile-side side-bar">
+    <div class="side-bar">
       <div>
         <div
-          class="offcanvas-sm offcanvas-start navbar-dark bg-dark myOffCanvas"
+          class="offcanvas-sm offcanvas-start navbar-dark bg-dark"
           tabindex="-1"
-          id="offcanvasNavbar"
+          id="offcanvas"
           data-bs-scroll="true"
         >
-          <div class="" id="offcanvasNavbar">
+          <div class="offcanvas-header">
+            <a class="navbar-brand text-danger fs-3 offcanvas-title" href="#"
+              >LIFELINE</a
+            >
+
+            <button
+              type="button"
+              class="btn-close"
+              onclick="$('.side-bar').hide();"
+            ></button>
+          </div>
+          <div class="">
             <div class="mt-lg-2 side-bar">
               <img
                 class="profile-pic d-none d-lg-block"
                 src="images/Pic.png"
                 alt=""
               />
-
-              <div class="offcanvas-header">
-                <a
-                  class="navbar-brand text-danger fs-3 offcanvas-title"
-                  href="#"
-                  >LIFELINE</a
-                >
-                <button
-                  type="button"
-                  class="btn-close btn-close-dark"
-                  data-bs-dismiss="offcanvasNavbar"
-                ></button>
-              </div>
 
               <div class="">
                 <h5 class="text-uppercase text-white mb-0 fs-6">
@@ -65,6 +64,12 @@
 
                   <li class="nav-item">
                     <a class="link-user" href="#"
+                      ><i class="bi-collection me-2"></i>RESOURCES</a
+                    >
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="link-user" href="#"
                       ><i class="fa fa-laptop me-2"></i>TRAINING</a
                     >
                   </li>
@@ -78,11 +83,6 @@
                   <li class="nav-item">
                     <a class="link-user" href="#"
                       ><i class="bi-clipboard-data me-2"></i>SUBMIT FORMS</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="link-user" href="#"
-                      ><i class="bi-collection me-2"></i>RESOURCES</a
                     >
                   </li>
                 </ul>
@@ -121,10 +121,8 @@
       </nav>
 
       <div class="row mt-lg-5">
-        <div
-          class="col-lg-6 col-sm-12 text-start py-lg-3 px-2 text-white px-4 mt-5 mt-lg-5"
-        >
-          <h2 class="fs-3 fw-bold mb-0">Hello <%= fullName %>,</h2>
+        <div class="col-lg-6 col-sm-12 tutor-profile-hero">
+          <h2 class="fs-3 fw-bolder mb-0">Hello <%= fullName %>,</h2>
           <p class="fs-beauty fs-5 mt-0 mb-0">Welcome Back to Lifeline,</p>
           <p class="fs-beauty fs-5 mt-0">It's <%= date %>.</p>
           <!-- <h6 class="fs-beauty mt-0">Are You Ready to Begin...</h6> -->
@@ -137,7 +135,7 @@
       <!-- <div class="client-banner"></div> -->
       <section class="row shadow-two rounded bg-white profile my-lg-4">
         <div class="col-lg-12 col-sm-12 py-3 row">
-          <h6 class="text-start fw-bolder py-2">My Data Centre</h6>
+          <h6 class="text-start fw-bolder py-2">MY DASHBOARD</h6>
           <div class="col-lg-4 col-12">
             <div class="revenue shadow-two bg-white text-primary">
               <h6>Home Work</h6>
@@ -743,25 +741,25 @@
   </div>
 </div>
 
-<!-- <nav class="navbar navbar-expand d-lg-none d-block sticky-bottom">
+<!-- <nav class="navbar navbar-expand d-lg-none d-block sticky-bottom bg-white">
   <div class="container-fluid">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav bottom-nav">
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="#"
-          ><i class="fa-solid fa-house-chimney"></i
+          ><i class="bi-speedometer2"></i
         ></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fa-solid fa-suitcase"></i></a>
+        <a class="nav-link" href="#"><i class="bi-journal-richtext"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fa-solid fa-sliders"></i></a>
+        <a class="nav-link" href="#"><i class="bi-columns-gap"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fa-solid fa-handshake"></i></a>
+        <a class="nav-link" href="#"><i class="bi-command"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fa-solid fa-layer-group"></i></a>
+        <a class="nav-link" href="#"><i class="bi-filter-square"></i></a>
       </li>
     </ul>
   </div>

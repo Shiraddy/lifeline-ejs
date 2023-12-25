@@ -32,15 +32,19 @@
               type="text"
               class="form-control border border-primary"
               name="word"
-              placeholder="Enter a word"
+              placeholder="Enter a word to search"
             />
             <button type="submit" class="btn btn-success shadow-one">
-              Search
+              <i class="bi-search me-2"></i>Search
+              <div
+                class="spinner-grow spinner-grow-sm dic-spin"
+                role="status"
+              ></div>
             </button>
           </div>
         </form>
 
-        <div id="results" class="mt-4 dictionary shadow-one px-2 py-2"></div>
+        <div id="results" class="mt-2 dictionary shadow-one px-2 py-2"></div>
       </div>
     </div>
   </div>

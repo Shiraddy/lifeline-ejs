@@ -597,6 +597,18 @@
   background-repeat: no-repeat;
 }
 
+.tutor-profile-hero {
+  color: #fff;
+  text-align: start;
+  margin-top: 5%;
+  margin-left: 2%;
+}
+
+.label-counselling {
+  display: flex;
+  justify-content: start;
+}
+
 /* FAQ PAGE */
 .letter,
 .faqBody {
@@ -1385,6 +1397,11 @@ body {
   background-color: #fff;
 }
 
+.bottom-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
 .notice,
 .quote {
   border-radius: 1%;
@@ -1754,7 +1771,7 @@ body {
   }
 
   .tutor-profile-banner {
-    height: 25vh;
+    height: 40vh;
   }
 
   .caro-item-about {
@@ -1779,6 +1796,13 @@ body {
 
   .res-d1 {
     margin-top: 25%;
+  }
+
+  .tutor-profile-hero {
+    color: #fff;
+    text-align: start;
+    margin-top: 25%;
+    margin-left: 1%;
   }
 
   .res-center {
@@ -1820,8 +1844,7 @@ body {
     margin: 4% 0;
   }
 
-  .notice,
-  .quote {
+  .notice {
     height: 50vh;
   }
 
@@ -1835,16 +1858,21 @@ body {
   }
 
   .notice {
-    margin: 5% 0;
+    margin: 2% 0;
   }
   /* 
   .offcanvas-sm {
     width: 20%;
   } */
 
+  .label-counselling {
+    display: flex;
+    justify-content: start;
+  }
+
   .side-bar {
     position: fixed;
-    width: 70%;
+    width: 75%;
     z-index: 100;
   }
 }
