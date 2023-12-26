@@ -577,7 +577,7 @@
 
 .tutor-profile-banner {
   width: 100%;
-  height: 40vh;
+  height: 28vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.686), rgba(0, 0, 0, 0.541)),
     url(/images/us.jpg);
   object-fit: cover;
@@ -600,7 +600,7 @@
 .tutor-profile-hero {
   color: #fff;
   text-align: start;
-  margin-top: 5%;
+  margin-top: 2.5%;
   margin-left: 2%;
 }
 
@@ -1390,6 +1390,7 @@ body {
 
 .notice {
   border-top: 10px green solid;
+  margin: 0.4%;
 }
 
 .quote {
@@ -1801,7 +1802,7 @@ body {
   .tutor-profile-hero {
     color: #fff;
     text-align: start;
-    margin-top: 25%;
+    margin-top: 30%;
     margin-left: 1%;
   }
 
@@ -1846,6 +1847,9 @@ body {
 
   .notice {
     height: 50vh;
+    /* display: flex;
+    justify-content: center;
+    margin: 2% 0; */
   }
 
   .motivation {
@@ -1856,14 +1860,6 @@ body {
     margin: auto auto;
     /* height: fit-content; */
   }
-
-  .notice {
-    margin: 2% 0;
-  }
-  /* 
-  .offcanvas-sm {
-    width: 20%;
-  } */
 
   .label-counselling {
     display: flex;

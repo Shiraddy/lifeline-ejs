@@ -1219,3 +1219,12 @@ $(document).ready(function () {
     // addClass("client-banner");
   });
 });
+
+function toggleSidebar() {
+  const sidebar = document.querySelector(".side-bar");
+  if (sidebar.style.display === "none" || sidebar.style.display === "") {
+    sidebar.style.display = "block";
+  } else {
+    sidebar.style.display = "none";
+  }
+}
