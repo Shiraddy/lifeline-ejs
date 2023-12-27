@@ -129,7 +129,6 @@ app.get("/tuition", function (req, res) {
   res.render("tuition");
 });
 
-
 app.get("/about", function (req, res) {
   res.render("about-us");
 });
@@ -145,9 +144,9 @@ app.get("/login", async function (req, res) {
 });
 
 //Client Form
-app.get("/form", function (req, res) {
-  res.render("form");
-});
+// app.get("/form", function (req, res) {
+//   res.render("form");
+// });
 
 //Client Form
 app.get("/carousel", function (req, res) {

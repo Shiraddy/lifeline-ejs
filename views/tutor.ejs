@@ -1,42 +1,12 @@
 <%- include('partials/header') %>
 
 <div class="row">
-  <!-- SIDE BAR -->
-  <div class="col-lg-2 shadow-two col-sm-12 bg-success" id="">
-    <div class="d-block d-lg-none d-flex justify-content-between my-2">
-      <a class="navbar-brand text-white fs-3" href="#">LIFELINE</a>
-
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvas"
-      >
-        <i class="bi-filter-square me-1 fs-1 text-white"></i>
-      </button>
-    </div>
-
+  <div class="col-lg-2 shadow-two col-sm-12 bg-success d-none d-lg-block" id="">
+    <!-- SIDE BAR -->
     <div class="side-bar">
-      <div>
-        <div
-          class="offcanvas-sm offcanvas-start bg-sm-dark"
-          tabindex="-1"
-          id="offcanvas"
-          data-bs-scroll="true"
-        >
-          <div class="offcanvas-header">
-            <a class="navbar-brand text-danger fs-3 offcanvas-title" href="#"
-              >LIFELINE</a
-            >
-
-            <button
-              type="button"
-              class="btn-close"
-              onclick="$('.side-bar').toggle()"
-            ></button>
-          </div>
-
-          <div class="mt-lg-2">
+      <div class="d-flex justify-content-start">
+        <div class="mt-lg-2">
+          <div class="">
             <img
               class="profile-pic d-none d-lg-block"
               src="images/Pic.png"
@@ -51,51 +21,98 @@
                 ><%= profile.email %></small
               >
             </div>
+            <ul class="navbar-nav text-start ms-4 mt-4">
+              <li class="nav-item">
+                <a class="link-user" href="#dashboard"
+                  ><i class="bi-columns-gap me-2 text-white"></i>DASHBOARD</a
+                >
+              </li>
 
-            <div class="offcanvas-body">
-              <ul class="navbar-nav text-start ms-4 mt-4">
-                <li class="nav-item">
-                  <a class="link-user" href="#"
-                    ><i class="bi-columns-gap me-2 text-white"></i>DASHBOARD</a
-                  >
-                </li>
+              <li class="nav-item">
+                <a class="link-user" href="#resourceCentre"
+                  ><i class="bi-collection me-2"></i>RESOURCES</a
+                >
+              </li>
 
-                <li class="nav-item">
-                  <a class="link-user" href="#"
-                    ><i class="bi-collection me-2"></i>RESOURCES</a
-                  >
-                </li>
+              <li class="nav-item">
+                <a class="link-user" href="#training"
+                  ><i class="fa fa-laptop me-2"></i>TRAINING</a
+                >
+              </li>
 
-                <li class="nav-item">
-                  <a class="link-user" href="#"
-                    ><i class="fa fa-laptop me-2"></i>TRAINING</a
-                  >
-                </li>
+              <li class="nav-item">
+                <a class="link-user" href="#offers"
+                  ><i class="bi-files me-2"></i>OFFERS</a
+                >
+              </li>
 
-                <li class="nav-item">
-                  <a class="link-user" href="#"
-                    ><i class="bi-files me-2"></i>OFFERS</a
-                  >
-                </li>
-
-                <li class="nav-item">
-                  <a class="link-user" href="#"
-                    ><i class="bi-clipboard-data me-2"></i>SUBMIT FORMS</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <div class="">
-              <form action="/logout" method="GET">
-                <button class="btn btn-danger shadow-two my-3" type="submit">
-                  <i class="bi-box-arrow-left text-white me-2"></i>Logout
-                </button>
-              </form>
-            </div>
+              <li class="nav-item">
+                <a class="link-user" href="#tutorForms"
+                  ><i class="bi-clipboard-data me-2"></i>SUBMIT FORMS</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="">
+            <form action="/logout" method="GET">
+              <button class="btn btn-danger shadow-two my-3" type="submit">
+                <i class="bi-box-arrow-left text-white me-2"></i>Logout
+              </button>
+            </form>
           </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- MOBILE NAVBAR -->
+  <div class="d-lg-none">
+    <nav class="navbar bg-success">
+      <div class="container-fluid sticky-top">
+        <a class="navbar-brand text-white" href="#">Lifeline</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#tutorNavbar"
+        >
+          <span class="bi-filter-square fs-2 text-white"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="tutorNavbar">
+        <ul class="navbar-nav text-start ms-4 mt-4 bg-dark">
+          <li class="nav-item">
+            <a class="link-user" href="#dashboard"
+              ><i class="bi-columns-gap me-2 text-white"></i>DASHBOARD</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a class="link-user" href="#resourceCentre"
+              ><i class="bi-collection me-2"></i>RESOURCES</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a class="link-user" href="#training"
+              ><i class="fa fa-laptop me-2"></i>TRAINING</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a class="link-user" href="#offers"
+              ><i class="bi-files me-2"></i>OFFERS</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a class="link-user" href="#tutorForms"
+              ><i class="bi-clipboard-data me-2"></i>SUBMIT FORMS</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
 
   <!-- MAIN BODY AREA -->
@@ -118,18 +135,21 @@
       </nav>
 
       <div class="row mt-lg-5">
-        <div class="col-lg-6 col-sm-12 tutor-profile-hero">
-          <h2 class="fs-3 fw-bolder mb-0">Hello <%= fullName %>,</h2>
-          <p class="fs-beauty fs-5 mt-0">It's <%= date %>.</p>
-          <!-- <h6 class="fs-beauty mt-0">Are You Ready to Begin...</h6> -->
+        <div class="col-lg-4 col-sm-12">
+          <div class="tutor-profile-hero py-1 px-1">
+            <h2 class="fs-3 fw-bolder mb-0">Hello <%= fullName %>,</h2>
+            <p class="fs-beauty fs-5 mt-0 pb-0">It's <%= date %>.</p>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="admin-body mt-lg-3">
-      <!-- WELCOME SECTION -->
-
-      <section class="row shadow-two rounded bg-white profile my-lg-4">
+      <!-- DASHBOARD -->
+      <section
+        class="row shadow-two rounded bg-white profile my-lg-4"
+        id="dashboard"
+      >
         <div class="col-lg-12 col-sm-12 py-3 row">
           <h5 class="text-start fw-bolder py-1">MY DASHBOARD</h5>
 
@@ -235,6 +255,7 @@
             </div>
           </div>
         </section>
+
         <!-- RESOURCE CENTRE -->
         <section id="resourceCentre" class="col-lg-12 mt-5 mt-lg-2">
           <!-- <h4>Resource Centre</h4> -->
@@ -510,7 +531,7 @@
         </section>
 
         <!-- CONTRACTS -->
-        <section id="jobs" class="col-lg-12 shadow-two">
+        <section id="offers" class="col-lg-12 shadow-two">
           <div class="section">
             <a class="navbar-brand pt-3" href="#">Lifeline Offers</a>
             <div class="row">
@@ -705,7 +726,7 @@
         </section>
 
         <!-- TRAINING -->
-        <section class="d-none d-lg-block px-5 py-3 shadow-two">
+        <section class="d-none d-lg-block px-5 py-3 shadow-two" id="training">
           <div class="px-5 py-5">
             <a class="navbar-brand" href="#">Training</a>
 
@@ -734,27 +755,37 @@
   </div>
 </div>
 
-<!-- <nav class="navbar navbar-expand d-lg-none d-block sticky-bottom bg-white">
+<nav class="d-lg-none d-block sticky-bottom bg-success">
   <div class="container-fluid">
-    <ul class="navbar-nav bottom-nav">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#"
-          ><i class="bi-speedometer2"></i
-        ></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi-journal-richtext"></i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi-columns-gap"></i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi-command"></i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi-filter-square"></i></a>
-      </li>
-    </ul>
+    <div class="row">
+      <div class="col">
+        <ul class="nav justify-content-around">
+          <li class="nav-item">
+            <a class="nav-link" href="#dashboard">
+              <i class="bi-columns-gap"></i
+              ><span class="d-block">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#offers">
+              <i class="bi-journal-richtext"></i
+              ><span class="d-block">Offers</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#resourceCentre">
+              <i class="bi-command"></i><span class="d-block">Resources</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tutorForms">
+              <i class="bi-filter-square"></i><span class="d-block">Forms</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-</nav> -->
+</nav>
+
 <%- include('partials/end') %>

@@ -117,7 +117,7 @@
 
 .side-bar {
   position: fixed;
-  width: 16%;
+  width: 15%;
 }
 
 .dropdown {
@@ -600,8 +600,9 @@
 .tutor-profile-hero {
   color: #fff;
   text-align: start;
-  margin-top: 2.5%;
+  margin-top: 1.4%;
   margin-left: 2%;
+  backdrop-filter: blur(10px);
 }
 
 .label-counselling {
@@ -1100,6 +1101,10 @@ body {
   font-size: 2rem;
 } */
 
+.login {
+  backdrop-filter: blur(10px);
+}
+
 .link {
   text-decoration: none;
   color: #dfd7bf;
@@ -1399,8 +1404,15 @@ body {
 }
 
 .bottom-nav {
-  display: flex;
-  justify-content: space-between;
+  display: inline-flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 0;
+}
+
+.nav-link,
+.nav-item i {
+  color: #fff;
 }
 
 .notice,
@@ -1757,9 +1769,7 @@ body {
   .login {
     width: 100vw;
     margin: auto auto;
-    /* background-color: white; */
-    /* color: #000; */
-    /* height: 60vh; */
+    backdrop-filter: blur(5px);
   }
 
   .client-form-text {
@@ -1772,7 +1782,7 @@ body {
   }
 
   .tutor-profile-banner {
-    height: 40vh;
+    height: 3.5%;
   }
 
   .caro-item-about {
@@ -1802,8 +1812,8 @@ body {
   .tutor-profile-hero {
     color: #fff;
     text-align: start;
-    margin-top: 30%;
-    margin-left: 1%;
+    margin-top: 23%;
+    padding-left: 1.5%;
   }
 
   .res-center {
