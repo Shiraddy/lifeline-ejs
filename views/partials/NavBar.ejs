@@ -13,24 +13,18 @@
       type="button"
       data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasNavbar"
-      aria-controls="offcanvasNavbar"
-      aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div
-      class="offcanvas offcanvas-start"
-      tabindex="-1"
-      id="offcanvasNavbar"
-      aria-labelledby="offcanvasNavbarLabel"
-    >
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
       <!-- header -->
-      <div class="offcanvas-header">
+      <div class="offcanvas-header bg-success">
         <h5
           class="offcanvas-title navbar-brand text-danger"
           id="offcanvasNavbarLabel"
         >
-          LIFELINE
+          <img src="/images/logo.png" alt="" class="nav-logo" />LIFELINE
         </h5>
         <button
           type="button"
@@ -41,7 +35,7 @@
       </div>
 
       <!-- body -->
-      <div class="offcanvas-body">
+      <div class="offcanvas-body nav-background">
         <ul class="navbar-nav ms-auto pt-4 ps-2 me-lg-4">
           <li class="nav-item menu px-2 text-center">
             <a class="nav-link menu-link text-white" href="/">Home</a>
