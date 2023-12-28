@@ -400,101 +400,104 @@
                   ></iframe>
                 </section>
 
-                <div class="text-start mt-5">
-                  <div class="row my-3">
-                    <div class="col-lg-6">
-                      <h5>Standards Based Curriculum</h5>
+                <!-- GES DATA TABLE -->
+                <template>
+                  <div class="text-start mt-5">
+                    <div class="row my-3">
+                      <div class="col-lg-6">
+                        <h5>Standards Based Curriculum</h5>
+                      </div>
+                      <div class="col-lg-6">
+                        <form class="d-flex" role="search">
+                          <input
+                            class="form-control me-2 shadow-one"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                            id="gesResSearch"
+                          />
+                        </form>
+                      </div>
                     </div>
-                    <div class="col-lg-6">
-                      <form class="d-flex" role="search">
-                        <input
-                          class="form-control me-2 shadow-one"
-                          type="search"
-                          placeholder="Search"
-                          aria-label="Search"
-                          id="gesResSearch"
-                        />
-                      </form>
-                    </div>
+
+                    <!-- <p>Ghana Education Service (GES) Standards Based Curriculum.</p> -->
+                    <table
+                      class="table table-sm table-bordered border-primary table-hover resource"
+                    >
+                      <thead class="">
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">CLASS</th>
+                          <th scope="col">SUBJECT</th>
+                          <th scope="col">DOWNLOAD</th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-group-divider" id="gesResCentre">
+                        <tr>
+                          <td>1</td>
+                          <td>BASIC ONE</td>
+                          <td>ENGLISH LANGUAGE</td>
+                          <td>
+                            <a class="btn btn-danger" href="#" id="download"
+                              ><i class="fa fa-download"></i
+                            ></a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>BASIC ONE</td>
+                          <td>MATHEMATICS</td>
+                          <td>
+                            <a class="btn btn-danger" href="#" id="download"
+                              ><i class="fa fa-download"></i
+                            ></a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>BASIC ONE</td>
+                          <td>SCIENCE</td>
+                          <td>
+                            <a class="btn btn-danger" href="#" id="download"
+                              ><i class="fa fa-download"></i
+                            ></a>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>4</td>
+                          <td>BASIC TWO</td>
+                          <td>ENGLISH LANGUAGE</td>
+                          <td>
+                            <button class="btn btn-danger">
+                              <i class="fa fa-download"></i>
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>BASIC TWO</td>
+                          <td>MATHEMATICS</td>
+                          <td>
+                            <button class="btn btn-danger">
+                              <i class="fa fa-download"></i>
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>6</td>
+                          <td>BASIC TWO</td>
+                          <td>SCIENCE</td>
+                          <td>
+                            <button class="btn btn-danger">
+                              <i class="fa fa-download"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-
-                  <!-- <p>Ghana Education Service (GES) Standards Based Curriculum.</p> -->
-                  <table
-                    class="table table-sm table-bordered border-primary table-hover resource"
-                  >
-                    <thead class="">
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">CLASS</th>
-                        <th scope="col">SUBJECT</th>
-                        <th scope="col">DOWNLOAD</th>
-                      </tr>
-                    </thead>
-                    <tbody class="table-group-divider" id="gesResCentre">
-                      <tr>
-                        <td>1</td>
-                        <td>BASIC ONE</td>
-                        <td>ENGLISH LANGUAGE</td>
-                        <td>
-                          <a class="btn btn-danger" href="#" id="download"
-                            ><i class="fa fa-download"></i
-                          ></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>BASIC ONE</td>
-                        <td>MATHEMATICS</td>
-                        <td>
-                          <a class="btn btn-danger" href="#" id="download"
-                            ><i class="fa fa-download"></i
-                          ></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>BASIC ONE</td>
-                        <td>SCIENCE</td>
-                        <td>
-                          <a class="btn btn-danger" href="#" id="download"
-                            ><i class="fa fa-download"></i
-                          ></a>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>4</td>
-                        <td>BASIC TWO</td>
-                        <td>ENGLISH LANGUAGE</td>
-                        <td>
-                          <button class="btn btn-danger">
-                            <i class="fa fa-download"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>BASIC TWO</td>
-                        <td>MATHEMATICS</td>
-                        <td>
-                          <button class="btn btn-danger">
-                            <i class="fa fa-download"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>6</td>
-                        <td>BASIC TWO</td>
-                        <td>SCIENCE</td>
-                        <td>
-                          <button class="btn btn-danger">
-                            <i class="fa fa-download"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                </template>
 
                 <!-- <div class="reading text-start px-5 mt-5">
                 <h5>Reading Centre</h5>
