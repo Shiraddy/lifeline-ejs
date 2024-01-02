@@ -15,10 +15,10 @@
 
             <div class="">
               <h5 class="text-uppercase text-white mb-0 fs-6">
-                <%#= fullName %>
+                <%= fullName %>
               </h5>
               <small class="mt-0 text-white d-6 fs-beauty"
-                ><%#= profile.email %></small
+                ><%= profile.email %></small
               >
             </div>
             <ul class="navbar-nav text-start ms-4 mt-4">
@@ -117,7 +117,7 @@
 
   <!-- MAIN BODY AREA -->
   <div class="col-lg-10 col-sm-12 col-md-12">
-    <div class="counsellor-banner">
+    <div class="tutor-profile-banner">
       <nav class="d-none d-lg-block">
         <div class="container-fluid">
           <div class="nav">
@@ -128,7 +128,7 @@
               <i class="fa fa-bell-o me-3"></i>
               <i class="bi-chat-square-text"></i>
             </div>
-            <h6 class="text-white mt-1"><%#= fullName %></h6>
+            <h6 class="text-white mt-1"><%= fullName %></h6>
             <i class="bi-sliders mx-1 text-white"></i>
           </div>
         </div>
@@ -137,8 +137,8 @@
       <div class="row mt-lg-5">
         <div class="col-lg-4 col-sm-12">
           <div class="tutor-profile-hero py-1 px-1">
-            <h2 class="fs-3 fw-bolder mb-0">Hello <%#= fullName %>,</h2>
-            <p class="fs-beauty fs-5 mt-0 pb-0">It's <%#= date %>.</p>
+            <h2 class="fs-3 fw-bolder mb-0">Hello <%= fullName %>,</h2>
+            <p class="fs-beauty fs-5 mt-0 pb-0">It's <%= date %>.</p>
           </div>
         </div>
       </div>
@@ -151,7 +151,7 @@
         id="dashboard"
       >
         <div class="col-lg-12 col-sm-12 py-3 row">
-          <h5 class="text-start fw-bolder py-1">COUNSELOR DASHBOARD</h5>
+          <h5 class="text-start fw-bolder py-1">MY DASHBOARD</h5>
 
           <div class="col-lg-4 col-12">
             <div class="profit shadow-two bg-white text-primary">
@@ -176,8 +176,319 @@
         </div>
 
         <!-- BOARD -->
+        <section class="row">
+          <!-- <h4 class="text-start mx-3">My Board</h4> -->
+          <div class="col-lg-8">
+            <!-- NOTICE BOARD -->
+            
+          </div>
+
+          <!-- PROFILE -->
+          <div class="col-lg-4">
+            <div class="quote shadow-two text-start my-lg-1 my-3">
+              <h4 class="fw-bolder mt-2">My Profile</h4>
+              <div class="col mt-4">
+                <h6 class="fs-beauty text-muted text-uppercase">
+                  <i class="fa fa-user me-2"></i><%= fullName %>
+                </h6>
+              </div>
+
+              <div class="col">
+                <h6 class="fs-beauty text-muted text-uppercase">
+                  <i class="fa fa-play me-2"></i>Category: <%= profile.category
+                  %>
+                </h6>
+              </div>
+
+              <div class="col">
+                <h6 class="fs-beauty text-muted text-uppercase">
+                  <i class="fa fa-codepen me-2"></i> Status: <%= profile.status
+                  %>
+                </h6>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- RESOURCE CENTRE -->
+        <section id="resourceCentre" class="col-lg-12 mt-5 mt-lg-2">
+          <!-- <h4>Resource Centre</h4> -->
+          <div class="section shadow-two">
+            <!-- LIFELINE -->
+            <a class="navbar-brand" href="#">Resource Centre</a>
+
+            <div class="row">
+              <!-- <div class="col-lg-12 row my-5">
+              <div class="col">
+                <div class="res hover" id="lBtn">
+                  <img class="image-link" src="/images/logo.png" alt="" />
+                  <div class="card-title">LIFELINE RESOURCE</div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="res hover" id="gBtn">
+                  <img class="image-link" src="/images/ges.png" alt="" />
+                  <div class="card-title">G.E.S RESOURCE</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="res hover" id="tBtn">
+                  <img class="image-link" src="/images/res.png" alt="" />
+                  <div class="card-title">TUTOR RESOURCE</div>
+                </div>
+              </div>
+
+            </div> -->
+
+              <!-- <div class="col"><i class="fa-regular fa-file-pdf"></i></div>
+            <div class="col"><i class="fa-regular fa-file-pdf"></i></div>
+            <div class="col"><i class="fa-solid fa-file-pdf"></i></div> -->
+              <div class="col-12">
+                <div class="lifeline text-start" id="lesResource">
+                  <div class="row my-3 py-2">
+                    <div class="col-lg-6">
+                      <h5>Lifeline Tutor Repository</h5>
+                      <!-- <small>Download Lifeline's Resources</small> -->
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                      <form class="d-flex" role="search">
+                        <input
+                          class="form-control me-2 shadow-one"
+                          type="search"
+                          placeholder="Search"
+                          aria-label="Search"
+                          id="lesResSearch"
+                        />
+                      </form>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 my-2">
+                      <button type="button" class="btn btn-outline-primary">
+                        Lifeline Repository
+                      </button>
+                      <button type="button" class="btn btn-outline-secondary">
+                        Reading Clinic
+                      </button>
+                      <button type="button" class="btn btn-outline-success">
+                        G.E.S Repository
+                      </button>
+                    </div>
+                  </div>
+
+                  <table
+                    class="table table-sm table-bordered border-primary table-hover resource"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Download</th>
+                      </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider" id="lesResCentre">
+                      <tr>
+                        <td>1</td>
+                        <td>Log Sheet</td>
+                        <td>This is used to record tutor attendance.</td>
+                        <td>
+                          <a
+                            class="btn btn-danger"
+                            href="https://firebasestorage.googleapis.com/v0/b/lifeline-edu-site.appspot.com/o/Tutor%20Resources%2FLog%20sheet.pdf?alt=media&token=a1a2927c-c086-4f20-8930-808a782794bb"
+                            id="download"
+                            ><i class="fa fa-download"></i
+                          ></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Code of Conduct</td>
+                        <td>This documents spells out our rules.</td>
+                        <td>
+                          <a
+                            class="btn btn-danger"
+                            href="https://firebasestorage.googleapis.com/v0/b/lifeline-edu-site.appspot.com/o/Tutor%20Resources%2FLifeline's%20Tutor%20Code%20of%20Conduct.pdf?alt=media&token=17cbb614-401f-495f-9311-8b4aa8076a6e"
+                            id="download"
+                            ><i class="fa fa-download"></i
+                          ></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Tutor's Handbook</td>
+                        <td>
+                          This document will help you become a better tutor.
+                        </td>
+                        <td>
+                          <a class="btn btn-danger" href="#" id="download"
+                            ><i class="fa fa-download"></i
+                          ></a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>3</td>
+                        <td>Phonics</td>
+                        <td>Learn the sounds of letters, blending and more.</td>
+                        <td>
+                          <a
+                            class="btn btn-danger"
+                            href="https://www.readingbear.org/"
+                            target="framename"
+                            ><i class="fa fa-download"></i
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- READING CLINIC -->
+                <section class="shadow-two my-lg-4 my-3">
+                  <h5 class="text-start pt-4">Reading Clinic</h5>
+                  <iframe
+                    src="https://www.uniteforliteracy.com/"
+                    class="shadow-two resource-frame"
+                    frameborder="0"
+                  ></iframe>
+                </section>
+
+                <!-- GES DATA TABLE -->
+                <template>
+                  <div class="text-start mt-5">
+                    <div class="row my-3">
+                      <div class="col-lg-6">
+                        <h5>Standards Based Curriculum</h5>
+                      </div>
+                      <div class="col-lg-6">
+                        <form class="d-flex" role="search">
+                          <input
+                            class="form-control me-2 shadow-one"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                            id="gesResSearch"
+                          />
+                        </form>
+                      </div>
+                    </div>
+
+                    <!-- <p>Ghana Education Service (GES) Standards Based Curriculum.</p> -->
+                    <table
+                      class="table table-sm table-bordered border-primary table-hover resource"
+                    >
+                      <thead class="">
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">CLASS</th>
+                          <th scope="col">SUBJECT</th>
+                          <th scope="col">DOWNLOAD</th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-group-divider" id="gesResCentre">
+                        <tr>
+                          <td>1</td>
+                          <td>BASIC ONE</td>
+                          <td>ENGLISH LANGUAGE</td>
+                          <td>
+                            <a class="btn btn-danger" href="#" id="download"
+                              ><i class="fa fa-download"></i
+                            ></a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>BASIC ONE</td>
+                          <td>MATHEMATICS</td>
+                          <td>
+                            <a class="btn btn-danger" href="#" id="download"
+                              ><i class="fa fa-download"></i
+                            ></a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>BASIC ONE</td>
+                          <td>SCIENCE</td>
+                          <td>
+                            <a class="btn btn-danger" href="#" id="download"
+                              ><i class="fa fa-download"></i
+                            ></a>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>4</td>
+                          <td>BASIC TWO</td>
+                          <td>ENGLISH LANGUAGE</td>
+                          <td>
+                            <button class="btn btn-danger">
+                              <i class="fa fa-download"></i>
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>BASIC TWO</td>
+                          <td>MATHEMATICS</td>
+                          <td>
+                            <button class="btn btn-danger">
+                              <i class="fa fa-download"></i>
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>6</td>
+                          <td>BASIC TWO</td>
+                          <td>SCIENCE</td>
+                          <td>
+                            <button class="btn btn-danger">
+                              <i class="fa fa-download"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </template>
+
+                <!-- <div class="reading text-start px-5 mt-5">
+                <h5>Reading Centre</h5>
+                <p>Reading resource to help you teach reading effectively.</p>
+                <table
+                  id="rResCentre"
+                  class="table table-sm table-bordered border-primary table-hover resource"
+                >
+                  <thead class="">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Material</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Download</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-group-divider">
+                    <tr>
+                      <td>1</td>
+                      <td>Teaching Guide</td>
+                      <td>Teaching students using varied approaches.</td>
+                      <td>
+                        <a class="btn btn-danger" href="#" id="download"
+                          ><i class="fa-solid fa-download"></i
+                        ></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div> -->
+              </div>
+            </div>
+          </div>
+        </section>
 
         <!-- CONTRACTS -->
+       
 
         <!-- FORMS -->
         <section id="tutorForms" class="col-lg-12 shadow-two my-3">

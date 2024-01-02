@@ -957,4 +957,100 @@ app.post("/apply", upload.single("profilePicture"), async (req, res) => {
   }
 });
 
+app.put("/admin/update/:id", async function (req, res) {
+  const applicationId = req.params.id;
+  const updatedData = req.body;
+  console.log(updatedData);
 
+  try {
+    await db
+      .collection("Tutor Applications")
+      .doc(applicationId)
+      .update(updatedData);
+
+    const updateEmail = `
+      <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LIFELINE EMAIL</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutelWpjoudMwe3N6bZ/xq5t8UEBpIboFMI7xjBOhFp6M9xj"
+      crossorigin="anonymous">
+    <style>
+      /* Custom email styles */
+      .email {
+        max-width: 600px; /* Set a maximum width for the email content */
+        margin: 0 auto;   /* Center the email content */
+        padding: 20px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="email text-center">
+        <p class="mb-4">Dear ${tutor},</p>
+  
+        <p>
+          We are writing to officially inform you that your <small class="fw-bolder">tutor status</small>  with Lifeline Educational Solutions has been update. Your current tutor status now is as follows:
+        </p>
+
+        <p>Please contact management if you have any challenges.</p>
+  
+        
+  
+        <div class="mb-2">
+          <p>Tutor Status: ${tutorStatus}</p>
+        </div>
+  
+       
+        <p class="mt-4">
+          Regards.
+        </p>
+      </div>
+    </div>
+  </body>
+  
+  </html>
+  
+      `;
+    const personalizedEmail = updateEmail
+      .replace(/\${tutor}/g, tutor)
+      .replace(/\${tutorStatus}/g, tutor_status);
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "lifelineedusolutions@gmail.com",
+        pass: "hazw czvg ijak uigj",
+      },
+    });
+
+    const mailOptions = {
+      from: "lifelineedusolutions@gmail.com",
+      to: "lifelineedusolutions@gmail.com",
+      cc: "shirazadnan53@gmail.com",
+      subject: "Request For Tutor",
+      html: personalizedEmail,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        // console.log("Email sent: " + info.response);
+      }
+    });
+
+    // Sending a custom success message
+    res
+      .status(200)
+      .json({ message: "Application updated successfully", updated: true });
+  } catch (error) {
+    console.error("Error:", error); // Log the specific error
+    res.status(500).json({ error: "Internal Server Error", updated: false });
+  }
+});

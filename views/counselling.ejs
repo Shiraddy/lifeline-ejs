@@ -170,8 +170,13 @@
   </div>
 
   <!-- FORM -->
-  <form class="px-5" action="/counselling" method="post" id="counselling-form">
-    <h1 class="fs-1 hero-header py-2">BOOK COUNSELLING SESSION</h1>
+  <form
+    class="px-5"
+    action="/counselling-form"
+    method="post"
+    id="counselling-form"
+  >
+    <h4 class="fs-2 py-3">BOOK COUNSELLING SESSION</h4>
 
     <div
       class="btn-group mt-5"
@@ -181,8 +186,8 @@
       <input
         type="radio"
         class="btn-check px-3 parentCounsellingBtn"
-        name="userType"
         id="btnradio1"
+        name="client_type"
         autocomplete="off"
         checked
       />
@@ -191,8 +196,8 @@
       <input
         type="radio"
         class="btn-check px-3 studentCounsellingBtn"
-        name="userType"
         id="btnradio2"
+        name="client_type"
         autocomplete="off"
       />
       <label class="btn btn-outline-primary" for="btnradio2">Student</label>
@@ -361,6 +366,7 @@
               name="preferredMode"
               class="form-control shadow-two"
               id="preferredMode"
+              required
             >
               <option value="">Select</option>
               <option value="Phone Call">Phone Call</option>
@@ -377,6 +383,7 @@
               name="preferredDuration"
               id="preferredDuration"
               class="form-control shadow-two"
+              required
             >
               <option value="">Select Session Duration</option>
               <option value="0.5">30 minutes</option>
@@ -389,7 +396,12 @@
 
           <div class="col-lg-6 my-2">
             <label class="label-counselling" for="urgency">Urgency</label>
-            <select class="form-control shadow-two" name="urgency" id="urgency">
+            <select
+              class="form-control shadow-two"
+              name="urgency"
+              id="urgency"
+              required
+            >
               <option value="">Please Indicate Urgency of Issue</option>
               <option value="Urgent">Urgent</option>
               <option value="Moderately Urgent">Moderately Urgent</option>
@@ -406,6 +418,7 @@
               type="datetime-local"
               name="preferredDate"
               id="preferredDate"
+              required
             />
           </div>
 
@@ -440,12 +453,16 @@
         </div>
       </fieldset>
 
-      <fieldset class="my-3 py-2 text-end">
+      <fieldset class="my-3 py-2">
         <button class="btn btn-danger" type="reset">
           <i class="bi-backspace pe-2"></i>Clear Data
         </button>
-        <button class="btn btn-success" type="submit">
+        <button class="btn btn-success" type="submit" id="counselSubmit">
           <i class="bi-calendar2-fill pe-2"></i>Submit Data
+          <div
+            class="spinner-border spinner-border-sm counselspin"
+            role="status"
+          ></div>
         </button>
       </fieldset>
     </div>

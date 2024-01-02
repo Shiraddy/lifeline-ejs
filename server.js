@@ -348,6 +348,9 @@ app.get("/admin/details/:id", async function (req, res) {
 app.put("/admin/update/:id", async function (req, res) {
   const applicationId = req.params.id;
   const updatedData = req.body;
+  const tutor = req.body.firstName;
+  const tutor_status = req.body.qualification;
+  const email = req.body.rowId;
 
   try {
     await db
@@ -355,15 +358,92 @@ app.put("/admin/update/:id", async function (req, res) {
       .doc(applicationId)
       .update(updatedData);
 
+    const updateEmail = `
+      <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LIFELINE EMAIL</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutelWpjoudMwe3N6bZ/xq5t8UEBpIboFMI7xjBOhFp6M9xj"
+      crossorigin="anonymous">
+    <style>
+      /* Custom email styles */
+      .email {
+        max-width: 600px; /* Set a maximum width for the email content */
+        margin: 0 auto;   /* Center the email content */
+        padding: 20px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="email text-center">
+        <p class="mb-4">Dear ${tutor},</p>
+  
+        <p>
+          We are writing to officially inform you that your <span class="fw-bolder text-primary">tutor status</span>  with Lifeline Educational Solutions has been updated. Your current tutor status now is as follows:
+        </p>
+
+        <div class="mb-2">
+        <p>Tutor Status: ${tutor_status}</p>
+      </div>
+
+        <p>Please contact management if you have any challenges.</p>
+  
+       
+        <p class="mt-4">
+          Regards.
+        </p>
+      </div>
+    </div>
+  </body>
+  
+  </html>
+  
+      `;
+    const personalizedEmail = updateEmail
+      .replace(/\${tutor}/g, tutor)
+      .replace(/\${tutor_status}/g, tutor_status);
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "lifelineedusolutions@gmail.com",
+        pass: "hazw czvg ijak uigj",
+      },
+    });
+
+    const mailOptions = {
+      from: "lifelineedusolutions@gmail.com",
+      to: email,
+      cc: "shirazadnan53@gmail.com",
+      subject: "Tutor Status Update",
+      html: personalizedEmail,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        // console.log("Email sent: " + info.response);
+      }
+    });
+
     // Sending a custom success message
     res
       .status(200)
       .json({ message: "Application updated successfully", updated: true });
   } catch (error) {
-    res.status(500).json({ error: "Error updating Data", updated: false });
+    console.error("Error:", error); // Log the specific error
+    res.status(500).json({ error: "Internal Server Error", updated: false });
   }
 });
 
+//Get Prospect List
 app.get("/data/prospects", async function (req, res) {
   try {
     const prospectsSnapshot = await db
@@ -694,186 +774,6 @@ app.post("/email", async function (req, res) {
 });
 
 //Tutor Application
-// app.post("/apply", upload.single("profilePicture"), async (req, res) => {
-//   const { email, password } = req.body;
-//   const firstName = req.body.firstName;
-//   const subject = "Lifeline Tutor Application";
-
-//   try {
-//     // Hash the password
-//     const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-//     let userRecord;
-//     let isNewUser = false;
-
-//     try {
-//       // Check if the user already exists in Firebase Authentication
-//       userRecord = await admin.auth().getUserByEmail(email);
-//     } catch (error) {
-//       if (error.code === "auth/user-not-found") {
-//         // If the user doesn't exist in Authentication, create a new user
-//         userRecord = await admin.auth().createUser({
-//           email,
-//           password: hashedPassword, // Use the hashed password
-//         });
-//         isNewUser = true;
-//       } else {
-//         throw error; // Re-throw the error for other cases
-//       }
-//     }
-
-//     const collection = db.collection("Tutor Applications"); // Create Collection
-//     const Application = collection.doc(email); // Create Document
-
-//     // Check if the user's data already exists in Firestore
-//     const existingData = (await Application.get()).data();
-
-//     if (!existingData || isNewUser) {
-//       // Only update Firestore data if the user doesn't have data in Firestore or is a new user
-//       // Filter and prepare data to be stored in Firestore
-//       const filteredData = {};
-//       for (const key in req.body) {
-//         if (
-//           req.body[key] !== null &&
-//           req.body[key] !== undefined &&
-//           req.body[key] !== "" &&
-//           key !== "password" &&
-//           key !== "password-confirm"
-//         ) {
-//           filteredData[key] = req.body[key];
-//         }
-//       }
-
-//       // Data to be stored in Firestore
-//       const updatedApplicant = {
-//         uid: userRecord.uid,
-//         applicationDate: new Date(),
-//         email: email,
-//         emailVerification: userRecord.emailVerified,
-//         ...filteredData, // Include the filtered data fields
-//         category: "applicant",
-//         status: "active",
-//         comment: " ",
-//       };
-
-//       if (req.file) {
-//         const profilePicture = req.file;
-
-//         // Upload the profile picture to Firebase Storage
-//         const profilePictureFilename = `profile-pictures/${email}/${profilePicture.originalname}`;
-//         const profilePictureFile = bucket.file(profilePictureFilename);
-//         const profilePictureStream = profilePictureFile.createWriteStream({
-//           metadata: {
-//             contentType: profilePicture.mimetype,
-//           },
-//         });
-
-//         profilePictureStream.on("error", (err) => {
-//           console.error(err);
-//           res.status(500).send("Error uploading profile picture");
-//         });
-
-//         profilePictureStream.on("finish", () => {
-//           console.log("Profile picture uploaded");
-
-//           // Add the profile picture URL to the Firestore data
-//           updatedApplicant.profilePictureURL = profilePictureFilename;
-//           Application.set(updatedApplicant);
-//         });
-
-//         profilePictureStream.end(profilePicture.buffer);
-//       } else {
-//         Application.set(updatedApplicant);
-//       }
-//     }
-
-//     // Check if a profile picture file was uploaded
-
-//     // Define the email template with a placeholder for the applicant's name
-//     const emailTemplate = `
-//       <!DOCTYPE html>
-//       <html lang="en">
-//       <head>
-//         <meta charset="UTF-8" />
-//         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-//         <title>LIFELINE EMAIL</title>
-//         <style>
-//           /* Custom email styles */
-//           .email {
-//             max-width: 600px; /* Set a maximum width for the email content */
-//             margin: 0 auto;   /* Center the email content */
-//             padding: 20px;
-//           }
-//         </style>
-//       </head>
-//       <body>
-//         <div class="email">
-//           <p class="mb-4">Dear ${firstName},</p>
-
-//           <p>
-//             We want to express our gratitude for your application to join our tuition service as a tutor. Your dedication and the effort you've put into your application have not gone unnoticed.
-//           </p>
-
-//           <p>
-//             We have received your application and are in the process of reviewing it. We understand the importance of your qualifications and experience, and we are excited about the possibility of having you join our team.
-//           </p>
-
-//           <p>
-//             Our selection process is thorough, and it includes reviewing applications and conducting interviews. If you are selected for an interview, we will reach out to you in the coming weeks to coordinate a suitable date and time.
-//           </p>
-
-//           <p>
-//             We kindly ask for your patience during this process, as we have received a high number of applications. If you have any questions or concerns, please don't hesitate to reach out to us at
-//             <a href="tel:0246011004">0246011004</a> or
-//             <a href="tel:0243934353">0243934353</a>.
-//           </p>
-
-//           <p class="mt-4">
-//             Regards,<br />Lifeline Educational Solution Limited.
-//           </p>
-//         </div>
-//       </body>
-//       </html>
-//     `;
-
-//     const applicantName = firstName;
-//     const personalizedEmail = emailTemplate.replace(
-//       /{applicantName}/g,
-//       applicantName
-//     );
-
-//     const transporter = nodemailer.createTransport({
-//       service: "gmail",
-//       auth: {
-//         user: "lifelineedusolutions@gmail.com",
-//         pass: "hazw czvg ijak uigj",
-//       },
-//     });
-
-//     const mailOptions = {
-//       from: "lifelineedusolutions@gmail.com",
-//       to: email,
-//       subject: subject,
-//       html: personalizedEmail,
-//     };
-
-//     transporter.sendMail(mailOptions, function (error, info) {
-//       if (error) {
-//         console.log(error);
-//       } else {
-//         // console.log("Email sent: " + info.response);
-//       }
-//     });
-
-//     res.render("received", { applicant: firstName });
-//   } catch (error) {
-//     console.error("Error creating/updating user data:", error);
-//     res
-//       .status(500)
-//       .json({ error: "Application Failed, Check Your Internet and Try Again" });
-//   }
-// });
-
 app.post("/apply", upload.single("profilePicture"), async (req, res) => {
   const { email, password } = req.body;
   const firstName = req.body.firstName;
@@ -932,6 +832,7 @@ app.post("/apply", upload.single("profilePicture"), async (req, res) => {
         ...filteredData, // Include the filtered data fields
         category: "applicant",
         status: "active",
+        contracts: [],
         comment: " ",
       };
 
@@ -1290,6 +1191,7 @@ app.post("/form", async function (req, res) {
     }
 
     var totalPrice = monthlySession * periodLength * pricePerLesson;
+    let increment = totalPrice + 50;
 
     const request = db.collection("Request For Tutor").doc();
 
@@ -1309,7 +1211,8 @@ app.post("/form", async function (req, res) {
       status: "",
       tutor: "",
       pastTutors: [],
-      fees: totalPrice,
+      discount: "",
+      fees: increment,
       ...filteredData, // Include the filtered data fields
     };
 
@@ -1426,6 +1329,181 @@ app.post("/form", async function (req, res) {
   } catch (error) {
     console.error("Error processing the request:", error);
     res.status(400).json({ success: false, message: "Bad Request" });
+  }
+});
+
+//Counselling Form
+app.post("/counselling-form", async function (req, res) {
+  const request = req.body;
+  const mode = request.preferredMode;
+  const urgency = request.urgency;
+  const duration = parseFloat(request.preferredDuration);
+
+  let baseCharge = 0;
+
+  if (mode === "Phone Call" && duration === 0.5) {
+    baseCharge = 30;
+  } else if (mode === "Phone Call" && duration === 1) {
+    baseCharge = 50;
+  } else if (mode === "Phone Call" && duration === 1.5) {
+    baseCharge = 70;
+  } else if (mode === "Phone Call" && duration === 2) {
+    baseCharge = 100;
+  } else if (mode === "In-person" && duration === 0.5) {
+    baseCharge = 60;
+  } else if (mode === "In-person" && duration === 1) {
+    baseCharge = 100;
+  } else if (mode === "In-person" && duration === 1.5) {
+    baseCharge = 150;
+  } else if (mode === "In-person" && duration === 2) {
+    baseCharge = 180;
+  } else if (mode === "WhatsApp" && duration === 0.5) {
+    baseCharge = 25;
+  } else if (mode === "WhatsApp" && duration === 1) {
+    baseCharge = 40;
+  } else if (mode === "WhatsApp" && duration === 1.5) {
+    baseCharge = 60;
+  } else if (mode === "WhatsApp" && duration === 2) {
+    baseCharge = 100;
+  }
+
+  let urgencyIncrement = 0;
+
+  if (urgency === "Urgent") {
+    urgencyIncrement = 0.3;
+  } else if (urgency === "Moderately Urgent") {
+    urgencyIncrement = 0.2;
+  }
+
+  // Calculate total price including urgency increment
+  let totalPrice = baseCharge * (1 + urgencyIncrement);
+  let counsellorPay = (totalPrice * 0.65).toFixed(2);
+  let lifelinePay = (totalPrice - counsellorPay).toFixed(2);
+  // console.log("The client is paying Ghc " + totalPrice);
+  // console.log("The counsellor is receiving " + counsellorPay);
+  // console.log("Lifeline is income is " + lifelinePay);
+
+  const clientData = {
+    counselee: request.parentName || request.childName,
+    contact: request.parentContact || request.studentContact,
+    other_contact: request.parentAltContact || "",
+    email: request.studentEmail || request.parentEmail,
+    child_name: request.childName || "",
+    age: request.childAge || "",
+    school: request.childSchool || "",
+    grade: request.childGrade || "",
+    reason: request.reason || "",
+    special_request: request.specialRequest || "",
+    date: request.preferredDate || "",
+    mode: mode,
+    duration: duration,
+    urgency: urgency,
+    notes: [],
+    appointments: [],
+    progress: [],
+    recommendation: [],
+    status: "",
+    Fees: [],
+    Remuneration: counsellorPay,
+    Revenue: lifelinePay,
+  };
+
+  const client = clientData.counselee;
+  const contact = clientData.contact;
+  const other_contact = clientData.other_contact;
+  const email = clientData.email;
+  const reason = clientData.reason;
+  const date = clientData.date;
+  // console.log(clientData);
+
+  try {
+    // Save the client data to Firestore
+    const docRef = await db.collection("Counselling Request").add(clientData);
+
+    const clientName = clientData.counselee || "Anonymous";
+
+    res.render("post-counselling", { counselee: clientName });
+
+    // Define the email template with a placeholder for the applicant's name
+    const counsellorEmail = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LIFELINE EMAIL</title>
+  <style>
+    /* Custom email styles */
+    .email {
+      max-width: 600px; /* Set a maximum width for the email content */
+      margin: 0 auto;   /* Center the email content */
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email">
+    <p class="mb-4">Dear Counselor,</p>
+
+    <p>
+      We have a New Counselling Request with the following details:    
+    </p>   
+
+    <p>Name of Client: ${client} </p>
+    <p>Clients contact: <a href="tel:${contact}"> ${contact} </a></p>
+    <p>Other contact: <a href="tel:${other_contact}">${other_contact} </a></p>
+    <p>Email Address: ${email}</p>
+    <p>Preferred Mode of Counselling: ${mode}</p>
+    <p>Date: ${date}</p>
+    <p>Urgency of matter: ${urgency}</p>
+    <p>Reason for counselling: ${reason}    </p>
+  
+
+    <p class="my-2">Kindly visit your dashboard for more details.</p>
+    <p class="mt-4">
+      Regards.
+    </p>
+  </div>
+</body>
+</html>
+`;
+
+    const personalizedEmail = counsellorEmail
+
+      .replace(/\${client}/g, client)
+      .replace(/\${contact}/g, contact)
+      .replace(/\${email}/g, email)
+      .replace(/\${other_contact}/g, other_contact)
+      .replace(/\${urgency}/g, urgency)
+      .replace(/\${mode}/g, mode)
+      .replace(/\${reason}/g, reason);
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "lifelineedusolutions@gmail.com",
+        pass: "hazw czvg ijak uigj",
+      },
+    });
+
+    const mailOptions = {
+      from: "lifelineedusolutions@gmail.com",
+      to: "lifelineedusolutions@gmail.com",
+      cc: "shirazadnan53@gmail.com",
+      subject: "Counselling Request",
+      html: personalizedEmail,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error, info);
+      } else {
+        // console.log("Email sent: " + info.response);
+      }
+    });
+  } catch (error) {
+    console.error("Error adding counseling request:", error);
+    // Handle error scenario here
   }
 });
 

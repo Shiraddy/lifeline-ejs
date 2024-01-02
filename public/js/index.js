@@ -232,9 +232,11 @@ $(document).ready(function () {
     } else {
       pricePerLesson = 25;
     }
+
     var totalPrice = monthlySession * periodLength * pricePerLesson;
+    let increment = totalPrice + 50;
     // Update the price display
-    $("#calculatedPrice").text(totalPrice.toFixed(2)); // Display with two decimal places
+    $("#calculatedPrice").text(increment.toFixed(2)); // Display with two decimal places
     return totalPrice; // Return the calculated price
   }
 
@@ -574,6 +576,10 @@ $(document).ready(function () {
   $("#update").submit(function (event) {
     event.preventDefault();
 
+    // Enable fields temporarily to retrieve their values
+    $("#firstName").prop("disabled", false);
+    $("#lastName").prop("disabled", false);
+
     const form = $(this);
     const formData = form.serializeArray(); // Serialize the form data as an array
 
@@ -582,10 +588,19 @@ $(document).ready(function () {
       updatedData[field.name] = field.value; // Convert serialized data to JSON object
     });
 
-    const rowId = $("#tutorEmail").val(); // Retrieve the email value as the row ID
+    // Retrieve the email value as the row ID
+    const rowId = $("#tutorEmail").val();
 
+    // Include firstName and lastName in the updatedData object
+    updatedData.firstName = $("#firstName").val();
+    updatedData.lastName = $("#lastName").val();
     updatedData.rowId = rowId;
 
+    // Disable fields again after collecting their values
+    $("#firstName").prop("disabled", true);
+    $("#lastName").prop("disabled", true);
+
+    // Perform AJAX request with updatedData including firstName and lastName
     $.ajax({
       type: "PUT",
       url: "/admin/update/" + rowId,
@@ -1102,15 +1117,6 @@ $(document).ready(function () {
     const durationInput = $("#preferredDuration").val();
     const duration = parseFloat(durationInput);
 
-    // console.log("Selected mode:", mode);
-    // console.log("Selected duration:", duration);
-
-    // Check if duration is a valid number
-    // if (isNaN(duration)) {
-    //   console.log("Invalid duration input");
-    //   return; // Stop further execution
-    // }
-
     let baseCharge = 0;
 
     // Example calculation based on mode and duration
@@ -1175,6 +1181,7 @@ $(document).ready(function () {
 $(document).ready(function () {
   $("#counselling-form").hide();
   $(".studentContactDetails").hide();
+  $(".counselspin").hide();
 
   $(".bookSession").click(function () {
     $("#counselling-form").slideToggle();
@@ -1188,24 +1195,28 @@ $(document).ready(function () {
   $(".parentCounsellingBtn").click(function () {
     $(".parentCounselling").show();
     $(".studentContactDetails").hide();
-  });
 
-  $("#counselling-form").submit(function (e) {
-    e.preventDefault();
-
-    const form = $(this);
-    const formData = form.serializeArray();
-
-    $.ajax({
-      type: "POST",
-      url: "guidance/counselling",
-      contentType: "application/json",
-      data: JSON.stringify(formData),
-      success: function () {
-        alert("Form Data Sent");
-      },
+    $("#counselSubmit").click(function () {
+      $(".counselspin").show();
     });
   });
+
+  // $("#counselling-form").submit(function (e) {
+  //   e.preventDefault();
+
+  //   const form = $(this);
+  //   const formData = form.serializeArray();
+
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "guidance/counselling",
+  //     contentType: "application/json",
+  //     data: JSON.stringify(formData),
+  //     success: function () {
+  //       alert("Form Data Sent");
+  //     },
+  //   });
+  // });
 });
 
 $(document).ready(function () {
@@ -1219,12 +1230,3 @@ $(document).ready(function () {
     // addClass("client-banner");
   });
 });
-
-function toggleSidebar() {
-  const sidebar = document.querySelector(".side-bar");
-  if (sidebar.style.display === "none" || sidebar.style.display === "") {
-    sidebar.style.display = "block";
-  } else {
-    sidebar.style.display = "none";
-  }
-}
