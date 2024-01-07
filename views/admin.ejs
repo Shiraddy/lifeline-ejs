@@ -28,6 +28,7 @@
           ></button>
         </div>
         <div class="mt-lg-2">
+          <!-- <a class="navbar-brand" href="#">LIFELINE</a> -->
           <img class="admin-pic" src="images/Pic.png" alt="" />
           <ul class="nav navbar-nav admin-ul">
             <a class="admin-list" href="#adminDash"
@@ -107,10 +108,10 @@
 
           <div class="me-2">
             <button type="button" class="btn btn-success">
-              Messages <i class="fa-solid fa-message ps-2"></i>
+              <i class="bi-chat-left-text"></i>
             </button>
             <button type="button" class="btn btn-primary">
-              Notification <i class="fa-solid fa-bell ps-1"></i>
+              <i class="bi-bell"></i>
             </button>
             <button type="button" class="btn btn-primary">
               <%= dayOfWeek %>
@@ -167,6 +168,7 @@
       <!-- CLIENT PANEL -->
       <section id="adminClient" class="shadow-two py-2 px-lg-3">
         <div class="row">
+          <!-- Buttons -->
           <div class="col-lg-7 me-auto">
             <div
               class="btn-toolbar my-3"
@@ -182,7 +184,7 @@
                 >
                   <span class="badge text-bg-danger me-2"
                     ><%= noOfContracts %></span
-                  >Contracts <i class="fa fa-user px-2"></i>
+                  >Contracts
                 </button>
 
                 <button
@@ -299,20 +301,127 @@
                 <td><%= client.data.relationship %></td>
                 <td><%= client.data.weeklySession %></td>
                 <td class="d-none"><%= client.id %></td>
-                <td>
+                <td class="text-white">
                   <% if (client.data.fees > 200) { %>
-                  <button type="button" class="btn btn-success">
+                  <small class="bg-danger px-2 py-1">
                     <%= client.data.fees %>
-                  </button>
+                  </small>
                   <% } else { %>
-                  <button type="button" class="btn btn-danger">
+                  <small class="bg-success px-2 py-1">
                     <%= client.data.fees %>
-                  </button>
+                  </small>
                   <% } %>
                 </td>
 
                 <!-- ACTION BUTTONS -->
                 <td><%= client.data.periodLength %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+
+            <tbody id="prospectsData" class="shadow-one">
+              <% prospects.forEach(function(prospect, index) { %>
+              <tr data-application-id="<%= prospect.id %>">
+                <td><%= index + 1 %></td>
+                <td><%= prospect.data.parent %></td>
+                <td>
+                  <a href="tel:<%= prospect.data.contact %>"
+                    ><%= prospect.data.contact %></a
+                  >
+                </td>
+
+                <td>
+                  <a
+                    href="#"
+                    class="student-link"
+                    data-prospectId="<%= prospect.id %>"
+                    ><%= prospect.data.student %></a
+                  >
+                </td>
+
+                <td><%= prospect.data.relationship %></td>
+                <td><%= prospect.data.weeklySession %></td>
+                <td class="d-none"><%= prospect.id %></td>
+                <td class="text-white">
+                  <% if (prospect.data.fees > 200) { %>
+                  <small class="bg-danger"> <%= prospect.data.fees %> </small>
+                  <% } else { %>
+                  <small class="bg-success"> <%= prospect.data.fees %> </small>
+                  <% } %>
+                </td>
+
+                <!-- ACTION BUTTONS -->
+                <td><%= prospect.data.periodLength %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- FINANCE TABLE -->
+        <div class=""></div>
+        <div class="table-responsive my-5">
+          <table class="table table-bordered table-hover">
+            <!-- <h4>Tutors</h4> -->
+            <thead class="">
+              <tr>
+                <th>S/NO</th>
+                <!-- <th>Client</th> -->
+                <th>Ward</th>
+                <th>Fees</th>
+                <th>Contact</th>
+                <th>Tutor</th>
+                <th class="d-none">Tutor-Id</th>
+                <th>Pay</th>
+                <th>Status</th>
+                <th class="d-none">Client Id</th>
+              </tr>
+            </thead>
+
+            <tbody id="clientsData" class="shadow-one">
+              <% clients.forEach(function(client, index) { %>
+              <tr data-application-id="<%= client.id %>">
+                <td><small><%= index + 1 %></small></td>
+                <!-- <td><small><#%= client.data.parent %></small></td> -->
+
+                <td>
+                  <a
+                    href="#"
+                    class="student-link"
+                    data-clientId="<%= client.id %>"
+                    ><small><%= client.data.student %></small></a
+                  >
+                </td>
+
+                <td class="text-white">
+                  <% if (client.data.fees > 200) { %>
+                  <small class="bg-success py-1 px-2">
+                    <%= client.data.fees %>
+                  </small>
+                  <% } else { %>
+                  <small class="bg-danger py-1 px-2">
+                    <%= client.data.fees %>
+                  </small>
+                  <% } %>
+                </td>
+
+                <td>
+                  <a href="tel:<%= client.data.contact %>"
+                    ><small><%= client.data.contact %></small>
+                  </a>
+                </td>
+
+                <td><small><%= client.data.tutor %></small></td>
+
+                <td class="d-none">
+                  <small><%= client.data.tutor_email%></small>
+                </td>
+
+                <td><%= client.data.remuneration%></td>
+
+                <td><%= client.data.status%></td>
+
+                <td class="d-none"><%= client.id %></td>
               </tr>
               <% }); %>
             </tbody>
@@ -372,21 +481,9 @@
             class="modal-content modal-dialog modal-dialog-centered modal-dialog-scrollable"
           >
             <div class="modal-header row">
-              <div class="col-10">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  CONTRACT DETAILS
-                </h1>
-              </div>
-
-              <div class="col-2">
-                <button
-                  type="button"
-                  class="btn btn-outline-danger px-2"
-                  data-bs-dismiss="modal"
-                >
-                  <i class="fa-regular fa-circle-xmark"></i>
-                </button>
-              </div>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                CONTRACT DETAILS
+              </h1>
             </div>
 
             <div class="modal-body" id="modalBody">
@@ -396,9 +493,141 @@
                 method="post"
               >
                 <div class="row">
-                  <h6 class="bg-success shadow-two py-2 mb-4">
-                    Student Section
-                  </h6>
+                  <h6 class="fs-5 modal-title py-2">Parent Section</h6>
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="parent">Client</label>
+                    <input
+                      id="pName"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                      name="parent"
+                      placeholder=""
+                      autocapitalize="words"
+                    />
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="relationship">Relation</label>
+                    <input
+                      id="pRelationship"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                      name="relationship"
+                      placeholder=""
+                      autocapitalize="words"
+                    />
+                  </div>
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="contact">Mobile</label>
+                    <input
+                      id="pContact"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                      name="contact"
+                      placeholder=""
+                      autocapitalize="words"
+                    />
+                  </div>
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="altContact">Phone</label>
+                    <input
+                      id="pOther"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                      name="altContact"
+                      placeholder=""
+                      autocapitalize="words"
+                    />
+                  </div>
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="email">Email</label>
+                    <input
+                      id="pEmail"
+                      disabled
+                      class="apply-input"
+                      type="email"
+                      name="email"
+                      placeholder=""
+                    />
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="pFee">Fee</label>
+                    <input
+                      id="pFee"
+                      disabled
+                      class="apply-input"
+                      type="number"
+                      name="fees"
+                      placeholder=""
+                    />
+                  </div>
+
+                  <!-- <div class="col-lg-6 my-2">
+                    <label class="label" for="modeOfTeaching">Mode</label>
+                    <input
+                      name="modeOfTeaching"
+                      id="pMode"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                      placeholder=""
+                    />
+                  </div> -->
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="category">Category</label>
+                    <select
+                      required
+                      name="category"
+                      id="pCategory"
+                      class="apply-input"
+                    >
+                      <option value="client">client</option>
+                      <option value="request">request</option>
+                    </select>
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="weeklySession">Sessions</label>
+                    <input
+                      name="weeklySession"
+                      id="pSessions"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                      placeholder=""
+                    />
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="starting_Date">Started</label>
+                    <input
+                      name="starting_date"
+                      id="contractStarted"
+                      disabled
+                      class="apply-input"
+                      type="date"
+                      placeholder=""
+                    />
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="status">Contract Status</label>
+                    <select name="status" id="" class="apply-input" disabled>
+                      <option value="active">active</option>
+                      <option value="paused">paused</option>
+                      <option value="terminated">terminated</option>
+                      <option value="completed">completed</option>
+                      <option value="yet-to-start">Yet to Start</option>
+                    </select>
+                  </div>
+
+                  <h6 class="fs-5 modal-title py-2">Student Section</h6>
                   <div class="col-lg-6 my-2">
                     <label class="label" for="student">Student Name</label>
                     <input
@@ -496,35 +725,10 @@
                     ></textarea>
                   </div>
 
-                  <h6 class="bg-success shadow-two py-2 my-4">
-                    Contract Section
-                  </h6>
+                  <h6 class="fs-5 modal-title py-2">Tutor Section</h6>
 
                   <div class="col-lg-6 my-2">
-                    <label class="label" for="starting_Date">Started</label>
-                    <input
-                      name="starting_date"
-                      id="contractStarted"
-                      disabled
-                      class="apply-input"
-                      type="date"
-                      placeholder=""
-                    />
-                  </div>
-
-                  <div class="col-lg-6 my-2">
-                    <label class="label" for="status">Contract Status</label>
-                    <select name="status" id="" class="apply-input" disabled>
-                      <option value="active">active</option>
-                      <option value="paused">paused</option>
-                      <option value="terminated">terminated</option>
-                      <option value="completed">completed</option>
-                      <option value="yet-to-start">Yet to Start</option>
-                    </select>
-                  </div>
-
-                  <div class="col-lg-6 my-2">
-                    <label class="label" for="tutor">Assigned Tutor</label>
+                    <label class="label" for="tutor">Name</label>
                     <input
                       name="tutor"
                       id="tutorAssigned"
@@ -533,10 +737,9 @@
                       type="text"
                     />
                   </div>
+
                   <div class="col-lg-6 my-2">
-                    <label class="label" for="tutor_contact"
-                      >Tutor Contact</label
-                    >
+                    <label class="label" for="tutor_contact">Contact</label>
                     <input
                       name="tutor_contact"
                       id="tutorAssignedContact"
@@ -544,6 +747,50 @@
                       class="apply-input"
                       type="text"
                     />
+                  </div>
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="tutor_email">Email</label>
+                    <input
+                      name="tutor_email"
+                      id="tutor_email"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                    />
+                  </div>
+
+                  <!-- <div class="col-lg-6 my-2">
+                    <label class="label" for="tutorMomoAccount"
+                      >Momo Contact</label
+                    >
+                    <input
+                      name="tutorMomoAccount"
+                      id="tutorMomoAccount"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                    />
+                  </div> -->
+
+                  <div class="col-lg-6 my-2">
+                    <label class="label" for="remuneration">Remuneration</label>
+                    <input
+                      name="remuneration"
+                      id="remuneration"
+                      disabled
+                      class="apply-input"
+                      type="text"
+                    />
+                  </div>
+
+                  <div class="col-lg-12 my-2">
+                    <label class="label" for="tutorMomoAccount">Comment</label>
+                    <textarea
+                      name="comments"
+                      id=""
+                      class="apply-input"
+                    ></textarea>
                   </div>
                 </div>
               </form>
@@ -555,7 +802,7 @@
                 class="btn btn-secondary px-2"
                 id="editContract"
               >
-                Edit Contract <i class="fa-regular fa-circle-check"></i>
+                Edit<i class="fa-regular fa-circle-check"></i>
               </button>
 
               <button
@@ -563,7 +810,15 @@
                 form="contractUpdate"
                 class="btn btn-outline-success px-2"
               >
-                Save Update <i class="fa-regular fa-circle-check"></i>
+                Update <i class="fa-regular fa-circle-check"></i>
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-outline-danger px-2"
+                data-bs-dismiss="modal"
+              >
+                Close<i class="bi-x-circle"></i>
               </button>
             </div>
           </div>
@@ -929,7 +1184,7 @@
                 <td><%= tutor.data.lastName %> <%= tutor.data.firstName %></td>
                 <td>
                   <a href="tel:<%= tutor.data.contact%>"
-                    ><%= tutor.data.contact %></a
+                    ><%= tutor.data.contact%></a
                   >
                 </td>
                 <td><%= tutor.data.studentStatus %></td>
@@ -945,12 +1200,12 @@
                       data-bs-toggle="modal"
                       data-bs-target="#update"
                     >
-                      <a><i class="fa fa-info-circle"></i></a>
+                      <a><i class="bi-three-dots"></i></a>
                     </button>
 
-                    <button class="btn tutorIcon me-2 delete-row">
+                    <!-- <button class="btn tutorIcon me-2 delete-row">
                       <a><i class="fa fa-trash"></i></a>
-                    </button>
+                    </button> -->
                   </div>
                 </td>
               </tr>

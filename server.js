@@ -833,7 +833,7 @@ app.post("/apply", upload.single("profilePicture"), async (req, res) => {
         category: "applicant",
         status: "active",
         contracts: [],
-        comment: " ",
+        comment: [],
       };
 
       if (req.file) {
@@ -1210,7 +1210,11 @@ app.post("/form", async function (req, res) {
       category: "request",
       status: "",
       tutor: "",
+      remuneration: "",
+      tutor_email: "",
+      tutor_contact: "",
       pastTutors: [],
+      comments: [],
       discount: "",
       fees: increment,
       ...filteredData, // Include the filtered data fields

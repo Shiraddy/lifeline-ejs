@@ -861,16 +861,31 @@ $(document).ready(function () {
   $(".student-link").on("click", function (event) {
     event.preventDefault();
     const clientId = $(this).data("clientid");
+    const prospectId = $(this).data("prospectid");
+
+    // Check if client ID or prospect ID is present
+    const studentId = clientId || prospectId;
 
     // Make AJAX GET request to fetch student info based on the ID
     $.ajax({
-      url: `/admin/studentInfo/${clientId}`, // Route for the request
+      url: `/admin/studentInfo/${studentId}`, // Route for the request
       type: "GET",
       success: function (data) {
         // Assuming data contains the necessary student information
         const modalBody = $("#modalBody");
 
         // Populate modal fields with retrieved data
+        $("#pName").val(data.parent);
+        $("#pRelationship").val(data.relationship);
+        $("#pContact").val(data.contact);
+        $("#pCategory").val(data.category);
+        $("#pEmail").val(data.email);
+        $("#pFee").val(data.fees);
+        $("#pSessions").val(data.weeklySession);
+        $("#pMode").val(data.modeOfTeaching);
+        $("#remuneration").val(data.remuneration);
+        $("#pOther").val(data.altContact || data.emergencyContactNumber);
+        $("#contractStarted").val(data.starting_date);
         $("#sfirstName").val(data.student);
         $("#sdob").val(data.DoB);
         $("#sSex").val(data.sex);
@@ -879,7 +894,6 @@ $(document).ready(function () {
         $("#schoolStudentAttends").val(data.schoolName);
         $("#sChallenges").val(data.challenge);
         $("#tGoals").val(data.preferredSubjects);
-        $("#contractStarted").val(data.starting_date);
         $("#tutorAssigned").val(data.tutor);
         $("#tutorAssignedContact").val(data.tutor_contact);
 
