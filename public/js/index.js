@@ -294,7 +294,8 @@ $(document).ready(function () {
 
     // Calculate and display the price
     var lessonFee = calculatePrice();
-    $("#lessonFeeDisplay").text("GHC" + lessonFee.toFixed(2));
+    let increment = lessonFee + 50;
+    $("#lessonFeeDisplay").text("GHC" + increment.toFixed(2));
 
     // $("#student").hide();
     // $("#preview").show();
