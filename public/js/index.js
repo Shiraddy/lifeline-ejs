@@ -1136,29 +1136,29 @@ $(document).ready(function () {
 
     // Example calculation based on mode and duration
     if (mode === "Phone Call" && duration === 0.5) {
-      baseCharge = 30;
+      baseCharge = 100;
     } else if (mode === "Phone Call" && duration === 1) {
-      baseCharge = 50;
+      baseCharge = 200;
     } else if (mode === "Phone Call" && duration === 1.5) {
-      baseCharge = 70;
+      baseCharge = 250;
     } else if (mode === "Phone Call" && duration === 2) {
-      baseCharge = 100;
+      baseCharge = 300;
     } else if (mode === "In-person" && duration === 0.5) {
-      baseCharge = 60;
+      baseCharge = 200;
     } else if (mode === "In-person" && duration === 1) {
-      baseCharge = 100;
+      baseCharge = 300;
     } else if (mode === "In-person" && duration === 1.5) {
-      baseCharge = 150;
+      baseCharge = 400;
     } else if (mode === "In-person" && duration === 2) {
-      baseCharge = 180;
+      baseCharge = 500;
     } else if (mode === "WhatsApp" && duration === 0.5) {
-      baseCharge = 25;
-    } else if (mode === "WhatsApp" && duration === 1) {
-      baseCharge = 40;
-    } else if (mode === "WhatsApp" && duration === 1.5) {
-      baseCharge = 60;
-    } else if (mode === "WhatsApp" && duration === 2) {
       baseCharge = 100;
+    } else if (mode === "WhatsApp" && duration === 1) {
+      baseCharge = 150;
+    } else if (mode === "WhatsApp" && duration === 1.5) {
+      baseCharge = 200;
+    } else if (mode === "WhatsApp" && duration === 2) {
+      baseCharge = 250;
     }
     // Add other conditions as needed
 
