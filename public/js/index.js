@@ -1138,9 +1138,9 @@ $(document).ready(function () {
     if (mode === "Phone Call" && duration === 0.5) {
       baseCharge = 100;
     } else if (mode === "Phone Call" && duration === 1) {
-      baseCharge = 200;
+      baseCharge = 150;
     } else if (mode === "Phone Call" && duration === 1.5) {
-      baseCharge = 250;
+      baseCharge = 200;
     } else if (mode === "Phone Call" && duration === 2) {
       baseCharge = 300;
     } else if (mode === "In-person" && duration === 0.5) {
