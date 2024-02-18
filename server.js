@@ -1273,7 +1273,7 @@ app.post("/form", async function (req, res) {
         <p>Client Contact: <a href="tel:${contact}">${contact}</a></p>
         <p>Emergency Contact: <a href="tel:${otherContact}">${otherContact}</a></p>
         <p>Email: <a href="mailto:${email}">${email}</a></p>
-        <p>Charges: ${totalPrice}</p>
+        <p>Charges: ${increment}</p>
       </div>
 
       <div class="mb-2">
@@ -1303,7 +1303,7 @@ app.post("/form", async function (req, res) {
       .replace(/\${stage}/g, stage)
       .replace(/\${weeklySession}/g, weeklySession)
       .replace(/\${duration}/g, periodLength)
-      .replace(/\${fee}/g, totalPrice)
+      .replace(/\${increment}/g, increment)
       .replace(/\${contact}/g, contact)
       .replace(/\${email}/g, email);
 
@@ -1335,8 +1335,6 @@ app.post("/form", async function (req, res) {
     res.status(400).json({ success: false, message: "Bad Request" });
   }
 });
-
-
 
 //Counselling Form
 app.post("/counselling-form", async function (req, res) {
